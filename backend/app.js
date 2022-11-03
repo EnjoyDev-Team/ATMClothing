@@ -4,6 +4,7 @@ const mongoSanitize = require('express-mongo-sanitize');
 const xss = require('xss-clean');
 const hpp = require('hpp');
 const cors = require('cors');
+const AuthRouter = require('./routes/AuthRouter');
 
 const limiter = rateLimit({
   // limiter is now become a middleware function
@@ -19,5 +20,7 @@ app.use(xss());
 app.use(hpp());
 
 app.use(express.json({ limit: '10mb' }));
+
+app.use('/api/v1/auth', AuthRouter);
 
 module.exports = app;
