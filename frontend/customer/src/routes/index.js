@@ -5,7 +5,6 @@ import PrivateRoute from './PrivateRoute';
 import Login from '../pages/auth';
 import Home from '../pages/home';
 import NotFound from '../pages/notFound';
-import Test from './Test';
 
 const Navigation = () => (
   <Routes>
