@@ -1,9 +1,14 @@
 import React from 'react';
 import { Navigate, Route, Routes } from 'react-router-dom';
+<<<<<<< HEAD
 import PrivateRoute from './privateRoute';
+=======
+import PrivateRoute from './PrivateRoute';
+>>>>>>> d240247 (create routes for page (app, products, shoppingcart, payment))
 
 import Home from '../pages/home';
 import NotFound from '../pages/notFound';
+<<<<<<< HEAD
 import Login from '../pages/auth/Login';
 import Register from '../pages/auth/Register';
 import ForgotPassword from '../pages/auth/ForgotPassword';
@@ -55,5 +60,35 @@ const Navigation = () => {
     </Routes>
   );
 };
+=======
+import Test from './Test';
+
+const Navigation = () => (
+  <Routes>
+    <Route path="/" element={<Navigate to="/home" />} />
+
+    <Route path="/home" element={<Home />} />
+
+    {/* AUTH ROUTE */}
+    {/* USER ROUTE */}
+
+    {/* PRODUCT ROUTE */}
+    <Route path="/products">
+      <Route index element={<>Products Page</>} />
+      <Route path=":id" element={<>Sub-Products Page</>} />
+      <Route path="list/:page" element={<>Products Page X</>} />
+      <Route path="list/:category/:page" element={<>Products Page with category & page X</>} />
+    </Route>
+
+    {/* ShoppingCart + Payment ROUTE */}
+    <Route path="/shopping">
+      <Route index element={<>Shopping Cart Page</>} />
+      <Route path="payment" element={<>Payment Page</>} />
+    </Route>
+
+    <Route path="*" name="notFound" element={<NotFound />} />
+  </Routes>
+);
+>>>>>>> d240247 (create routes for page (app, products, shoppingcart, payment))
 
 export default Navigation;
