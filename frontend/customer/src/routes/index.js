@@ -2,7 +2,8 @@ import React from 'react';
 import { Navigate, Route, Routes } from 'react-router-dom';
 import PrivateRoute from './privateRoute';
 
-import Home from '../pages/home';
+import Login from '../pages/auth';
+import Home from '../pages/home/Home';
 import NotFound from '../pages/notFound';
 import Login from '../pages/auth/Login';
 import Register from '../pages/auth/Register';

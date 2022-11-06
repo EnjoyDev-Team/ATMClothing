@@ -1,0 +1,87 @@
+@import '../../styles/colors';
+.cardproduct {
+    display: inline-block;
+    text-align: left;
+    
+
+    &__container {
+        width: 100%;
+        padding-left: 0.4rem;
+    }
+
+    &__name {
+        font-size: 1.6rem;
+        font-weight: 600;
+        opacity: 0.8;
+    }
+
+    &__price {
+        font-size: 2.2rem;
+        padding: 0.4rem 0;
+    }
+
+    &__address i svg {
+        padding-right: 0.5rem;
+        font-size: 1.2rem;
+        opacity: 0.6;
+    }
+
+    &__address p {
+        display: inline-block;
+        font-size: 1.4rem;
+        opacity: 0.5;
+    }
+
+    &__btn {
+        font-size: 1.6rem;
+        padding: 0.9rem 1.2rem;
+        background-color: $main_color;
+        color: white;
+        margin-top: 0.8rem;
+        border: none;
+    }
+
+    &__img {
+        width: 22rem;
+        height: 24rem;
+        background-color: white;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        img {
+            width: 20rem;
+            overflow: hidden;
+        }
+    }
+
+    &__img:hover img {
+        transform: scale(1.1);
+        transition: 0.5s;
+    }
+}
+
+.cardproduct:hover {
+    cursor: pointer;
+}
+
+.cardproduct2.cardproduct {
+    .cardproduct__img {
+        width: 36rem;
+        height: 36rem;
+        img {
+            width: 28rem;
+        }
+    }
+    .cardproduct__btn {
+        display: inline-block;
+    }
+    .cardproduct__container {
+        width: 40%;
+        display: inline-block;
+        background-color: red;
+    }
+    &__container__price {
+        display: none;
+    }
+
+}
