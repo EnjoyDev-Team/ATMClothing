@@ -1,0 +1,87 @@
+.profile {
+    position: absolute;
+    width: 300px;
+    top: calc(100% + 4px);
+    right: 0;
+    background-color: #fff;
+    padding: 12px 12px 0;
+    box-shadow: 0px 3px 6px rgba($color: #000000, $alpha: 0.2);
+    z-index: 1;
+    // display: none;
+
+    .profile__wrap {
+        margin-bottom: 12px;
+        // position: relative;
+
+        .profile__lable {
+            font-size: 1.4rem;
+            font-weight: 600;
+            line-height: 1.6;
+        }
+        .profile__list {
+            list-style: none;
+
+            .profile__item {
+                display: flex;
+                align-items: center;
+                border-bottom: 1px solid #ccc;
+                cursor: pointer;
+                padding: 6px 0;
+
+                .profile__item-icon {
+                    width: 2rem;
+                    height: 2rem;
+                    color: #ccc;
+                    padding: 4px;
+                }
+                .profile__item-link {
+                    font-size: 1.4rem;
+                    line-height: 1.6;
+                    color: #333;
+                    padding-left: 12px;
+                    display: block;
+                    width: 100%;
+                }
+            }
+
+            // .profile__item:hover .profile__item-link {
+            //     color: #fff;
+            // }
+            .profile__item:hover {
+                background-color: rgb(203, 234, 226);
+            }
+            .profile__item:hover .profile__item-icon {
+                color: #597d32;
+            }
+        }
+    }
+    .profile__wrap:last-child {
+        margin-bottom: 6px;
+
+        .profile__item:last-child {
+            border: none;
+
+            .profile__item-link:last-child {
+                color: #13488c;
+                font-weight: 600;
+            }
+        }
+    }
+}
+.profile::before {
+    position: absolute;
+    content: '';
+    top: -12px;
+    right: 16px;
+    border-style: solid;
+    border-width: 8px;
+    border-color: transparent transparent #fff transparent;
+}
+.profile::after {
+    position: absolute;
+    content: '';
+    top: -4px;
+    right: 0;
+    width: 100%;
+    height: 5px;
+}
