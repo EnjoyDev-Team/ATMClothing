@@ -1,0 +1,33 @@
+.socialLogin {
+  margin: 10px 0;
+
+  &__heading {
+    display: flex;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+  }
+
+  p {
+    font-size: 1.4rem;
+    color: #666;
+  }
+
+  &__line {
+    width: 60px;
+    margin: 0 10px;
+    height: 0;
+    border-top: 1px solid #ccc;
+  }
+
+  &__media {
+    display: flex;
+    justify-content: center;
+    margin: 6px;
+
+    img {
+      padding: 0 8px;
+      cursor: pointer;
+    }
+  }
+}

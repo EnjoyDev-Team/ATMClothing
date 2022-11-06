@@ -1,0 +1,122 @@
+
+.profileForm {
+  display: flex;
+  justify-content: space-between;
+
+  &__title {
+    // min-width: 200px;
+    flex: 1;
+    font-size: 1.6rem;
+    color: #333;
+    font-weight: 400;
+    
+    p {
+      line-height: 32px;
+      margin-bottom: 20px;
+    }
+  }
+
+  &__input {
+    flex: 2;
+
+    &-oldPW {
+      display: flex;
+
+      p {
+        padding-left: 6px;
+        line-height: 32px;
+        font-size: 1.4rem;
+        color: #13488C;
+        cursor: pointer;
+      }
+    }
+
+    input {
+      margin-bottom: 20px;
+    }
+
+    input[type=text],
+    input[type=password],
+    input[type=date] {
+      display: block;
+      font-size: 1.6rem;
+      border-color: #ccc;
+    }
+    
+    input[type=date] {
+      padding: 4.5px;
+      cursor: pointer;
+    }
+    input[type=text],
+    input[type=password] {
+      padding: 6px;
+      width: 80%;
+      width: 100%;
+
+      &::placeholder {
+        font-size: 1.4rem;
+      }
+    }
+    input[type=password] {
+      width: 70%;
+    }
+
+    input[type=radio] {
+      appearance: auto;
+      padding-right: 4px;
+      margin-right: 6px;
+      cursor: pointer;
+    }
+
+    &-gender {
+      height: 52px;
+
+      label {
+        padding-right: 16px;
+        cursor: pointer;
+      }
+    }
+
+    .phone {
+      line-height: 32px;
+      font-size: 1.6rem;
+    }
+  }
+}
+
+.btn {
+  position: absolute;
+  width: 120px;
+  bottom: 20px;
+  right: 30px;
+}
+
+.avatar {
+
+  img {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    margin: 0 auto;
+    object-fit: cover;
+    display: block;
+  }
+
+  .avatarIcon {
+    font-size: 15rem;
+    color: #bbb;
+    display: block;
+    margin: auto;
+  }
+
+  &__edit {
+    display: flex;
+    justify-content: center;
+    margin: 20px 0;
+
+    div {
+      margin: 0 4px; 
+      width: 120px;
+    }
+  }
+}

@@ -1,0 +1,51 @@
+.inputCT {
+  position: relative;
+  padding-top: 20px;
+  margin-top: 10px;
+  
+  input {
+    padding: 4px;
+    font-size: 1.6rem;
+    width: 100%;
+    background-color: transparent;
+    border: none;
+    border-bottom: 1px solid #597D32;
+    
+  }
+
+  .hiddenPlaceholder::placeholder {
+    color: transparent;
+  }
+
+  .label {
+    position: absolute;
+    top: 20px;
+    left: 4px;
+    color: #597D32;
+    font-size: 1.6rem;
+    font-weight: 600;
+    visibility: hidden;
+  }
+
+  .focusAnimate {
+    visibility: visible;
+    animation: identifier linear 0.3s forwards;
+  }
+
+  @keyframes identifier {
+    from {
+
+    } to {
+      transform: translateY(-24px) translateX(-4px);
+    }
+  }
+}
+
+.message {
+  height: 21px;
+
+  span {
+    font-size: 1.4rem;
+    color: #FF3434;
+  }
+}
