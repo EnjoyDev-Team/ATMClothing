@@ -23,9 +23,11 @@ const Navigation = () => {
         <Route path="/forgot" name="forgot" element={<ForgotPassword />} />
 
         {/* Sale/Custom/Donate */}
-        <Route path="/sale" name="sale" element={<NotFound />} />
-        <Route path="/custom" name="custom" element={<NotFound />} />
-        <Route path="/donate" name="donate" element={<NotFound />} />
+        <Route path="/services">
+          <Route path="/sale" name="sale" element={<NotFound />} />
+          <Route path="/custom" name="custom" element={<NotFound />} />
+          <Route path="/donate" name="donate" element={<NotFound />} />
+        </Route>
 
         {/* Protected Routes */}
         <Route element={<PrivateRoute isAllowed={authenticated} redirectPath="/login" />}>

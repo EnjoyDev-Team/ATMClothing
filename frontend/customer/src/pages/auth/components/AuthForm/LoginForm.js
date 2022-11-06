@@ -1,3 +1,5 @@
+/* eslint-disable jsx-a11y/no-static-element-interactions */
+/* eslint-disable jsx-a11y/click-events-have-key-events */
 import React from 'react';
 import { Link } from 'react-router-dom';
 import SocialLogin from '../SocialLogin/SocialLogin';
@@ -10,7 +12,10 @@ const LoginForm = () => {
 
   return (
     <div className={classes['auth-form']}>
-      <div className={classes['auth-form__form']}>
+      <div
+        className={classes['auth-form__form']}
+        onClick={() => {}}
+      >
         <h3>Đăng nhập</h3>
 
         <InputCT placeholder="Nhập số điện thoại" />
