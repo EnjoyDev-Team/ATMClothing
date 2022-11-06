@@ -1,0 +1,81 @@
+.card {
+    width: 100%;
+    border: 1px solid #E3E3E3;
+    border-radius: 1rem;
+    -webkit-border-radius: 1rem;
+    -moz-border-radius: 1rem;
+    -ms-border-radius: 1rem;
+    -o-border-radius: 1rem;
+    // box-shadow: 0rem .1rem .3rem rgba(0, 0, 0, .15);
+    cursor: pointer;
+    overflow: hidden;
+    
+    &__heading {
+        display: flex;
+        align-items: center;
+        gap: 1.3rem;
+        padding: .8rem 1.2rem;
+        background-color: #F4F4F4;
+        
+        &__title{
+            font-weight: 600;
+            line-height: 1em;
+        }
+
+        &__control{
+            margin-left: auto;
+            display: flex;
+            gap: 1.3rem;
+        }
+
+        &__control button {
+            border: none;
+        }
+
+        &__control button svg{
+            font-size: 3rem;
+            display: block;
+        }
+
+        &__control button:nth-child(1):hover svg rect {
+            fill: rgb(93, 122, 177);
+        }
+
+        &__control button:hover svg path {
+            fill: white;
+        }
+
+        &__control button:nth-child(2):hover svg rect {
+            fill: rgb(177, 93, 93);
+        }
+    }
+
+    &__heading svg{
+        font-size: 2.8rem;
+    }
+
+    &__content{
+        padding: 1rem 1.5rem 1.5rem 1.5rem;
+        display: flex;
+        // flex-direction: column;
+        gap: 3.8rem;
+        
+        &__item{
+            padding: .3rem 0rem;
+            
+            &-title {
+                font-weight: 500;
+            }
+
+            &-last{
+                display: flex;
+                align-items: flex-end;
+                justify-content: flex-end;
+                margin-left: auto;
+                gap: 1.8rem;
+                font-weight: 700;
+                color: #F12626;
+            }
+        }
+    }
+}
