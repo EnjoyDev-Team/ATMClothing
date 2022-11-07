@@ -21,7 +21,7 @@
     &-oldPW {
       display: flex;
 
-      p {
+      a {
         padding-left: 6px;
         line-height: 32px;
         font-size: 1.4rem;
@@ -113,7 +113,7 @@
     justify-content: center;
     margin: 20px 0;
 
-    div {
+    button {
       margin: 0 4px; 
       width: 120px;
     }

@@ -36,7 +36,9 @@ const General = () => {
           <p className={classes.phone}>08*****789</p>
         </div>
       </div>
-    <div className={classes.btn}><ButtonCT content="Lưu thay đổi" primary medium /></div>
+      <ButtonCT primary medium className={classes.btn}>
+        Lưu thay đổi
+      </ButtonCT>
     </>
   );
 };

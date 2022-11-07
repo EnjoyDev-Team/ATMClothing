@@ -13,9 +13,9 @@ const RegisterForm = () => {
     <>
       <InputCT placeholder="Nhập số điện thoại" />
 
-      <div className={classes.btn}>
-        <ButtonCT primary borderRadius content="Tiếp tục" medium />
-      </div>
+      <ButtonCT primary borderRadius medium className={classes.btn}>
+        Tiếp tục
+      </ButtonCT>
     </>
   );
 
@@ -34,9 +34,9 @@ const RegisterForm = () => {
         </span>
       </p>
 
-      <div className={classes.btn}>
-        <ButtonCT primary borderRadius content="Xác nhận" medium />
-      </div>
+      <ButtonCT primary borderRadius medium className={classes.btn}>
+        Xác nhận
+      </ButtonCT>
 
       <p className={classes.policy}>
         Bằng việc đăng kí, bạn đã đồng ý với
@@ -59,9 +59,9 @@ const RegisterForm = () => {
       <InputCT placeholder="Nhập mật khẩu" type="password" />
       <InputCT placeholder="Nhập lại mật khẩu" type="password" />
 
-      <div className={classes.btn}>
-        <ButtonCT primary borderRadius content="Đăng ký" medium />
-      </div>
+      <ButtonCT primary borderRadius medium className={classes.btn}>
+        Đăng ký
+      </ButtonCT>
     </>
   );
 

@@ -7,7 +7,6 @@ import classes from './ButtonCT.module.scss';
 
 const ButtonCT = (props) => {
   const {
-    content,
     iconLeft,
     iconRight,
     loading,
@@ -25,6 +24,8 @@ const ButtonCT = (props) => {
     redLinear,
     greenLinear,
 
+    className,
+
     ...passProps
   } = props;
 
@@ -36,6 +37,7 @@ const ButtonCT = (props) => {
       className={`
       ${classes['my-btn']}
       ${classProps}
+      ${className}
     `}
       {...passProps}
     >
@@ -43,7 +45,7 @@ const ButtonCT = (props) => {
         : (
         <>
           {iconLeft && <FontAwesomeIcon className={classes['icon-left']} icon={iconLeft} />}
-          <span className={classes['my-btn__content']}>{content}</span>
+          <span className={classes['my-btn__content']}>{props.children}</span>
           {iconRight && <FontAwesomeIcon className={classes['icon-right']} icon={iconRight} />}
         </>
         )}

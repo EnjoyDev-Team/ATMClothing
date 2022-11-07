@@ -10,9 +10,9 @@ const ForgotForm = () => {
     <>
       <InputCT placeholder="Nhập số điện thoại" />
 
-      <div className={classes.btn}>
-        <ButtonCT primary borderRadius content="Tiếp tục" medium />
-      </div>
+      <ButtonCT primary borderRadius medium className={classes.btn}>
+        Tiếp tục
+      </ButtonCT>
     </>
   );
 
@@ -32,9 +32,9 @@ const ForgotForm = () => {
         </span>
       </p>
 
-      <div className={classes.btn}>
-        <ButtonCT primary borderRadius content="Xác nhận" medium />
-      </div>
+      <ButtonCT primary borderRadius medium className={classes.btn}>
+        Xác nhận
+      </ButtonCT>
     </>
   );
 
@@ -43,9 +43,9 @@ const ForgotForm = () => {
       <InputCT placeholder="Nhập mật khẩu mới" type="password" />
       <InputCT placeholder="Nhập lại mật khẩu" type="password" />
 
-      <div className={classes.btn}>
-        <ButtonCT primary borderRadius content="Cập nhật" medium />
-      </div>
+      <ButtonCT primary borderRadius medium className={classes.btn}>
+        Cập nhật
+      </ButtonCT>
     </>
   );
 

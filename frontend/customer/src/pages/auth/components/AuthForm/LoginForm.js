@@ -18,7 +18,7 @@ const LoginForm = () => {
       >
         <h3>Đăng nhập</h3>
 
-        <InputCT placeholder="Nhập số điện thoại" />
+        <InputCT placeholder="Nhập số điện thoại" type="text" />
         <InputCT placeholder="Nhập mật khẩu" type="password" />
 
         <Link
@@ -28,9 +28,10 @@ const LoginForm = () => {
           Quên mật khẩu
         </Link>
 
-        <div className={classes.btn}>
-        <ButtonCT primary borderRadius content="Đăng nhập" medium />
-        </div>
+        <ButtonCT primary borderRadius medium className={classes.btn}>
+          Đăng nhập
+        </ButtonCT>
+
       </div>
 
       <div className={classes['auth-form__footer']}>
