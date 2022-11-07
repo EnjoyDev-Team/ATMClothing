@@ -2,13 +2,19 @@ import React from 'react';
 import { Navigate, Route, Routes } from 'react-router-dom';
 import PrivateRoute from './privateRoute';
 
+<<<<<<< HEAD
 import Home from '../pages/home';
+=======
+import Login from '../pages/auth';
+import Home from '../pages/home/Home';
+>>>>>>> bd30ff7 (update)
 import NotFound from '../pages/notFound';
 import Login from '../pages/auth/Login';
 import Register from '../pages/auth/Register';
 import ForgotPassword from '../pages/auth/ForgotPassword';
 import Profile from '../pages/auth/Profile';
 
+<<<<<<< HEAD
 const Navigation = () => {
   const authenticated = true;
   return (
@@ -55,5 +61,18 @@ const Navigation = () => {
     </Routes>
   );
 };
+=======
+const Navigation = () => (
+    <main>
+        <Routes>
+            <Route path="/login" name="login" element={<Login />} />
+            <Route element={<PrivateRoute isAllowed redirectPath="/login" />}>
+                <Route path="/home" name="home" element={<Home />} />
+            </Route>
+            <Route path="*" name="notFound" element={<NotFound />} />
+        </Routes>
+    </main>
+);
+>>>>>>> bd30ff7 (update)
 
 export default Navigation;

@@ -1,0 +1,46 @@
+.stateHeader {
+    line-height: 26px;
+    font-weight: bold;
+    margin: 3rem;
+    color: black;
+}
+
+.stateContainer {
+    display: flex;
+    justify-content: space-around;
+    gap: 2rem;
+}
+
+.stateBox {
+    position: relative;
+    border: solid #cccccc;
+    width: 180px;
+    height: 209px;
+    border-radius: 20px;
+}
+
+.stateBox:hover,
+.stateBox:hover * {
+    border-color: #0d6ab0;
+    color: #0d6ab0;
+    transition: 0.5s;
+}
+
+p.stateContent {
+    // width: 180px;
+    position: absolute;
+    color: black;
+    font-weight: bold;
+    text-align: center;
+    top: 20%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.stateDescription {
+    position: absolute;
+    color: #666666;
+
+    text-align: center;
+    padding-top: 8rem;
+}

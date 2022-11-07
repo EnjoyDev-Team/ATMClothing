@@ -1,0 +1,77 @@
+.container {
+    display: flex;
+    gap: 5rem;
+}
+
+.header {
+    position: relative;
+    display: flex;
+    background-color: white;
+    width: 695px;
+    padding: 2rem;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    justify-content: space-between;
+    border: solid lightgrey;
+}
+
+.hItem {
+    background-color: white;
+}
+
+.addSection {
+    position: absolute;
+    // transform: translate(-50%, -50%);
+    width: 695px;
+    height: 45rem;
+    background-color: white;
+    border: solid lightgrey;
+}
+
+/************************
+        RECEIPT
+*************************/
+.receipt {
+    width: 407px;
+}
+
+.receiptHead {
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    padding: 2rem;
+    background-color: white;
+    border: solid lightgrey;
+}
+
+.receiptDetail {
+    display: flex;
+    gap: 4rem;
+    padding: 2rem;
+    background-color: white;
+    border: solid lightgrey;
+    height: 284px;
+}
+
+.receiptDetail p {
+    color: black;
+}
+
+.total {
+    margin: 2rem auto;
+    font-size: 25px;
+}
+
+.menu p {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.data p:last-child {
+    color: #000092;
+    font-weight: bold;
+}
+
+.data p {
+    display: flex;
+    justify-content: flex-start;
+}
