@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-props-no-spreading */
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 import React, { useState, useRef, useEffect } from 'react';
@@ -7,7 +8,9 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import classes from './InputCT.module.scss';
 import useMergeState from '../../../../hooks/useMergeState';
 
-const InputCT = ({ type, placeholder, message }) => {
+const InputCT = (props) => {
+  const { type, placeholder, message, required, validation, setValue, ...passProps } = props;
+
   const [state, setState] = useMergeState({
     isFocus: -1,
     type,
@@ -16,16 +19,46 @@ const InputCT = ({ type, placeholder, message }) => {
   const [data, setData] = useState('');
   const inputRef = useRef();
 
-  const handleClickEye = () => {
-    if (state.type === 'password') setState({ type: 'text' });
-    else setState({ type: 'password' });
+  const handleChange = (e) => {
+    setState({ error: '' });
+    const { value } = e.target;
+
+    if (value === '') {
+      setData('');
+    } else if (state.type === 'tel') {
+      const pattern = /\b([0-9]|10)\b/;
+      if (pattern.test(value[value.length - 1])) {
+        setData(value);
+      }
+    } else {
+      setData(value);
+    }
   };
 
   const handleBlur = (e) => {
-    setData(e.target.value);
-    if (e.target.value === '') {
+    const { value } = e.target;
+    if (value === '') {
       setState({ isFocus: 0 });
     }
+
+    if (required && value === '') {
+      setState({ error: 'Đây là phần bắt buộc!' });
+      return;
+    }
+    if (validation && value !== '') {
+      const error = validation({ value });
+      setState({ error });
+      if (error !== '') return;
+    }
+
+    if (setValue) {
+      setValue(data);
+    }
+  };
+
+  const handleClickEye = () => {
+    if (state.type === 'password') setState({ type: 'text' });
+    else setState({ type: 'password' });
   };
 
   useEffect(() => {
@@ -40,8 +73,11 @@ const InputCT = ({ type, placeholder, message }) => {
       <input
         onFocusCapture={() => setState({ isFocus: 1 })}
         onBlur={handleBlur}
+        onChange={handleChange}
+        value={data}
         type={state.type}
         ref={inputRef}
+        {...passProps}
       />
       {type === 'password' && (
           <div
@@ -74,13 +110,19 @@ const InputCT = ({ type, placeholder, message }) => {
 InputCT.propTypes = {
   type: PropTypes.string,
   placeholder: PropTypes.string,
-  message: PropTypes.string
+  message: PropTypes.string,
+  required: PropTypes.bool,
+  validation: PropTypes.func,
+  setValue: PropTypes.func
 };
 
 InputCT.defaultProps = {
   type: 'text',
   placeholder: '',
-  message: undefined
+  message: undefined,
+  required: false,
+  validation: null,
+  setValue: null
 };
 
 export default InputCT;

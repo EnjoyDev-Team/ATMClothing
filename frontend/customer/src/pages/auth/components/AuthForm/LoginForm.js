@@ -6,6 +6,7 @@ import SocialLogin from '../SocialLogin/SocialLogin';
 import InputCT from '../InputCT/InputCT';
 import ButtonCT from '../../../../components/ButtonCT/ButtonCT';
 import classes from './AuthForm.module.scss';
+import { validatePassword, validatePhone } from './handler';
 
 const LoginForm = () => {
   const a = 0;
@@ -18,8 +19,8 @@ const LoginForm = () => {
       >
         <h3>Đăng nhập</h3>
 
-        <InputCT placeholder="Nhập số điện thoại" type="text" />
-        <InputCT placeholder="Nhập mật khẩu" type="password" />
+        <InputCT placeholder="Nhập số điện thoại" type="tel" validation={validatePhone} maxLength="10" required />
+        <InputCT placeholder="Nhập mật khẩu" type="password" validation={validatePassword} required />
 
         <Link
           to="/forgot"
