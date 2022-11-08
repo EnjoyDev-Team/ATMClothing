@@ -50,6 +50,10 @@ body {
                 top: 50%
             }
         }
+        &__sample:hover {
+            // opacity: 0.8;
+            background-color: #70b261;
+        }
 
     }
 
@@ -61,6 +65,7 @@ body {
     color: $main_color;
     margin-top: 3.5rem;
     margin-bottom: 1rem;
+    box-shadow: 0 0.1rem 0.4rem 0.2rem gainsboro;
 
     &__main {
         display: inline-block;
@@ -93,4 +98,72 @@ body {
     &__product {
         justify-content: center;
     }
+}
+
+.donations {
+    background-color: #fff;
+    margin: 5rem 3rem;
+    display: flex;
+    justify-content: space-between;
+    padding-right: 2rem;
+    &__describe {
+        flex:1;
+
+        &__header {
+            display: flex;
+            align-items: flex-end;
+            justify-content: space-between;
+            padding: 0rem 2.5rem;
+            &__content {
+                h1 {
+                    display: inline-block;
+                }
+                &__1 {
+                    color: $main_color;
+                    font-weight: 600;
+                    font-size: 5rem;
+                    padding-right: 1.2rem;
+                }
+                &__2 {
+                    color: #FF424D;
+                    font-size: 12rem;
+                    line-height: 12rem;
+                }
+                &__3 {
+                    font-size: 5rem;
+                    font-weight: 500;
+                    color: #FF424D;
+                    padding-left: 0.4rem;                    
+                }
+            }
+            a {
+                margin-bottom: 2.5rem;
+                color: #13488C;
+                i {
+                    margin-left: 1rem;
+                }
+            }
+        }
+        &__listProducts {
+            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            margin: 1rem 2rem;
+            // border-style: solid;
+            margin-bottom: 5rem;
+            
+            &__product {
+                justify-content: center;
+            }
+        }
+    }
+    &__carproduct {
+        // border-style: solid;
+        margin: auto 0 5rem 0;
+    }
+}
+.hover:hover {
+    color: rgb(206, 18, 197);
 }

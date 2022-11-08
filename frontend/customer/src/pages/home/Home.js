@@ -18,7 +18,7 @@ const Home = () => {
 
   return (
     <>
-      {/* <div className={classes.header}>
+      <div className={classes.header}>
         <h2 className={classes.header__content}>Danh mục yêu thích</h2>
         <div>
           <a href="#1" className={classes.header__container}>
@@ -67,7 +67,7 @@ const Home = () => {
       </div>
       <div className={classes.title}>
         <h2 className={classes.title__main}>FLASH sale</h2>
-        <a href="#1" className={classes.title__more}>
+        <a href="#1" className={`${classes.title__more} ${classes.hover}`}>
           Xem tất cả
           <i><FontAwesomeIcon icon={faArrowDown} /></i>
         </a>
@@ -94,7 +94,7 @@ const Home = () => {
       </div>
       <div className={classes.title}>
         <h2 className={classes.title__main}>Thời trang nữ</h2>
-        <a href="#1" className={classes.title__more}>
+        <a href="#1" className={`${classes.title__more} ${classes.hover}`}>
           Xem tất cả
           <i><FontAwesomeIcon icon={faArrowDown} /></i>
         </a>
@@ -118,8 +118,39 @@ const Home = () => {
         <div className={classes.listProducts__product}>
           <CardProduct />
         </div>
-      </div> */}
-      <CardProduct cardproduct2 />
+      </div>
+      <div className={classes.donations}>
+        <div className={classes.donations__describe}>
+          <div className={classes.donations__describe__header}>
+            <div href="#1" className={classes.donations__describe__header__content}>
+              <h1 className={classes.donations__describe__header__content__1}>Góc</h1>
+              <h1 className={classes.donations__describe__header__content__2}>0</h1>
+              <h1 className={classes.donations__describe__header__content__3}>đ</h1>
+            </div>
+            <a href="#1" className={classes.hover}>
+              Xem tất cả
+              <i><FontAwesomeIcon icon={faArrowDown} /></i>
+            </a>
+          </div>
+          <div className={classes.donations__describe__listProducts}>
+            <div className={classes.donations__describe__listProducts__product}>
+              <CardProduct />
+            </div>
+            <div className={classes.donations__describe__listProducts__product}>
+              <CardProduct />
+            </div>
+            <div className={classes.donations__describe__listProducts__product}>
+              <CardProduct />
+            </div>
+            <div className={classes.donations__describe__listProducts__product}>
+              <CardProduct />
+            </div>
+          </div>
+        </div>
+        <div className={classes.donations__carproduct}>
+          <CardProduct cardproduct2 />
+        </div>
+      </div>
     </>
   );
 };
