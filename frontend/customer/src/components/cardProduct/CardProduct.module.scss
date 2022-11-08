@@ -6,6 +6,7 @@
 
     &__container {
         padding-left: 0.4rem;
+        padding: 1rem 0;
     }
 
     &__name {
@@ -71,29 +72,26 @@
             justify-content: space-between;
         }
         &__img {
-            width: 42rem;
-            height: 42rem;
-            img {
-                width: 34rem;
-            }
+            width: 38rem;
+            height: 38rem;
         }
         
         &__container {
             display: inline-block;
+            margin-top: 2rem;
         }
 
-        // &__btn {
-        //     display: inline-block;
-        // }
-
-
+        &__address p{
+            padding: 1rem;
+        }
 
         &__price {
             display: none;
         }
     }
+    .btn {
+        margin-top: 3rem;
+    }
 
 }
-.hover:hover {
-    color: rgb(206, 18, 197);
-}
+
