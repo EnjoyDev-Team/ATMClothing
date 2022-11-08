@@ -1,0 +1,37 @@
+.formHeader {
+    font-weight: bold;
+    color: black;
+    margin: 0;
+    padding: 3.5rem;
+}
+
+.formContainer {
+    background-color: white;
+    width: 1159px;
+    height: 80rem;
+    margin: 0 auto;
+}
+
+// SUCCESS FIELD
+.success__icon {
+    font-size: 10rem;
+}
+
+.success__field {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 10rem;
+}
+
+.success__img {
+    // background-color: yellow;
+    margin: 5rem auto;
+}
+
+.success__message {
+    font-weight: bold;
+    font-size: 24px;
+    color: #597d32;
+}

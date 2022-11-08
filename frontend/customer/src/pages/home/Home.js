@@ -2,17 +2,19 @@
 import React from 'react';
 // import Button from '../../components/Button/Button';
 import ATMClothing from '../ATMClothing/ATMClothing';
-import Service from '../Service/Service';
-import Form from '../Service/Form/Form';
+import Sell from '../ATMClothing/Service/Sell';
+// import Service from '../Service/Form/Service/Service';
+// import Form from '../ATMClothing/components/Service/Service';
+// import Service from './../ATMClothing/Service/Service';
+import Service from '../ATMClothing/Service/Service';
 
 const Home = () => (
     <div>
-        <ATMClothing />
+        {/* <ATMClothing /> */}
         {/* <Service type="sell" /> */}
-        <Form />
+        {/* <Form /> */}
+        <Sell />
     </div>
 );
-
-Home.propTypes = {};
 
 export default Home;

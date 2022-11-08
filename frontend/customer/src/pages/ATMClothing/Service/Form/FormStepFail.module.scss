@@ -1,0 +1,39 @@
+.formHeader {
+    font-weight: bold;
+    color: black;
+    margin: 0;
+    padding: 3.5rem;
+}
+
+.formContainer {
+    background-color: white;
+    width: 1159px;
+    height: 75rem;
+    margin: 0 auto;
+}
+
+.btn__field {
+    width: 1159px;
+    display: flex;
+    gap: 3rem;
+    justify-content: flex-end;
+    padding-right: 5rem;
+}
+
+.fail__field {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 10rem;
+}
+
+.fail__img {
+    // background-color: yellow;
+    // margin: 5rem auto;
+}
+
+.fail__message {
+    font-weight: bold;
+    color: #f12626;
+}
