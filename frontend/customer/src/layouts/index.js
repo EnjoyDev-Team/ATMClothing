@@ -1,16 +1,18 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import _ from 'lodash';
+import { Outlet } from 'react-router-dom';
+import Header from '../components/Header/Header';
+import Footer from '../components/Footer/Footer';
 
-const Layout = () => {
-  const a = 0;
-
-  return (
-    <div>
-      Layout
-    </div>
-  );
-};
+const Layout = () => (
+  <>
+    <Header />
+      <div style={{ backgroundColor: '#f3f3f3' }}>
+        <Outlet />
+      </div>
+    <Footer />
+  </>
+);
 
 Layout.propTypes = {
 

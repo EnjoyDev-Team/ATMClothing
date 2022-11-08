@@ -8,22 +8,43 @@ import {
   faCartShopping,
   faMountainSun,
 } from '@fortawesome/free-solid-svg-icons';
+import { Link } from 'react-router-dom';
 import Profile from '../Profile/Profile';
 import classes from './styles.module.scss';
 import logo from '../../assets/imgs/logo.png';
 import avatar from '../../assets/imgs/Screenshot 2022-09-28 184909.png';
+import ButtonCT from '../ButtonCT/ButtonCT';
 
 const Header = () => {
   const [isOpen, setOpen] = useState(false);
+  const [isBlur, setBlur] = useState(!isOpen);
   const [fixedNavbar, setFixedNavbar] = useState(false);
-  const [isAccount, setAccount] = useState(false);
+  const [isAccount, setAccount] = useState(true);
+  const [isAvt, setAvt] = useState(false);
 
   const handleProfile = () => {
     setOpen((prev) => !prev);
   };
 
+  const handleBlur = () => {
+    setBlur(() => {
+      if (isOpen) {
+        return false;
+      }
+      return true;
+    });
+  };
+
   const handleAccount = () => {
-    setAccount((prev) => !prev);
+
+  };
+
+  const handleContent = () => {
+    const test = document.querySelector('.header__search-input');
+
+    if (test.value.length !== 0) {
+      test.select();
+    }
   };
 
   useEffect(() => {
@@ -49,23 +70,23 @@ const Header = () => {
             <div className={classes.header__mission}>
                 <div className={classes['header__mission-wrap']}>
                     <FontAwesomeIcon className={classes['header__mission-icon']} icon={faMountainSun} />
-                    <a className={classes['header__mission-link']} href="#1" alt="">
+                    <Link className={classes['header__mission-link']} to="#1" alt="">
                         Sứ mệnh ATM Clothing
-                    </a>
+                    </Link>
                 </div>
             </div>
 
             <div className={`${classes.header__nav} ${fixedNavbar ? classes.sticky : ''}`}>
                 <div className={classes.header__left}>
                     <div className={classes.header__logo}>
-                        <a href="#top" className={classes['header__logo-link']}>
+                        <Link to="/home" className={classes['header__logo-link']}>
                             <img src={logo} alt="" className={classes['header__logo-link-img']} />
-                        </a>
+                        </Link>
                     </div>
 
                     <div className={classes.header__search}>
-                        <input type="text" className={classes['header__search-input']} />
-                        <span htmlFor="name" className={classes['header__search-lable']}>
+                        <input type="text" className={classes['header__search-input']} placeholder=" " />
+                        <span htmlFor="name" className={classes['header__search-label']}>
                             Search
                         </span>
 
@@ -77,26 +98,31 @@ const Header = () => {
 
                 <div className={classes.header__right}>
                     <div className={classes['header__right-account']}>
-                        <div className={classes.header__account}>
-                            <div className={classes['header__right-account-signup']}>
-                                <a onClick={handleAccount} href="#1">Đăng ký</a>
-                            </div>
+                        {isAccount && (
+                            <div className={classes.header__account}>
+                                <div className={classes['header__right-account-signup']}>
+                                    <Link onClick={handleAccount} to="#1">
+                                        Đăng ký
+                                    </Link>
+                                </div>
 
-                            <div className={classes['header__right-account-signin']}>
-                                <a onClick={handleAccount} href="#1">Đăng nhập</a>
+                                <div className={classes['header__right-account-signin']}>
+                                    <Link onClick={handleAccount} to="#1">
+                                        Đăng nhập
+                                    </Link>
+                                </div>
                             </div>
-                        </div>
+                        )}
                     </div>
 
                     <div className={classes['header__right-button']}>
                         <div className={classes.header__angle}>
-                            <div className={classes['header__angle-icon']}>
-                                <FontAwesomeIcon icon={faHandHoldingHeart} />
-                            </div>
-                            <p className={classes['header__angle-content']}>Góc 0đ</p>
+                            <ButtonCT content="Góc 0đ" redLinear borderRadius medium iconLeft={faHandHoldingHeart} />
                         </div>
 
-                        <div className={classes['header__old-product']}>Tôi có sản phẩm cũ</div>
+                        <div className={classes['header__old-product']}>
+                            <ButtonCT content="Tôi có sản phẩm cũ" medium borderRadius outlineBtn />
+                        </div>
                     </div>
 
                     <div className={classes['header__right-wrap-avt-cart']}>
@@ -109,53 +135,50 @@ const Header = () => {
                         </div>
 
                         <div className={classes.header__avatar}>
-                            <button
-                              onClick={handleProfile}
-                              onBlur={handleProfile}
-                              className={classes['header__avatar-button']}
-                            >
-                                <img className={classes['header__avatar-img']} src={avatar} alt="" />
-                            </button>
-                            {isOpen && <Profile />}
+                                <button
+                                  onClick={handleProfile}
+                                  onBlur={handleBlur}
+                                  className={classes['header__avatar-button']}
+                                >
+                                    <img className={classes['header__avatar-img']} src={avatar} alt="" />
+                                </button>
+                                {isOpen && <Profile />}
                         </div>
                     </div>
                 </div>
             </div>
 
-            <div
-              className={`${classes['header__links-bar']} ${fixedNavbar ? classes['is-margin'] : ''}`}
-                //   style={{ opacity: `${1.0 - window.scrollY / 29}` }}
-            >
+            <div className={`${classes['header__links-bar']} ${fixedNavbar ? classes['is-margin'] : ''}`}>
                 <ul className={classes['header__links-bar-list']}>
                     <li className={classes['header__links-bar-item']}>
-                        <a className={classes['header__links-bar-item-link']} href="#top">
+                        <Link className={classes['header__links-bar-item-link']} to="#top">
                             Thời trang nam
-                        </a>
+                        </Link>
                     </li>
                     <li className={classes['header__links-bar-item']}>
-                        <a className={classes['header__links-bar-item-link']} href="#top">
+                        <Link className={classes['header__links-bar-item-link']} to="#top">
                             Thời trang nữ
-                        </a>
+                        </Link>
                     </li>
                     <li className={classes['header__links-bar-item']}>
-                        <a className={classes['header__links-bar-item-link']} href="#top">
+                        <Link className={classes['header__links-bar-item-link']} to="#top">
                             Phụ kiện nam
-                        </a>
+                        </Link>
                     </li>
                     <li className={classes['header__links-bar-item']}>
-                        <a className={classes['header__links-bar-item-link']} href="#top">
+                        <Link className={classes['header__links-bar-item-link']} to="#top">
                             Phụ kiện nữ
-                        </a>
+                        </Link>
                     </li>
                     <li className={classes['header__links-bar-item']}>
-                        <a className={classes['header__links-bar-item-link']} href="#top">
+                        <Link className={classes['header__links-bar-item-link']} to="#top">
                             Đồ cho bé
-                        </a>
+                        </Link>
                     </li>
                     <li className={classes['header__links-bar-item']}>
-                        <a className={classes['header__links-bar-item-link']} href="#top">
+                        <Link className={classes['header__links-bar-item-link']} to="#top">
                             Đồ dùng gia đình
-                        </a>
+                        </Link>
                     </li>
                 </ul>
             </div>

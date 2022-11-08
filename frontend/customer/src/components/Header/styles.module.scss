@@ -1,7 +1,5 @@
 .header {
-
     .header__mission {
-
         .header__mission-wrap {
             display: flex;
             align-items: center;
@@ -26,14 +24,13 @@
         display: flex;
         align-items: center;
         padding: 0 30px;
-        background-color: #fff;
-        // position: fixed;
-        // width: 100%;
+        background-color: #f3f3f3;
 
         .header__left {
             display: flex;
-            width: 55%;
             align-items: center;
+            width: 55%;
+            // width: 60%;
 
             .header__logo {
                 .header__logo-link {
@@ -63,13 +60,14 @@
                     border: 1px solid #ccc;
                     padding: 12px;
                     border-radius: 4px;
+                    transition: 0.25s ease;
                 }
 
                 .header__search-input:focus {
                     border-color: #89c15d;
                 }
 
-                .header__search-lable {
+                .header__search-label {
                     position: absolute;
                     content: '';
                     top: 57%;
@@ -77,17 +75,19 @@
                     transform: translateY(-65%);
                     user-select: none;
                     color: #999;
+                    background-color: transparent;
                     pointer-events: none;
                 }
 
-                .header__search-input:focus + .header__search-lable {
+                .header__search-input:not(:placeholder-shown) + .header__search-label,
+                .header__search-input:focus + .header__search-label {
                     top: 0;
                     display: inline-block;
-                    background-color: white;
+                    background-color: #fff;
                     padding: 0 10px;
-                    transition: 0.25s ease;
                     color: #89c15d;
                     border-radius: 4px;
+                    transition: 0.25s ease;
                 }
 
                 .header__search-wrap-icon {
@@ -102,11 +102,14 @@
 
         .header__right {
             display: flex;
-            width: 45%;
             align-items: center;
             justify-content: space-between;
+            width: 45%;
+            // width: 40%;
 
             .header__right-account {
+                // display: none;
+
                 .header__account {
                     display: flex;
                     align-items: center;
@@ -137,33 +140,11 @@
                 align-items: center;
 
                 .header__angle {
-                    display: flex;
-                    align-items: center;
-                    min-width: 86px;
-                    height: 3.4rem;
-                    background: linear-gradient(95.33deg, #89c15d 42.02%, rgba(93, 193, 151, 0.81) 82.66%);
-                    border-radius: 50px;
-                    padding: 8px;
-
-                    .header__angle-icon {
-                        color: #fff;
-                    }
-                    .header__angle-content {
-                        color: #fff;
-                        margin-left: 8px;
-                        font-size: 1.4rem;
-                    }
+                    min-width: 90px;
                 }
 
                 .header__old-product {
                     min-width: 170px;
-                    height: 3.4rem;
-                    text-align: center;
-                    font-size: 1.4rem;
-                    padding: 6px 25px;
-                    color: #7bb051;
-                    border: 1px solid #7bb051;
-                    border-radius: 50px;
                     margin-left: 12px;
                 }
             }
@@ -173,8 +154,6 @@
                 align-items: center;
 
                 .header__cart {
-                    margin-right: 20px;
-
                     .header__cart-wrap-icon {
                         position: relative;
 
@@ -198,6 +177,7 @@
 
                 .header__avatar {
                     position: relative;
+                    margin-left: 20px;
 
                     .header__avatar-button {
                         width: 50px;
@@ -255,7 +235,7 @@
     z-index: 1;
     box-shadow: 0 0 6px 0 rgba(0, 0, 0, 0.6);
 }
-.is-margin{
+.is-margin {
     margin-top: 64px;
     // animation: growth ease-in 2s;
 }

@@ -1,14 +1,33 @@
-import React, { useState } from 'react';
+import { React, ReactDOM, useState } from 'react';
 import PropTypes from 'prop-types';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faChevronLeft, faChevronRight, faChevronDown, faXmark } from '@fortawesome/free-solid-svg-icons';
+import { faChevronLeft, faChevronRight, faChevronDown, faChevronUp, faXmark } from '@fortawesome/free-solid-svg-icons';
 // import InputRange from 'react-input-range';
+import { Link } from 'react-router-dom';
+import Slider from '@mui/material/Slider';
+import { green } from '@mui/material/colors';
+import { createTheme } from '@mui/material/styles';
 import classes from './styles.module.scss';
 
 const Products = () => {
-  const [isScale, setScale] = useState(false);
+  const theme = createTheme({
+    palette: {
+      secondary: {
+        main: green[900],
+      },
+    },
+  });
 
-  const handleScale = () => {};
+  const [isFocusLink, setFocusLink] = useState('');
+
+  const handleFocusLink = () => {};
+
+  const valuetext = (value) => value;
+  const [value, setValue] = useState([0, 10]);
+
+  const handleChange = (event, newValue) => {
+    setValue(newValue);
+  };
 
   return (
         <div className={classes.products}>
@@ -17,37 +36,115 @@ const Products = () => {
                     <h4 className={classes['products__category-heading']}>Danh mục</h4>
 
                     <ul className={classes['products__category-list']}>
-                        <li className={classes['products__category-item']}>Sản phẩm nổi bật</li>
-                        <li className={classes['products__category-item']}>Góc 0đ</li>
                         <li className={classes['products__category-item']}>
-                            <div>
+                            <Link to="#1" className={classes['products__category-item-link']}>
+                                Sản phẩm nổi bật
+                            </Link>
+                        </li>
+                        <li className={classes['products__category-item']}>
+                            <Link to="#1" className={`${classes['products__category-item-link']}`}>
+                                Góc 0đ
+                            </Link>
+                        </li>
+                        <li className={classes['products__category-item']}>
+                            <div className={classes['products__category-item-drop-down']}>
                                 Thời trang nữ
-                                <FontAwesomeIcon className={classes['products__category-icon']} icon={faChevronDown} />
+                                <div className={classes['products__category-icon']}>
+                                    <FontAwesomeIcon
+                                      className={classes['products__category-icon-down']}
+                                      icon={faChevronDown}
+                                    />
+                                    <FontAwesomeIcon
+                                      className={classes['products__category-icon-up']}
+                                      icon={faChevronUp}
+                                    />
+                                </div>
                             </div>
                             <ul className={classes['products__category-list-children']}>
-                                <li className={classes['products__category-item-children']}>Áo nữ</li>
-                                <li className={classes['products__category-item-children']}>Váy & đầm</li>
-                                <li className={classes['products__category-item-children']}>Quần & chân váy</li>
-                                <li className={classes['products__category-item-children']}>Đồ ngủ & mặc nhà</li>
-                                <li className={classes['products__category-item-children']}>Thời trang nữ khác</li>
+                                <li className={classes['products__category-item-children']}>
+                                    <Link to="#1" className={classes['products__category-item-children-link']}>
+                                        Áo nữ
+                                    </Link>
+                                </li>
+                                <li className={classes['products__category-item-children']}>
+                                    <Link to="#1" className={classes['products__category-item-children-link']}>
+                                        Váy & đầm
+                                    </Link>
+                                </li>
+                                <li className={classes['products__category-item-children']}>
+                                    <Link to="#1" className={classes['products__category-item-children-link']}>
+                                        Quần & chân váy
+                                    </Link>
+                                </li>
+                                <li className={classes['products__category-item-children']}>
+                                    <Link to="#1" className={classes['products__category-item-children-link']}>
+                                        Đồ ngủ & mặc nhà
+                                    </Link>
+                                </li>
+                                <li className={classes['products__category-item-children']}>
+                                    <Link to="#1" className={classes['products__category-item-children-link']}>
+                                        Thời trang nữ khác
+                                    </Link>
+                                </li>
                             </ul>
                         </li>
                         <li className={classes['products__category-item']}>
-                            <div>
+                            <div className={classes['products__category-item-drop-down']}>
                                 Thời trang nam
-                                <FontAwesomeIcon className={classes['products__category-icon']} icon={faChevronDown} />
+                                <div className={classes['products__category-icon']}>
+                                    <FontAwesomeIcon
+                                      className={classes['products__category-icon-down']}
+                                      icon={faChevronDown}
+                                    />
+                                    <FontAwesomeIcon
+                                      className={classes['products__category-icon-up']}
+                                      icon={faChevronUp}
+                                    />
+                                </div>
                             </div>
                             <ul className={classes['products__category-list-children']}>
-                                <li className={classes['products__category-item-children']}>Áo nam</li>
-                                <li className={classes['products__category-item-children']}>Quần nam</li>
-                                <li className={classes['products__category-item-children']}>Thời trang nam khác</li>
+                                <li className={classes['products__category-item-children']}>
+                                    <Link to="#1" className={classes['products__category-item-children-link']}>
+                                        Áo nam
+                                    </Link>
+                                </li>
+                                <li className={classes['products__category-item-children']}>
+                                    <Link to="#1" className={classes['products__category-item-children-link']}>
+                                        Quần nam
+                                    </Link>
+                                </li>
+                                <li className={classes['products__category-item-children']}>
+                                    <Link to="#1" className={classes['products__category-item-children-link']}>
+                                        Thời trang nam khác
+                                    </Link>
+                                </li>
                             </ul>
                         </li>
-                        <li className={classes['products__category-item']}>Phụ kiện nữ</li>
-                        <li className={classes['products__category-item']}>Phụ kiện nam</li>
-                        <li className={classes['products__category-item']}>Đồ cho bé</li>
-                        <li className={classes['products__category-item']}>Đồ dùng gia đình</li>
-                        <li className={classes['products__category-item']}>Sản phẩm khác</li>
+                        <li className={classes['products__category-item']}>
+                            <Link to="#1" className={classes['products__category-item-link']}>
+                                Phụ kiện nữ
+                            </Link>
+                        </li>
+                        <li className={classes['products__category-item']}>
+                            <Link to="#1" className={classes['products__category-item-link']}>
+                                Phụ kiện nam
+                            </Link>
+                        </li>
+                        <li className={classes['products__category-item']}>
+                            <Link to="#1" className={classes['products__category-item-link']}>
+                                Đồ cho bé a
+                            </Link>
+                        </li>
+                        <li className={classes['products__category-item']}>
+                            <Link to="#1" className={classes['products__category-item-link']}>
+                                Đồ dùng gia đình
+                            </Link>
+                        </li>
+                        <li className={classes['products__category-item']}>
+                            <Link to="#1" className={classes['products__category-item-link']}>
+                                Sản phẩm khác
+                            </Link>
+                        </li>
                     </ul>
                 </div>
             </div>
@@ -59,159 +156,146 @@ const Products = () => {
                     <div className={classes['products__product-outstanding-category']}>
                         <ul className={classes['products__product-outstanding-category-list']}>
                             <li className={classes['products__product-outstanding-category-item']}>
-                                Phổ biến
+                                <Link to="#1" className={classes['products__product-outstanding-category-link']}>
+                                    Phổ biến
+                                </Link>
                                 <div className={classes['products__product-outstanding-category-underline']}> </div>
                             </li>
                             <li className={classes['products__product-outstanding-category-item']}>
-                                Mới nhất
+                                <Link to="#1" className={classes['products__product-outstanding-category-link']}>
+                                    Mới nhất
+                                </Link>
                                 <div className={classes['products__product-outstanding-category-underline']}> </div>
                             </li>
                             <li className={classes['products__product-outstanding-category-item']}>
-                                Giá từ thấp tới cao
+                                <Link to="#1" className={classes['products__product-outstanding-category-link']}>
+                                    Giá từ thấp tới cao
+                                </Link>
                                 <div className={classes['products__product-outstanding-category-underline']}> </div>
                             </li>
                             <li className={classes['products__product-outstanding-category-item']}>
-                                Giá từ cao đến thấp
+                                <Link to="#1" className={classes['products__product-outstanding-category-link']}>
+                                    Giá từ cao đến thấp
+                                </Link>
                                 <div className={classes['products__product-outstanding-category-underline']}> </div>
                             </li>
                         </ul>
 
                         <div className={classes['products__product-outstanding-category-page']}>
-                            <FontAwesomeIcon
-                              className={classes['products__product-outstanding-category-page-left']}
-                              icon={faChevronLeft}
-                            />
+                            <Link to="#1" className={classes['products__product-outstanding-category-page-links']}>
+                                <FontAwesomeIcon
+                                  className={classes['products__product-outstanding-category-page-left']}
+                                  icon={faChevronLeft}
+                                />
+                            </Link>
                             <span className={classes['products__product-outstanding-category-page-number']}>1 / 5</span>
-                            <FontAwesomeIcon
-                              className={classes['products__product-outstanding-category-page-right']}
-                              icon={faChevronRight}
-                            />
+                            <Link to="#1" className={classes['products__product-outstanding-category-page-links']}>
+                                <FontAwesomeIcon
+                                  className={classes['products__product-outstanding-category-page-right']}
+                                  icon={faChevronRight}
+                                />
+                            </Link>
                         </div>
                     </div>
                 </div>
 
-                <div className={classes['products__product-wrap']}>
-                    <div className={classes['products__product-grid']}>
-                        <div className={classes['products__product-row']}>
-                            <div className={classes['products__product-column']}>
-                                <div className={classes['products__product-item']}>
-                                    <p>1</p>
-                                </div>
-                            </div>
-                            <div className={classes['products__product-column']}>
-                                <div className={classes['products__product-item']}>
-                                    <p>1</p>
-                                </div>
-                            </div>
-                            <div className={classes['products__product-column']}>
-                                <div className={classes['products__product-item']}>
-                                    <p>1</p>
-                                </div>
-                            </div>
-                            <div className={classes['products__product-column']}>
-                                <div className={classes['products__product-item']}>
-                                    <p>1</p>
-                                </div>
-                            </div>
-                            <div className={classes['products__product-column']}>
-                                <div className={classes['products__product-item']}>
-                                    <p>1</p>
-                                </div>
-                            </div>
-                            <div className={classes['products__product-column']}>
-                                <div className={classes['products__product-item']}>
-                                    <p>1</p>
-                                </div>
-                            </div>
-                            <div className={classes['products__product-column']}>
-                                <div className={classes['products__product-item']}>
-                                    <p>1</p>
-                                </div>
-                            </div>
-                            <div className={classes['products__product-column']}>
-                                <div className={classes['products__product-item']}>
-                                    <p>1</p>
-                                </div>
-                            </div>
-                            <div className={classes['products__product-column']}>
-                                <div className={classes['products__product-item']}>
-                                    <p>1</p>
-                                </div>
-                            </div>
-                            <div className={classes['products__product-column']}>
-                                <div className={classes['products__product-item']}>
-                                    <p>1</p>
-                                </div>
-                            </div>
-                            <div className={classes['products__product-column']}>
-                                <div className={classes['products__product-item']}>
-                                    <p>1</p>
-                                </div>
-                            </div>
-                            <div className={classes['products__product-column']}>
-                                <div className={classes['products__product-item']}>
-                                    <p>1</p>
-                                </div>
-                            </div>
-                            <div className={classes['products__product-column']}>
-                                <div className={classes['products__product-item']}>
-                                    <p>1</p>
-                                </div>
-                            </div>
-                            <div className={classes['products__product-column']}>
-                                <div className={classes['products__product-item']}>
-                                    <p>1</p>
-                                </div>
-                            </div>
-                            <div className={classes['products__product-column']}>
-                                <div className={classes['products__product-item']}>
-                                    <p>1</p>
-                                </div>
-                            </div>
-                            <div className={classes['products__product-column']}>
-                                <div className={classes['products__product-item']}>
-                                    <p>1</p>
-                                </div>
-                            </div>
-                            <div className={classes['products__product-column']}>
-                                <div className={classes['products__product-item']}>
-                                    <p>1</p>
-                                </div>
-                            </div>
-                            <div className={classes['products__product-column']}>
-                                <div className={classes['products__product-item']}>
-                                    <p>1</p>
-                                </div>
-                            </div>
-                            <div className={classes['products__product-column']}>
-                                <div className={classes['products__product-item']}>
-                                    <p>1</p>
-                                </div>
-                            </div>
-                            <div className={classes['products__product-column']}>
-                                <div className={classes['products__product-item']}>
-                                    <p>1</p>
-                                </div>
-                            </div>
-                        </div>
+                <div className={classes['products__product-wrap-item']}>
+                    <div className={classes['products__product-item']}>
+                        <p>1</p>
+                    </div>
+                    <div className={classes['products__product-item']}>
+                        <p>1</p>
+                    </div>
+                    <div className={classes['products__product-item']}>
+                        <p>1</p>
+                    </div>
+                    <div className={classes['products__product-item']}>
+                        <p>1</p>
+                    </div>
+                    <div className={classes['products__product-item']}>
+                        <p>1</p>
+                    </div>
+                    <div className={classes['products__product-item']}>
+                        <p>1</p>
+                    </div>
+                    <div className={classes['products__product-item']}>
+                        <p>1</p>
+                    </div>
+                    <div className={classes['products__product-item']}>
+                        <p>1</p>
+                    </div>
+                    <div className={classes['products__product-item']}>
+                        <p>1</p>
+                    </div>
+                    <div className={classes['products__product-item']}>
+                        <p>1</p>
+                    </div>
+                    <div className={classes['products__product-item']}>
+                        <p>1</p>
+                    </div>
+                    <div className={classes['products__product-item']}>
+                        <p>1</p>
+                    </div>
+                    <div className={classes['products__product-item']}>
+                        <p>1</p>
+                    </div>
+                    <div className={classes['products__product-item']}>
+                        <p>1</p>
+                    </div>
+                    <div className={classes['products__product-item']}>
+                        <p>1</p>
+                    </div>
+                    <div className={classes['products__product-item']}>
+                        <p>1</p>
+                    </div>
+                    <div className={classes['products__product-item']}>
+                        <p>1</p>
+                    </div>
+                    <div className={classes['products__product-item']}>
+                        <p>1</p>
+                    </div>
+                    <div className={classes['products__product-item']}>
+                        <p>1</p>
+                    </div>
+                    <div className={classes['products__product-item']}>
+                        <p>1</p>
                     </div>
                 </div>
 
                 <ul className={classes.products__pagination}>
                     <li className={classes['products__pagination-item']}>
-                        <FontAwesomeIcon className={classes['products__pagination-icon']} icon={faChevronLeft} />
+                        <Link to="#1" className={classes['products__pagination-item-link']}>
+                            <FontAwesomeIcon className={classes['products__pagination-icon']} icon={faChevronLeft} />
+                        </Link>
                     </li>
-                    <li
-                      className={`${classes['products__pagination-item']} ${classes['products__pagination-item--active']}`}
-                    >
-                        1
-                    </li>
-                    <li className={classes['products__pagination-item']}>2</li>
-                    <li className={classes['products__pagination-item']}>3</li>
-                    <li className={classes['products__pagination-item']}>...</li>
-                    <li className={classes['products__pagination-item']}>7</li>
                     <li className={classes['products__pagination-item']}>
-                        <FontAwesomeIcon className={classes['products__pagination-icon']} icon={faChevronRight} />
+                        <Link
+                          to="#1"
+                          className={`${classes['products__pagination-item-link']} ${classes['products__pagination-item-link--active']}`}
+                        >
+                            1
+                        </Link>
+                    </li>
+                    <li className={classes['products__pagination-item']}>
+                        <Link to="#1" className={classes['products__pagination-item-link']}>
+                            2
+                        </Link>
+                    </li>
+                    <li className={classes['products__pagination-item']}>
+                        <Link to="#1" className={classes['products__pagination-item-link']}>
+                            3
+                        </Link>
+                    </li>
+                    <li className={classes['products__pagination-item']}>...</li>
+                    <li className={classes['products__pagination-item']}>
+                        <Link to="#1" className={classes['products__pagination-item-link']}>
+                            7
+                        </Link>
+                    </li>
+                    <li className={classes['products__pagination-item']}>
+                        <Link to="#1" className={classes['products__pagination-item-link']}>
+                            <FontAwesomeIcon className={classes['products__pagination-icon']} icon={faChevronRight} />
+                        </Link>
                     </li>
                 </ul>
             </div>
@@ -229,8 +313,16 @@ const Products = () => {
                             <span className={classes['products__filter-product-zero-content']}>Sản phẩm 0đ</span>
                         </div>
 
-                        <div className={classes['products__filter-slider']}>
-                            <div className={classes['products__filter-slider-move']}> </div>
+                        <div className={classes['products__filter-slider-wrap']}>
+                            <Slider
+                              className={classes['products__filter-slider']}
+                              getAriaLabel={() => 'Temperature range'}
+                              value={value}
+                              onChange={handleChange}
+                              valueLabelDisplay="auto"
+                              disableSwap="auto"
+                              getAriaValueText={valuetext}
+                            />
                         </div>
 
                         <div className={classes['products__filter-details']}>
