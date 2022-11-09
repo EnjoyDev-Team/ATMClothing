@@ -8,11 +8,9 @@ const Home = () => {
   const photo = useSelector((state) => state.photos);
   console.log(photo);
 
-  const HelloWorld = () => console.log('hello world');
-
   return (
-    <div onClick={HelloWorld}>
-      {/* <Sell /> */}
+    <div>
+      <Sell />
     </div>
   );
 };
