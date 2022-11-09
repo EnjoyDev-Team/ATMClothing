@@ -136,16 +136,18 @@ const Header = () => {
                             </div>
                         </div>
 
-                        <div className={classes.header__avatar}>
-                            <button
-                              onClick={handleProfile}
-                              onBlur={handleBlur}
-                              className={classes['header__avatar-button']}
-                            >
-                                <img className={classes['header__avatar-img']} src={avatar} alt="" />
-                            </button>
-                            {isOpen && <Profile />}
-                        </div>
+                        {isAvt && (
+                            <div className={classes.header__avatar}>
+                                <button
+                                  onClick={handleProfile}
+                                  onBlur={handleBlur}
+                                  className={classes['header__avatar-button']}
+                                >
+                                    <img className={classes['header__avatar-img']} src={avatar} alt="" />
+                                </button>
+                                {isOpen && <Profile />}
+                            </div>
+                        )}
                     </div>
                 </div>
             </div>
