@@ -27,7 +27,7 @@ const Products = () => {
       title: 'Giá từ cao tới thấp',
     },
   ];
-    //   const [isFocusLink, setFocusLink] = useState('');
+  const [isFocusLink, setFocusLink] = useState('');
   const [isCategory, setCategory] = useState(false);
   const [isCategory1, setCategory1] = useState(false);
   const [isOutstanding, setOutstanding] = useState(false);
