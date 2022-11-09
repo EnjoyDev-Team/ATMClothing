@@ -1,8 +1,8 @@
 /* eslint-disable react/jsx-one-expression-per-line */
 import React from 'react';
-import img1 from '../../../assets/imgs/ATMClothing/Clothes in Laundry.png';
-import img3 from '../../../assets/imgs/ATMClothing/Environment Care.png';
-import img2 from '../../../assets/imgs/ATMClothing/Gardener Skin Type 3.png';
+import img1 from '../../../../assets/imgs/ATMClothing/Clothes in Laundry.png';
+import img3 from '../../../../assets/imgs/ATMClothing/Environment Care.png';
+import img2 from '../../../../assets/imgs/ATMClothing/Gardener Skin Type 3.png';
 import classes from './ReasonUsing.module.scss';
 
 const ReasonUsing = () => (

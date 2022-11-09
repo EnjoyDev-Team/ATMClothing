@@ -11,8 +11,8 @@ const BarProgress = ({ type }) => (
     // const { step1, step2, step3, step4 } = props;
 
     <div className={classes.bar__progress__container}>
-        <div className={classes.dot__section}>
-            <span className={`${classes.dot} ${classes.green}`}>
+        <div className={classes.bar__progress}>
+            <div className={`${classes.dot} ${classes.green}`}>
                 {/* {type} */}
                 <FontAwesomeIcon
                     // { type } === 'state1' ? { faCheck } : {}
@@ -21,8 +21,15 @@ const BarProgress = ({ type }) => (
                     }
                     className={`${classes.bar__progress__icon} ${classes.green}`}
                 />
-            </span>
-            <span
+            </div>
+            <div
+                className={
+                    type === 'state2' || type === 'state3' || type === 'state4' || type === 'state5'
+                        ? `${classes.rectangle} ${classes.green}`
+                        : `${classes.rectangle}`
+                }
+            />
+            <div
                 className={
                     type === 'state2' || type === 'state3' || type === 'state4' || type === 'state5'
                         ? `${classes.dot} ${classes.green}`
@@ -34,8 +41,15 @@ const BarProgress = ({ type }) => (
                     icon={type === 'state3' || type === 'state4' || type === 'state5' ? faCheck : ''}
                     className={`${classes.bar__progress__icon} ${classes.green}`}
                 />
-            </span>
-            <span
+            </div>
+            <div
+                className={
+                    type === 'state3' || type === 'state4' || type === 'state5'
+                        ? `${classes.rectangle} ${classes.green}`
+                        : `${classes.rectangle}`
+                }
+            />
+            <div
                 className={
                     type === 'state3' || type === 'state4' || type === 'state5'
                         ? `${classes.dot} ${classes.green}`
@@ -47,8 +61,15 @@ const BarProgress = ({ type }) => (
                     icon={type === 'state4' || type === 'state5' ? faCheck : ''}
                     className={`${classes.bar__progress__icon} ${classes.green}`}
                 />
-            </span>
-            <span
+            </div>
+            <div
+                className={
+                    type === 'state4' || type === 'state5'
+                        ? `${classes.rectangle} ${classes.green}`
+                        : `${classes.rectangle}`
+                }
+            />
+            <div
                 className={
                     type === 'state4'
                         ? `${classes.dot} ${classes.green}`
@@ -68,31 +89,9 @@ const BarProgress = ({ type }) => (
                             : ''
                     }
                 />
-            </span>
+            </div>
         </div>
-        <div className={classes.rectangle__section}>
-            <div
-                className={
-                    type === 'state2' || type === 'state3' || type === 'state4' || type === 'state5'
-                        ? `${classes.rectangle} ${classes.green}`
-                        : `${classes.rectangle}`
-                }
-            />
-            <div
-                className={
-                    type === 'state3' || type === 'state4' || type === 'state5'
-                        ? `${classes.rectangle} ${classes.green}`
-                        : `${classes.rectangle}`
-                }
-            />
-            <div
-                className={
-                    type === 'state4' || type === 'state5'
-                        ? `${classes.rectangle} ${classes.green}`
-                        : `${classes.rectangle}`
-                }
-            />
-        </div>
+
         <div className={classes.bar__progress__step__container}>
             <div className={classes.bar__progress__step}>
                 Thông tin sản phẩm

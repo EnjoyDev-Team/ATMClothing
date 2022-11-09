@@ -1,7 +1,7 @@
 import React from 'react';
 import classes from './ATMClothing.module.scss';
-import ReasonUsing from './components/ReasonUsing';
-import AbilityOfUsers from './components/AbilityOfUsers';
+import ReasonUsing from './components/ATMClothing/ReasonUsing';
+import AbilityOfUsers from './components/ATMClothing/AbilityOfUsers';
 
 const ATMClothing = () => (
     <div>
@@ -13,7 +13,7 @@ const ATMClothing = () => (
             <h2>ATM Clothing</h2>
             <main>
                 <ReasonUsing />
-                <AbilityOfUsers title="Basn Hangf" />
+                <AbilityOfUsers title="Bán Hàng" />
             </main>
         </div>
     </div>
