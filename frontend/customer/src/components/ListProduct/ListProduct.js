@@ -1,8 +1,11 @@
+/* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
+/* eslint-disable react/no-array-index-key */
+/* eslint-disable jsx-a11y/no-static-element-interactions */
+/* eslint-disable jsx-a11y/click-events-have-key-events */
 import { React, ReactDOM, useState } from 'react';
 import PropTypes from 'prop-types';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronLeft, faChevronRight, faChevronDown, faChevronUp, faXmark } from '@fortawesome/free-solid-svg-icons';
-// import InputRange from 'react-input-range';
 import { Link } from 'react-router-dom';
 import Slider from '@mui/material/Slider';
 import { green } from '@mui/material/colors';
@@ -10,23 +13,42 @@ import { createTheme } from '@mui/material/styles';
 import classes from './styles.module.scss';
 
 const Products = () => {
-  const theme = createTheme({
-    palette: {
-      secondary: {
-        main: green[900],
-      },
+  const listOutstading = [
+    {
+      title: 'Phổ biến',
     },
-  });
+    {
+      title: 'Mới nhất',
+    },
+    {
+      title: 'Giá từ thấp tới cao',
+    },
+    {
+      title: 'Giá từ cao tới thấp',
+    },
+  ];
+    //   const [isFocusLink, setFocusLink] = useState('');
+  const [isCategory, setCategory] = useState(false);
+  const [isCategory1, setCategory1] = useState(false);
+  const [isOutstanding, setOutstanding] = useState(false);
+  console.log(isOutstanding);
 
-  const [isFocusLink, setFocusLink] = useState('');
-
-  const handleFocusLink = () => {};
+  const handleCategory = () => {
+    setCategory((prev) => !prev);
+  };
+  const handleCategory1 = () => {
+    setCategory1((prev) => !prev);
+  };
 
   const valuetext = (value) => value;
   const [value, setValue] = useState([0, 10]);
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
+  };
+
+  const handleOutstanding = () => {
+    setOutstanding((prev) => !prev);
   };
 
   return (
@@ -47,78 +69,99 @@ const Products = () => {
                             </Link>
                         </li>
                         <li className={classes['products__category-item']}>
-                            <div className={classes['products__category-item-drop-down']}>
+                            <div onClick={handleCategory} className={classes['products__category-item-drop-down']}>
                                 Thời trang nữ
                                 <div className={classes['products__category-icon']}>
                                     <FontAwesomeIcon
-                                      className={classes['products__category-icon-down']}
+                                      className={`${classes['products__category-icon-down']} 
+                                      ${
+                                          isCategory
+                                            ? classes['products__category-icon-down--invalid']
+                                            : classes['products__category-icon-down--active']
+                                      }`}
                                       icon={faChevronDown}
                                     />
                                     <FontAwesomeIcon
-                                      className={classes['products__category-icon-up']}
+                                      className={`${classes['products__category-icon-up']} ${
+                                        isCategory
+                                          ? classes['products__category-icon-up--active']
+                                          : classes['products__category-icon-up--invalid']
+                                      }`}
                                       icon={faChevronUp}
                                     />
                                 </div>
                             </div>
-                            <ul className={classes['products__category-list-children']}>
-                                <li className={classes['products__category-item-children']}>
-                                    <Link to="#1" className={classes['products__category-item-children-link']}>
-                                        Áo nữ
-                                    </Link>
-                                </li>
-                                <li className={classes['products__category-item-children']}>
-                                    <Link to="#1" className={classes['products__category-item-children-link']}>
-                                        Váy & đầm
-                                    </Link>
-                                </li>
-                                <li className={classes['products__category-item-children']}>
-                                    <Link to="#1" className={classes['products__category-item-children-link']}>
-                                        Quần & chân váy
-                                    </Link>
-                                </li>
-                                <li className={classes['products__category-item-children']}>
-                                    <Link to="#1" className={classes['products__category-item-children-link']}>
-                                        Đồ ngủ & mặc nhà
-                                    </Link>
-                                </li>
-                                <li className={classes['products__category-item-children']}>
-                                    <Link to="#1" className={classes['products__category-item-children-link']}>
-                                        Thời trang nữ khác
-                                    </Link>
-                                </li>
-                            </ul>
+                            {isCategory && (
+                                <ul className={classes['products__category-list-children']}>
+                                    <li className={classes['products__category-item-children']}>
+                                        <Link to="#1" className={classes['products__category-item-children-link']}>
+                                            Áo nữ
+                                        </Link>
+                                    </li>
+                                    <li className={classes['products__category-item-children']}>
+                                        <Link to="#1" className={classes['products__category-item-children-link']}>
+                                            Váy & đầm
+                                        </Link>
+                                    </li>
+                                    <li className={classes['products__category-item-children']}>
+                                        <Link to="#1" className={classes['products__category-item-children-link']}>
+                                            Quần & chân váy
+                                        </Link>
+                                    </li>
+                                    <li className={classes['products__category-item-children']}>
+                                        <Link to="#1" className={classes['products__category-item-children-link']}>
+                                            Đồ ngủ & mặc nhà
+                                        </Link>
+                                    </li>
+                                    <li className={classes['products__category-item-children']}>
+                                        <Link to="#1" className={classes['products__category-item-children-link']}>
+                                            Thời trang nữ khác
+                                        </Link>
+                                    </li>
+                                </ul>
+                            )}
                         </li>
                         <li className={classes['products__category-item']}>
-                            <div className={classes['products__category-item-drop-down']}>
+                            <div onClick={handleCategory1} className={classes['products__category-item-drop-down']}>
                                 Thời trang nam
                                 <div className={classes['products__category-icon']}>
                                     <FontAwesomeIcon
-                                      className={classes['products__category-icon-down']}
+                                      className={`${classes['products__category-icon-down']} ${
+                                        isCategory1
+                                          ? classes['products__category-icon-down--invalid']
+                                          : classes['products__category-icon-down--active']
+                                      }`}
                                       icon={faChevronDown}
                                     />
                                     <FontAwesomeIcon
-                                      className={classes['products__category-icon-up']}
+                                      className={`${classes['products__category-icon-up']} ${
+                                        isCategory1
+                                          ? classes['products__category-icon-up--active']
+                                          : classes['products__category-icon-up--invalid']
+                                      }`}
                                       icon={faChevronUp}
                                     />
                                 </div>
                             </div>
-                            <ul className={classes['products__category-list-children']}>
-                                <li className={classes['products__category-item-children']}>
-                                    <Link to="#1" className={classes['products__category-item-children-link']}>
-                                        Áo nam
-                                    </Link>
-                                </li>
-                                <li className={classes['products__category-item-children']}>
-                                    <Link to="#1" className={classes['products__category-item-children-link']}>
-                                        Quần nam
-                                    </Link>
-                                </li>
-                                <li className={classes['products__category-item-children']}>
-                                    <Link to="#1" className={classes['products__category-item-children-link']}>
-                                        Thời trang nam khác
-                                    </Link>
-                                </li>
-                            </ul>
+                            {isCategory1 && (
+                                <ul className={classes['products__category-list-children']}>
+                                    <li className={classes['products__category-item-children']}>
+                                        <Link to="#1" className={classes['products__category-item-children-link']}>
+                                            Áo nam
+                                        </Link>
+                                    </li>
+                                    <li className={classes['products__category-item-children']}>
+                                        <Link to="#1" className={classes['products__category-item-children-link']}>
+                                            Quần nam
+                                        </Link>
+                                    </li>
+                                    <li className={classes['products__category-item-children']}>
+                                        <Link to="#1" className={classes['products__category-item-children-link']}>
+                                            Thời trang nam khác
+                                        </Link>
+                                    </li>
+                                </ul>
+                            )}
                         </li>
                         <li className={classes['products__category-item']}>
                             <Link to="#1" className={classes['products__category-item-link']}>
@@ -155,30 +198,20 @@ const Products = () => {
 
                     <div className={classes['products__product-outstanding-category']}>
                         <ul className={classes['products__product-outstanding-category-list']}>
-                            <li className={classes['products__product-outstanding-category-item']}>
-                                <Link to="#1" className={classes['products__product-outstanding-category-link']}>
-                                    Phổ biến
-                                </Link>
-                                <div className={classes['products__product-outstanding-category-underline']}> </div>
-                            </li>
-                            <li className={classes['products__product-outstanding-category-item']}>
-                                <Link to="#1" className={classes['products__product-outstanding-category-link']}>
-                                    Mới nhất
-                                </Link>
-                                <div className={classes['products__product-outstanding-category-underline']}> </div>
-                            </li>
-                            <li className={classes['products__product-outstanding-category-item']}>
-                                <Link to="#1" className={classes['products__product-outstanding-category-link']}>
-                                    Giá từ thấp tới cao
-                                </Link>
-                                <div className={classes['products__product-outstanding-category-underline']}> </div>
-                            </li>
-                            <li className={classes['products__product-outstanding-category-item']}>
-                                <Link to="#1" className={classes['products__product-outstanding-category-link']}>
-                                    Giá từ cao đến thấp
-                                </Link>
-                                <div className={classes['products__product-outstanding-category-underline']}> </div>
-                            </li>
+                            {listOutstading.map((itemOutstanding, index) => (
+                                <li key={index} className={classes['products__product-outstanding-category-item']}>
+                                    <Link
+                                      onClick={handleOutstanding}
+                                      to="#1"
+                                      className={`${classes['products__product-outstanding-category-link']} ${
+                                        isOutstanding ? classes['products__product-outstanding-category-underline'] : ''
+                                      }`}
+                                    >
+                                        {itemOutstanding.title}
+                                    </Link>
+                                    <div className={classes['products__product-outstanding-category-underline']}> </div>
+                                </li>
+                            ))}
                         </ul>
 
                         <div className={classes['products__product-outstanding-category-page']}>
@@ -320,7 +353,7 @@ const Products = () => {
                               value={value}
                               onChange={handleChange}
                               valueLabelDisplay="auto"
-                              disableSwap="auto"
+                              disableSwap
                               getAriaValueText={valuetext}
                             />
                         </div>

@@ -35,9 +35,7 @@ const Header = () => {
     });
   };
 
-  const handleAccount = () => {
-
-  };
+  const handleAccount = () => {};
 
   const handleContent = () => {
     const test = document.querySelector('.header__search-input');
@@ -117,11 +115,15 @@ const Header = () => {
 
                     <div className={classes['header__right-button']}>
                         <div className={classes.header__angle}>
-                            <ButtonCT content="Góc 0đ" redLinear borderRadius medium iconLeft={faHandHoldingHeart} />
+                            <ButtonCT greenLinear borderRadius medium iconLeft={faHandHoldingHeart}>
+                                Góc 0đ
+                            </ButtonCT>
                         </div>
 
                         <div className={classes['header__old-product']}>
-                            <ButtonCT content="Tôi có sản phẩm cũ" medium borderRadius outlineBtn />
+                            <ButtonCT medium borderRadius outlineBtn>
+                                Tôi có sản phẩm cũ
+                            </ButtonCT>
                         </div>
                     </div>
 
@@ -135,14 +137,14 @@ const Header = () => {
                         </div>
 
                         <div className={classes.header__avatar}>
-                                <button
-                                  onClick={handleProfile}
-                                  onBlur={handleBlur}
-                                  className={classes['header__avatar-button']}
-                                >
-                                    <img className={classes['header__avatar-img']} src={avatar} alt="" />
-                                </button>
-                                {isOpen && <Profile />}
+                            <button
+                              onClick={handleProfile}
+                              onBlur={handleBlur}
+                              className={classes['header__avatar-button']}
+                            >
+                                <img className={classes['header__avatar-img']} src={avatar} alt="" />
+                            </button>
+                            {isOpen && <Profile />}
                         </div>
                     </div>
                 </div>

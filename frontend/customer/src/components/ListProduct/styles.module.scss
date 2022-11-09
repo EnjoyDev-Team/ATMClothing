@@ -37,11 +37,14 @@
                     .products__category-item-link--active {
                         color: #597d32;
                     }
+
                     .products__category-item-drop-down {
                         display: flex;
                         align-items: center;
                         justify-content: space-between;
                         cursor: pointer;
+                        color: #333;
+                        // position: relative;
 
                         .products__category-icon {
                             .products__category-icon-down--invalid {
@@ -56,15 +59,13 @@
                             .products__category-icon-up--active {
                                 display: inline-block;
                             }
-                            .products__category-icon-up {
-                                display: none;
-                            }
                         }
                     }
 
                     .products__category-list-children {
                         list-style: none;
-                        // display: none;
+                        // position: absolute;
+                        // animation: 3s ease slidein;
 
                         .products__category-item-children {
                             padding: 0 12px;
@@ -164,8 +165,6 @@
             display: grid;
             grid-template-columns: auto auto auto auto;
             gap: 20px;
-            // grid-template-columns: repeat(auto-fit, 100px);
-            // grid-template-rows: repeat(2, 100px);
 
             .products__product-item {
                 background-color: #fff;
@@ -228,17 +227,13 @@
                     padding: 0 18px;
                     display: flex;
                     align-items: center;
-                    position: relative;
                     margin-bottom: 12px;
 
                     .products__filter-product-zero-radio {
                         appearance: auto;
-                        position: absolute;
-                        top: 6.5px;
-                        left: 14px;
                     }
                     .products__filter-product-zero-content {
-                        margin-left: 30px;
+                        margin-left: 20px;
                     }
                 }
                 .products__filter-slider-wrap {
@@ -356,18 +351,29 @@
                         position: relative;
 
                         .products__filter-size-input-checkbox {
-                            position: absolute;
-                            top: 5px;
-                            appearance: checkbox;
+                            appearance: auto;
                         }
                         .products__filter-size-detail {
+                            position: absolute;
+                            top: 8.5px;
                             color: #333;
                             font-size: 1.6rem;
-                            margin-left: 20px;
+                            margin-left: 8px;
+                            line-height: 0.9px;
                         }
                     }
                 }
             }
         }
+    }
+}
+
+@keyframes slidein {
+    from {
+        transform: translateY(0);
+    }
+
+    to {
+        transform: translateY(100%);
     }
 }
