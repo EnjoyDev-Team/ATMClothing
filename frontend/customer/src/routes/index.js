@@ -2,10 +2,14 @@
 import React from 'react';
 import { Navigate, Route, Routes } from 'react-router-dom';
 <<<<<<< HEAD
+<<<<<<< HEAD
 import PrivateRoute from './privateRoute';
 =======
 import PrivateRoute from './PrivateRoute';
 >>>>>>> d240247 (create routes for page (app, products, shoppingcart, payment))
+=======
+import PrivateRoute from './privateRoute';
+>>>>>>> a98748c (feat: routes)
 
 import Home from '../pages/home/Home';
 import NotFound from '../pages/notFound';
