@@ -99,6 +99,7 @@ body {
 
     &__product {
         justify-content: center;
+        margin-bottom: 2rem;
     }
 }
 
@@ -117,6 +118,7 @@ body {
             justify-content: space-between;
             padding: 0rem 2.5rem;
             &__content {
+                min-width: 227px;
                 h1 {
                     display: inline-block;
                 }
@@ -141,6 +143,7 @@ body {
             a {
                 margin-bottom: 2.5rem;
                 color: #13488C;
+                min-width: 103px;
                 i {
                     margin-left: 1rem;
                 }
@@ -158,6 +161,8 @@ body {
             
             &__product {
                 justify-content: center;
+                margin-top: 2rem;
+
             }
         }
     }

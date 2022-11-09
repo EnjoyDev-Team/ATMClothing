@@ -12,10 +12,60 @@ import choTreem from '../../assets/imgs/choTreem.png';
 import doDungGiaDinh from '../../assets/imgs/doDungGiaDinh.png';
 import khac from '../../assets/imgs/khac.png';
 
+const listProducts = [
+  {
+    img: quanaoNu,
+    name: 'Quần Áo Nữ',
+    address: 'Cơ sở ĐH Ngân Hàng',
+    price: '100.000',
+  },
+  {
+    img: quanaoNam,
+    name: 'Quần Áo Nam',
+    address: 'Cơ sở ĐH Khoa Học Tư Nhiên',
+    price: '200.000',
+  },
+  {
+    img: thoiTrangNu,
+    name: 'Thời Trang Nữ',
+    address: 'Cơ sở ĐH Khoa Học Tư Nhiên',
+    price: '300.000',
+  },
+  {
+    img: thoiTrangNam,
+    name: 'Thời Trang Nam',
+    address: 'Cơ sở ĐH Ngân Hàng',
+    price: '400.000',
+  },
+  {
+    img: choTreem,
+    name: 'Thời Trang Cho Trẻ Em',
+    address: 'Cơ sở ĐH Ngân Hàng',
+    price: '40.000',
+  },
+  {
+    img: doDungGiaDinh,
+    name: 'Đồ Dùng Gia đình',
+    address: 'Cơ sở ĐH Khoa Học Tự Nhiên',
+    price: '1.000.000',
+  },
+  {
+    img: choTreem,
+    name: 'Thời Trang Cho Trẻ Em',
+    address: 'Cơ sở ĐH Khoa Học Tự Nhiên',
+    price: '80.000',
+  },
+  {
+    img: thoiTrangNam,
+    name: 'Thời Trang Nam',
+    address: 'Cơ sở ĐH Ngân Hàng',
+    price: '400.000',
+  },
+];
+
 const Home = () => {
   const photo = useSelector((state) => state.photos);
   console.log(photo);
-
   return (
     <>
       <div className={classes.header}>
@@ -73,24 +123,13 @@ const Home = () => {
         </a>
       </div>
       <div className={classes.listProducts}>
-        <div className={classes.listProducts__product}>
-          <CardProduct />
-        </div>
-        <div className={classes.listProducts__product}>
-          <CardProduct />
-        </div>
-        <div className={classes.listProducts__product}>
-          <CardProduct />
-        </div>
-        <div className={classes.listProducts__product}>
-          <CardProduct />
-        </div>
-        <div className={classes.listProducts__product}>
-          <CardProduct />
-        </div>
-        <div className={classes.listProducts__product}>
-          <CardProduct />
-        </div>
+          {
+            listProducts.slice(0, 6).map((el, idx) => (
+              <div key={+idx} className={classes.listProducts__product}>
+                <CardProduct Details={el} />
+              </div>
+            ))
+          }
       </div>
       <div className={classes.title}>
         <h2 className={classes.title__main}>Thời trang nữ</h2>
@@ -100,24 +139,13 @@ const Home = () => {
         </a>
       </div>
       <div className={classes.listProducts}>
-        <div className={classes.listProducts__product}>
-          <CardProduct />
-        </div>
-        <div className={classes.listProducts__product}>
-          <CardProduct />
-        </div>
-        <div className={classes.listProducts__product}>
-          <CardProduct />
-        </div>
-        <div className={classes.listProducts__product}>
-          <CardProduct />
-        </div>
-        <div className={classes.listProducts__product}>
-          <CardProduct />
-        </div>
-        <div className={classes.listProducts__product}>
-          <CardProduct />
-        </div>
+        {
+          listProducts.slice(0, 6).map((el, idx) => (
+          <div key={+idx} className={classes.listProducts__product}>
+            <CardProduct Details={el} />
+          </div>
+          ))
+        }
       </div>
       <div className={classes.donations}>
         <div className={classes.donations__describe}>
@@ -133,22 +161,17 @@ const Home = () => {
             </a>
           </div>
           <div className={classes.donations__describe__listProducts}>
-            <div className={classes.donations__describe__listProducts__product}>
-              <CardProduct />
-            </div>
-            <div className={classes.donations__describe__listProducts__product}>
-              <CardProduct />
-            </div>
-            <div className={classes.donations__describe__listProducts__product}>
-              <CardProduct />
-            </div>
-            <div className={classes.donations__describe__listProducts__product}>
-              <CardProduct />
-            </div>
+            {
+              listProducts.slice(0, 4).map((el, idx) => (
+                <div className={classes.donations__describe__listProducts__product}>
+                  <CardProduct Details={el} />
+                </div>
+              ))
+            }
           </div>
         </div>
         <div className={classes.donations__carproduct}>
-          <CardProduct cardproduct2 />
+          <CardProduct cardproduct2 Details={listProducts[5]} />
         </div>
       </div>
     </>
