@@ -1,18 +1,23 @@
+/* eslint-disable react/prop-types */
 /* eslint-disable indent */
 /* eslint-disable react/jsx-indent-props */
 /* eslint-disable no-dupe-keys */
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCheck } from '@fortawesome/free-solid-svg-icons';
+import { faCheck, faArrowRight } from '@fortawesome/free-solid-svg-icons';
 import classes from './FormStepFail.module.scss';
 import BarProgress from '../../components/Services/Form/BarProgress';
 import ButtonCT from '../../../../components/ButtonCT/ButtonCT';
 import { ReactComponent as FailImg } from '../../../../assets/svg/Service/Group 556.svg';
 
-const FormStepFail = () => (
+const FormStepFail = ({ content }) => (
     <main>
         <div className={classes.formContainer}>
-            <h3 className={classes.formHeader}>BÁN SẢN PHẨM-THÊM SẢN PHẨM </h3>
+            <h3 className={classes.formHeader}>
+                {content}
+                <FontAwesomeIcon icon={faArrowRight} className={classes.icon__arrow} />
+                THÊM SẢN PHẨM
+            </h3>
             <div>
                 <BarProgress type="state5" />
             </div>

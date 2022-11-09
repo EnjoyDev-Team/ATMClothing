@@ -13,7 +13,7 @@ const SellFormStep1 = () => (
     <main>
         <div className={classes.formContainer}>
             <h3 className={classes.formHeader}>
-                CUSTOM SẢN PHẨM
+                BÁN SẢN PHẨM
                 <FontAwesomeIcon icon={faArrowRight} className={classes.icon__arrow} />
                 THÊM SẢN PHẨM
             </h3>

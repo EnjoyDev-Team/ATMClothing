@@ -1,15 +1,20 @@
+/* eslint-disable react/prop-types */
 /* eslint-disable react/jsx-indent-props */
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faLoader } from '@fortawesome/free-solid-svg-icons';
+import { faLoader, faArrowRight } from '@fortawesome/free-solid-svg-icons';
 import classes from './FormStep3.module.scss';
 import BarProgress from '../../components/Services/Form/BarProgress';
 import ButtonCT from '../../../../components/ButtonCT/ButtonCT';
 
-const FormStep3 = () => (
+const FormStep3 = ({ content }) => (
     <main>
         <div className={classes.formContainer}>
-            <h3 className={classes.formHeader}>BÁN SẢN PHẨM-THÊM SẢN PHẨM </h3>
+            <h3 className={classes.formHeader}>
+                {content}
+                <FontAwesomeIcon icon={faArrowRight} className={classes.icon__arrow} />
+                THÊM SẢN PHẨM
+            </h3>
             <div>
                 <BarProgress type="state3" />
             </div>

@@ -1,17 +1,22 @@
+/* eslint-disable react/prop-types */
 /* eslint-disable react/jsx-indent-props */
 /* eslint-disable no-dupe-keys */
 /* eslint-disable indent */
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faChevronDown } from '@fortawesome/free-solid-svg-icons';
+import { faChevronDown, faArrowRight } from '@fortawesome/free-solid-svg-icons';
 import classes from './SellFormStep2.module.scss';
 import BarProgress from '../../components/Services/Form/BarProgress';
 import ButtonCT from '../../../../components/ButtonCT/ButtonCT';
 
-const SellFormStep2 = () => (
+const SellFormStep2 = ({ content }) => (
     <main>
         <div className={classes.formContainer}>
-            <h3 className={classes.formHeader}>BÁN SẢN PHẨM-THÊM SẢN PHẨM </h3>
+            <h3 className={classes.formHeader}>
+                {content}
+                <FontAwesomeIcon icon={faArrowRight} className={classes.icon__arrow} />
+                THÊM SẢN PHẨM
+            </h3>
             <div>
                 <BarProgress type="state2" />
             </div>
