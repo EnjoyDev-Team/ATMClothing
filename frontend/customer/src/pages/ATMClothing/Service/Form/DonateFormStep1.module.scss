@@ -1,0 +1,124 @@
+.formHeader {
+    font-weight: bold;
+    color: black;
+    margin: 0;
+    padding: 3.5rem;
+}
+
+.stateHeader {
+    line-height: 26px;
+    font-weight: bold;
+    margin: 4.5rem;
+    color: black;
+}
+
+.formContainer {
+    background-color: white;
+    width: 1159px;
+    height: 90rem;
+    margin: 0 auto;
+}
+
+label input,
+label select {
+    margin: 1rem 0 4rem 1.5rem;
+}
+
+label {
+    font-size: 18px;
+    margin-left: 2.5rem;
+    font-weight: bold;
+    // margin-top: 2rem;
+}
+
+.inputSection {
+    margin: 2rem;
+}
+
+.input2 {
+    width: 460px;
+    height: 36px;
+    border-radius: 50px;
+    // border: solid;
+    padding: 0 1rem;
+    font-size: 16px;
+}
+
+// ICON
+.input__dropdown {
+    position: relative;
+}
+
+.icon {
+    position: absolute;
+    top: 22%;
+    left: 92%;
+}
+
+.dropdownContent {
+    font-size: 46px;
+    padding-left: 2rem;
+}
+
+.inputSection {
+    display: flex;
+    gap: 10rem;
+}
+
+.icon__arrow {
+    margin: 1rem;
+    font-size: 2.5rem;
+}
+
+// IDEA TO CUSTOM
+
+.custom__idea p,
+.custom__idea2 p {
+    line-height: 26px;
+    font-weight: bold;
+    margin: 3rem;
+    color: black;
+}
+
+.description__input {
+    font-size: 2rem;
+    margin-left: 3.5rem;
+    padding: 2rem;
+    border-radius: 20px;
+    border: lightgrey solid;
+}
+
+// MORE WAYS TO DESCRIBE IDEA
+.upload__img__container {
+    display: flex;
+    justify-content: center;
+    gap: 4rem;
+}
+
+.img__section {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    border: dashed lightgrey;
+    padding: 2rem 15rem;
+    border-radius: 20px;
+}
+
+.btn__choose {
+    border: #0d6ab0 solid;
+    color: #0d6ab0;
+    background-color: white;
+    border-radius: 50px;
+
+    left: 35%;
+    // display: flex;
+    // justify-content: center;
+    // align-items: center;
+}
+
+.link__input {
+    border-radius: 20px;
+    border: lightgrey solid;
+}
