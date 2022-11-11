@@ -8,6 +8,7 @@ import Login from '../pages/auth/Login';
 import Register from '../pages/auth/Register';
 import ForgotPassword from '../pages/auth/ForgotPassword';
 import Profile from '../pages/auth/Profile';
+import Shopping from '../pages/shopping/Shopping';
 
 const Navigation = () => {
   const authenticated = true;
@@ -47,7 +48,7 @@ const Navigation = () => {
 
         {/* ShoppingCart + Payment ROUTE */}
         <Route path="/shopping">
-            <Route index element={<>Shopping Cart Page</>} />
+            <Route index element={<Shopping />} />
             <Route path="payment" element={<>Payment Page</>} />
         </Route>
 

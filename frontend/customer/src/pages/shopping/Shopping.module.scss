@@ -1,0 +1,19 @@
+@import '../../styles/colors';
+
+.header {
+    text-align: center;
+    margin-top: 2rem;
+
+    h1 {
+        text-transform: uppercase;
+        color: $main_color;
+        font-weight: 600;
+        padding-bottom: 0.8rem;
+        letter-spacing: 3px;
+    }
+
+    p {
+        font-weight: 600;
+        color:#666666;
+    }
+}

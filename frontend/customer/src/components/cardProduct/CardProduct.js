@@ -33,6 +33,7 @@ const CardProduct = ({ cardproduct2, Details }) => (
 );
 CardProduct.propTypes = {
   cardproduct2: PropTypes.bool,
+
   Details: PropTypes.shape({
     img: PropTypes.string.isRequired,
     name: PropTypes.string.isRequired,
