@@ -5,6 +5,9 @@ const xss = require('xss-clean');
 const hpp = require('hpp');
 const cors = require('cors');
 
+const AppError = require('./utils/appError');
+const globalErrorHandler = require('./controllers/errorController')
+
 const authRouter = require('./routes/authRoutes');
 const userRouter = require('./routes/userRoutes');
 const productRouter = require('./routes/productRoutes');
@@ -38,5 +41,10 @@ app.use('/api/v1/orders', orderRoutes)
 app.use('/api/v1/services', servicesRoutes)
 app.use('/api/v1/addresses', addressRouter)
 app.use('/api/v1/search', searchRoutes)
+
+app.all('*', (req, res, next) => {
+  next(new AppError(`Can't find ${req.originalUrl} on this server!`, 404))
+})
+app.use(globalErrorHandler)
 
 module.exports = app;
