@@ -27,11 +27,9 @@ const Products = () => {
       title: 'Giá từ cao tới thấp',
     },
   ];
-  const [isFocusLink, setFocusLink] = useState('');
   const [isCategory, setCategory] = useState(false);
   const [isCategory1, setCategory1] = useState(false);
-  const [isOutstanding, setOutstanding] = useState(false);
-  console.log(isOutstanding);
+  const [isOutstanding, setOutstanding] = useState(`${listOutstading[0].title}`);
 
   const handleCategory = () => {
     setCategory((prev) => !prev);
@@ -47,8 +45,8 @@ const Products = () => {
     setValue(newValue);
   };
 
-  const handleOutstanding = () => {
-    setOutstanding((prev) => !prev);
+  const handleOutstanding = (title) => {
+    setOutstanding(title);
   };
 
   return (
@@ -199,17 +197,31 @@ const Products = () => {
                     <div className={classes['products__product-outstanding-category']}>
                         <ul className={classes['products__product-outstanding-category-list']}>
                             {listOutstading.map((itemOutstanding, index) => (
-                                <li key={index} className={classes['products__product-outstanding-category-item']}>
+                                <li
+                                  key={index}
+                                  onClick={() => handleOutstanding(itemOutstanding.title)}
+                                  className={classes['products__product-outstanding-category-item']}
+                                >
                                     <Link
-                                      onClick={handleOutstanding}
                                       to="#1"
                                       className={`${classes['products__product-outstanding-category-link']} ${
-                                        isOutstanding ? classes['products__product-outstanding-category-underline'] : ''
+                                        isOutstanding === listOutstading[index].title
+                                          ? classes['products__product-outstanding-category-link--color']
+                                          : ''
                                       }`}
                                     >
                                         {itemOutstanding.title}
                                     </Link>
-                                    <div className={classes['products__product-outstanding-category-underline']}> </div>
+                                    <div
+                                      className={`${classes['products__product-outstanding-category-underline']} 
+                                      ${
+                                          isOutstanding === listOutstading[index].title
+                                            ? ''
+                                            : classes['products__product-outstanding-category-underline--display']
+                                      }`}
+                                    >
+                                        {' '}
+                                    </div>
                                 </li>
                             ))}
                         </ul>
