@@ -8,8 +8,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronLeft, faChevronRight, faChevronDown, faChevronUp, faXmark } from '@fortawesome/free-solid-svg-icons';
 import { Link } from 'react-router-dom';
 import Slider from '@mui/material/Slider';
-import { green } from '@mui/material/colors';
-import { createTheme } from '@mui/material/styles';
+import Button from '../ButtonCT/ButtonCT';
 import classes from './styles.module.scss';
 
 const Products = () => {
@@ -373,12 +372,14 @@ const Products = () => {
                         <div className={classes['products__filter-details']}>
                             <span className={classes['products__filter-details-content-min']}>Tối thiểu: </span>
                             <span className={classes['products__filter-details-number-min']}>200.000</span>
-                            <span className={classes['products__filter-details-content-max']}> - Tối đa: </span>
+                            <br />
+                            <span className={classes['products__filter-details-content-max']}>Tối đa: </span>
                             <span className={classes['products__filter-details-number-max']}>500.000</span>
                         </div>
 
                         <div className={classes['products__filter-wrap-button']}>
-                            <button className={classes['products__filter-button']}>Lọc</button>
+                            <Button medium borderRadius outlineBtn>Lọc</Button>
+                            {/* <button className={classes['products__filter-button']}>Lọc</button> */}
                         </div>
                     </div>
 

@@ -10,6 +10,7 @@ import ForgotPassword from '../pages/auth/ForgotPassword';
 import Profile from '../pages/auth/Profile';
 import Products from '../components/ListProduct/ListProduct';
 import Layout from '../layouts';
+import ProductDetail from '../components/ProductDetail/ProductDetail';
 
 const Navigation = () => {
   const authenticated = true;
@@ -43,7 +44,7 @@ const Navigation = () => {
               {/* PRODUCT ROUTE */}
               <Route path="/products">
                   <Route index element={<Products />} />
-                  <Route path=":id" element={<>Sub-Products Page</>} />
+                  <Route path=":id" element={<ProductDetail />} />
                   <Route path="list/:page" element={<>Products Page X</>} />
                   <Route path="list/:category/:page" element={<>Products Page with category & page X</>} />
               </Route>
