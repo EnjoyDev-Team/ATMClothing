@@ -4,6 +4,7 @@ const mongoSanitize = require('express-mongo-sanitize');
 const xss = require('xss-clean');
 const hpp = require('hpp');
 const cors = require('cors');
+const cookieParser = require('cookie-parser');
 
 const AppError = require('./utils/appError');
 const globalErrorHandler = require('./controllers/errorController')
@@ -24,13 +25,17 @@ const limiter = rateLimit({
   message: 'Too many requests from this IP, please try this again in an hour!',
 }); // define how many requests per IP we are going to allow in a certain of time
 
+
 const app = express();
+
 app.use(cors());
 app.use(mongoSanitize());
 app.use(xss());
 app.use(hpp());
 
+app.use(limiter);
 app.use(express.json({ limit: '10mb' }));
+app.use(cookieParser());
 
 // ROUTES
 app.use('/api/v1/auth', authRouter)

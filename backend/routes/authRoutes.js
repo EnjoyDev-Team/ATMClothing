@@ -1,34 +1,33 @@
-const { Router } = require('express');
 const express = require('express');
 
 const router = express.Router();
 
 // REGISTER
 // Verify User
-router.route('/register').post()
+router.route('/register').post();
 
 // Otp
-router.route('/register/verify').post()
+router.route('/register/verify').post();
 
 // Register
-router.route('/register/password').post()
+router.route('/register/password').post();
 
 
 // FORGOT PASSWORD
 // Verify User
-router.route('/forgot').post()
+router.route('/forgot').post();
 
 // Otp
-router.route('/forgot/verify').post()
+router.route('/forgot/verify').post();
 
 // Reset password
-router.route('/forgot/password').post()
+router.route('/forgot/password').post();
 
 
 // LOGIN
-router.route('/login').post()
+router.route('/login').post();
 
 // REFRESH TOKEN
-router.route('/refresh').get()
+router.route('/refresh').get();
 
 module.exports = router;
