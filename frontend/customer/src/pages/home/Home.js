@@ -7,10 +7,10 @@ import Donate from '../ATMClothing/Service/Donate';
 
 const Home = () => (
     <div>
-        {/* <ATMClothing /> */}
-        {/* <Sell /> */}
+        <ATMClothing />
+        <Sell />
         <Custom />
-        {/* <Donate /> */}
+        <Donate />
     </div>
 );
 

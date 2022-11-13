@@ -17,11 +17,11 @@ const Sell = () => (
             <br />
             <SellFormStep2 />
             <br />
-            <FormStep3 />
+            <FormStep3 content="BÁN SẢN PHẨM" />
             <br />
-            <FormStepSuccess />
+            <FormStepSuccess content="BÁN SẢN PHẨM" />
             <br />
-            <FormStepFail />
+            <FormStepFail content="BÁN SẢN PHẨM" />
         </div>
     </div>
 );
