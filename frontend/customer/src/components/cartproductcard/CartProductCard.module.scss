@@ -1,6 +1,8 @@
 @import '../../styles/colors';
+
 .cartproductcard {
     display: flex;
+
     &__input {
         input {
             appearance: auto;
@@ -8,13 +10,16 @@
             height: 2rem;
             margin-top: 6.5rem;
         }
+
         padding-right: 2rem;
     }
+
     &__product {
         display: flex;
         border-bottom: 2px solid #666666;
         padding-bottom: 1.4rem;
         align-items: center;
+
         &__img {
             img {
                 // min-width: 20rem;
@@ -22,22 +27,51 @@
                 width: 14rem;
             }
         }
+
         &__content {
             justify-content: center;
+
             h2 {
-            font-weight: 500;
-            font-size: 2.4rem;
+                font-weight: 500;
+                font-size: 2.4rem;
             }
+
             h1 {
                 color: $price-color;
                 font-size: 3rem;
-                padding: 1rem 0;    
+                padding: 1rem 0;
                 font-weight: 550;
             }
+
             p {
                 font-size: 2.5rem;
                 color: #444444;
                 font-weight: 400;
+            }
+        }
+
+        &__container {
+            button {
+                font-size: 3rem;
+                border: none ;
+            }
+            &__amount {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                font-size: 5rem;
+                &__reduce {
+                    border: 1px solid;
+                }
+                &__value {
+                    border: 1px solid;
+                    // text-align: center;
+                    // line-height: ;
+                }
+                &__increase {
+                    border: 1px solid;
+                    
+                }
             }
         }
     }

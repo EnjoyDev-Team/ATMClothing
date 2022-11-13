@@ -1,4 +1,6 @@
 import React from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faTrashCan } from '@fortawesome/free-solid-svg-icons';
 import PropTypes from 'prop-types';
 import classes from './CartProductCard.module.scss';
 import img from '../../assets/imgs/aomau.png';
@@ -22,6 +24,22 @@ const Cartproductcard = () => (
                                         </h1>
                                         <p className={classes.cartproductcard__product_content__desribe}>mô tả</p>
                                 </div>
+                        </div>
+                        <div className={classes.cartproductcard__product__container}>
+                                <button type="submit">
+                                        <i>
+                                                {' '}
+                                                <FontAwesomeIcon icon={faTrashCan} />
+                                                {' '}
+                                        </i>
+                                        {' '}
+                                </button>
+                                <div className={classes.cartproductcard__product__container__amount}>
+                                        <p className={classes.cartproductcard__product__container__amount__reduce}>-</p>
+                                        <p className={classes.cartproductcard__product__container__amount__value}>10</p>
+                                        <p className={classes.cartproductcard__product__container__amount__increase}>+</p>
+                                </div>
+
                         </div>
                 </div>
         </div>

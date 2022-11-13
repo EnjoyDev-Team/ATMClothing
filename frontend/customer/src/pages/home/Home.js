@@ -11,6 +11,8 @@ import thoiTrangNam from '../../assets/imgs/thoiTrangNam.png';
 import choTreem from '../../assets/imgs/choTreem.png';
 import doDungGiaDinh from '../../assets/imgs/doDungGiaDinh.png';
 import khac from '../../assets/imgs/khac.png';
+import Slider from '../../components/Slider/Slider';
+import { SliderData } from '../../components/Slider/SliderData';
 
 const listProducts = [
   {
@@ -68,6 +70,7 @@ const Home = () => {
   console.log(photo);
   return (
     <>
+    <Slider data={SliderData} />
       <div className={classes.header}>
         <h2 className={classes.header__content}>Danh mục yêu thích</h2>
         <div>
