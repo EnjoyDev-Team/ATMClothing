@@ -37,14 +37,6 @@ const Header = () => {
 
   const handleAccount = () => {};
 
-  const handleContent = () => {
-    const test = document.querySelector('.header__search-input');
-
-    if (test.value.length !== 0) {
-      test.select();
-    }
-  };
-
   useEffect(() => {
     const handleScroll = () => {
       if (window.scrollY < 1) {

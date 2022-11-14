@@ -11,46 +11,62 @@ import Button from '../ButtonCT/ButtonCT';
 import facebook from '../../assets/imgs/facebook.png';
 import instagram from '../../assets/imgs/instagram.png';
 
-const ProductDetail = (props) => {
-  const a = 1;
+const productDetail = {
+  imgJacket: jacket,
+  imgsOther: [other, other, other, other, other],
+  title: 'Áo blazer unisex caro phối jeans cá tính',
+  currentPrice: '189.000đ',
+  initialPrice: '438.000đ',
+  discountPrice: '-49%',
+  location: 'Thủ Đức',
+  coin: 22,
+  size: 'XL, oversize, m70-m75, 50kg-65kg',
+  color: 'Xám đen',
+  amount: 1,
+  material: 'len',
+  category: 'Thời trang nam',
+  condition: 'Như mới',
+  describe:
+        'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
+  storageInstructions: 'Hướng dẫn bảo quản: ',
+  preserves: [
+    'Hạn chế không nên để giày tiếp xúc nhiều với chất bẩn, đặc biệt là các chất bẩn cứng đầu như máu, cà phê, nhựa trái cây...',
+    'Bảo quản giày ở nơi khô ráo, thoáng mát… để tránh các loại nấm mốc.',
+  ],
+};
+
+const ProductDetail = () => {
+  const all = 1;
   return (
         <div className={classes.product__detail}>
             <div className={classes['product__detail-infomation']}>
                 <div className={classes['product__detail-infomation-imgs']}>
                     <div className={classes['product__wrap-img-detail']}>
-                        <img src={jacket} alt="" className={['product__img-detail']} />
+                        <img src={productDetail.imgJacket} alt="" className={['product__img-detail']} />
                     </div>
                     <ul className={classes['product__imgs-other-style']}>
-                        <li className={classes['product__img-wrap-other-style']}>
-                            <img src={other} alt="" className={classes['product__img-other-style']} />
-                        </li>
-                        <li className={classes['product__img-wrap-other-style']}>
-                            <img src={other} alt="" className={classes['product__img-other-style']} />
-                        </li>
-                        <li className={classes['product__img-wrap-other-style']}>
-                            <img src={other} alt="" className={classes['product__img-other-style']} />
-                        </li>
-                        <li className={classes['product__img-wrap-other-style']}>
-                            <img src={other} alt="" className={classes['product__img-other-style']} />
-                        </li>
-                        <li className={classes['product__img-wrap-other-style']}>
-                            <div className={classes['product__img-wrap-other-style-bg']}>
-                                <img src={other} alt="" className={classes['product__img-other-style']} />
-                            </div>
-                        </li>
+                        {productDetail.imgsOther.map((img, index) => (
+                            <li key={+index} className={classes['product__img-wrap-other-style']}>
+                                <img src={img} alt="" className={classes['product__img-other-style']} />
+                            </li>
+                        ))}
                     </ul>
                 </div>
                 <div className={classes['product__detail-infomation-content']}>
-                    <span className={classes['product__detail-infomation-content-heading']}>
-                        Áo blazer unisex caro phối jeans cá tính
-                    </span>
+                    <span className={classes['product__detail-infomation-content-heading']}>{productDetail.title}</span>
 
                     <div className={classes['product__detail-wrap-price']}>
                         <div className={classes['product__detail-price-information']}>
                             <div className={classes['product__detail-price']}>
-                                <span className={classes['product__detail-price-current']}>189.000đ</span>
-                                <span className={classes['product__detail-price-initial']}>439.000đ</span>
-                                <span className={classes['product__detail-price-discount']}>-49%</span>
+                                <span className={classes['product__detail-price-current']}>
+                                    {productDetail.currentPrice}
+                                </span>
+                                <span className={classes['product__detail-price-initial']}>
+                                    {productDetail.initialPrice}
+                                </span>
+                                <span className={classes['product__detail-price-discount']}>
+                                    {productDetail.discountPrice}
+                                </span>
                             </div>
 
                             <div className={classes['product__detail-price-place']}>
@@ -58,12 +74,18 @@ const ProductDetail = (props) => {
                                   className={classes['product__detail-price-place-icon']}
                                   icon={faMapLocationDot}
                                 />
-                                <span className={classes['product__detail-price-place-content']}>Thủ Đức</span>
+                                <span className={classes['product__detail-price-place-content']}>
+                                    {productDetail.location}
+                                </span>
                             </div>
                         </div>
 
                         <div className={classes['product__detail-bonus']}>
-                            <span className={classes['product__detail-bunus-content']}>Thưởng 22</span>
+                            <span className={classes['product__detail-bunus-content']}>
+                                Thưởng
+{' '}
+{productDetail.coin}
+                            </span>
                             <img src={coin} alt="" className={classes['product__detail-bonus-img']} />
                         </div>
                     </div>
@@ -71,19 +93,21 @@ const ProductDetail = (props) => {
                     <div className={classes['product__wrap-infomation']}>
                         <div className={classes['product__wrap-infomation-element']}>
                             <span className={classes['product__wrap-infomation-label']}>Size</span>
-                            <span className={classes['product__wrap-infomation-detail']}>
-                                XL, oversize, m70-m75, 50kg-65kg
-                            </span>
+                            <span className={classes['product__wrap-infomation-detail']}>{productDetail.size}</span>
                         </div>
 
                         <div className={classes['product__wrap-infomation-element']}>
                             <span className={classes['product__wrap-infomation-label']}>Màu sắc</span>
-                            <span className={classes['product__wrap-infomation-detail']}>Xám đen</span>
+                            <span className={classes['product__wrap-infomation-detail']}>{productDetail.color}</span>
                         </div>
 
                         <div className={classes['product__wrap-infomation-element']}>
                             <span className={classes['product__wrap-infomation-label']}>Số Lượng</span>
-                            <span className={classes['product__wrap-infomation-amount-detail']}>1 sản phẩm</span>
+                            <span className={classes['product__wrap-infomation-amount-detail']}>
+                                {productDetail.amount}
+{' '}
+sản phẩm
+                            </span>
                         </div>
                     </div>
 
@@ -104,17 +128,23 @@ const ProductDetail = (props) => {
                     <div className={classes['product__detail-infomation-wrap-footer']}>
                         <div className={classes['product__detail-infomation-footer-element']}>
                             <span className={classes['product_wrap-infomation-footer-label']}>Chất liệu</span>
-                            <span className={classes['product_wrap-infomation-footer-detail']}>Len</span>
+                            <span className={classes['product_wrap-infomation-footer-detail']}>
+                                {productDetail.material}
+                            </span>
                         </div>
 
                         <div className={classes['product__detail-infomation-footer-element']}>
                             <span className={classes['product_wrap-infomation-footer-label']}>Danh mục</span>
-                            <span className={classes['product_wrap-infomation-footer-detail']}>Thời trang nam</span>
+                            <span className={classes['product_wrap-infomation-footer-detail']}>
+                                {productDetail.category}
+                            </span>
                         </div>
 
                         <div className={classes['product__detail-infomation-footer-element']}>
                             <span className={classes['product_wrap-infomation-footer-label']}>Tình trạng</span>
-                            <span className={classes['product_wrap-infomation-footer-detail']}>Như mới</span>
+                            <span className={classes['product_wrap-infomation-footer-detail']}>
+                                {productDetail.condition}
+                            </span>
                         </div>
 
                         <div className={classes['product__detail-infomation-footer-social']}>
@@ -145,24 +175,23 @@ const ProductDetail = (props) => {
 
                 <div className={classes['product__detail-describe-heading-wrap-content']}>
                     <span className={classes['product__detail-describe-heading-content']}>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-                        labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
-                        laboris nisi ut aliquip ex ea commodo consequat.
+                        {productDetail.describe}
                     </span>
                 </div>
 
                 <div className={classes['product__detail-describe-wrap-storage-instructions']}>
                     <span className={classes['product__detail-describe-storage-instructions']}>
-                        Hướng dẫn bảo quản:
+                        {productDetail.storageInstructions}
                     </span>
                     <ul className={classes['product__detail-describe-storage-instructions-list']}>
-                        <li className={classes['product__detail-describe-storage-instructions-content']}>
-                            Hạn chế không nên để giày tiếp xúc nhiều với chất bẩn, đặc biệt là các chất bẩn cứng đầu như
-                            máu, cà phê, nhựa trái cây...
-                        </li>
-                        <li className={classes['product__detail-describe-storage-instructions-content']}>
-                            Bảo quản giày ở nơi khô ráo, thoáng mát… để tránh các loại nấm mốc.
-                        </li>
+                        {productDetail.preserves.map((preserve, index) => (
+                            <li
+                              key={+index}
+                              className={classes['product__detail-describe-storage-instructions-content']}
+                            >
+                                {preserve}
+                            </li>
+                        ))}
                     </ul>
                 </div>
 

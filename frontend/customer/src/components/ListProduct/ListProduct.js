@@ -2,7 +2,7 @@
 /* eslint-disable react/no-array-index-key */
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
-import { React, ReactDOM, useState } from 'react';
+import { React, useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronLeft, faChevronRight, faChevronDown, faChevronUp, faXmark } from '@fortawesome/free-solid-svg-icons';
@@ -11,24 +11,41 @@ import Slider from '@mui/material/Slider';
 import Button from '../ButtonCT/ButtonCT';
 import classes from './styles.module.scss';
 
+const listOutstading = [
+  {
+    title: 'Phổ biến',
+  },
+  {
+    title: 'Mới nhất',
+  },
+  {
+    title: 'Giá từ thấp tới cao',
+  },
+  {
+    title: 'Giá từ cao tới thấp',
+  },
+];
+
 const Products = () => {
-  const listOutstading = [
-    {
-      title: 'Phổ biến',
-    },
-    {
-      title: 'Mới nhất',
-    },
-    {
-      title: 'Giá từ thấp tới cao',
-    },
-    {
-      title: 'Giá từ cao tới thấp',
-    },
-  ];
   const [isCategory, setCategory] = useState(false);
   const [isCategory1, setCategory1] = useState(false);
   const [isOutstanding, setOutstanding] = useState(`${listOutstading[0].title}`);
+  const [fixedCategory, setFixedCategory] = useState(false);
+  const [isCheckedRaido, setCheckedRadio] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY >= 68) {
+        setFixedCategory(true);
+      } else setFixedCategory(false);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
 
   const handleCategory = () => {
     setCategory((prev) => !prev);
@@ -50,7 +67,7 @@ const Products = () => {
 
   return (
         <div className={classes.products}>
-            <div className={classes.products__category}>
+            <div className={`${classes.products__category} ${fixedCategory ? classes.sticky : ''}`}>
                 <div className={classes['products__category-wrap']}>
                     <h4 className={classes['products__category-heading']}>Danh mục</h4>
 
@@ -88,35 +105,39 @@ const Products = () => {
                                     />
                                 </div>
                             </div>
-                            {isCategory && (
-                                <ul className={classes['products__category-list-children']}>
-                                    <li className={classes['products__category-item-children']}>
-                                        <Link to="#1" className={classes['products__category-item-children-link']}>
-                                            Áo nữ
-                                        </Link>
-                                    </li>
-                                    <li className={classes['products__category-item-children']}>
-                                        <Link to="#1" className={classes['products__category-item-children-link']}>
-                                            Váy & đầm
-                                        </Link>
-                                    </li>
-                                    <li className={classes['products__category-item-children']}>
-                                        <Link to="#1" className={classes['products__category-item-children-link']}>
-                                            Quần & chân váy
-                                        </Link>
-                                    </li>
-                                    <li className={classes['products__category-item-children']}>
-                                        <Link to="#1" className={classes['products__category-item-children-link']}>
-                                            Đồ ngủ & mặc nhà
-                                        </Link>
-                                    </li>
-                                    <li className={classes['products__category-item-children']}>
-                                        <Link to="#1" className={classes['products__category-item-children-link']}>
-                                            Thời trang nữ khác
-                                        </Link>
-                                    </li>
-                                </ul>
-                            )}
+                            <ul
+                              className={`${classes['products__category-list-children']} ${
+                                isCategory
+                                  ? classes['products__category-list-children--show']
+                                  : classes['products__category-list-children--hide']
+                              }`}
+                            >
+                                <li className={classes['products__category-item-children']}>
+                                    <Link to="#1" className={classes['products__category-item-children-link']}>
+                                        Áo nữ
+                                    </Link>
+                                </li>
+                                <li className={classes['products__category-item-children']}>
+                                    <Link to="#1" className={classes['products__category-item-children-link']}>
+                                        Váy & đầm
+                                    </Link>
+                                </li>
+                                <li className={classes['products__category-item-children']}>
+                                    <Link to="#1" className={classes['products__category-item-children-link']}>
+                                        Quần & chân váy
+                                    </Link>
+                                </li>
+                                <li className={classes['products__category-item-children']}>
+                                    <Link to="#1" className={classes['products__category-item-children-link']}>
+                                        Đồ ngủ & mặc nhà
+                                    </Link>
+                                </li>
+                                <li className={classes['products__category-item-children']}>
+                                    <Link to="#1" className={classes['products__category-item-children-link']}>
+                                        Thời trang nữ khác
+                                    </Link>
+                                </li>
+                            </ul>
                         </li>
                         <li className={classes['products__category-item']}>
                             <div onClick={handleCategory1} className={classes['products__category-item-drop-down']}>
@@ -189,7 +210,7 @@ const Products = () => {
                 </div>
             </div>
 
-            <div className={classes.products__product}>
+            <div className={`${classes.products__product} ${fixedCategory ? classes.margin : ''}`}>
                 <div className={classes['products__product-outstanding']}>
                     <h2 className={classes['products__product-outstanding-heading']}>Sản phẩm nổi bật</h2>
 
@@ -353,7 +374,11 @@ const Products = () => {
                         </div>
 
                         <div className={classes['products__filter-product-zero']}>
-                            <input className={classes['products__filter-product-zero-radio']} type="radio" />
+                            <input
+                              onClick={(prev) => !prev}
+                              className={classes['products__filter-product-zero-radio']}
+                              type="radio"
+                            />
                             <span className={classes['products__filter-product-zero-content']}>Sản phẩm 0đ</span>
                         </div>
 
@@ -378,7 +403,9 @@ const Products = () => {
                         </div>
 
                         <div className={classes['products__filter-wrap-button']}>
-                            <Button medium borderRadius outlineBtn>Lọc</Button>
+                            <Button medium borderRadius outlineBtn>
+                                Lọc
+                            </Button>
                             {/* <button className={classes['products__filter-button']}>Lọc</button> */}
                         </div>
                     </div>

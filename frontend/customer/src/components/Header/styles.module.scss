@@ -1,3 +1,5 @@
+@import '../../styles/colors';
+
 .header {
     .header__mission {
         .header__mission-wrap {
@@ -25,6 +27,7 @@
         align-items: center;
         padding: 0 30px;
         background-color: #f3f3f3;
+        z-index: 100;
 
         .header__left {
             display: flex;
@@ -117,7 +120,7 @@
                     .header__right-account-signin,
                     .header__right-account-signup {
                         font-size: 1.4rem;
-                        color: #333;
+                        color: $text-color;
                     }
 
                     .header__right-account-signin:hover,
@@ -199,7 +202,7 @@
     }
 
     &__links-bar {
-        background-color: #597d32;
+        background-color: $main-color;
         padding-left: 30px;
 
         .header__links-bar-list {

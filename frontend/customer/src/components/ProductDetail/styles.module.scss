@@ -1,3 +1,5 @@
+@import '../../styles/colors';
+
 .product__detail {
     padding: 30px 30px 0;
 
@@ -26,13 +28,11 @@
                 .product__img-wrap-other-style {
                     position: relative;
 
-                    div {
-                        .product__img-other-style {
-                        }
+                    .product__img-other-style {
                     }
                 }
-                .product__img-wrap-other-style:last-child{
-                    .product__img-wrap-other-style-bg::after{
+                .product__img-wrap-other-style:last-child {
+                    .product__img-wrap-other-style-bg::after {
                         position: absolute;
                         content: 'Xem thêm 4 ảnh khác';
                         display: flex;
@@ -141,7 +141,7 @@
                         font-size: 1.8rem;
                         font-weight: 500;
                         line-height: 22px;
-                        color: #333;
+                        color: $text-color;
                         margin-right: 24px;
                     }
                     .product__wrap-infomation-detail {
@@ -183,7 +183,7 @@
                         font-size: 1.8rem;
                         font-weight: 500;
                         line-height: 22px;
-                        color: #333333;
+                        color: $text-color;
                         margin-right: 50px;
                     }
                     .product_wrap-infomation-footer-detail {
@@ -199,7 +199,7 @@
                         font-size: 1.8rem;
                         font-weight: 500;
                         line-height: 22px;
-                        color: #333333;
+                        color: $text-color;
                         margin-right: 24px;
                     }
                     .product_wrap-infomation-footer-social-link {
@@ -220,7 +220,7 @@
         padding: 20px;
         background-color: #fff;
         border-radius: 10px;
-        color: #333;
+        color: $text-color;
 
         .product__detail-describe-wrap-heading {
             margin-bottom: 12px;
@@ -276,7 +276,7 @@
         .product__detail-similar-heading {
             font-size: 2.4rem;
             line-height: 29px;
-            color: #333;
+            color: $text-color;
         }
 
         .product__detail-similar-list {
@@ -296,7 +296,7 @@
         .product__detail-watched-heading {
             font-size: 2.4rem;
             line-height: 29px;
-            color: #333;
+            color: $text-color;
         }
 
         .product__detail-watched-list {
