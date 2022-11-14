@@ -2,7 +2,9 @@
 import { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 
-const useAxios = (method, api, body, options, deps, axiosHooks) => {
+import axiosClient from '../api/axios';
+
+const useAxios = (method, api, body, options, deps) => {
   const [isLoading, setLoading] = useState(false);
   const [response, setResponse] = useState('');
   const [error, setError] = useState('');
@@ -13,7 +15,7 @@ const useAxios = (method, api, body, options, deps, axiosHooks) => {
     if (isLoading === false) {
       setLoading(true);
 
-      axiosHooks[method](api, body, {
+      axiosClient[method](api, body, {
         ...options,
         signal: axiosController.signal
       }).then((response) => {
@@ -42,7 +44,6 @@ useAxios.propTypes = {
   body: PropTypes.object,
   options: PropTypes.object,
   deps: PropTypes.array.isRequired,
-  axiosHooks: PropTypes.any.isRequired
 };
 
 useAxios.defaultProps = {
