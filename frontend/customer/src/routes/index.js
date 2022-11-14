@@ -9,6 +9,10 @@ import Login from '../pages/auth/Login';
 import Register from '../pages/auth/Register';
 import ForgotPassword from '../pages/auth/ForgotPassword';
 import Profile from '../pages/auth/Profile';
+import Services from '../pages/Service/Service';
+import Sell from '../pages/Service/Sell';
+import Custom from '../pages/Service/Custom';
+import Donate from '../pages/Service/Donate';
 
 const Navigation = () => {
     const authenticated = true;
@@ -27,9 +31,10 @@ const Navigation = () => {
 
             {/* Sale/Custom/Donate */}
             <Route path="/services">
-                <Route path="sale" name="sale" element={<NotFound />} />
-                <Route path="custom" name="custom" element={<NotFound />} />
-                <Route path="donate" name="donate" element={<NotFound />} />
+                <Route index element={<Services />} />
+                <Route path="sale" name="sale" element={<Sell />} />
+                <Route path="custom" name="custom" element={<Custom />} />
+                <Route path="donate" name="donate" element={<Donate />} />
             </Route>
 
             {/* PROTECTED ROUTE */}
