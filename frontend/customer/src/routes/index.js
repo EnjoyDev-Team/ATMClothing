@@ -8,9 +8,16 @@ import Login from '../pages/auth/Login';
 import Register from '../pages/auth/Register';
 import ForgotPassword from '../pages/auth/ForgotPassword';
 import Profile from '../pages/auth/Profile';
+<<<<<<< HEAD
 import Products from '../components/ListProduct/ListProduct';
 import Layout from '../layouts';
 import ProductDetail from '../components/ProductDetail/ProductDetail';
+=======
+import Services from '../pages/Service/Service';
+import Sell from '../pages/Service/Sell';
+import Custom from '../pages/Service/Custom';
+import Donate from '../pages/Service/Donate';
+>>>>>>> 7b1a649 (perf & fix: fix UI/UX & performace Services)
 
 const Navigation = () => {
   const authenticated = true;
@@ -28,12 +35,22 @@ const Navigation = () => {
           <Route element={<Layout />}>
               <Route path="/home" element={<Home />} />
 
+<<<<<<< HEAD
               {/* Sale/Custom/Donate */}
               <Route path="/services">
                   <Route path="sale" name="sale" element={<NotFound />} />
                   <Route path="custom" name="custom" element={<NotFound />} />
                   <Route path="donate" name="donate" element={<NotFound />} />
               </Route>
+=======
+            {/* Sale/Custom/Donate */}
+            <Route path="/services">
+                <Route index element={<Services />} />
+                <Route path="sale" name="sale" element={<Sell />} />
+                <Route path="custom" name="custom" element={<Custom />} />
+                <Route path="donate" name="donate" element={<Donate />} />
+            </Route>
+>>>>>>> 7b1a649 (perf & fix: fix UI/UX & performace Services)
 
               {/* PROTECTED ROUTE */}
               <Route element={<PrivateRoute isAllowed={authenticated} redirectPath="/login" />}>
