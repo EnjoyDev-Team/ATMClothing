@@ -45,9 +45,9 @@ useAxios.propTypes = {
   deps: PropTypes.array.isRequired,
 };
 
-// useAxios.defaultProps = {
-//   body: {},
-//   options: {}
-// };
+useAxios.defaultProps = {
+  body: {},
+  options: {}
+};
 
 export default useAxios;
