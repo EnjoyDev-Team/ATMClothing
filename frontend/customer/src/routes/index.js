@@ -16,6 +16,7 @@ import Services from '../pages/Service/Service';
 import Sell from '../pages/Service/Sell';
 import Custom from '../pages/Service/Custom';
 import Donate from '../pages/Service/Donate';
+import Shopping from '../pages/shopping/Shopping';
 
 const Navigation = () => {
   const authenticated = true;
