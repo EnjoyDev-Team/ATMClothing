@@ -26,12 +26,40 @@ const listOutstading = [
   },
 ];
 
+const basis = [
+  {
+    id: 1,
+    name: 'Thủ Đức',
+  },
+  {
+    id: 2,
+    name: 'Quận 1',
+  },
+  {
+    id: 3,
+    name: 'Quận 7',
+  },
+  {
+    id: 4,
+    name: 'Quận 5',
+  },
+  {
+    id: 5,
+    name: 'Tân Bình',
+  },
+  {
+    id: 6,
+    name: 'Bình Thạnh',
+  },
+];
+
 const Products = () => {
   const [isCategory, setCategory] = useState(false);
   const [isCategory1, setCategory1] = useState(false);
   const [isOutstanding, setOutstanding] = useState(`${listOutstading[0].title}`);
   const [fixedCategory, setFixedCategory] = useState(false);
   const [isCheckedRaido, setCheckedRadio] = useState(false);
+  const [isChecked, setChecked] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -65,6 +93,10 @@ const Products = () => {
     setOutstanding(title);
   };
 
+  const handleCheckedRadio = () => {
+    setCheckedRadio((prev) => !prev);
+  };
+
   return (
         <div className={classes.products}>
             <div className={`${classes.products__category} ${fixedCategory ? classes.sticky : ''}`}>
@@ -82,36 +114,28 @@ const Products = () => {
                                 Góc 0đ
                             </Link>
                         </li>
-                        <li className={classes['products__category-item']}>
+                        <li
+                          className={`${classes['products__category-item']} ${
+                            isCategory
+                              ? classes['products__category-item--show']
+                              : classes['products__category-item--hide']
+                          }`}
+                        >
                             <div onClick={handleCategory} className={classes['products__category-item-drop-down']}>
                                 Thời trang nữ
                                 <div className={classes['products__category-icon']}>
                                     <FontAwesomeIcon
                                       className={`${classes['products__category-icon-down']} 
                                       ${
-                                          isCategory
+                                          !isCategory
                                             ? classes['products__category-icon-down--invalid']
                                             : classes['products__category-icon-down--active']
                                       }`}
                                       icon={faChevronDown}
                                     />
-                                    <FontAwesomeIcon
-                                      className={`${classes['products__category-icon-up']} ${
-                                        isCategory
-                                          ? classes['products__category-icon-up--active']
-                                          : classes['products__category-icon-up--invalid']
-                                      }`}
-                                      icon={faChevronUp}
-                                    />
                                 </div>
                             </div>
-                            <ul
-                              className={`${classes['products__category-list-children']} ${
-                                isCategory
-                                  ? classes['products__category-list-children--show']
-                                  : classes['products__category-list-children--hide']
-                              }`}
-                            >
+                            <ul className={classes['products__category-list-children']}>
                                 <li className={classes['products__category-item-children']}>
                                     <Link to="#1" className={classes['products__category-item-children-link']}>
                                         Áo nữ
@@ -139,47 +163,43 @@ const Products = () => {
                                 </li>
                             </ul>
                         </li>
-                        <li className={classes['products__category-item']}>
+                        <li
+                          className={`${classes['products__category-item']} ${
+                            isCategory1
+                              ? classes['products__category-item--show']
+                              : classes['products__category-item--hide']
+                          }`}
+                        >
                             <div onClick={handleCategory1} className={classes['products__category-item-drop-down']}>
                                 Thời trang nam
                                 <div className={classes['products__category-icon']}>
                                     <FontAwesomeIcon
                                       className={`${classes['products__category-icon-down']} ${
-                                        isCategory1
+                                        !isCategory1
                                           ? classes['products__category-icon-down--invalid']
                                           : classes['products__category-icon-down--active']
                                       }`}
                                       icon={faChevronDown}
                                     />
-                                    <FontAwesomeIcon
-                                      className={`${classes['products__category-icon-up']} ${
-                                        isCategory1
-                                          ? classes['products__category-icon-up--active']
-                                          : classes['products__category-icon-up--invalid']
-                                      }`}
-                                      icon={faChevronUp}
-                                    />
                                 </div>
                             </div>
-                            {isCategory1 && (
-                                <ul className={classes['products__category-list-children']}>
-                                    <li className={classes['products__category-item-children']}>
-                                        <Link to="#1" className={classes['products__category-item-children-link']}>
-                                            Áo nam
-                                        </Link>
-                                    </li>
-                                    <li className={classes['products__category-item-children']}>
-                                        <Link to="#1" className={classes['products__category-item-children-link']}>
-                                            Quần nam
-                                        </Link>
-                                    </li>
-                                    <li className={classes['products__category-item-children']}>
-                                        <Link to="#1" className={classes['products__category-item-children-link']}>
-                                            Thời trang nam khác
-                                        </Link>
-                                    </li>
-                                </ul>
-                            )}
+                            <ul className={classes['products__category-list-children']}>
+                                <li className={classes['products__category-item-children']}>
+                                    <Link to="#1" className={classes['products__category-item-children-link']}>
+                                        Áo nam
+                                    </Link>
+                                </li>
+                                <li className={classes['products__category-item-children']}>
+                                    <Link to="#1" className={classes['products__category-item-children-link']}>
+                                        Quần nam
+                                    </Link>
+                                </li>
+                                <li className={classes['products__category-item-children']}>
+                                    <Link to="#1" className={classes['products__category-item-children-link']}>
+                                        Thời trang nam khác
+                                    </Link>
+                                </li>
+                            </ul>
                         </li>
                         <li className={classes['products__category-item']}>
                             <Link to="#1" className={classes['products__category-item-link']}>
@@ -375,7 +395,9 @@ const Products = () => {
 
                         <div className={classes['products__filter-product-zero']}>
                             <input
-                              onClick={(prev) => !prev}
+                              readOnly
+                              onClick={handleCheckedRadio}
+                              checked={isCheckedRaido}
                               className={classes['products__filter-product-zero-radio']}
                               type="radio"
                             />
@@ -384,22 +406,28 @@ const Products = () => {
 
                         <div className={classes['products__filter-slider-wrap']}>
                             <Slider
-                              className={classes['products__filter-slider']}
-                              getAriaLabel={() => 'Temperature range'}
+                              className={`${classes['products__filter-slider']} ${
+                                isCheckedRaido && classes['products__filter-slider--opacity']
+                              }`}
                               value={value}
                               onChange={handleChange}
                               valueLabelDisplay="auto"
                               disableSwap
+                              disabled={isCheckedRaido}
                               getAriaValueText={valuetext}
                             />
                         </div>
 
                         <div className={classes['products__filter-details']}>
                             <span className={classes['products__filter-details-content-min']}>Tối thiểu: </span>
-                            <span className={classes['products__filter-details-number-min']}>200.000</span>
+                            <span className={classes['products__filter-details-number-min']}>
+                                {(value[0] * 10000).toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.')}
+                            </span>
                             <br />
                             <span className={classes['products__filter-details-content-max']}>Tối đa: </span>
-                            <span className={classes['products__filter-details-number-max']}>500.000</span>
+                            <span className={classes['products__filter-details-number-max']}>
+                                {(value[1] * 10000).toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.')}
+                            </span>
                         </div>
 
                         <div className={classes['products__filter-wrap-button']}>
@@ -417,16 +445,17 @@ const Products = () => {
                         </div>
 
                         <div className={classes['products__filter-option-wrap']}>
-                            <select className={classes['products__filter-choose-option']}>
-                                <option className={classes['products__filter-option']} selected disabled>
+                            <select
+                              className={classes['products__filter-choose-option']}
+                            >
+                                <option className={classes['products__filter-option']} disabled>
                                     Chọn cơ sở
                                 </option>
-                                <option className={classes['products__filter-option']} name="" id="1">
-                                    Thủ Đức
-                                </option>
-                                <option className={classes['products__filter-option']} name="" id="2">
-                                    Quận 5
-                                </option>
+                                {basis.map((base) => (
+                                    <option key={base.id} className={classes['products__filter-option']} name="" id="1">
+                                        {base.name}
+                                    </option>
+                                ))}
                             </select>
                         </div>
 
