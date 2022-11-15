@@ -1,0 +1,50 @@
+.radio__item label {
+    display: flex;
+    gap: 2rem;
+    margin: 1rem 0rem;
+    user-select: none;
+    cursor: pointer;
+}
+
+.radio__item label > input {
+    display: none;
+}
+
+.radio__tick {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid #CCC;
+    height: 2.5rem;
+    width: 2.5rem;
+    -webkit-border-radius: .4rem;
+    -moz-border-radius: .4rem;
+    -ms-border-radius: .4rem;
+    -o-border-radius: .4rem;
+    border-radius: .4rem;
+}
+
+.radio__tick > svg {
+    display: none;
+}
+
+input:checked + .radio__tick { 
+    background-color: rgb(30, 165, 142);
+    border-color: rgb(30, 165, 142);
+    color: white;
+}
+
+input:checked + .radio__tick > svg {
+    display: block;
+}
+
+.radio__item b {
+    font-weight: 600;
+}
+
+.radio__content {
+    font-weight: 400;
+    font-family: inherit;
+    color: black;
+    font-size: 1.6rem;
+}

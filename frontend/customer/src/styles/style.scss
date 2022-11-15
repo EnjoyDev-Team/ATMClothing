@@ -16,6 +16,7 @@ body {
         "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans",
         "Helvetica Neue", sans-serif;
     font-size: 1.6rem;
+    background-color: #F3F3F3;
     overflow-x: hidden;
     -moz-osx-font-smoothing: grayscale;
     -moz-osx-font-smoothing: grayscale;
@@ -37,10 +38,6 @@ a {
 input,
 textarea,
 button {
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    -ms-appearance: none;
-    appearance: none;
     border-radius: 0;
     outline: none;
     border: 1px solid black;
@@ -50,6 +47,10 @@ button,
 button[type="submit"],
 input[type="submit"],
 button[type="button"] {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    -ms-appearance: none;
+    appearance: none;
     cursor: pointer;
     outline: none;
 }
