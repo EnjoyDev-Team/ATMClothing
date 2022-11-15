@@ -2,7 +2,7 @@
 
 .cartproductcard {
     display: flex;
-
+    // border-bottom: 2px solid #6666;
     &__input {
         input {
             appearance: auto;
@@ -10,15 +10,14 @@
             height: 2rem;
             margin-top: 6.5rem;
         }
-
-        padding-right: 2rem;
+        padding-right: 5rem;
     }
 
     &__product {
         display: flex;
-        border-bottom: 2px solid #666666;
-        padding-bottom: 1.4rem;
+        padding-bottom: 2rem;
         align-items: center;
+        flex: auto;
 
         &__img {
             img {
@@ -30,46 +29,59 @@
 
         &__content {
             justify-content: center;
-
             h2 {
                 font-weight: 500;
-                font-size: 2.4rem;
+                font-size: 2rem;
             }
 
             h1 {
                 color: $price-color;
-                font-size: 3rem;
+                font-size: 2.2rem;
                 padding: 1rem 0;
                 font-weight: 550;
             }
 
             p {
-                font-size: 2.5rem;
+                font-size: 1.6rem;
                 color: #444444;
                 font-weight: 400;
             }
         }
-
+        
         &__container {
+            cursor: pointer;
+            margin-right: 3rem;
+            display: flex;
+            flex-direction: column;
+            min-width: 12rem;
             button {
-                font-size: 3rem;
+                font-size: 2.5rem;
                 border: none ;
+                margin-left: 9rem;
+                margin-bottom: 5.5rem;
+                border-radius: 4px;
+                background-color: #fff;
+
             }
             &__amount {
                 display: flex;
                 justify-content: center;
                 align-items: center;
-                font-size: 5rem;
+                font-size: 2rem;
                 &__reduce {
                     border: 1px solid;
+                    padding: 0 0.6rem;
                 }
                 &__value {
                     border: 1px solid;
-                    // text-align: center;
-                    // line-height: ;
+                    width: 100%;
+                    text-align: center;
+                    // min-width: 5rem;
+                   
                 }
                 &__increase {
                     border: 1px solid;
+                    padding: 0 0.6rem;
                     
                 }
             }

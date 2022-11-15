@@ -27,7 +27,6 @@ const CardProduct = ({ cardproduct2, Details }) => (
             <ButtonCT primary medium className={classes.btn}>Thêm vào giỏ hàng</ButtonCT>
             </div>
        </div>
-        {/* <button className={classes.cardproduct__btn}>Thêm vào giỏ hàng</button> */}
     </div>
 
 );
