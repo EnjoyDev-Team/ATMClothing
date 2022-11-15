@@ -65,7 +65,6 @@ const Navigation = () => {
                     <Route path="list/:category/:page" element={<>Products Page with category & page X</>} />
                 </Route>
 
-<<<<<<< HEAD
                 {/* ShoppingCart + Payment ROUTE */}
                 <Route path="/shopping">
                     <Route index element={<Shopping />} />
@@ -73,13 +72,6 @@ const Navigation = () => {
                     <Route path="orders" element={<ProductOrderDetails />} />
                     <Route path="orders/:id" element={<ProductOrderDetails />} />
                 </Route>
-=======
-              {/* ShoppingCart + Payment ROUTE */}
-              <Route path="/shopping">
-                  <Route index element={<Shopping />} />
-                  <Route path="payment" element={<>Payment Page</>} />
-              </Route>
->>>>>>> 98fba71 (chore: update routes)
 
                 <Route path="*" name="notFound" element={<NotFound />} />
             </Route>
