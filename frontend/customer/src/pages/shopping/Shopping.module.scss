@@ -1,5 +1,9 @@
 @import '../../styles/colors';
 
+body {
+    background-color: #E7E8EC;
+}
+
 .header {
     text-align: center;
     margin-top: 2rem;
@@ -14,6 +18,154 @@
 
     p {
         font-weight: 600;
-        color:#666666;
+        color: #666666;
+    }
+}
+
+.container {
+    margin: 0 15rem;
+    margin-top: 3rem;
+    background-color: #E7E8EC;
+    display: flex;
+    &__content {
+        border-radius: 5px;
+        flex: auto;
+        padding-right: 1rem;
+        &__header {
+            padding: 1.5rem 0;
+            background-color: #fff;
+            padding-left: 2.5rem;
+            border-radius: 5px;
+
+            h2 {
+                font-weight: 500;
+                font-size: 2.2rem;
+                font-size: 1.8rem;
+            }
+
+            &__all {
+                padding-top: 1rem;
+                display: flex;
+                align-items: center;
+                p {
+                    font-size: 1.7rem;
+                    display: inline-block;
+                    padding-left: 2rem;
+                }
+
+                input {
+                    width: 2rem;
+                    height: 2rem;
+                    border-radius: 4px;
+                    appearance: auto;
+                }
+            }
+        }
+
+        &__cart {
+            background-color: #fff;
+            margin-top: 1.5rem;
+            border-bottom-left-radius: 10px;
+            border-bottom-right-radius: 10px;
+    
+            &__address {
+                background-color: rgba(152, 227, 91, 0.5);
+                &__all {
+                    display: flex;
+                    align-items: center;
+                    padding:1.5rem ;
+                    p {
+                        font-size: 1.7rem;
+                        display: inline-block;
+                        padding-left: 2rem;
+                        font-weight: 550;
+                        text-align: center;
+                    }
+
+                    input {
+                        width: 2rem;
+                        height: 2rem;
+                        border-radius: 4px;
+                        appearance: auto;
+                    }
+                }
+            }
+            &__listproduct {
+                padding-left: 3rem;
+                &__product {
+                    padding-top: 3rem;
+                }
+                &__line {
+                    border-bottom: 2px solid #6666;
+                    margin-left: 2.5rem;
+                    margin-right: 5.8rem;
+                }
+                &__line:last-child {
+                   border: none;
+                }
+            }
+        }
+
+    }
+
+    &__status {
+        background-color: #fff;
+        width: 33rem;
+        border-bottom-left-radius: 10px;
+        border-bottom-right-radius: 10px;
+        display: flex;
+        flex-direction: column;
+        &__payment {
+            background-color: #000;
+            h3 {
+                font-weight: 400;
+                color:#fff;
+                padding: 1rem;
+                padding-left: 2rem;
+            }
+        }
+        &__valueproduct {
+            display: flex;
+            flex-direction: row;
+            padding-top: 2.5rem;
+            padding-left: 2rem;
+            p {
+                flex: auto;
+                letter-spacing: 1px;
+                font-size: 1.7rem;
+            }
+            h3 {
+                font-weight: 600;
+                padding-right: 2.5rem;
+            }
+        }
+        &__total {
+            display: flex;
+            flex-direction: row;
+            padding-top: 1rem;
+            padding-left: 2rem;
+            padding-bottom: 6rem;
+            p {
+                flex: auto;
+                padding-right: 2.5rem;
+            }
+            h3 {
+                display: flex;
+                letter-spacing: 1px;
+                font-weight: 600;
+                color: $price-color;
+                p {
+                    padding-left: 0.5rem;
+                }
+            }
+        }
+        &__btn {
+            width: 28rem;
+            border-radius: 5rem;
+            margin: auto;
+            padding: 2rem 0;
+            font-size: 1.8rem;
+            margin-bottom: 4rem;
+        }
     }
 }
