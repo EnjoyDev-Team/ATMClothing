@@ -12,15 +12,17 @@ const Avatar = () => {
       {/* <img src="https://1.bigdata-vn.com/wp-content/uploads/2021/10/1633261044_888_Anh-avatar-dep-cho-con-gai-anh-dai-dien-dep.jpg" alt="" /> */}
       <FontAwesomeIcon className={classes.avatarIcon} icon={faCircleUser} />
       <div className={classes.avatar__edit}>
-        <div>
-          <ButtonCT content="Xóa hình ảnh" outlineBtn medium />
-        </div>
-        <div>
-          <ButtonCT content="Thêm hình ảnh" primary medium />
-        </div>
+        <ButtonCT outlineBtn medium>
+          Xóa ảnh
+        </ButtonCT>
+        <ButtonCT primary medium>
+          Thêm ảnh
+        </ButtonCT>
       </div>
       </div>
-    <div className={classes.btn}><ButtonCT content="Cập nhật" primary medium /></div>
+      <ButtonCT primary medium className={classes.btn}>
+        Cập nhật
+      </ButtonCT>
     </>
   );
 };

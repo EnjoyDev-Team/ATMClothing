@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import ButtonCT from '../../../../components/ButtonCT/ButtonCT';
 import classes from './ProfileForm.module.scss';
 
@@ -16,13 +17,15 @@ const ChangePassword = () => {
         <div className={classes.profileForm__input}>
           <div className={classes['profileForm__input-oldPW']}>
             <input type="password" placeholder="Nhập mật khẩu cũ" />
-            <p>Quên mật khẩu</p>
+            <Link to="/forgot">Quên mật khẩu</Link>
           </div>
           <input type="password" placeholder="Nhập mật khẩu mới" />
           <input type="password" placeholder="Nhập lại mật khẩu mới" />
         </div>
       </div>
-    <div className={classes.btn}><ButtonCT content="Lưu thay đổi" primary medium /></div>
+      <ButtonCT primary medium className={classes.btn}>
+        Lưu thay đổi
+      </ButtonCT>
     </>
   );
 };

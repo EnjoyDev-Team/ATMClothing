@@ -5,23 +5,24 @@ import classes from './AuthForm.module.scss';
 import InputCT from '../InputCT/InputCT';
 import ButtonCT from '../../../../components/ButtonCT/ButtonCT';
 import SocialLogin from '../SocialLogin/SocialLogin';
+import { validatePassword, validatePhone } from './handler';
 
 const RegisterForm = () => {
   const [step, setStep] = useState(1);
 
   const StepPhone = (
     <>
-      <InputCT placeholder="Nhập số điện thoại" />
+      <InputCT placeholder="Nhập số điện thoại" type="tel" validation={validatePhone} maxLength="10" required />
 
-      <div className={classes.btn}>
-        <ButtonCT primary borderRadius content="Tiếp tục" medium />
-      </div>
+      <ButtonCT primary borderRadius medium className={classes.btn}>
+        Tiếp tục
+      </ButtonCT>
     </>
   );
 
   const StepOTP = (
     <>
-      <InputCT placeholder="Nhập OTP" />
+      <InputCT placeholder="Nhập OTP" type="tel" maxLength="6" required />
       <p className={classes.messageOTP}>
         Bạn không nhận được mã OTP?
         {' '}
@@ -34,9 +35,9 @@ const RegisterForm = () => {
         </span>
       </p>
 
-      <div className={classes.btn}>
-        <ButtonCT primary borderRadius content="Xác nhận" medium />
-      </div>
+      <ButtonCT primary borderRadius medium className={classes.btn}>
+        Xác nhận
+      </ButtonCT>
 
       <p className={classes.policy}>
         Bằng việc đăng kí, bạn đã đồng ý với
@@ -56,12 +57,12 @@ const RegisterForm = () => {
 
   const StepPassword = (
     <>
-      <InputCT placeholder="Nhập mật khẩu" type="password" />
-      <InputCT placeholder="Nhập lại mật khẩu" type="password" />
+      <InputCT placeholder="Nhập mật khẩu" type="password" validation={validatePassword} required />
+      <InputCT placeholder="Nhập lại mật khẩu" type="password" validation={validatePassword} required />
 
-      <div className={classes.btn}>
-        <ButtonCT primary borderRadius content="Đăng ký" medium />
-      </div>
+      <ButtonCT primary borderRadius medium className={classes.btn}>
+        Đăng ký
+      </ButtonCT>
     </>
   );
 

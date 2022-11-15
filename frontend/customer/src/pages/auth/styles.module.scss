@@ -1,5 +1,6 @@
 .login {
   font-size: 2rem;
+  color: red;
 
   &__test {
     color: red;
@@ -11,7 +12,7 @@
   border: 1px solid #ccc;
   width: 70%;
   min-width: 600px;
-  margin: 40px auto;
+  margin: 0 auto;
   font-size: 1.6rem;
 
   &__nav {
@@ -50,6 +51,7 @@
     border-left: 1px solid #ccc;
     flex: 1;
     min-height: 460px;
+    background-color: #fff;
 
     &-heading {
       border-bottom: 1px solid #ccc;
