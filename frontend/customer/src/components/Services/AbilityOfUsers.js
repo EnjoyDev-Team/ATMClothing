@@ -10,7 +10,7 @@ import classes from './AbilityOfUsers.module.scss';
 
 const AbilityOfUsers = () => (
     <div>
-        <h3>BẠN CÓ THỂ LÀM GÌ VỚI HỆ THỐNG CỦA CHÚNG TÔI?</h3>
+        <h3 className={classes.title}>BẠN CÓ THỂ LÀM GÌ VỚI HỆ THỐNG CỦA CHÚNG TÔI?</h3>
         <div className={classes.container}>
             <Link className={classes.ele} to="sale">
                 <FontAwesomeIcon icon={faCashRegister} className={classes.icon} />
