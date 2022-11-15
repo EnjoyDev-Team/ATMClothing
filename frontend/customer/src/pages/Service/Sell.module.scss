@@ -1,0 +1,30 @@
+.body {
+    position: relative;
+    min-height: 100vh;
+}
+
+.backdrop {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: rgba($color: #000000, $alpha: .4);
+}
+
+.title {
+    left: 204px;
+    top: 209px;
+
+    margin-top: 5rem;
+    margin-left: 20rem;
+    margin-bottom: 5rem;
+}
+
+.container {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    translate: -50% 0%;
+    z-index: 2;
+}

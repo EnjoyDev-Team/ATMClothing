@@ -1,0 +1,80 @@
+.header
+{
+    width: 65vw;
+    margin: auto;
+    margin-bottom: 5rem;
+}
+
+.header > h1
+{
+    color: #597D32;
+}
+
+.header > p
+{
+    margin-top: .5rem;
+    color: #666666;
+}
+
+.main
+{
+    display: flex;
+    flex-wrap: wrap-reverse;
+    justify-content: center;
+    align-items: flex-end;
+    gap: 5rem;
+}
+
+.order__content{
+    display: flex;
+    gap: 4rem;
+
+    &-item{
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+        gap: 1rem;
+    }
+    
+    &-item:nth-child(2){
+        align-items: flex-start;
+    }
+
+    &-item > div:last-child{
+        font-weight: bold;
+        margin-top: 1.5rem;
+        font-size: 2rem;
+    }
+    
+    &-item:nth-child(2) > div:last-child{
+        color: #000092;
+    }
+
+    &__controls{
+        display: flex;
+        justify-content: center;
+        gap: 3rem;
+        margin-top: 3rem;
+    }
+
+    &__controls button{
+        width: 14rem;
+        padding: 1.2rem;
+        color: white;
+        font-size: 1.6rem;
+        border: none;
+        -webkit-border-radius: 5rem;
+        -moz-border-radius: 5rem;
+        -ms-border-radius: 5rem;
+        -o-border-radius: 5rem;
+        border-radius: 5rem;
+}
+
+    &__controls button:nth-child(1){
+        background: linear-gradient(95.33deg, #C15D5D 42.02%, rgba(193, 99, 93, 0.81) 82.66%);
+    }
+
+    &__controls button:nth-child(2){
+        background: linear-gradient(95.33deg, #89C15D 42.02%, rgba(93, 193, 151, 0.81) 82.66%);
+    }
+}
