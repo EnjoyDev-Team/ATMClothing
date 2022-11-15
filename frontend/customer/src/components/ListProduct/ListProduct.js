@@ -1,20 +1,3 @@
-<<<<<<< HEAD
-import React, { useState } from 'react';
-import PropTypes from 'prop-types';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faChevronLeft, faChevronRight, faChevronDown, faXmark } from '@fortawesome/free-solid-svg-icons';
-// import InputRange from 'react-input-range';
-import classes from './styles.module.scss';
-
-const Products = () => {
-  const [isScale, setScale] = useState(false);
-
-  const handleScale = () => {};
-
-  return (
-        <div className={classes.products}>
-            <div className={classes.products__category}>
-=======
 /* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
 /* eslint-disable react/no-array-index-key */
 /* eslint-disable jsx-a11y/no-static-element-interactions */
@@ -85,44 +68,10 @@ const Products = () => {
   return (
         <div className={classes.products}>
             <div className={`${classes.products__category} ${fixedCategory ? classes.sticky : ''}`}>
->>>>>>> 9ccacff0d07e1f893ca91b2331b59f09f99ab91d
                 <div className={classes['products__category-wrap']}>
                     <h4 className={classes['products__category-heading']}>Danh mục</h4>
 
                     <ul className={classes['products__category-list']}>
-<<<<<<< HEAD
-                        <li className={classes['products__category-item']}>Sản phẩm nổi bật</li>
-                        <li className={classes['products__category-item']}>Góc 0đ</li>
-                        <li className={classes['products__category-item']}>
-                            <div>
-                                Thời trang nữ
-                                <FontAwesomeIcon className={classes['products__category-icon']} icon={faChevronDown} />
-                            </div>
-                            <ul className={classes['products__category-list-children']}>
-                                <li className={classes['products__category-item-children']}>Áo nữ</li>
-                                <li className={classes['products__category-item-children']}>Váy & đầm</li>
-                                <li className={classes['products__category-item-children']}>Quần & chân váy</li>
-                                <li className={classes['products__category-item-children']}>Đồ ngủ & mặc nhà</li>
-                                <li className={classes['products__category-item-children']}>Thời trang nữ khác</li>
-                            </ul>
-                        </li>
-                        <li className={classes['products__category-item']}>
-                            <div>
-                                Thời trang nam
-                                <FontAwesomeIcon className={classes['products__category-icon']} icon={faChevronDown} />
-                            </div>
-                            <ul className={classes['products__category-list-children']}>
-                                <li className={classes['products__category-item-children']}>Áo nam</li>
-                                <li className={classes['products__category-item-children']}>Quần nam</li>
-                                <li className={classes['products__category-item-children']}>Thời trang nam khác</li>
-                            </ul>
-                        </li>
-                        <li className={classes['products__category-item']}>Phụ kiện nữ</li>
-                        <li className={classes['products__category-item']}>Phụ kiện nam</li>
-                        <li className={classes['products__category-item']}>Đồ cho bé</li>
-                        <li className={classes['products__category-item']}>Đồ dùng gia đình</li>
-                        <li className={classes['products__category-item']}>Sản phẩm khác</li>
-=======
                         <li className={classes['products__category-item']}>
                             <Link to="#1" className={classes['products__category-item-link']}>
                                 Sản phẩm nổi bật
@@ -257,51 +206,16 @@ const Products = () => {
                                 Sản phẩm khác
                             </Link>
                         </li>
->>>>>>> 9ccacff0d07e1f893ca91b2331b59f09f99ab91d
                     </ul>
                 </div>
             </div>
 
-<<<<<<< HEAD
-            <div className={classes.products__product}>
-=======
             <div className={`${classes.products__product} ${fixedCategory ? classes.margin : ''}`}>
->>>>>>> 9ccacff0d07e1f893ca91b2331b59f09f99ab91d
                 <div className={classes['products__product-outstanding']}>
                     <h2 className={classes['products__product-outstanding-heading']}>Sản phẩm nổi bật</h2>
 
                     <div className={classes['products__product-outstanding-category']}>
                         <ul className={classes['products__product-outstanding-category-list']}>
-<<<<<<< HEAD
-                            <li className={classes['products__product-outstanding-category-item']}>
-                                Phổ biến
-                                <div className={classes['products__product-outstanding-category-underline']}> </div>
-                            </li>
-                            <li className={classes['products__product-outstanding-category-item']}>
-                                Mới nhất
-                                <div className={classes['products__product-outstanding-category-underline']}> </div>
-                            </li>
-                            <li className={classes['products__product-outstanding-category-item']}>
-                                Giá từ thấp tới cao
-                                <div className={classes['products__product-outstanding-category-underline']}> </div>
-                            </li>
-                            <li className={classes['products__product-outstanding-category-item']}>
-                                Giá từ cao đến thấp
-                                <div className={classes['products__product-outstanding-category-underline']}> </div>
-                            </li>
-                        </ul>
-
-                        <div className={classes['products__product-outstanding-category-page']}>
-                            <FontAwesomeIcon
-                              className={classes['products__product-outstanding-category-page-left']}
-                              icon={faChevronLeft}
-                            />
-                            <span className={classes['products__product-outstanding-category-page-number']}>1 / 5</span>
-                            <FontAwesomeIcon
-                              className={classes['products__product-outstanding-category-page-right']}
-                              icon={faChevronRight}
-                            />
-=======
                             {listOutstading.map((itemOutstanding, index) => (
                                 <li
                                   key={index}
@@ -346,117 +260,10 @@ const Products = () => {
                                   icon={faChevronRight}
                                 />
                             </Link>
->>>>>>> 9ccacff0d07e1f893ca91b2331b59f09f99ab91d
                         </div>
                     </div>
                 </div>
 
-<<<<<<< HEAD
-                <div className={classes['products__product-wrap']}>
-                    <div className={classes['products__product-grid']}>
-                        <div className={classes['products__product-row']}>
-                            <div className={classes['products__product-column']}>
-                                <div className={classes['products__product-item']}>
-                                    <p>1</p>
-                                </div>
-                            </div>
-                            <div className={classes['products__product-column']}>
-                                <div className={classes['products__product-item']}>
-                                    <p>1</p>
-                                </div>
-                            </div>
-                            <div className={classes['products__product-column']}>
-                                <div className={classes['products__product-item']}>
-                                    <p>1</p>
-                                </div>
-                            </div>
-                            <div className={classes['products__product-column']}>
-                                <div className={classes['products__product-item']}>
-                                    <p>1</p>
-                                </div>
-                            </div>
-                            <div className={classes['products__product-column']}>
-                                <div className={classes['products__product-item']}>
-                                    <p>1</p>
-                                </div>
-                            </div>
-                            <div className={classes['products__product-column']}>
-                                <div className={classes['products__product-item']}>
-                                    <p>1</p>
-                                </div>
-                            </div>
-                            <div className={classes['products__product-column']}>
-                                <div className={classes['products__product-item']}>
-                                    <p>1</p>
-                                </div>
-                            </div>
-                            <div className={classes['products__product-column']}>
-                                <div className={classes['products__product-item']}>
-                                    <p>1</p>
-                                </div>
-                            </div>
-                            <div className={classes['products__product-column']}>
-                                <div className={classes['products__product-item']}>
-                                    <p>1</p>
-                                </div>
-                            </div>
-                            <div className={classes['products__product-column']}>
-                                <div className={classes['products__product-item']}>
-                                    <p>1</p>
-                                </div>
-                            </div>
-                            <div className={classes['products__product-column']}>
-                                <div className={classes['products__product-item']}>
-                                    <p>1</p>
-                                </div>
-                            </div>
-                            <div className={classes['products__product-column']}>
-                                <div className={classes['products__product-item']}>
-                                    <p>1</p>
-                                </div>
-                            </div>
-                            <div className={classes['products__product-column']}>
-                                <div className={classes['products__product-item']}>
-                                    <p>1</p>
-                                </div>
-                            </div>
-                            <div className={classes['products__product-column']}>
-                                <div className={classes['products__product-item']}>
-                                    <p>1</p>
-                                </div>
-                            </div>
-                            <div className={classes['products__product-column']}>
-                                <div className={classes['products__product-item']}>
-                                    <p>1</p>
-                                </div>
-                            </div>
-                            <div className={classes['products__product-column']}>
-                                <div className={classes['products__product-item']}>
-                                    <p>1</p>
-                                </div>
-                            </div>
-                            <div className={classes['products__product-column']}>
-                                <div className={classes['products__product-item']}>
-                                    <p>1</p>
-                                </div>
-                            </div>
-                            <div className={classes['products__product-column']}>
-                                <div className={classes['products__product-item']}>
-                                    <p>1</p>
-                                </div>
-                            </div>
-                            <div className={classes['products__product-column']}>
-                                <div className={classes['products__product-item']}>
-                                    <p>1</p>
-                                </div>
-                            </div>
-                            <div className={classes['products__product-column']}>
-                                <div className={classes['products__product-item']}>
-                                    <p>1</p>
-                                </div>
-                            </div>
-                        </div>
-=======
                 <div className={classes['products__product-wrap-item']}>
                     <div className={classes['products__product-item']}>
                         <p>1</p>
@@ -517,27 +324,11 @@ const Products = () => {
                     </div>
                     <div className={classes['products__product-item']}>
                         <p>1</p>
->>>>>>> 9ccacff0d07e1f893ca91b2331b59f09f99ab91d
                     </div>
                 </div>
 
                 <ul className={classes.products__pagination}>
                     <li className={classes['products__pagination-item']}>
-<<<<<<< HEAD
-                        <FontAwesomeIcon className={classes['products__pagination-icon']} icon={faChevronLeft} />
-                    </li>
-                    <li
-                      className={`${classes['products__pagination-item']} ${classes['products__pagination-item--active']}`}
-                    >
-                        1
-                    </li>
-                    <li className={classes['products__pagination-item']}>2</li>
-                    <li className={classes['products__pagination-item']}>3</li>
-                    <li className={classes['products__pagination-item']}>...</li>
-                    <li className={classes['products__pagination-item']}>7</li>
-                    <li className={classes['products__pagination-item']}>
-                        <FontAwesomeIcon className={classes['products__pagination-icon']} icon={faChevronRight} />
-=======
                         <Link to="#1" className={classes['products__pagination-item-link']}>
                             <FontAwesomeIcon className={classes['products__pagination-icon']} icon={faChevronLeft} />
                         </Link>
@@ -570,7 +361,6 @@ const Products = () => {
                         <Link to="#1" className={classes['products__pagination-item-link']}>
                             <FontAwesomeIcon className={classes['products__pagination-icon']} icon={faChevronRight} />
                         </Link>
->>>>>>> 9ccacff0d07e1f893ca91b2331b59f09f99ab91d
                     </li>
                 </ul>
             </div>
@@ -584,14 +374,6 @@ const Products = () => {
                         </div>
 
                         <div className={classes['products__filter-product-zero']}>
-<<<<<<< HEAD
-                            <input className={classes['products__filter-product-zero-radio']} type="radio" />
-                            <span className={classes['products__filter-product-zero-content']}>Sản phẩm 0đ</span>
-                        </div>
-
-                        <div className={classes['products__filter-slider']}>
-                            <div className={classes['products__filter-slider-move']}> </div>
-=======
                             <input
                               onClick={(prev) => !prev}
                               className={classes['products__filter-product-zero-radio']}
@@ -610,30 +392,21 @@ const Products = () => {
                               disableSwap
                               getAriaValueText={valuetext}
                             />
->>>>>>> 9ccacff0d07e1f893ca91b2331b59f09f99ab91d
                         </div>
 
                         <div className={classes['products__filter-details']}>
                             <span className={classes['products__filter-details-content-min']}>Tối thiểu: </span>
                             <span className={classes['products__filter-details-number-min']}>200.000</span>
-<<<<<<< HEAD
-                            <span className={classes['products__filter-details-content-max']}> - Tối đa: </span>
-=======
                             <br />
                             <span className={classes['products__filter-details-content-max']}>Tối đa: </span>
->>>>>>> 9ccacff0d07e1f893ca91b2331b59f09f99ab91d
                             <span className={classes['products__filter-details-number-max']}>500.000</span>
                         </div>
 
                         <div className={classes['products__filter-wrap-button']}>
-<<<<<<< HEAD
-                            <button className={classes['products__filter-button']}>Lọc</button>
-=======
                             <Button medium borderRadius outlineBtn>
                                 Lọc
                             </Button>
                             {/* <button className={classes['products__filter-button']}>Lọc</button> */}
->>>>>>> 9ccacff0d07e1f893ca91b2331b59f09f99ab91d
                         </div>
                     </div>
 
