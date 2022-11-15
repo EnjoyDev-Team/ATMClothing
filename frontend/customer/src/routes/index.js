@@ -8,6 +8,13 @@ import Login from '../pages/auth/Login';
 import Register from '../pages/auth/Register';
 import ForgotPassword from '../pages/auth/ForgotPassword';
 import Profile from '../pages/auth/Profile';
+import Products from '../components/ListProduct/ListProduct';
+import Layout from '../layouts';
+import ProductDetail from '../components/ProductDetail/ProductDetail';
+import Services from '../pages/Service/Service';
+import Sell from '../pages/Service/Sell';
+import Custom from '../pages/Service/Custom';
+import Donate from '../pages/Service/Donate';
 import Shopping from '../pages/shopping/Shopping';
 
 const Navigation = () => {
@@ -46,11 +53,11 @@ const Navigation = () => {
             <Route path="list/:category/:page" element={<>Products Page with category & page X</>} />
         </Route>
 
-        {/* ShoppingCart + Payment ROUTE */}
-        <Route path="/shopping">
-            <Route index element={<Shopping />} />
-            <Route path="payment" element={<>Payment Page</>} />
-        </Route>
+              {/* ShoppingCart + Payment ROUTE */}
+              <Route path="/shopping">
+                  <Route index element={<Shopping />} />
+                  <Route path="payment" element={<>Payment Page</>} />
+              </Route>
 
         <Route path="*" name="notFound" element={<NotFound />} />
     </Routes>
