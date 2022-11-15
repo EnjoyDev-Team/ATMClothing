@@ -17,13 +17,6 @@ import Sell from '../pages/Service/Sell';
 import Custom from '../pages/Service/Custom';
 import Donate from '../pages/Service/Donate';
 import Shopping from '../pages/shopping/Shopping';
-import Products from '../components/ListProduct/ListProduct';
-import Layout from '../layouts';
-import ProductDetail from '../components/ProductDetail/ProductDetail';
-import Services from '../pages/Service/Service';
-import Sell from '../pages/Service/Sell';
-import Custom from '../pages/Service/Custom';
-import Donate from '../pages/Service/Donate';
 
 const Navigation = () => {
   const authenticated = true;
