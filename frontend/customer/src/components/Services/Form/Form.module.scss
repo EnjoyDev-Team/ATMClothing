@@ -1,0 +1,33 @@
+.formHeader {
+    color: black;
+    margin: 0;
+    padding: 3rem 3.5rem;
+    text-transform: uppercase;
+}
+
+.formContainer {
+    position: relative;
+    background-color: white;
+    margin: 0 auto;
+    width: 120rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    align-items: stretch;
+    -webkit-border-radius: 1rem;
+    -moz-border-radius: 1rem;
+    -ms-border-radius: 1rem;
+    -o-border-radius: 1rem;
+    border-radius: 1rem;
+}
+
+.formContainer h3 {
+    font-family: 'Inter';
+    font-weight: 500;
+    margin-right: auto;
+    font-size: 2.4rem;
+}
+
+.icon__arrow {
+    margin: auto 1.2rem;
+}

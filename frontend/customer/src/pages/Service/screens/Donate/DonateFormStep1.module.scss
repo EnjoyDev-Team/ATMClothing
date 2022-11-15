@@ -1,0 +1,106 @@
+label input {
+    display: block;
+    font-family: 'Inter';
+    font-size: 1.6rem;
+    margin: 1.5rem auto;
+}
+
+label input::placeholder {
+    font-family: 'Inter';
+    font-size: 1.6rem;
+}
+
+label {
+    font-size: 18px;
+}
+
+label > span {
+    font-size: 1.8rem;
+    font-weight: 500;
+    margin-left: .5rem;
+}
+
+.inputSection {
+    display: flex;
+    width: 90%;
+    justify-content: space-between;
+    margin: 0rem auto;
+    border-top: 1px solid lightgray;
+    padding-top: 3rem; 
+}
+
+.inputSection .leftSection,
+.inputSection .rightSection {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+input[placeholder="Danh mục"] {
+    cursor: pointer;
+}
+
+.input2 {
+    width: 45rem;
+    border: 1px solid #CCC;
+    padding: .7rem 2rem;
+    font-size: 16px;
+    -webkit-border-radius: 5rem;
+    -moz-border-radius: 5rem;
+    -ms-border-radius: 5rem;
+    -o-border-radius: 5rem;
+    border-radius: 5rem;
+}
+
+// ICON
+.input__dropdown {
+    position: relative;
+}
+
+.icon {
+    position: absolute;
+    top: 24%;
+    left: 92%;
+    cursor: pointer;
+}
+
+.dropdownContent {
+    font-size: 46px;
+    padding-left: 2rem;
+}
+
+// BUTTON
+.button__continue {
+    margin-top: 4rem;
+    margin-right: 4rem;
+    margin-bottom: 3rem;
+    width: 14rem;
+    font-size: 1.6rem;
+    padding: 1rem 0rem;
+    -webkit-border-radius: 5rem;
+    -moz-border-radius: 5rem;
+    -ms-border-radius: 5rem;
+    -o-border-radius: 5rem;
+    border-radius: 5rem;
+}
+
+.main__section {
+    width: 90%;
+    display: flex;
+    flex-direction: column;
+    margin: auto;
+    padding-top: 1rem;
+}
+
+.stateHeader {
+    margin-top: 1rem;
+    font-size: 1.8rem;
+    font-weight: 500;
+    margin-left: .5rem;
+    margin-bottom: 1rem;
+    color: black;
+}
+
+.radio__check {
+    margin-left: .5rem;
+}

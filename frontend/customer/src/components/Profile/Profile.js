@@ -83,7 +83,15 @@ const Profile = () => (
                 </li>
                 <li className={classes.profile__item}>
                     <FontAwesomeIcon className={classes['profile__item-icon']} icon={faCheckToSlot} />
+<<<<<<< HEAD
                     <a className={classes['profile__item-link']} href="#1" alt="">
+=======
+                    <a
+                      className={`${classes['profile__item-link']} ${classes['profile__item-link--order']}`}
+                      href="#1"
+                      alt=""
+                    >
+>>>>>>> 9ccacff0d07e1f893ca91b2331b59f09f99ab91d
                         Đơn đã tạo
                     </a>
                 </li>

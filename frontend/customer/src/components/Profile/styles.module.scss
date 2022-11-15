@@ -7,11 +7,17 @@
     padding: 12px 12px 0;
     box-shadow: 0px 3px 6px rgba($color: #000000, $alpha: 0.2);
     z-index: 1;
+<<<<<<< HEAD
     // display: none;
 
     .profile__wrap {
         margin-bottom: 12px;
         // position: relative;
+=======
+
+    .profile__wrap {
+        // margin-bottom: 12px;
+>>>>>>> 9ccacff0d07e1f893ca91b2331b59f09f99ab91d
 
         .profile__lable {
             font-size: 1.4rem;
@@ -24,7 +30,11 @@
             .profile__item {
                 display: flex;
                 align-items: center;
+<<<<<<< HEAD
                 border-bottom: 1px solid #ccc;
+=======
+                // border-bottom: 1px solid #ccc;
+>>>>>>> 9ccacff0d07e1f893ca91b2331b59f09f99ab91d
                 cursor: pointer;
                 padding: 6px 0;
 
@@ -42,6 +52,7 @@
                     display: block;
                     width: 100%;
                 }
+<<<<<<< HEAD
             }
 
             // .profile__item:hover .profile__item-link {
@@ -51,10 +62,22 @@
                 background-color: rgb(203, 234, 226);
             }
             .profile__item:hover .profile__item-icon {
+=======
+                .profile__item-link--order{
+                    color: #13488C;
+                }
+            }
+            .profile__item:hover {
+                background-color: #f8f6f6;
+            }
+            .profile__item:hover .profile__item-icon,
+            .profile__item:hover .profile__item-link {
+>>>>>>> 9ccacff0d07e1f893ca91b2331b59f09f99ab91d
                 color: #597d32;
             }
         }
     }
+<<<<<<< HEAD
     .profile__wrap:last-child {
         margin-bottom: 6px;
 
@@ -67,6 +90,8 @@
             }
         }
     }
+=======
+>>>>>>> 9ccacff0d07e1f893ca91b2331b59f09f99ab91d
 }
 .profile::before {
     position: absolute;
@@ -76,6 +101,10 @@
     border-style: solid;
     border-width: 8px;
     border-color: transparent transparent #fff transparent;
+<<<<<<< HEAD
+=======
+    // box-shadow: 1px 1px 1px rgba($color: #000000, $alpha: 0.2);
+>>>>>>> 9ccacff0d07e1f893ca91b2331b59f09f99ab91d
 }
 .profile::after {
     position: absolute;
