@@ -60,7 +60,7 @@ const Header = () => {
             <div className={classes.header__mission}>
                 <div className={classes['header__mission-wrap']}>
                     <FontAwesomeIcon className={classes['header__mission-icon']} icon={faMountainSun} />
-                    <Link className={classes['header__mission-link']} to="#1" alt="">
+                    <Link className={classes['header__mission-link']} to="/services">
                         Sứ mệnh ATM Clothing
                     </Link>
                 </div>
@@ -91,13 +91,13 @@ const Header = () => {
                         {isAccount && (
                             <div className={classes.header__account}>
                                 <div className={classes['header__right-account-signup']}>
-                                    <Link onClick={handleAccount} to="#1">
+                                    <Link onClick={handleAccount} to="/register">
                                         Đăng ký
                                     </Link>
                                 </div>
 
                                 <div className={classes['header__right-account-signin']}>
-                                    <Link onClick={handleAccount} to="#1">
+                                    <Link onClick={handleAccount} to="/login">
                                         Đăng nhập
                                     </Link>
                                 </div>

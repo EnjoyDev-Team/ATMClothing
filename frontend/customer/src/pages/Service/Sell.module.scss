@@ -1,5 +1,6 @@
 .body {
     position: relative;
+    min-height: 100vh;
 }
 
 .backdrop {
@@ -25,4 +26,5 @@
     top: 0;
     left: 50%;
     translate: -50% 0%;
+    z-index: 2;
 }

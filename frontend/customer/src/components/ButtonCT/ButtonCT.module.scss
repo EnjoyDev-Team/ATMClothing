@@ -1,15 +1,4 @@
 .my-btn {
-<<<<<<< HEAD
-    display: flex;
-    width: 100%;
-    text-align: center;
-    align-items: center;
-    justify-content: center;
-    background-color: transparent;
-    padding: 0.4rem;
-    border: none;
-    position: relative;
-=======
  display: flex;
  width: 100%;
  text-align: center;
@@ -19,7 +8,6 @@
  padding: 0.4rem 1rem;
  border: none;
  position: relative;
->>>>>>> 8b5bdcc0512715ea1d7eda786860b92e67cc75dc
 
     &:focus {
         outline: none;
@@ -55,20 +43,6 @@
 }
 
 .large {
-<<<<<<< HEAD
-    height: 4rem;
-    font-size: 1.6rem;
-}
-
-.medium {
-    height: 3.4rem;
-    font-size: 1.5rem;
-}
-
-.small {
-    height: 3rem;
-    font-size: 1.4rem;
-=======
   height: 4rem;
   line-height: 4rem;
   font-size: 1.6rem;
@@ -84,7 +58,6 @@
   height: 3rem;
   line-height: 3rem;
   font-size: 1.4rem;
->>>>>>> 8b5bdcc0512715ea1d7eda786860b92e67cc75dc
 }
 
 .borderRadius {
@@ -92,15 +65,9 @@
 }
 
 .outlineBtn {
-<<<<<<< HEAD
-    border: 1px solid #597d32;
-    color: #597d32;
-    font-weight: 600;
-=======
   border: 1px solid #597D32;
   color: #597D32;
   font-weight: 500;
->>>>>>> 8b5bdcc0512715ea1d7eda786860b92e67cc75dc
 }
 
 .primary {
@@ -109,15 +76,6 @@
 }
 
 .redLinear {
-<<<<<<< HEAD
-    color: #fff;
-    background-image: linear-gradient(90deg, #c15d5d, rgba(193, 99, 93, 0.8));
-}
-
-.greenLinear {
-    color: #fff;
-    background-image: linear-gradient(90deg, #79b14d, rgba(93, 193, 151, 0.8));
-=======
   color: #fff;
   background-image: linear-gradient(90deg, #C15D5D, rgba(193, 99, 93, 0.8));
 }
@@ -125,5 +83,4 @@
 .greenLinear {
   color: #fff;
   background-image: linear-gradient(90deg, #79B14D, rgba(93, 193, 151, 0.8));
->>>>>>> 8b5bdcc0512715ea1d7eda786860b92e67cc75dc
 }
