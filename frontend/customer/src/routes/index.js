@@ -9,6 +9,13 @@ import Login from '../pages/auth/Login';
 import Register from '../pages/auth/Register';
 import ForgotPassword from '../pages/auth/ForgotPassword';
 import Profile from '../pages/auth/Profile';
+import Products from '../components/ListProduct/ListProduct';
+import Layout from '../layouts';
+import ProductDetail from '../components/ProductDetail/ProductDetail';
+import Services from '../pages/Service/Service';
+import Sell from '../pages/Service/Sell';
+import Custom from '../pages/Service/Custom';
+import Donate from '../pages/Service/Donate';
 import Shopping from '../pages/shopping/Shopping';
 import Detail from '../pages/detail_request/Detail';
 import PaymentProduct from '../pages/PaymentProduct/PaymentProduct';
@@ -37,6 +44,7 @@ const Navigation = () => {
                     <Route path="donate" name="donate" element={<Donate />} />
                 </Route>
 
+<<<<<<< HEAD
                 {/* PROTECTED ROUTE */}
                 <Route element={<PrivateRoute isAllowed={authenticated} redirectPath="/login" />}>
                     {/* USER ROUTE */}
@@ -44,6 +52,13 @@ const Navigation = () => {
                     <Route path="/detailOrder" name="detailOrder" element={<Detail />} />
                     <Route path="/paymentproduct" element={<PaymentProduct />} />
                 </Route>
+=======
+              {/* ShoppingCart + Payment ROUTE */}
+              <Route path="/shopping">
+                  <Route index element={<Shopping />} />
+                  <Route path="payment" element={<>Payment Page</>} />
+              </Route>
+>>>>>>> 092860a (update: routes)
 
                 {/* PRODUCT ROUTE */}
                 <Route path="/products">
