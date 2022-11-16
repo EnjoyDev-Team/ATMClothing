@@ -9,8 +9,14 @@ import Login from '../pages/auth/Login';
 import Register from '../pages/auth/Register';
 import ForgotPassword from '../pages/auth/ForgotPassword';
 import Profile from '../pages/auth/Profile';
+<<<<<<< HEAD
 import Layout from '../layouts';
 import ProductDetail from '../pages/ProductDetail/ProductDetail';
+=======
+import Products from '../components/ListProduct/ListProduct';
+import Layout from '../layouts';
+import ProductDetail from '../components/ProductDetail/ProductDetail';
+>>>>>>> 4774f17 (update: routes)
 import Services from '../pages/Service/Service';
 import Sell from '../pages/Service/Sell';
 import Custom from '../pages/Service/Custom';
@@ -46,12 +52,11 @@ const Navigation = () => {
                         <Route path="sale" name="sale" element={<Sell />} />
                         <Route path="custom" name="custom" element={<Custom />} />
                         <Route path="donate" name="donate" element={<Donate />} />
+                        <Route path="order" name="order" element={<Detail />} />
                     </Route>
 
                     {/* USER ROUTE */}
                     <Route path="/profile" name="profile" element={<Profile />} />
-                    <Route path="/detailOrder" name="detailOrder" element={<Detail />} />
-                    <Route path="/paymentproduct" element={<PaymentProduct />} />
                 </Route>
 
                  {/* PRODUCT ROUTE */}
@@ -68,7 +73,7 @@ const Navigation = () => {
                 {/* ShoppingCart + Payment ROUTE */}
                 <Route path="/shopping">
                     <Route index element={<Shopping />} />
-                    <Route path="payment" element={<>Payment Page</>} />
+                    <Route path="payment" element={<PaymentProduct />} />
                 </Route>
 
                 <Route path="*" name="notFound" element={<NotFound />} />
