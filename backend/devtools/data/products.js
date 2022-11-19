@@ -1,5 +1,3 @@
-const fs = require('fs');
-
 const products = [
     {
         category: 'Thời trang nữ - Quần & Chân váy',
@@ -14,12 +12,13 @@ const products = [
         material: 'Vải',
         facility: [
             {
+                code: 'NSH',
                 name: 'ĐH Ngân hàng',
                 address: '56 Hoàng Diệu II, Q.Thủ Đức, TP.Hồ Chí Minh',
             },
         ],
-        img: '1/1.2.jpg',
-        other_img: ['1/1.1.png', '1/1.2.jpg', '1/1.3.jpg'],
+        img: 'assets/products/1/1.2.jpg',
+        other_img: ['assets/products/1/1.1.png', 'assets/products/1/1.2.jpg', 'assets/products/1/1.3.jpg'],
         status: 'Mới',
         description: 'Chân váy vải tuyết mưa dày dặn, có quần áo phía trong',
     },
@@ -36,19 +35,20 @@ const products = [
         material: 'Jeans',
         facility: [
             {
+                code: 'NSH',
                 name: 'ĐH Ngân hàng',
                 address: '56 Hoàng Diệu II, Q.Thủ Đức, TP.Hồ Chí Minh',
             },
         ],
-        img: '2.1/2.1.5.jpg',
+        img: 'assets/products/2.1/2.1.5.jpg',
         other_img: [
-            '2.1/2.1.1.png',
-            '2.1/2.1.2.jpg',
-            '2.1/2.1.3.jpg',
-            '2.1/2.1.4.jpg',
-            '2.1/2.1.5.jpg',
-            '2.1/2.1.6.jpg',
-            '2.1/2.1.7.jpg',
+            'assets/products/2.1/2.1.1.png',
+            'assets/products/2.1/2.1.2.jpg',
+            'assets/products/2.1/2.1.3.jpg',
+            'assets/products/2.1/2.1.4.jpg',
+            'assets/products/2.1/2.1.5.jpg',
+            'assets/products/2.1/2.1.6.jpg',
+            'assets/products/2.1/2.1.7.jpg',
         ],
         status: 'Mới',
         description: 'Chân váy phối 2 màu, có quần phía trong',
@@ -65,8 +65,14 @@ const products = [
         amount: 1,
         material: 'Jeans',
         facility: [],
-        img: '3.1/3.1.3.jpg',
-        other_img: ['3.1/3.1.1.png', '3.1/3.1.2.jpg', '3.1/3.1.3.jpg', '3.1/3.1.4.jpg', '3.1/3.1.5.jpg'],
+        img: 'assets/products/3.1/3.1.3.jpg',
+        other_img: [
+            'assets/products/3.1/3.1.1.png',
+            'assets/products/3.1/3.1.2.jpg',
+            'assets/products/3.1/3.1.3.jpg',
+            'assets/products/3.1/3.1.4.jpg',
+            'assets/products/3.1/3.1.5.jpg',
+        ],
         status: 'Mới',
         description: 'Phía trong có quần bảo hộ',
     },
@@ -83,12 +89,19 @@ const products = [
         material: 'Jeans',
         facility: [
             {
+                code: 'NSH',
                 name: 'ĐH Ngân hàng',
                 address: '56 Hoàng Diệu II, Q.Thủ Đức, TP.Hồ Chí Minh',
             },
         ],
-        img: '4.1/4.1.2.jpg',
-        other_img: ['4.1/4.1.1.png', '4.1/4.1.2.jpg', '4.1/4.1.3.jpg', '4.1/4.1.4.jpg', '4.1/4.1.5.jpg'],
+        img: 'assets/products/4.1/4.1.2.jpg',
+        other_img: [
+            'assets/products/4.1/4.1.1.png',
+            'assets/products/4.1/4.1.2.jpg',
+            'assets/products/4.1/4.1.3.jpg',
+            'assets/products/4.1/4.1.4.jpg',
+            'assets/products/4.1/4.1.5.jpg',
+        ],
         status: 'Mới',
         description: 'Chân váy vắt chéo có nút điều chỉnh kích thước',
     },
@@ -105,12 +118,19 @@ const products = [
         material: 'Jeans',
         facility: [
             {
+                code: 'NSH',
                 name: 'ĐH Ngân hàng',
                 address: '56 Hoàng Diệu II, Q.Thủ Đức, TP.Hồ Chí Minh',
             },
         ],
-        img: '5.1/5.1.4.jpg',
-        other_img: ['5.1/5.1.1.png', '5.1/5.1.2.jpg', '5.1/5.1.3.jpg', '5.1/5.1.4.jpg', '5.1/5.1.5.jpg'],
+        img: 'assets/products/5.1/5.1.4.jpg',
+        other_img: [
+            'assets/products/5.1/5.1.1.png',
+            'assets/products/5.1/5.1.2.jpg',
+            'assets/products/5.1/5.1.3.jpg',
+            'assets/products/5.1/5.1.4.jpg',
+            'assets/products/5.1/5.1.5.jpg',
+        ],
         status: 'Mới',
         description: 'Chân váy được phối 2 màu đạm nhạt tạo sự khác biệt',
     },
@@ -127,18 +147,19 @@ const products = [
         material: 'Jeans',
         facility: [
             {
+                code: 'NSH',
                 name: 'ĐH Ngân hàng',
                 address: '56 Hoàng Diệu II, Q.Thủ Đức, TP.Hồ Chí Minh',
             },
         ],
-        img: '6.1/6.1.6.jpg',
+        img: 'assets/products/6.1/6.1.6.jpg',
         other_img: [
-            '6.1/6.1.1.png',
-            '6.1/6.1.2.jpg',
-            '6.1/6.1.3.jpg',
-            '6.1/6.1.4.jpg',
-            '6.1/6.1.5.jpg',
-            '6.1/6.1.6.jpg',
+            'assets/products/6.1/6.1.1.png',
+            'assets/products/6.1/6.1.2.jpg',
+            'assets/products/6.1/6.1.3.jpg',
+            'assets/products/6.1/6.1.4.jpg',
+            'assets/products/6.1/6.1.5.jpg',
+            'assets/products/6.1/6.1.6.jpg',
         ],
         status: 'Mới',
         description: 'Chân váy được may từ các mảnh vải khác nhau tạo nên sự đặc biệt của sản phẩm',
@@ -156,12 +177,19 @@ const products = [
         material: 'Voan lụa dày',
         facility: [
             {
+                code: 'NSH',
                 name: 'ĐH Ngân hàng',
                 address: '56 Hoàng Diệu II, Q.Thủ Đức, TP.Hồ Chí Minh',
             },
         ],
-        img: '2/2.2.jpg',
-        other_img: ['2/2.1.png', '2/2.2.jpg', '2/2.3.jpg', '2/2.4.jpg', '2/2.5.jpg'],
+        img: 'assets/products/2/2.2.jpg',
+        other_img: [
+            'assets/products/2/2.1.png',
+            'assets/products/2/2.2.jpg',
+            'assets/products/2/2.3.jpg',
+            'assets/products/2/2.4.jpg',
+            'assets/products/2/2.5.jpg',
+        ],
         status: 'Mới',
         description: 'Áo freesize rộng, vải dày dặn',
     },
@@ -178,12 +206,19 @@ const products = [
         material: 'Jeans',
         facility: [
             {
+                code: 'NSH',
                 name: 'ĐH Ngân hàng',
                 address: '56 Hoàng Diệu II, Q.Thủ Đức, TP.Hồ Chí Minh',
             },
         ],
-        img: '3/3.3.jpg',
-        other_img: ['3/3.1.png', '3/3.2.jpg', '3/3.3.jpg', '3/3.4.jpg', '3/3.5.jpg'],
+        img: 'assets/products/3/3.3.jpg',
+        other_img: [
+            'assets/products/3/3.1.png',
+            'assets/products/3/3.2.jpg',
+            'assets/products/3/3.3.jpg',
+            'assets/products/3/3.4.jpg',
+            'assets/products/3/3.5.jpg',
+        ],
         status: 'Mới',
         description: '',
     },
@@ -200,12 +235,19 @@ const products = [
         material: '',
         facility: [
             {
+                code: 'NSH',
                 name: 'ĐH Ngân hàng',
                 address: '56 Hoàng Diệu II, Q.Thủ Đức, TP.Hồ Chí Minh',
             },
         ],
-        img: '4/4.5.jpg',
-        other_img: ['4/4.1.png', '4/4.2.jpg', '4/4.3.jpg', '4/4.4.jpg', '4/4.5.jpg'],
+        img: 'assets/products/4/4.5.jpg',
+        other_img: [
+            'assets/products/4/4.1.png',
+            'assets/products/4/4.2.jpg',
+            'assets/products/4/4.3.jpg',
+            'assets/products/4/4.4.jpg',
+            'assets/products/4/4.5.jpg',
+        ],
         status: 'Mới',
         description: 'Áo 2 lớp dày dặn',
     },
@@ -222,12 +264,20 @@ const products = [
         material: 'Voan mềm mát',
         facility: [
             {
+                code: 'NSH',
                 name: 'ĐH Ngân hàng',
                 address: '56 Hoàng Diệu II, Q.Thủ Đức, TP.Hồ Chí Minh',
             },
         ],
-        img: '5/5.2.jpg',
-        other_img: ['5/5.1.png', '5/5.2.jpg', '5/5.3.jpg', '5/5.4.jpg', '5/5.5.jpg', '5/5.6.jpg'],
+        img: 'assets/products/5/5.2.jpg',
+        other_img: [
+            'assets/products/5/5.1.png',
+            'assets/products/5/5.2.jpg',
+            'assets/products/5/5.3.jpg',
+            'assets/products/5/5.4.jpg',
+            'assets/products/5/5.5.jpg',
+            'assets/products/5/5.6.jpg',
+        ],
         status: 'Mới',
         description: 'Áp trễ vai có dây. dáng tay xòe',
     },
@@ -244,12 +294,19 @@ const products = [
         material: 'Vải thô',
         facility: [
             {
+                code: 'NSH',
                 name: 'ĐH Ngân hàng',
                 address: '56 Hoàng Diệu II, Q.Thủ Đức, TP.Hồ Chí Minh',
             },
         ],
-        img: '6/6.5.jpg',
-        other_img: ['6/6.1.png', '6/6.2.jpg', '6/6.3.jpg', '6/6.4.jpg', '6/6.5.jpg'],
+        img: 'assets/products/6/6.5.jpg',
+        other_img: [
+            'assets/products/6/6.1.png',
+            'assets/products/6/6.2.jpg',
+            'assets/products/6/6.3.jpg',
+            'assets/products/6/6.4.jpg',
+            'assets/products/6/6.5.jpg',
+        ],
         status: 'Mới',
         description: 'Áo form xuông, dễ phối đồ',
     },
@@ -266,12 +323,18 @@ const products = [
         material: 'Vải xô',
         facility: [
             {
+                code: 'HCMUTE',
                 name: 'ĐH SPKT',
                 address: '1 Võ Văn Ngân, Phường Linh Chiểu, Thành phố Thủ Đức',
             },
         ],
-        img: '7/7.1.jpg',
-        other_img: ['7/7.1.jpg', '7/7.2.jpg', '7/7.3.jpg', '7/7.4.jpg'],
+        img: 'assets/products/7/7.1.jpg',
+        other_img: [
+            'assets/products/7/7.1.jpg',
+            'assets/products/7/7.2.jpg',
+            'assets/products/7/7.3.jpg',
+            'assets/products/7/7.4.jpg',
+        ],
         status: 'Như mới',
         description: '',
     },
@@ -288,12 +351,18 @@ const products = [
         material: 'thô',
         facility: [
             {
+                code: 'HCMUTE',
                 name: 'ĐH SPKT',
                 address: '1 Võ Văn Ngân, Phường Linh Chiểu, Thành phố Thủ Đức',
             },
         ],
-        img: '8/8.1.jpg',
-        other_img: ['8/8.1.jpg', '8/8.2.jpg', '8/8.3.jpg', '8/8.4.jpg'],
+        img: 'assets/products/8/8.1.jpg',
+        other_img: [
+            'assets/products/8/8.1.jpg',
+            'assets/products/8/8.2.jpg',
+            'assets/products/8/8.3.jpg',
+            'assets/products/8/8.4.jpg',
+        ],
         status: 'Như mới',
         description: '',
     },
@@ -310,12 +379,19 @@ const products = [
         material: 'lụa dày',
         facility: [
             {
+                code: 'HCMUTE',
                 name: 'ĐH SPKT',
                 address: '1 Võ Văn Ngân, Phường Linh Chiểu, Thành phố Thủ Đức',
             },
         ],
-        img: '9/9.1.jpg',
-        other_img: ['9/9.1.jpg', '9/9.2.jpg', '9/9.3.jpg', '9/9.4.jpg', '9/9.5.jpg'],
+        img: 'assets/products/9/9.1.jpg',
+        other_img: [
+            'assets/products/9/9.1.jpg',
+            'assets/products/9/9.2.jpg',
+            'assets/products/9/9.3.jpg',
+            'assets/products/9/9.4.jpg',
+            'assets/products/9/9.5.jpg',
+        ],
         status: 'Như mới',
         description: '',
     },
@@ -332,12 +408,19 @@ const products = [
         material: 'gân thô',
         facility: [
             {
+                code: 'NSH',
                 name: 'ĐH Ngân hàng',
                 address: '56 Hoàng Diệu II, Q.Thủ Đức, TP.Hồ Chí Minh',
             },
         ],
-        img: '10/10.1.jpg',
-        other_img: ['10/10.1.jpg', '10/10.2.jpg', '10/10.3.jpg', '10/10.4.jpg', '10/10.5.jpg'],
+        img: 'assets/products/10/10.1.jpg',
+        other_img: [
+            'assets/products/10/10.1.jpg',
+            'assets/products/10/10.2.jpg',
+            'assets/products/10/10.3.jpg',
+            'assets/products/10/10.4.jpg',
+            'assets/products/10/10.5.jpg',
+        ],
         status: 'Như mới',
         description: '',
     },
@@ -354,12 +437,18 @@ const products = [
         material: 'lụa mềm',
         facility: [
             {
+                code: 'HCMUTE',
                 name: 'ĐH SPKT',
                 address: '1 Võ Văn Ngân, Phường Linh Chiểu, Thành phố Thủ Đức',
             },
         ],
-        img: '11/11.1.jpg',
-        other_img: ['11/11.1.jpg', '11/11.2.jpg', '11/11.3.jpg', '11/11.4.jpg'],
+        img: 'assets/products/11/11.1.jpg',
+        other_img: [
+            'assets/products/11/11.1.jpg',
+            'assets/products/11/11.2.jpg',
+            'assets/products/11/11.3.jpg',
+            'assets/products/11/11.4.jpg',
+        ],
         status: 'Như mới',
         description: 'Áo túi hộp, vải mát, dễ phối đồ',
     },
@@ -376,12 +465,18 @@ const products = [
         material: 'lụa mỏng',
         facility: [
             {
+                code: 'HCMUTE',
                 name: 'ĐH SPKT',
                 address: '1 Võ Văn Ngân, Phường Linh Chiểu, Thành phố Thủ Đức',
             },
         ],
-        img: '12/12.1.jpg',
-        other_img: ['12/12.1.jpg', '12/12.2.jpg', '12/12.3.jpg', '12/12.4.jpg'],
+        img: 'assets/products/12/12.1.jpg',
+        other_img: [
+            'assets/products/12/12.1.jpg',
+            'assets/products/12/12.2.jpg',
+            'assets/products/12/12.3.jpg',
+            'assets/products/12/12.4.jpg',
+        ],
         status: 'Như mới',
         description: '',
     },
@@ -397,34 +492,11 @@ const products = [
         amount: 1,
         material: 'Voan mỏng',
         facility: [],
-        img: '1.1/1.1.2.jpg',
-        other_img: ['1.1/1.1.1.png', '1.1/1.1.2.jpg', '1.1/1.1.3.jpg'],
+        img: 'assets/products/1.1/1.1.2.jpg',
+        other_img: ['assets/products/1.1/1.1.1.png', 'assets/products/1.1/1.1.2.jpg', 'assets/products/1.1/1.1.3.jpg'],
         status: 'Mới',
         description: 'Chân váy vải tuyết mưa dày dặn, có quần áo phía trong',
     },
 ];
 
-const middleware = (products) => {
-    const base64_encode = (path) => {
-        const ext = path.substring(path.lastIndexOf('.')).split('.')[1];
-        const base64 = fs.readFileSync(`${__dirname}/${path}`, 'base64');
-
-        return { ext, base64 };
-    };
-
-    const newproducts = products.map(el => {
-        const { ext, base64 } = base64_encode(el.img);
-        el.img = `data:${ext};base64,${base64}`;
-
-        el.other_img = el.other_img.map(other_img_path => {
-            const { ext, base64 } = base64_encode(other_img_path);
-            return `data:${ext};base64,${base64}`;
-        });
-      
-        return el;
-    });
-
-    return newproducts;
-};
-
-module.exports = middleware(products);
+module.exports = products;

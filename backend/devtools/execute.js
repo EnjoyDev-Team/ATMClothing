@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const dotenv = require('dotenv');
 const productModel = require('../models/productModel');
-const products = require('./data/products/products');
+const products = require('./data/products');
 
 dotenv.config({ path: 'config.env' });
 
@@ -31,4 +31,5 @@ const scripts = {
 const type = process.argv[2];
 const action = process.argv[3];
 
-scripts[type][action]();
+if (type && action)
+    scripts[type][action]();
