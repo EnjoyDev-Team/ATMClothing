@@ -23,6 +23,10 @@ const server = app.listen(port, () => {
     console.log(`App is running on port ${port}...`);
 });
 
+// SOCKET
+const socketIO = require('socket.io')(server, {cors:{origin: '*'}});
+
+
 process.on('unhandledRejection', (err) => {
     console.log('Unhandled Rejection. Shutting down...');
     console.log(err.name, err.message);
@@ -30,3 +34,5 @@ process.on('unhandledRejection', (err) => {
         process.exit(1); // 0 is success, 1 is uncaught exception
     });
 });
+
+module.exports = socketIO;

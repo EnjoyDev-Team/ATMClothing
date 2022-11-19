@@ -37,8 +37,6 @@ app.use(limiter);
 app.use(express.json({ limit: '10mb' }));
 app.use(cookieParser());
 
-app.use(cookieParser());
-
 // ROUTES
 app.use('/api/v1/auth', authRouter)
 app.use('/api/v1/users', userRouter)
