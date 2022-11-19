@@ -3,7 +3,7 @@ const productModel = require('../models/productModel');
 const APIFeatures = require('../utils/apiFeature');
 const imageEncode = require('../utils/imageEncode');
 
-module.export.filter = catchAsync(async (req, res, next) => {
+module.exports.filter = catchAsync(async (req, res, next) => {
     const features = new APIFeatures(productModel.find(), req.query)
                         .filter()
                         .sort()
@@ -18,11 +18,9 @@ module.export.filter = catchAsync(async (req, res, next) => {
         results: newproducts.length,
         data: newproducts,
     });
-
-    next();
 });
 
-module.export.getById = catchAsync(async () => {
+module.exports.getById = catchAsync(async (req, res, next) => {
     const features = new APIFeatures(productModel.findById(req.params.id))
                         .limitFields();
 
@@ -33,3 +31,7 @@ module.export.getById = catchAsync(async () => {
         data: product,
     });
 });
+
+// module.exports.getFilterItems = catchAsync(async (req, res, next) => {
+
+// });
