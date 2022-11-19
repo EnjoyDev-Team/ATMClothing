@@ -69,4 +69,11 @@ const productModel = new mongoose.Schema({
     },
 });
 
+productModel.pre('save', (next) => {
+    if (this.isNew)
+        this.create_at = Date.now() - 1000;
+
+    next();
+});
+
 module.exports = mongoose.model('products', productModel);
