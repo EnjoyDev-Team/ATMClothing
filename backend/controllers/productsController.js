@@ -3,6 +3,18 @@ const productModel = require('../models/productModel');
 const APIFeatures = require('../utils/apiFeature');
 const imageEncode = require('../utils/imageEncode');
 
+module.exports.aliasTopProducts = (req, res, next) => {
+    req.query.limit = '6';
+    req.query.sort = '-create_at,price';
+    next();
+};
+
+module.exports.aliasFreeProducts = (req, res, next) => {
+    req.query.limit = '6';
+    req.query.sale = '0';
+    next();
+};
+
 module.exports.filter = catchAsync(async (req, res, next) => {
     const features = new APIFeatures(productModel.find(), req.query)
                         .filter()
