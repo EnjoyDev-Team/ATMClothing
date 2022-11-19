@@ -25,7 +25,7 @@ module.exports.getById = catchAsync(async (req, res, next) => {
                         .limitFields();
 
     const product = await features.query;
-    const newproducts = imageEncode(product);
+    const newproducts = imageEncode([product]);
 
     res.status(200).json({
         status: 'success',
