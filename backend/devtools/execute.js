@@ -1,7 +1,9 @@
 const mongoose = require('mongoose');
 const dotenv = require('dotenv');
 const productModel = require('../models/productModel');
+const productItemModel = require('../models/productItemModel');
 const products = require('./data/products');
+const product_items = require('./data/productItems');
 
 dotenv.config({ path: 'config.env' });
 
@@ -22,6 +24,22 @@ const scripts = {
 
             productModel.deleteMany()
             .then(() => console.log('eject products successfully'))
+            .catch(err => console.log(err));
+
+        }
+    },
+    'product-items': {
+        '--import': () => {
+
+            productItemModel.create(product_items)
+            .then(() => console.log('import product items successfully'))
+            .catch(err => console.log(err));
+
+        },
+        '--eject': () => {
+
+            productItemModel.deleteMany()
+            .then(() => console.log('eject product items successfully'))
             .catch(err => console.log(err));
 
         }

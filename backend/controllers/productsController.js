@@ -2,6 +2,7 @@ const catchAsync = require('../utils/catchAsync');
 const productModel = require('../models/productModel');
 const APIFeatures = require('../utils/apiFeature');
 const imageEncode = require('../utils/imageEncode');
+const productItemModel = require('../models/productItemModel');
 
 module.exports.aliasTopProducts = (req, res, next) => {
     req.query.limit = '6';
@@ -28,7 +29,7 @@ module.exports.filter = catchAsync(async (req, res, next) => {
     res.status(200).json({
         status: 'success',
         results: newproducts.length,
-        data: newproducts,
+        data: newproducts
     });
 });
 
@@ -41,10 +42,17 @@ module.exports.getById = catchAsync(async (req, res, next) => {
 
     res.status(200).json({
         status: 'success',
-        data: newproducts,
+        data: newproducts
     });
 });
 
-// module.exports.getFilterItems = catchAsync(async (req, res, next) => {
+module.exports.getFilterItems = catchAsync(async (req, res, next) => {
+    const features = new APIFeatures(productItemModel.find())
+                        .limitFields();
 
-// });
+    const product_items = await features.query;
+    res.status(200).json({
+        status: 'success',
+        data: product_items
+    });
+});
