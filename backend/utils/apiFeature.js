@@ -13,7 +13,7 @@ class APIFeatures {
             { max: '{ "sale": "lte" }' },
             { facility: '{ "facility.code": "in" }', caseSensitive: 2, split: ',' },
             { size: '{ "size": "in" }', caseSensitive: 2, split: ',', replace: true },
-            { material: '{ "material": "in" }', caseSensitive: 2, split: ',', replace: true },
+            { material: '{ "material": "in" }', split: ',', replace: true },
         ];
 
         replaceFields.forEach((el) => {
