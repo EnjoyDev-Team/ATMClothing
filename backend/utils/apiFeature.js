@@ -11,7 +11,8 @@ class APIFeatures {
             { category: '{ "slug": "eq" }' },
             { min: '{ "sale": "gte" }' },
             { max: '{ "sale": "lte" }' },
-            { facility: '{ "facility.code": "eq" }', caseSensitive: 2 },
+            { facility: '{ "facility.code": "in" }', caseSensitive: 2, split: ',' },
+            { size: '{ "size": "in" }', caseSensitive: 2, split: ',', replace: true },
         ];
 
         replaceFields.forEach((el) => {
@@ -27,18 +28,28 @@ class APIFeatures {
                             : queryObj[el_key].toUpperCase();
                 }
 
-                queryObj[Object.keys(el_value)] = {
-                    ...queryObj[Object.keys(el_value)],
-                    [Object.values(el_value)]: queryObj[el_key],
-                };
+                if (el.split) {
+                    queryObj[el_key] = queryObj[el_key].split(el.split);
+                }
+
+                if (el.replace) {
+                    queryObj[Object.keys(el_value)] = {
+                        [Object.values(el_value)]: queryObj[el_key],
+                    };
+                }
+                else {
+                    queryObj[Object.keys(el_value)] = {
+                        ...queryObj[Object.keys(el_value)],
+                        [Object.values(el_value)]: queryObj[el_key],
+                    };
+                }
             }
         });
-
+        
         const excludedFields = ['offset', 'sort', 'limit', 'fields', 'category', 'min', 'max', 'facility'];
         excludedFields.forEach((el) => delete queryObj[el]);
-
-        const queryStr = JSON.stringify(queryObj).replace(/\b(gte|gt|lte|lt|eq)\b/g, (match) => `$${match}`);
-
+        
+        const queryStr = JSON.stringify(queryObj).replace(/\b(gte|gt|lte|lt|eq|in)\b/g, (match) => `$${match}`);
         this.query = this.query.find(JSON.parse(queryStr)).collation({ locale: 'vi', numericOrdering: true });
 
         return this;
