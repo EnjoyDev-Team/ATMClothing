@@ -9,7 +9,7 @@ import classes from './OptionalDetails.module.scss';
 import ButtonCT from '../../../components/ButtonCT/ButtonCT';
 
 const OptionalDetails = () => (
-    <>
+    <form>
         <div className={classes.main__section}>
             <p className={classes.detail__product}>Hình ảnh sản phẩm</p>
             <div className={classes.upload__img__container}>
@@ -56,7 +56,7 @@ const OptionalDetails = () => (
                 marginBottom: '3rem',
             }}
         />
-    </>
+    </form>
 );
 
 export default OptionalDetails;

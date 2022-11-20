@@ -9,7 +9,7 @@ import classes from './DonateFormStep2.module.scss';
 import ButtonCT from '../../../../components/ButtonCT/ButtonCT';
 
 const DonateFormStep2 = () => (
-    <>
+    <form>
         <div className={classes.main__section}>
             <p className={classes.detail__product}>Mô tả sản phẩm</p>
             <textarea className={classes.description__input} rows="6" cols="93" placeholder="Mô tả..." />
@@ -35,7 +35,7 @@ const DonateFormStep2 = () => (
                 marginBottom: '3rem',
             }}
         />
-    </>
+    </form>
 );
 
 export default DonateFormStep2;
