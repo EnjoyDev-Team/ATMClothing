@@ -2,7 +2,22 @@ label input {
     display: block;
     font-family: 'Inter';
     font-size: 1.6rem;
-    margin: 1.5rem auto;
+    margin: 0rem;
+}
+
+label input::-webkit-input-placeholder {
+    font-family: 'Inter';
+    font-size: 1.6rem;
+}
+
+label input:-ms-input-placeholder {
+    font-family: 'Inter';
+    font-size: 1.6rem;
+}
+
+label input::-ms-input-placeholder {
+    font-family: 'Inter';
+    font-size: 1.6rem;
 }
 
 label input::placeholder {
@@ -36,8 +51,12 @@ label > span {
     gap: 2rem;
 }
 
-input[placeholder="Danh mục"] {
+.inputSection input[placeholder="Danh mục"] {
     cursor: pointer;
+}
+
+.inputSection label {
+    margin-bottom: 2rem;
 }
 
 .input2 {
@@ -45,11 +64,8 @@ input[placeholder="Danh mục"] {
     border: 1px solid #CCC;
     padding: .7rem 2rem;
     font-size: 16px;
-    -webkit-border-radius: 5rem;
-    -moz-border-radius: 5rem;
-    -ms-border-radius: 5rem;
-    -o-border-radius: 5rem;
     border-radius: 5rem;
+    margin-bottom: 0rem;
 }
 
 // ICON
@@ -77,9 +93,32 @@ input[placeholder="Danh mục"] {
     width: 14rem;
     font-size: 1.6rem;
     padding: 1rem 0rem;
-    -webkit-border-radius: 5rem;
-    -moz-border-radius: 5rem;
-    -ms-border-radius: 5rem;
-    -o-border-radius: 5rem;
     border-radius: 5rem;
+}
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+    width: 100%;
+}
+
+.dropdown__list {
+    position: absolute;
+    top: 100%;
+    left: 1.5rem;
+    right: 1.5rem;
+    background-color: white;
+    border: 1px solid #CCC;
+    border-top: none;
+    border-bottom: none;
+
+    &__item {
+        padding: 1rem;
+        border-bottom: 1px solid #CCC;
+        font-size: 1.4rem;
+        cursor: pointer;
+    }
+    &__item:hover {
+        background-color: rgba($color: #000000, $alpha: .04);
+    }
 }
