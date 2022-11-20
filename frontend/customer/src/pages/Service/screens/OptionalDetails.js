@@ -16,7 +16,6 @@ const OptionalDetails = () => (
                 <div className={classes.img__section}>
                     <p>Ảnh mặt trước sản phẩm</p>
                     <ButtonCT
-                        // eslint-disable-next-line react/jsx-indent-props
                         className={classes.btn__choose}
                         borderRadius
                         content="Chọn"
@@ -25,7 +24,6 @@ const OptionalDetails = () => (
                 <div className={classes.img__section}>
                     <p>Ảnh mặt sau sản phẩm</p>
                     <ButtonCT
-                        // eslint-disable-next-line react/jsx-indent-props
                         className={classes.btn__choose}
                         borderRadius
                         content="Chọn"

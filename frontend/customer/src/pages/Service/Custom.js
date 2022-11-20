@@ -16,10 +16,10 @@ const Custom = () => (
             <p>Hãy tái tạo nó thông qua hệ thống ATM CLOTHING của chúng tôi...</p>
         </div>
         <ServiceDetails />
-        {/* <div className={classes.backdrop} />
+        <div className={classes.backdrop} />
         <div className={classes.container}>
             <Form title="Custom sản phẩm" step={0} screens={screens} />
-        </div> */}
+        </div>
     </div>
 );
 
