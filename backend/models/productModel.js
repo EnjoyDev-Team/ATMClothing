@@ -70,8 +70,10 @@ const productModel = new mongoose.Schema({
 });
 
 productModel.pre('save', (next) => {
-    if (this.isNew)
+    if (this.isNew) {
         this.create_at = Date.now() - 1000;
+        this.size = this.size.toUpperCase();
+    }
 
     next();
 });
