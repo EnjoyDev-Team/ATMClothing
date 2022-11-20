@@ -3,7 +3,7 @@
 /* eslint-disable no-dupe-keys */
 /* eslint-disable indent */
 /* eslint-disable react/jsx-indent-props */
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowRight, faXmark } from '@fortawesome/free-solid-svg-icons';
 import classes from './Form.module.scss';
