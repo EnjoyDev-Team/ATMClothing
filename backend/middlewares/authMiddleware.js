@@ -1,6 +1,7 @@
 const jwt = require('jsonwebtoken');
 const catchAsync = require('../utils/catchAsync');
 const AppError = require('../utils/appError');
+const { promisify } = require('util');
 const User = require('../models/userModel');
 
 exports.protect = catchAsync(async (req, res, next) => {
@@ -25,7 +26,7 @@ exports.protect = catchAsync(async (req, res, next) => {
   const decoded = await promisify(jwt.verify)(token, process.env.ACCESS_TOKEN_SECRET);
 
   // 3) Check user still exists
-  const currentUser = await User.findById(decoded.id);
+  const currentUser = await User.findById(decoded.phone);
   if (!currentUser) {
     return next(
       new AppError(
@@ -50,7 +51,7 @@ exports.protect = catchAsync(async (req, res, next) => {
 exports.restrictTo =
   (...roles) =>
     (req, res, next) => {
-      // roles ['admin', 'lead-guide']. role='user'
+      // roles ['admin']. role='user'
       if (!roles.includes(req.user.role)) {
         return next(
           new AppError('You do not have permission to oerform this action', 403)
@@ -69,46 +70,14 @@ exports.tokenPhone = catchAsync(async (req, res, next) => {
 
   const token = jwt.sign(
     {phone},
-    process.env.OTP_TOKEN_SECRET,
+    process.env.PHONE_TOKEN_SECRET,
     {expiresIn: '1d'}
   )
 
   res.status(200).json({
     status: 'success',
-    token
+    verify_token: token
   })
-});
-
-exports.tokenOTP = catchAsync(async (req, res, next) => {
-  const { phone, result, token } = req?.body;
-
-  if (!phone || !result || !token) {
-    return next(new AppError('Please provide a mobile phone, a result and a token!', 400));
-  }
-
-  jwt.verify(
-    token,
-    process.env.OTP_TOKEN_SECRET,
-    async (err, decoded) => {
-      if (err) {
-        return next(new AppError('Error to verify phone', 401));
-      }
-      if (phone !== decoded.phone) {
-        return next(new AppError('A number phone is invalid!', 401));
-      }
-
-      const tokenResult = jwt.sign(
-        {result},
-        process.env.OTP_TOKEN_SECRET,
-        {expiresIn: '1d'}
-      )
-    
-      res.status(200).json({
-        status: 'success',
-        token: tokenResult
-      })
-    }
-  )
 });
 
 exports.getUser = catchAsync(async (req, res, next) => {
@@ -120,16 +89,16 @@ exports.getUser = catchAsync(async (req, res, next) => {
 
   const user = await User.findOne({ phone: phone });
   if (!user) {
-    return next(new AppError('There is not user with phone address', 404));
+    return next(new AppError('There is not user with this phone', 404));
   }
   const token = jwt.sign(
     {phone},
-    process.env.OTP_TOKEN_SECRET,
+    process.env.PHONE_TOKEN_SECRET,
     {expiresIn: '1d'}
   )
 
   res.status(200).json({
     status: 'success',
-    token
+    verify_token: token
   })
 });

@@ -1,9 +1,10 @@
 const crypto = require('crypto');
-const { promisify } = require('util');
 const User = require('../models/userModel');
 const catchAsync = require('../utils/catchAsync');
 const AppError = require('../utils/appError');
-const jwt = require('jsonwebtoken');
+const { promisify } = require('util');
+const jwt = require('jsonwebtoken'); 
+const firebase = require('../configs/firebase');
 
 const cookieOptions = {
   expires: new Date(
@@ -55,7 +56,7 @@ const createSendToken = async (user, statusCode, req, res) => {
 
   res.status(statusCode).json({
     status: 'success',
-    token,
+    access_token: token,
     data: {
       user,
     },
@@ -116,7 +117,7 @@ exports.refreshToken = catchAsync(async (req, res, next) => {
 
       res.status(200).json({
         status: "success",
-        accessToken
+        access_token: accessToken
       })
     }
   )
@@ -124,35 +125,24 @@ exports.refreshToken = catchAsync(async (req, res, next) => {
 
 // SIGNUP
 exports.signup = catchAsync(async (req, res, next) => {
-  const {phone, password, token, result} = req?.body;
-  if (!phone || !result || !token || !password) {
+  const {phone, password, tokenVerify, tokenFirebase} = req?.body;
+  if (!phone || !tokenFirebase || !tokenVerify || !password) {
     return next(new AppError('Please provide a mobile phone, a result and a token!', 400));
   }
-
-  const user = await User.findOne({ phone: req.body.phone });
-  if (user) {
-    return next(new AppError('There was a account with this a phone!', 401));
+  
+  const decodedPhone = await promisify(jwt.verify)(tokenVerify, process.env.PHONE_TOKEN_SECRET);
+  const decodedFirebase = await firebase.auth().verifyIdToken(tokenFirebase);
+  
+  if (decodedPhone?.phone.substring(1) !== decodedFirebase?.phone_number.substring(3)) {
+    return next(new Error('Phone number is invalid with the phone varification', 401));
   }
 
-  jwt.verify(
-    token,
-    process.env.OTP_TOKEN_SECRET,
-    async (err, decoded) => {   
-      if (err) {
-        return next(new AppError('Error to verify OTP result', 401));
-      }
-      if (result !== decoded.result) {
-        return next(new AppError('OTP result is invalid!', 401));
-      }
-
-      const newUser = await User.create({
-        phone,
-        password
-      });
+  const newUser = await User.create({
+    phone,
+    password
+  });
     
-      createSendToken(newUser, 201, req, res);
-    }
-  )
+  createSendToken(newUser, 201, req, res);
 });
 
 // LOGIN
@@ -205,29 +195,32 @@ exports.logout = catchAsync(async (req, res, next) => {
 
 // FORGOT PASSWORD
 exports.forgotPassword = catchAsync(async ( req, res, next) => {
-  const {phone, password, token, result} = req?.body;
-  if (!phone || !result || !token || !password) {
+  const {phone, password, tokenVerify, tokenFirebase} = req?.body;
+  if (!phone || !tokenFirebase || !tokenVerify || !password) {
     return next(new AppError('Please provide a mobile phone, a result and a token!', 400));
   }
 
   const user = await User.findOne({ phone: req.body.phone });
-  
-  jwt.verify(
-    token,
-    process.env.OTP_TOKEN_SECRET,
-    async (err, decoded) => {   
-      if (err) {
-        return next(new AppError('Error to verify OTP result', 401));
-      }
-      if (result !== decoded.result) {
-        return next(new AppError('OTP result is invalid!', 401));
-      }
 
-      user.password = password;
+  if (!user) {
+    return next(new AppError('There is not user with this phone', 404));
+  }
+  
+  const decodedPhone = await promisify(jwt.verify)(tokenVerify, process.env.PHONE_TOKEN_SECRET);
+  const decodedFirebase = await firebase.auth().verifyIdToken(tokenFirebase);
+  
+  if (decodedPhone?.phone.substring(1) !== decodedFirebase?.phone_number.substring(3)
+    || decodedPhone.phone !== user.phone) {
+    return next(new Error('Phone is invalid with the phone verification', 401));
+  }
+
+  console.log(decodedPhone?.phone.substring(1));
+  console.log(decodedFirebase?.phone_number.substring(3));
+
+  user.password = password;
+  await user.save();
     
-      createSendToken(user, 201, req, res);
-    }
-  )
+  createSendToken(user, 201, req, res);
 });
 
 exports.updatePassword = catchAsync(async (req, res, next) => {
