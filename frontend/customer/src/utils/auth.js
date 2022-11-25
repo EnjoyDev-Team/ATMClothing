@@ -11,12 +11,12 @@ const auth = {
     localStorage.role = user.role;
   },
 
-  userId() {
-    return localStorage.userId;
+  setAccessToken(token) {
+    localStorage.accessToken = token;
   },
 
-  username() {
-    return localStorage.userName;
+  getAccessToken() {
+    return localStorage.accessToken;
   },
 
   role() {

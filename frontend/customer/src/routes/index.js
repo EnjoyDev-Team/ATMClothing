@@ -49,11 +49,6 @@ const Navigation = () => {
                     <Route path="/profile" name="profile" element={<Profile />} />
                 </Route>
 
-<<<<<<< HEAD
-              <Route path="*" name="notFound" element={<NotFound />} />
-          </Route>
-
-=======
                 {/* PRODUCT ROUTE */}
                 <Route path="/products">
                     <Route element={<ProductLayout />}>
@@ -73,7 +68,6 @@ const Navigation = () => {
 
                 <Route path="*" name="notFound" element={<NotFound />} />
             </Route>
->>>>>>> 956be43 (update logic productlist, search, productdetail)
         </Routes>
     );
 };

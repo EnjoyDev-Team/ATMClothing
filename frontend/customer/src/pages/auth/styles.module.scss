@@ -7,65 +7,70 @@
   }
 }
 
-.profile {
-  display: flex;
-  border: 1px solid #ccc;
-  width: 70%;
-  min-width: 600px;
-  margin: 0 auto;
-  font-size: 1.6rem;
-
-  &__nav {
-    max-width: 280px;
-    min-width: 220px;
-    padding: 20px;
-    background-color: #F9F9F9;
-
-    ul {
-      list-style: none;
-
-      li {
-        display: flex;
-        align-items: center;
-        padding: 10px 0;
-        color: #808080;
-        cursor: pointer;
-
-        p {
-          padding-left: 10px;
-        }
-
-        &:hover {
-          color: #597D32;
-        }
-      }
-
-      .active {
-        color: #597D32;
-        font-weight: 500;
-      }
-    }
-  }
-
-  &__content {
-    border-left: 1px solid #ccc;
-    flex: 1;
-    min-height: 460px;
-    background-color: #fff;
-
-    &-heading {
-      border-bottom: 1px solid #ccc;
-      padding: 10px;
-      color: #597D32;
+.profileWrap {
+  padding: 30px;
+  
+  .profile {
+    display: flex;
+    width: 70%;
+    max-width: 900px;
+    border: 1px solid #ccc;
+    min-width: 600px;
+    margin: 0 auto;
+    font-size: 1.6rem;
+  
+    &__nav {
+      max-width: 280px;
+      min-width: 220px;
+      padding: 20px;
       background-color: #F9F9F9;
-      font-weight: 600;
-      font-size: 1.8rem;
+  
+      ul {
+        list-style: none;
+  
+        li {
+          display: flex;
+          align-items: center;
+          padding: 10px 0;
+          color: #808080;
+          cursor: pointer;
+  
+          p {
+            padding-left: 10px;
+          }
+  
+          &:hover {
+            color: #597D32;
+          }
+        }
+  
+        .active {
+          color: #597D32;
+          font-weight: 500;
+        }
+      }
     }
-
-    &-form {
-      padding: 30px;
-      height: calc(100% - 50px);
-      position: relative;
+  
+    &__content {
+      border-left: 1px solid #ccc;
+      flex: 1;
+      min-height: 460px;
+      background-color: #fff;
+  
+      &-heading {
+        border-bottom: 1px solid #ccc;
+        padding: 10px;
+        color: #597D32;
+        background-color: #F9F9F9;
+        font-weight: 600;
+        font-size: 1.8rem;
+      }
+  
+      &-form {
+        padding: 30px;
+        height: calc(100% - 50px);
+        position: relative;
+      }
     }
   }
 }
