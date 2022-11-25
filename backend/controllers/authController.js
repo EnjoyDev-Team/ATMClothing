@@ -11,12 +11,13 @@ const cookieOptions = {
     Date.now() + process.env.JWT_COOKIE_EXPIRES_IN * 24 * 60 * 60 * 1000
   ),
   httpOnly: true,
-  sameSite: 'None'
+  sameSite: 'None',
+  secure: true
 };
 
-const signToken = (id, expires = null) =>
+const signToken = (phone, expires = null) => 
   jwt.sign(
-    { id }, 
+    { phone }, 
     !expires 
       ? process.env.ACCESS_TOKEN_SECRET
       : process.env.REFRESH_TOKEN_SECRET, 
@@ -30,8 +31,8 @@ const signToken = (id, expires = null) =>
 const createSendToken = async (user, statusCode, req, res) => {
   const cookies = req?.cookies;
   
-  const token = signToken(user._id);
-  const newRefreshToken = signToken(user._id, 'refresh');
+  const token = signToken(user.phone);
+  const newRefreshToken = signToken(user.phone, 'refresh');
 
   if (process.env.NODE_ENV === 'production') cookieOptions.secure = true;
 
@@ -72,9 +73,9 @@ exports.refreshToken = catchAsync(async (req, res, next) => {
   }
   const refreshToken = cookies.jwt;
   res.clearCookie('jwt', { httpOnly: true, sameSite: 'None', secure: true })
-
+  
   const user = await User.findOne({ refreshToken }).select('+password');
-
+  
   // Detected refresh token reuse!
   if (!user) {
     jwt.verify(
@@ -90,9 +91,9 @@ exports.refreshToken = catchAsync(async (req, res, next) => {
 
     return next(new AppError('Forbidden', 403));
   }
-
+  
   const newRefreshTokenArray = user.refreshToken.filter(rt => rt !== refreshToken);
-
+  
   jwt.verify(
     refreshToken,
     process.env.REFRESH_TOKEN_SECRET,
@@ -101,18 +102,18 @@ exports.refreshToken = catchAsync(async (req, res, next) => {
         user.refreshToken = [...newRefreshTokenArray];
         const result = await user.save();
       }
-      if (err || user.id !== decoded.id) {
+      if (err || user.phone !== decoded.phone) {
         return next(new AppError('Forbidden', 403));
       }
 
       // Refresh token was still valid
       const role = Object.values(user.role);
-      const accessToken = signToken(decoded.id);
-      const newRefreshToken = signToken(decoded.id, 'refresh');
+      const accessToken = signToken(decoded.phone);
+      const newRefreshToken = signToken(decoded.phone, 'refresh');
 
       user.refreshToken = [...newRefreshTokenArray, newRefreshToken];
       const result = await user.save();
-
+      
       res.cookie('jwt', newRefreshToken, cookieOptions);
 
       res.status(200).json({

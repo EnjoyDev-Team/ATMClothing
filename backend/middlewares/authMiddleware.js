@@ -23,29 +23,37 @@ exports.protect = catchAsync(async (req, res, next) => {
   }
 
   // 2) Varification token
-  const decoded = await promisify(jwt.verify)(token, process.env.ACCESS_TOKEN_SECRET);
+  jwt.verify(
+    token,
+    process.env.ACCESS_TOKEN_SECRET,
+    async (err, decoded) => {
+      if (err) {
+        return next(new AppError('Forbidden', 403));
+      }
 
-  // 3) Check user still exists
-  const currentUser = await User.findById(decoded.phone);
-  if (!currentUser) {
-    return next(
-      new AppError(
-        'The user belonging to this token does no longer exist.',
-        401
-      )
-    );
-  }
+      // 3) Check user still exists
+      const currentUser = await User.findOne({phone: decoded.phone});
+      if (!currentUser) {
+        return next(
+          new AppError(
+            'The user belonging to this token does no longer exist.',
+            401
+          )
+        );
+      }
 
-  // 4) Check if changed password after the token was issued
-  if (currentUser.changedPasswordAfter(decoded.iat)) {
-    return next(
-      new AppError('User recently changed password! Please log in again!', 401)
-    );
-  }
+      // 4) Check if changed password after the token was issued
+      if (currentUser.changedPasswordAfter(decoded.iat)) {
+        return next(
+          new AppError('User recently changed password! Please log in again!', 401)
+        );
+      }
 
-  // GRANT ACCESS TO PROTECTED ROUTE
-  req.user = currentUser;
-  next();
+      // GRANT ACCESS TO PROTECTED ROUTE
+      req.user = currentUser;
+      next();
+    }
+  )
 });
 
 exports.restrictTo =

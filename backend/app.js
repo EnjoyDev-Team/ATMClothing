@@ -17,6 +17,8 @@ const orderRoutes = require('./routes/orderRoutes');
 const servicesRoutes = require('./routes/serviceRoutes');
 const addressRouter = require('./routes/addressRoutes');
 const searchRoutes = require('./routes/searchRoutes');
+const corsOptions = require('./configs/corsOptions');
+const credentials = require('./middlewares/credentials');
 
 const limiter = rateLimit({
   // limiter is now become a middleware function
@@ -28,7 +30,9 @@ const limiter = rateLimit({
 
 const app = express();
 
-app.use(cors());
+app.use(credentials);
+
+app.use(cors(corsOptions));
 app.use(mongoSanitize());
 app.use(xss());
 app.use(hpp());
