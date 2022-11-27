@@ -1,77 +1,113 @@
-.main {
-    width: 808px;
-    height: 519px;
-}
-.title {
-    font-size: 24px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin: 4rem 0 1rem 0;
+.detail__product__main {
+    padding: 4rem;
+    margin: 0 auto;
 }
 
-.content {
+.number__product {
+    margin-left: 10rem;
+}
+
+.detail__container {
+    width: 984px;
+    // height: 867px;
+    border: solid lightgrey;
+    border-radius: 10px;
+    margin: 2rem auto;
+}
+
+.content__section {
     position: relative;
     display: flex;
-    gap: 1rem;
+    gap: 2rem;
 }
 
-.left__section p,
-.middle__section p {
+.content__section {
+    padding: 2rem 8rem;
+}
+
+.content__section p {
     margin: 2rem;
 }
 
-.left__section {
-    width: 22rem;
-}
-
-.left__section p {
+.title p {
     font-weight: bold;
 }
 
-.qr__section {
+.button__see {
     position: absolute;
-    top: -3rem;
-    right: 5rem;
+    width: auto;
+    right: 10rem;
+    background-color: #3f7673;
+    border-radius: 10px;
+    color: white;
 }
 
-.state {
-    color: #edad4c;
-    font-weight: bold;
-}
-
-.required__message {
-    font-size: 18px;
-    font-weight: bold;
-    margin: 3rem 0;
-}
-
-.price__section__container {
-    display: flex;
-    gap: 3rem;
-}
-
-.price__button__section {
+.button__see > span {
     display: flex;
     align-items: center;
+    gap: 0.5rem;
+}
+
+// IMG SECTION
+
+.img__container {
+    width: 984px;
+    display: flex;
+    gap: 10rem;
     justify-content: center;
-    margin-left: 15rem;
-    width: 20rem;
+    align-items: center;
 }
 
-.cancel__button {
-    // padding: 1rem 3rem;
-    // margin-left: 4rem;
-    color: #ed4c4c;
-    border-color: #ed4c4c;
-}
-
-.price__section__container div p {
+.img__container div p {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     margin: 1rem;
+    color: #666666;
 }
 
-.total {
-    font-size: 2rem;
+// DESCRIPTION SECTION
+.description__product {
+    display: flex;
+    margin: 0 auto;
+    gap: 5rem;
+    padding: 1rem 12rem;
+}
+
+.description__product p:first-child {
+    color: #333333;
     font-weight: bold;
-    margin-top: 3rem;
+}
+
+// OTHER INFP SECTION
+.other__info__header {
+    font-weight: bold;
+    color: #333333;
+    padding: 0.5rem 12rem;
+}
+.other__info__container {
+    display: flex;
+    margin: 0.5rem 0;
+}
+
+.other__info__title p {
+    color: #666666;
+    margin: 0 0 0 15rem;
+}
+
+.other__info__content p {
+    margin: 0 0 0 3rem;
+}
+
+// IDEA CUSTOM SECTION
+.idea__custom__container {
+    display: flex;
+    gap: 4rem;
+    margin: 0.5rem 0;
+    justify-content: center;
+}
+
+.idea__custom__container p:first-child {
+    color: #333333;
+    font-weight: bold;
 }
