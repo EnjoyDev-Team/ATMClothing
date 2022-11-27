@@ -1,0 +1,77 @@
+.main {
+    width: 808px;
+    height: 519px;
+}
+.title {
+    font-size: 24px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 4rem 0 1rem 0;
+}
+
+.content {
+    position: relative;
+    display: flex;
+    gap: 1rem;
+}
+
+.left__section p,
+.middle__section p {
+    margin: 2rem;
+}
+
+.left__section {
+    width: 22rem;
+}
+
+.left__section p {
+    font-weight: bold;
+}
+
+.qr__section {
+    position: absolute;
+    top: -3rem;
+    right: 5rem;
+}
+
+.state {
+    color: #edad4c;
+    font-weight: bold;
+}
+
+.required__message {
+    font-size: 18px;
+    font-weight: bold;
+    margin: 3rem 0;
+}
+
+.price__section__container {
+    display: flex;
+    gap: 3rem;
+}
+
+.price__button__section {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: 15rem;
+    width: 20rem;
+}
+
+.cancel__button {
+    // padding: 1rem 3rem;
+    // margin-left: 4rem;
+    color: #ed4c4c;
+    border-color: #ed4c4c;
+}
+
+.price__section__container div p {
+    margin: 1rem;
+}
+
+.total {
+    font-size: 2rem;
+    font-weight: bold;
+    margin-top: 3rem;
+}

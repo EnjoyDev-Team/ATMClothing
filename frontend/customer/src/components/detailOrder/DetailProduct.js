@@ -1,63 +1,91 @@
-/* eslint-disable react/jsx-indent-props */
-import React from 'react';
+/* eslint-disable react/jsx-one-expression-per-line */
+/* eslint-disable react/jsx-no-bind */
+/* eslint-disable indent */
+/* eslint-disable import/no-unresolved */
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faEye } from '@fortawesome/free-solid-svg-icons';
+import React, { useState } from 'react';
 import classes from './DetailProduct.module.scss';
-import qr from '../../assets/imgs/detailRequest/QR 1.png';
 import ButtonCT from '../ButtonCT/ButtonCT';
+import { ReactComponent as EyeIcon } from '../../assets/svg/detailRequest/eye.svg';
+import matTruoc1 from '../../assets/imgs/detailRequest/matTruoc 1.png';
+import matSau1 from '../../assets/imgs/detailRequest/matSau 1.png';
 
-const DetailProduct = () => (
-    <div className={classes.main}>
-        <h3 className={classes.title}>CHI TIẾT ĐƠN HÀNG</h3>
-        {/* Content section */}
-        <div className={classes.content}>
-            <div className={classes.left__section}>
-                <p>Mã đơn hàng</p>
-                <p>Tên gợi nhớ</p>
-                <p>Ngày tạo</p>
-                <p>Yêu cầu</p>
-                <p>Hình thức nhận hàng</p>
-                <p>Trạng thái</p>
+// eslint-disable-next-line react/prop-types
+const DetailProduct = ({ state, index }) => {
+    const [show, setShow] = useState(false);
+
+    function toggleDetail() {
+        setShow((prev) => !prev);
+    }
+    return (
+        <main className={classes.detail__product__main}>
+            <h4 className={classes.number__product}>Sản phẩm {index}</h4>
+            <div className={classes.detail__container}>
+                <div className={classes.content__section}>
+                    <div className={classes.title}>
+                        <p>Tên sản phẩm:</p>
+                        <p>Danh mục:</p>
+                        <p>Tình trạng:</p>
+                        <p>Số lượng hàng hiện có:</p>
+                        <p>Hình ảnh sản phẩm:</p>
+                    </div>
+                    <div className={classes.detail__content}>
+                        <p>Áo khoác len</p>
+                        <p>Thời trang nam</p>
+                        <p>Như mới (Hàng mới kèm mác, đã mở bao bì/hộp, chưa qua sử dụng)</p>
+                        <p>1</p>
+                    </div>
+                    {show === true ? (
+                        <ButtonCT onClick={toggleDetail} className={classes.button__see} borderRadius large>
+                            <span>Thu gọn</span>
+                            <EyeIcon />
+                        </ButtonCT>
+                    ) : (
+                        <ButtonCT onClick={toggleDetail} className={classes.button__see} borderRadius large>
+                            <span>Chi tiết</span>
+                            <FontAwesomeIcon icon={faEye} />
+                        </ButtonCT>
+                    )}
+                </div>
+                {show === true ? (
+                    <div>
+                        <div className={classes.img__container}>
+                            <div className={classes.img__left__section}>
+                                <img src={matTruoc1} alt="" />
+                                <p>Ảnh mặt trước</p>
+                            </div>
+                            <div className={classes.img__right__section}>
+                                <img src={matSau1} alt="" />
+                                <p>Ảnh mặt sau</p>
+                            </div>
+                        </div>
+                        <div className={classes.description__product}>
+                            <p>Mô tả sản phẩm: </p>
+                            <p>Sản phẩm chỉ có những vết bông nhẹ</p>
+                        </div>
+                        <p className={classes.other__info__header}>Thông tin khác</p>
+                        <div className={classes.other__info__container}>
+                            <div className={classes.other__info__title}>
+                                <p>Chất liệu:</p>
+                                <p>Kích cỡ: </p>
+                            </div>
+                            <div className={classes.other__info__content}>
+                                <p>Len sợi</p>
+                                <p>XL</p>
+                            </div>
+                        </div>
+                        <div className={classes.idea__custom__container}>
+                            <p>Ý tưởng bạn muốn custom:</p>
+                            <p>Thêu thêm một số hoa văn Ronaldo trên góc mặt trước ngực phải</p>
+                        </div>
+                    </div>
+                ) : (
+                    ''
+                )}
             </div>
-            <div className={classes.middle__section}>
-                <p>DAHTSK12473</p>
-                <p>Không có</p>
-                <p>22/9/2022</p>
-                <p>Custom</p>
-                <p style={{ color: '#666666' }}>Khách hàng mang đến cơ sở Đại học Ngân hàng</p>
-                <p className={classes.state}>Đang kiểm tra</p>
-            </div>
-            <div className={classes.qr__section}>
-                <img src={qr} alt="" />
-            </div>
-        </div>
-        <p className={classes.required__message} style={{ color: '#ED4C4C' }}>
-            Vui lòng cung cấp các thông tin này khi giao hàng
-        </p>
-        {/* Price section */}
-        <div className={classes.price__section__container}>
-            <div className={classes.price__left__section}>
-                <p>Tiền bạn nhận được</p>
-                <p>Phí vận chuyển</p>
-                <p className={classes.total}>Tổng thanh toán</p>
-            </div>
-            <div className={classes.price__middle__section}>
-                <p>20 000đ</p>
-                <p>40 000đ</p>
-                <p className={classes.total} style={{ color: '#FF3434' }}>
-                    20 000đ
-                </p>
-            </div>
-            <div className={classes.price__button__section}>
-                <ButtonCT
-                    type="button"
-                    className={classes.cancel__button}
-                    large
-                    borderRadius
-                    outlineBtn
-                    content="Hủy đơn hàng"
-                />
-            </div>
-        </div>
-    </div>
-);
+        </main>
+    );
+};
 
 export default DetailProduct;
