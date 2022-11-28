@@ -1,20 +1,35 @@
-label input {
+.inputSection label input {
     display: block;
     font-family: 'Inter';
     font-size: 1.6rem;
     margin: 1.5rem auto;
 }
 
-label input::placeholder {
+.inputSection label input::-webkit-input-placeholder {
     font-family: 'Inter';
     font-size: 1.6rem;
 }
 
-label {
+.inputSection label input:-ms-input-placeholder {
+    font-family: 'Inter';
+    font-size: 1.6rem;
+}
+
+.inputSection label input::-ms-input-placeholder {
+    font-family: 'Inter';
+    font-size: 1.6rem;
+}
+
+.inputSection label input::placeholder {
+    font-family: 'Inter';
+    font-size: 1.6rem;
+}
+
+.inputSection label {
     font-size: 18px;
 }
 
-label > span {
+.inputSection label > span {
     font-size: 1.8rem;
     font-weight: 500;
     margin-left: .5rem;
@@ -45,10 +60,6 @@ input[placeholder="Danh mục"] {
     border: 1px solid #CCC;
     padding: .7rem 2rem;
     font-size: 16px;
-    -webkit-border-radius: 5rem;
-    -moz-border-radius: 5rem;
-    -ms-border-radius: 5rem;
-    -o-border-radius: 5rem;
     border-radius: 5rem;
 }
 
@@ -77,10 +88,6 @@ input[placeholder="Danh mục"] {
     width: 14rem;
     font-size: 1.6rem;
     padding: 1rem 0rem;
-    -webkit-border-radius: 5rem;
-    -moz-border-radius: 5rem;
-    -ms-border-radius: 5rem;
-    -o-border-radius: 5rem;
     border-radius: 5rem;
 }
 

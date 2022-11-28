@@ -10,7 +10,7 @@ const State = () => (
         </span>
         <div className={classes.stateContainer}>
             <label>
-                <input style={{ display: 'none' }} type="radio" name="status" value="Mới" />
+                <input defaultChecked style={{ display: 'none' }} type="radio" name="productStatus" value="Mới" />
                 <div className={classes.stateBox}>
                     <div className={classes.stateContent}>Mới</div>
                     <div className={classes.stateDescription}>
@@ -19,7 +19,7 @@ const State = () => (
                 </div>
             </label>
             <label>
-                <input style={{ display: 'none' }} type="radio" name="status" value="Như mới" />
+                <input style={{ display: 'none' }} type="radio" name="productStatus" value="Như mới" />
                 <div className={classes.stateBox}>
                     <div className={classes.stateContent}>Như mới</div>
                     <div className={classes.stateDescription}>
@@ -28,14 +28,14 @@ const State = () => (
                 </div>
             </label>
             <label>
-                <input style={{ display: 'none' }} type="radio" name="status" value="tốt" />
+                <input style={{ display: 'none' }} type="radio" name="productStatus" value="tốt" />
                 <div className={classes.stateBox}>
                     <div className={classes.stateContent}>Tốt</div>
                     <div className={classes.stateDescription}>Đã qua sử dụng, tính năng đầy đủ, hoạt động tốt.</div>
                 </div>
             </label>
             <label>
-                <input style={{ display: 'none' }} type="radio" name="status" value="Trung bình" />
+                <input style={{ display: 'none' }} type="radio" name="productStatus" value="Trung bình" />
                 <div className={classes.stateBox}>
                     <div className={classes.stateContent}>Trung bình</div>
                     <div className={classes.stateDescription}>
@@ -44,7 +44,7 @@ const State = () => (
                 </div>
             </label>
             <label>
-                <input style={{ display: 'none' }} type="radio" name="status" value="Kém" />
+                <input style={{ display: 'none' }} type="radio" name="productStatus" value="Kém" />
                 <div className={classes.stateBox}>
                     <div className={classes.stateContent}>Kém</div>
                     <div className={classes.stateDescription}>Đã qua sử dụng. Nhiều sai sót. Có thể bị hư hỏng.</div>

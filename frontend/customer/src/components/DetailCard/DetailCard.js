@@ -1,3 +1,4 @@
+/* eslint-disable react/forbid-prop-types */
 import React from 'react';
 import PropTypes from 'prop-types';
 
@@ -58,7 +59,7 @@ DetailCard.propTypes = {
   details: PropTypes.shape({
     name: PropTypes.string.isRequired,
     title: PropTypes.arrayOf(PropTypes.string).isRequired,
-    content: PropTypes.arrayOf(PropTypes.string).isRequired,
+    content: PropTypes.any.isRequired,
     price: PropTypes.string,
   }),
 };
