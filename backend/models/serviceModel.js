@@ -294,4 +294,4 @@ const orderSchema = mongoose.Schema({
     strictQuery: false
 });
 
-module.exports.orderModel = mongoose.model('orders', orderSchema);
+module.exports.orderModel = mongoose.model('service-orders', orderSchema);

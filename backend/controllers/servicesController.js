@@ -89,7 +89,7 @@ module.exports.getPayments = catchAsync(async (req, res, next) => {
 module.exports.getPaymentById = catchAsync(async (req, res, next) => {
     const filter = req.params.id ? {code: req.params.id} : {};
     
-    const payment = await orderModel.find(filter).sort({ create_at: 'desc' });
+    const payment = await orderModel.findOne(filter).sort({ create_at: 'desc' });
 
     res.status(200).json({
         status: 'success',

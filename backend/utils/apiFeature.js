@@ -14,6 +14,7 @@ class APIFeatures {
             { facility: '{ "facility.code": "in" }', caseSensitive: 2, split: ',' },
             { size: '{ "size": "in" }', caseSensitive: 2, split: ',', replace: true },
             { material: '{ "material": "in" }', split: ',', replace: true },
+            { name: '{ "name": "regex" }', replace: true, regexSensitive: true },
         ];
 
         replaceFields.forEach((el) => {
@@ -21,6 +22,8 @@ class APIFeatures {
 
             if (queryObj[el_key]) {
                 const el_value = JSON.parse(Object.values(el)[0]);
+
+                const options = el.regexSensitive ? { "options": 'i' } : '';
 
                 if (el.caseSensitive) {
                     queryObj[el_key] =
@@ -36,12 +39,14 @@ class APIFeatures {
                 if (el.replace) {
                     queryObj[Object.keys(el_value)] = {
                         [Object.values(el_value)]: queryObj[el_key],
+                        ...options
                     };
                 }
                 else {
                     queryObj[Object.keys(el_value)] = {
                         ...queryObj[Object.keys(el_value)],
                         [Object.values(el_value)]: queryObj[el_key],
+                        ...options
                     };
                 }
             }
@@ -50,7 +55,7 @@ class APIFeatures {
         const excludedFields = ['offset', 'sort', 'limit', 'fields', 'category', 'min', 'max', 'facility'];
         excludedFields.forEach((el) => delete queryObj[el]);
         
-        const queryStr = JSON.stringify(queryObj).replace(/\b(gte|gt|lte|lt|eq|in)\b/g, (match) => `$${match}`);
+        const queryStr = JSON.stringify(queryObj).replace(/\b(gte|gt|lte|lt|eq|in|regex|options)\b/g, (match) => `$${match}`);
         this.query = this.query.find(JSON.parse(queryStr)).collation({ locale: 'vi', numericOrdering: true });
 
         return this;
