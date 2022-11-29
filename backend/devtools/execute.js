@@ -1,9 +1,10 @@
 const mongoose = require('mongoose');
 const dotenv = require('dotenv');
 const productModel = require('../models/productModel');
-const productItemModel = require('../models/productItemModel');
+const { categoryModel, facilityModel, materialModel } = require('../models/productItemModel');
 const products = require('./data/products');
-const product_items = require('./data/productItems');
+const { categories, facilities, materials } = require('./data/productItems');
+const { sellModel, customModel } = require('../models/serviceModel');
 
 dotenv.config({ path: 'config.env' });
 
@@ -31,15 +32,50 @@ const scripts = {
     'product-items': {
         '--import': () => {
 
-            productItemModel.create(product_items)
-            .then(() => console.log('import product items successfully'))
+            categoryModel.create(categories)
+            .then(() => console.log('import categories successfully'))
             .catch(err => console.log(err));
 
+            facilityModel.create(facilities)
+            .then(() => console.log('import facilities successfully'))
+            .catch(err => console.log(err));
+            
+            materialModel.create(materials)
+            .then(() => console.log('import materials successfully'))
+            .catch(err => console.log(err));
         },
         '--eject': () => {
 
-            productItemModel.deleteMany()
-            .then(() => console.log('eject product items successfully'))
+            categoryModel.deleteMany()
+            .then(() => console.log('eject categories successfully'))
+            .catch(err => console.log(err));
+
+            facilityModel.deleteMany()
+            .then(() => console.log('eject facilities successfully'))
+            .catch(err => console.log(err));
+            
+            materialModel.deleteMany()
+            .then(() => console.log('eject materials successfully'))
+            .catch(err => console.log(err));
+        }
+    },
+    'services.sell': {
+        '--import': () => {
+        },
+        '--eject': () => {
+
+            sellModel.deleteMany()
+            .then(() => console.log('services: eject sell products successfully'))
+            .catch(err => console.log(err));
+        }
+    },
+    'services.custom': {
+        '--import': () => {
+        },
+        '--eject': () => {
+
+            customModel.deleteMany()
+            .then(() => console.log('services: eject custom products successfully'))
             .catch(err => console.log(err));
 
         }

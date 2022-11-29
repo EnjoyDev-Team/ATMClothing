@@ -8,7 +8,7 @@ class APIFeatures {
         const queryObj = { ...this.queryString };
 
         const replaceFields = [
-            { category: '{ "slug": "eq" }' },
+            { category: '{ "slug": "in" }', split: ',' },
             { min: '{ "sale": "gte" }' },
             { max: '{ "sale": "lte" }' },
             { facility: '{ "facility.code": "in" }', caseSensitive: 2, split: ',' },
