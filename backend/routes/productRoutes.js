@@ -17,6 +17,8 @@ router.route('/goc-0d')
 // Filter items
 router.route('/filters').get(productController.getFilterItems);
 
+router.route('/total').get(productController.getTotal);
+
 // Product details
 router.route('/:id').get(productController.getById);
 

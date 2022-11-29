@@ -62,3 +62,13 @@ module.exports.getFilterItems = catchAsync(async (req, res, next) => {
         data: product_items
     });
 });
+
+module.exports.getTotal = catchAsync(async (req, res, next) => {
+
+    res.status(200).json({
+        status: 'success',
+        data: {
+            total: await productModel.countDocuments({})
+        }
+    });
+});
