@@ -64,11 +64,16 @@ module.exports.getFilterItems = catchAsync(async (req, res, next) => {
 });
 
 module.exports.getTotal = catchAsync(async (req, res, next) => {
+    const features = new APIFeatures(productModel.countDocuments(), req.query)
+                    .getTotal()
+                    .limitFields();
+
+    const totals = await features.query;
 
     res.status(200).json({
         status: 'success',
         data: {
-            total: await productModel.countDocuments({})
+            total: totals
         }
     });
 });
