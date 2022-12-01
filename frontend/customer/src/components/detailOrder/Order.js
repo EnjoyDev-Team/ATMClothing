@@ -1,4 +1,7 @@
+<<<<<<< HEAD
 /* eslint-disable react/jsx-indent-props */
+=======
+>>>>>>> 6e29aa4 (feat: create donate services)
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 /* eslint-disable implicit-arrow-linebreak */
@@ -21,14 +24,14 @@ const Order = ({ orderList, id }) => {
     return orderList && orderList.length
         ? orderList.map((item, index) => (
               <div
-                  onClick={() => navigate(`/shopping/orders/${item._id}`)}
-                  key={+index}
-                  className={`${classes.body}${id === item.code ? ` ${classes.active}` : ''}`}
+                onClick={() => navigate(`/services/orders/${item.code}`)}
+                key={+index}
+                className={`${classes.body}${id === item.code ? ` ${classes.active}` : ''}`}
               >
                   <div className={classes.date__container}>
                       <FontAwesomeIcon icon={faClock} className={classes.icon} />
                       <span className={classes.date}>
-                          {new Date(item.createAt).toLocaleDateString('vi', {
+                          {new Date(item.create_at).toLocaleDateString('vi', {
                               timeZone: 'Asia/Ho_Chi_Minh',
                           })}
                       </span>
@@ -40,8 +43,8 @@ const Order = ({ orderList, id }) => {
                           <p>Trạng thái</p>
                       </div>
                       <div className={classes.right__section}>
-                          <p>{item.IdOrder}</p>
-                          <p>{item.status}</p>
+                          <p>{item.code}</p>
+                          <p>{item.service}</p>
                           <p className={`${statusClass[item.status]}`}>{item.status}</p>
                       </div>
                   </div>

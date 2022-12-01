@@ -4,10 +4,10 @@
     cursor: pointer;
 }
 .body:hover {
-    background-color: rgba($color: #85be83, $alpha: 0.1);
+    background-color: rgba($color: #85be83, $alpha: .1);
 }
 .body.active {
-    background-color: rgba($color: #85be83, $alpha: 0.3);
+    background-color: rgba($color: #85be83, $alpha: .3);
 }
 .content__container {
     display: flex;
@@ -48,11 +48,11 @@
 }
 
 .right__section > p.processing {
-    color: #ed4c4c;
+    color: #ED4C4C;
 }
 
 .right__section > p.waiting {
-    color: #edad4c;
+    color: #EDAD4C;
 }
 
 .right__section > p.success {

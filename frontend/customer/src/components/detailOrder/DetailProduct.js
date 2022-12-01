@@ -17,7 +17,7 @@ const DetailProduct = ({ productDetail, index }) => {
         setShow((prev) => !prev);
     }
 
-    const havePreImage = productDetail.img && true;
+    const havePreImage = productDetail.pre_img && true;
     const havePostImage = productDetail.post_img && true;
 
     const haveDescription = productDetail.description && true;
@@ -63,7 +63,7 @@ const DetailProduct = ({ productDetail, index }) => {
                         <div className={classes.img__container}>
                             {havePreImage ? (
                                 <div className={classes.img__left__section}>
-                                    <img width={300} src={productDetail.img} alt="mat_truoc" />
+                                    <img width={300} src={productDetail.pre_img} alt="mat_truoc" />
                                     <p>Ảnh mặt trước</p>
                                 </div>
                             ) : (
