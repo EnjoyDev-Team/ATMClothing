@@ -1,8 +1,8 @@
 /* eslint-disable indent */
 import React from 'react';
 import { Navigate, Route, Routes } from 'react-router-dom';
-import PrivateRoute from './privateRoute';
 
+import PrivateRoute from './privateRoute';
 import Home from '../pages/home/Home';
 import NotFound from '../pages/notFound';
 import Login from '../pages/auth/Login';
@@ -25,8 +25,8 @@ import Shopping from '../pages/shopping/Shopping';
 import ProductLayout from '../layouts/ProductLayout';
 import Product from '../pages/Products/Product/Product';
 import auth from '../utils/auth';
-import Detail from '../pages/detail_request/Detail';
 import PaymentProduct from '../pages/PaymentProduct/PaymentProduct';
+import ServiceOrdersDetails from '../pages/detail_request/ServiceOrdersDetails';
 
 const Navigation = () => {
     const authenticated = !!auth.getAccessToken();
@@ -46,13 +46,16 @@ const Navigation = () => {
 
                 {/* PROTECTED ROUTE */}
                 <Route element={<PrivateRoute isAllowed={authenticated} redirectPath="/login" />}>
+
                     {/* Sale/Custom/Donate */}
                     <Route path="/services">
                         <Route index element={<Services />} />
                         <Route path="sale" name="sale" element={<Sell />} />
                         <Route path="custom" name="custom" element={<Custom />} />
                         <Route path="donate" name="donate" element={<Donate />} />
-                        <Route path="order" name="order" element={<Detail />} />
+                        <Route path="orders" name="orders" element={<ServiceOrdersDetails />}>
+                            <Route path=":id" element={<> </>} />
+                        </Route>
                     </Route>
 
                     {/* USER ROUTE */}

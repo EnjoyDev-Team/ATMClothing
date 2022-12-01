@@ -148,7 +148,7 @@ Cơ sở
                               type="text"
                               readOnly={paymentDelivery !== 1}
                               placeholder="Vui lòng chọn địa chỉ"
-                              value={paymentAddress.address}
+                              value={paymentAddress.address ? `Cơ sở ${paymentAddress.address}` : ''}
                               onChange={(event) => event.preventDefault()}
                               required
                             />

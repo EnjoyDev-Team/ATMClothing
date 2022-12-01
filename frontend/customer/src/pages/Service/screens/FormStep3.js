@@ -20,11 +20,13 @@ const FormStep3 = ({ onSubmit, data, setProduct, onError, service }) => {
     const titleArr = {
       sell: ['Danh mục', 'Tình trạng', 'Số lượng'],
       custom: ['Danh mục', 'Tình trạng', 'Số lượng', 'Ý tưởng'],
+      donate: ['Danh mục', 'Tình trạng', 'Số lượng'],
     };
 
     const contentArr = {
       sell: [product.category, product.status, product.amount],
       custom: [product.category, product.status, product.amount, product.idea_description],
+      donate: [product.category, product.status, product.amount]
     };
 
     const newproducts = {
