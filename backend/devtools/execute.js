@@ -4,7 +4,7 @@ const productModel = require('../models/productModel');
 const { categoryModel, facilityModel, materialModel } = require('../models/productItemModel');
 const products = require('./data/products');
 const { categories, facilities, materials } = require('./data/productItems');
-const { sellModel, customModel } = require('../models/serviceModel');
+const { sellModel, customModel, donateModel, orderModel } = require('../models/serviceModel');
 
 dotenv.config({ path: 'config.env' });
 
@@ -76,6 +76,28 @@ const scripts = {
 
             customModel.deleteMany()
             .then(() => console.log('services: eject custom products successfully'))
+            .catch(err => console.log(err));
+
+        }
+    },
+    'services.donate': {
+        '--import': () => {
+        },
+        '--eject': () => {
+
+            donateModel.deleteMany()
+            .then(() => console.log('services: eject custom products successfully'))
+            .catch(err => console.log(err));
+
+        }
+    },
+    'services.orders': {
+        '--import': () => {
+        },
+        '--eject': () => {
+
+            orderModel.deleteMany()
+            .then(() => console.log('services: eject orders products successfully'))
             .catch(err => console.log(err));
 
         }

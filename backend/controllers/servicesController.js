@@ -1,4 +1,4 @@
-const { sellModel, customModel, orderModel } = require('../models/serviceModel');
+const { sellModel, customModel, orderModel, donateModel } = require('../models/serviceModel');
 const catchAsync = require('../utils/catchAsync');
 const AppError = require('../utils/appError');
 const slugify = require('slugify');
@@ -55,6 +55,32 @@ module.exports.getCustomProducts = catchAsync(async (req, res, next) => {
     });
 });
 
+module.exports.addDonateProduct = catchAsync(async (req, res, next) => {
+    const { product } = req.body;
+    product.slug = slugify(product.category, { lower: true });
+
+    const newproduct = await donateModel.create(product);
+
+    res.status(201).json({
+        status: 'success',
+        message: 'Product added successfully',
+        data: {
+            product: newproduct,
+        },
+    });
+});
+
+module.exports.getDonateProducts = catchAsync(async (req, res, next) => {
+    const DonateProductList = await donateModel.find().sort({ create_at: 'desc' });
+
+    res.status(200).json({
+        status: 'success',
+        data: {
+            products: DonateProductList,
+        },
+    });
+});
+
 module.exports.addPayment = catchAsync(async (req, res, next) => {
     const { paymentData } = req.body;
 
@@ -65,6 +91,19 @@ module.exports.addPayment = catchAsync(async (req, res, next) => {
     }
 
     const payment = await orderModel.create(paymentData);
+    
+    if (paymentData.service.toLowerCase() === 'sell') {
+        await sellModel.deleteMany();
+    }
+    else if (paymentData.service.toLowerCase() === 'custom') {
+        await customModel.deleteMany();
+    }
+    else if (paymentData.service.toLowerCase() === 'donate') {
+        await donateModel.deleteMany();
+    }
+    // else if (paymentData.service === 'donate') {
+    //     await donateModel.deleteMany();
+    // }
 
     res.status(200).json({
         status: 'success',

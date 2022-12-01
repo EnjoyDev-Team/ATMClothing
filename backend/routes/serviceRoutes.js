@@ -11,6 +11,10 @@ router.route('/custom')
 .get(serviceController.getCustomProducts)
 .post(serviceController.addCustomProduct);
 
+router.route('/donate')
+.get(serviceController.getDonateProducts)
+.post(serviceController.addDonateProduct);
+
 router.route('/')
 .get(serviceController.getPayments)
 .post(serviceController.addPayment);

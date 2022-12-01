@@ -156,6 +156,67 @@ customSchema.pre('save', (next) => {
 
 module.exports.customModel = mongoose.model('customs', customSchema);
 
+const donateSchema = new mongoose.Schema({
+    uid: {
+        type: mongoose.Schema.Types.ObjectId,
+        trim: true,
+        required: [true, 'Please logged in to continue'],
+    },
+    name: {
+        type: String,
+        trim: true,
+        required: [true, 'Name of product can not be empty!'],
+    },
+    category: { 
+        type: String, 
+        trim: true,
+        required: [true, 'Category of product can not be empty!'],
+    },
+    slug: {
+        type: String,
+        trim: true,
+        lowercase: true,
+        required: [true, 'Slug of product can not be empty!'],
+    },
+    amount: {
+        type: Number,
+        amount: [1, 'Minimum of amount is 1'],
+        required: [true, 'Amount of product can not be empty!'],
+    },
+    status: {
+        type: String,
+        trim: true,
+        required: [true, 'Status of product can not be empty!'],
+    },
+    description: {
+        type: String,
+        trim: true,
+    },
+    material: {
+        type: String,
+        trim: true,
+        lowercase: true,
+    },
+    size: {
+        type: String,
+        trim: true,
+        uppercase: true,
+    },
+    create_at: {
+        type: Date,
+        default: Date.now,
+    },
+});
+
+donateSchema.pre('save', (next) => {
+    if (this.isNew) {
+        this.create_at = Date.now() - 1000;
+    }
+    next();
+});
+
+module.exports.donateModel = mongoose.model('donates', donateSchema);
+
 const orderSchema = mongoose.Schema({
     products: [{
         uid: {
@@ -262,10 +323,12 @@ const orderSchema = mongoose.Schema({
     status: {
         type: String,
         trim: true,
+        require: [true, 'Undefined status!']
     },
     service: {
         type: String,
         trim: true,
+        require: [true, 'Unđefined service!']
     },
     paymentMethod: {
         type: Number,
