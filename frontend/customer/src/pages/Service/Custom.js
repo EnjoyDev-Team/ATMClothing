@@ -10,6 +10,8 @@ import useAxios from '../../hooks/useAxios';
 import ButtonCT from '../../components/ButtonCT/ButtonCT';
 import addBtn from '../../assets/imgs/service/add-btn.png';
 import Details from './screens/Details';
+import PaymentDelivery from './screens/PaymentDelivery';
+import PaymentMethod from './screens/PaymentMethod';
 
 const Custom = () => {
   const screens = [CustomFormStep1, OptionalDetails, FormStep3, FormStepFinal];
@@ -24,14 +26,14 @@ const Custom = () => {
     if (!isLoading && !error && response.data) {
       const newproductList = response.data.products.map((el) => ({
         ...el,
-        content: [el.category, el.status, el.amount],
-        title: ['Danh mục', 'Tình trạng', 'Số lượng'],
+        content: [el.category, el.status, el.amount, el.idea_description],
+        title: ['Danh mục', 'Tình trạng', 'Số lượng', 'Ý tưởng'],
       }));
       setProduct((prev) => [...prev, ...newproductList]);
     }
   }, [isLoading]);
 
-  const DetailScreen = [Details];
+  const DetailScreen = [Details, PaymentDelivery, PaymentMethod];
 
   return (
         <div className={classes.body}>
@@ -42,8 +44,9 @@ const Custom = () => {
             <ServiceDetails
               screens={DetailScreen}
               productDetails={product}
+              service="custom"
               button={(
-                    <ButtonCT className={classes.addbtn} onClick={() => setAddNewProduct(true)}>
+                    <ButtonCT type="button" className={classes.addbtn} onClick={() => setAddNewProduct(true)}>
                         <div className={classes.addbtn__content}>
                             <span>Thêm sản phẩm</span>
                             <img width={27} src={addBtn} alt="add" />

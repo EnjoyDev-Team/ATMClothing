@@ -1,53 +1,52 @@
+/* eslint-disable jsx-a11y/no-static-element-interactions */
+/* eslint-disable jsx-a11y/click-events-have-key-events */
 /* eslint-disable implicit-arrow-linebreak */
 /* eslint-disable indent */
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faClock } from '@fortawesome/free-solid-svg-icons';
 import classes from './Order.module.scss';
 
-const orderList = [
-    {
-        order: 'Áo blazer',
-        name: 'Áo blazer',
-        request: 'Custom',
-        state: 'Chờ nhận hàng',
-    },
-    {
-        order: 'Set đầm phối',
-        name: 'Set đầm phối',
-        request: 'Custom',
-        state: 'Đang kiểm tra',
-    },
-    {
-        order: 'Set đầm phối',
-        name: 'Đầm phối',
-        request: 'Bán',
-        state: 'Chờ nhận hàng',
-    },
-];
+const Order = ({ orderList, id }) => {
+    const statusClass = {
+        'Đang kiểm tra': classes.processing,
+        'Chờ nhận hàng': classes.waiting,
+        'Đã hoàn thành': classes.success,
+    };
 
-const Order = () =>
-    orderList.map((item, index) => (
-        <div key={+index} className={classes.body}>
-            <div className={classes.date__container}>
-                <FontAwesomeIcon icon={faClock} className={classes.icon} />
-                <span className={classes.date}>22/9/2022</span>
-            </div>
-            <div className={classes.content__container}>
-                <div className={classes.left__section}>
-                    <p>Đơn hàng</p>
-                    <p>Tên gợi nhớ</p>
-                    <p>Yêu cầu</p>
-                    <p>Trạng thái</p>
-                </div>
-                <div className={classes.right__section}>
-                    <p>{item.order}</p>
-                    <p>{item.name}</p>
-                    <p>{item.request}</p>
-                    <p className={classes.state}>{item.state}</p>
-                </div>
-            </div>
-        </div>
-    ));
+    const navigate = useNavigate();
+
+    return orderList && orderList.length
+        ? orderList.map((item, index) => (
+              <div
+                onClick={() => navigate(`/services/orders/${item.code}`)}
+                key={+index}
+                className={`${classes.body}${id === item.code ? ` ${classes.active}` : ''}`}
+              >
+                  <div className={classes.date__container}>
+                      <FontAwesomeIcon icon={faClock} className={classes.icon} />
+                      <span className={classes.date}>
+                          {new Date(item.create_at).toLocaleDateString('vi', {
+                              timeZone: 'Asia/Ho_Chi_Minh',
+                          })}
+                      </span>
+                  </div>
+                  <div className={classes.content__container}>
+                      <div className={classes.left__section}>
+                          <p>Đơn hàng</p>
+                          <p>Yêu cầu</p>
+                          <p>Trạng thái</p>
+                      </div>
+                      <div className={classes.right__section}>
+                          <p>{item.code}</p>
+                          <p>{item.service}</p>
+                          <p className={`${statusClass[item.status]}`}>{item.status}</p>
+                      </div>
+                  </div>
+              </div>
+          ))
+        : '';
+};
 
 export default Order;

@@ -1,5 +1,6 @@
 /* eslint-disable react/forbid-prop-types */
 import React, { useEffect, useRef, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import PropTypes from 'prop-types';
 // import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 // import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
@@ -7,34 +8,38 @@ import BoxWrapper from '../../BoxWrapper/BoxWrapper';
 import ButtonCT from '../../ButtonCT/ButtonCT';
 import classes from './ServiceDetails.module.scss';
 import { axiosClient } from '../../../api/axios';
+import { OrderIDGenerator } from '../../../utils/IDGenerator';
 
-const ServiceDetails = ({ button, productDetails, screens }) => {
+const ServiceDetails = ({ button, productDetails, screens, service, totalPrice }) => {
   const [step, setStep] = useState(0);
   const paymentData = useRef('');
   const [payment, setPayment] = useState(false);
   const [isPayment, setIsPayment] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
+  const navigate = useNavigate();
 
   useEffect(() => {
-    const total = productDetails && productDetails.length
-      ? productDetails.reduce((prev, cur) => prev + +cur.price.replace(/[^0-9]+/g, ''), 0)
-      : 0;
-
     paymentData.current = {
       products: productDetails,
       status: 'Đang kiểm tra',
-      service: 'Sell',
-      totalPrice: `${`${total}`.replace(/\B(?=(\d{3})+(?!\d))/g, '.')}đ`,
+      service,
+      ...totalPrice
     };
+
+    setIsLoading(false);
   }, [productDetails]);
 
   const CancelPayment = () => {
-    paymentData.current = { products: productDetails };
+    paymentData.current = {
+      products: productDetails,
+      status: 'Đang kiểm tra',
+      service,
+      ...totalPrice
+    };
 
     setPayment(false);
     setStep(0);
   };
-
-  const goBack = () => setStep((prev) => (prev > 0 ? prev - 1 : prev));
 
   const handleNext = (event) => {
     event.preventDefault();
@@ -45,12 +50,14 @@ const ServiceDetails = ({ button, productDetails, screens }) => {
       console.log(paymentData.current);
       setIsPayment(true);
       axiosClient
-        .post('/services', { paymentData: { ...paymentData.current, uid: '123acb123ns3' } })
+        .post('/services', {
+          paymentData: { ...paymentData.current, uid: '123acb123ns3', code: OrderIDGenerator() },
+        })
         .then((res) => {
           console.log(res.data);
           setIsPayment(false);
           setPayment(false);
-          setStep(0);
+          navigate(`/services/orders/${res.data.order.code}`);
         })
         .catch((err) => console.log(err));
       return;
@@ -70,23 +77,19 @@ const ServiceDetails = ({ button, productDetails, screens }) => {
   const buttons = step === 0 ? (
     button
   ) : (
-      // <button
-      //   type="button"
-      //   onClick={() => setStep((prev) => (prev > 0 ? prev - 1 : prev))}
-      //   className={classes.back__btn}
-      // >
-      //     <span>Go back</span>
-      //     <FontAwesomeIcon icon={faArrowLeft} />
-      // </button>
-      <> </>
+            // <button
+            //   type="button"
+            //   onClick={() => setStep((prev) => (prev > 0 ? prev - 1 : prev))}
+            //   className={classes.back__btn}
+            // >
+            //     <span>Go back</span>
+            //     <FontAwesomeIcon icon={faArrowLeft} />
+            // </button>
+            <> </>
   );
 
   const maxHeight = step === 0 ? '41.3rem' : '';
   const minHeight = step === 2 ? '28.8rem' : '';
-
-  useEffect(() => {
-    console.log(paymentData.current);
-  });
 
   return (
         <form className={classes.main} onSubmit={handleNext}>
@@ -110,7 +113,7 @@ const ServiceDetails = ({ button, productDetails, screens }) => {
                         <div className={classes['order__content-item']}>
                             <div>2</div>
                             <div>2</div>
-                            <div>130.000đ</div>
+                            <div>{ totalPrice.totalPrice ? totalPrice.totalPrice : '' }</div>
                         </div>
                     </div>
                     <div className={classes.order__content__controls}>
@@ -121,7 +124,13 @@ const ServiceDetails = ({ button, productDetails, screens }) => {
                           content="Hủy"
                           disabled={isPayment === true}
                         />
-                        <ButtonCT type="submit" greenLinear content="Thanh toán" />
+                        <ButtonCT
+                          type="submit"
+                          greenLinear
+                          content="Thanh toán"
+                          disabled={isLoading === true}
+                          loading={isPayment === true}
+                        />
                     </div>
                 </>
             </BoxWrapper>
@@ -132,6 +141,10 @@ const ServiceDetails = ({ button, productDetails, screens }) => {
 ServiceDetails.propTypes = {
   button: PropTypes.element,
   screens: PropTypes.arrayOf(PropTypes.elementType).isRequired,
+  service: PropTypes.string.isRequired,
+  totalPrice: PropTypes.shape({
+    totalPrice: PropTypes.string
+  }),
   productDetails: PropTypes.arrayOf(
     PropTypes.shape({
       name: PropTypes.string.isRequired,
@@ -145,6 +158,7 @@ ServiceDetails.propTypes = {
 ServiceDetails.defaultProps = {
   button: undefined,
   productDetails: [],
+  totalPrice: {},
 };
 
 export default ServiceDetails;

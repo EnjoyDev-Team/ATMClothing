@@ -6,11 +6,8 @@ import DetailCard from '../../../components/DetailCard/DetailCard';
 const Details = ({ productDetails }) => (
     <>
         {productDetails && productDetails.length
-          ? productDetails.map((el, index) => {
-            const keys = `${el.name}_${index}`;
-            return <DetailCard key={keys} details={el} />;
-          })
-          : 'loading...'}
+          ? productDetails.map((el) => <DetailCard key={el._id} details={el} />)
+          : !productDetails ? 'loading...' : 'Vui lòng thêm sản phẩm để tiếp tục sử dụng dịch vụ'}
         {}
     </>
 );

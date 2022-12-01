@@ -19,6 +19,7 @@ import Donate from '../pages/Service/Donate';
 import Shopping from '../pages/shopping/Shopping';
 import Detail from '../pages/detail_request/Detail';
 import PaymentProduct from '../pages/PaymentProduct/PaymentProduct';
+import ServiceOrdersDetails from '../pages/detail_request/ServiceOrdersDetails';
 
 const Navigation = () => {
     const authenticated = true;
@@ -42,9 +43,11 @@ const Navigation = () => {
                     <Route path="sale" name="sale" element={<Sell />} />
                     <Route path="custom" name="custom" element={<Custom />} />
                     <Route path="donate" name="donate" element={<Donate />} />
+                    <Route path="orders" name="orders" element={<ServiceOrdersDetails />}>
+                        <Route path=":id" element={<> </>} />
+                    </Route>
                 </Route>
 
-<<<<<<< HEAD
                 {/* PROTECTED ROUTE */}
                 <Route element={<PrivateRoute isAllowed={authenticated} redirectPath="/login" />}>
                     {/* USER ROUTE */}
@@ -52,13 +55,6 @@ const Navigation = () => {
                     <Route path="/detailOrder" name="detailOrder" element={<Detail />} />
                     <Route path="/paymentproduct" element={<PaymentProduct />} />
                 </Route>
-=======
-              {/* ShoppingCart + Payment ROUTE */}
-              <Route path="/shopping">
-                  <Route index element={<Shopping />} />
-                  <Route path="payment" element={<>Payment Page</>} />
-              </Route>
->>>>>>> 092860a (update: routes)
 
                 {/* PRODUCT ROUTE */}
                 <Route path="/products">

@@ -19,6 +19,7 @@ const Sell = () => {
   const [addNewProduct, setAddNewProduct] = useState(false);
 
   const [product, setProduct] = useState([]);
+  const [totalPrice, setTotalPrice] = useState({ totalPrice: '0đ' });
 
   const [response, error, isLoading] = useAxios('get', '/services/sell', {}, {}, []);
 
@@ -27,9 +28,15 @@ const Sell = () => {
       const newproductList = response.data.products.map((el) => ({
         ...el,
         content: [el.category, el.status, el.amount],
-        title: ['Danh mục', 'Tình trạng', 'Số lượng']
+        title: ['Danh mục', 'Tình trạng', 'Số lượng'],
       }));
-      setProduct(prev => [...prev, ...newproductList]);
+      setProduct((prev) => [...prev, ...newproductList]);
+      setTotalPrice({
+        totalPrice: `${`${newproductList.reduce(
+          (prev, cur) => prev + +cur.price.replace(/[^0-9]+/g, ''),
+          0
+        )}`.replace(/\B(?=(\d{3})+(?!\d))/g, '.')}đ`,
+      });
     }
   }, [isLoading]);
 
@@ -44,8 +51,10 @@ const Sell = () => {
             <ServiceDetails
               screens={detailsScreen}
               productDetails={product}
+              totalPrice={totalPrice}
+              service="sell"
               button={(
-                    <ButtonCT className={classes.addbtn} onClick={() => setAddNewProduct(true)}>
+                    <ButtonCT type="button" className={classes.addbtn} onClick={() => setAddNewProduct(true)}>
                         <div className={classes.addbtn__content}>
                             <span>Thêm sản phẩm</span>
                             <img width={27} src={addBtn} alt="add" />
