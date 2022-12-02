@@ -166,7 +166,7 @@ const Home = () => {
           <div className={classes.donations__describe__listProducts}>
             {
               listProducts.slice(0, 4).map((el, idx) => (
-                <div className={classes.donations__describe__listProducts__product}>
+                <div key={+idx} className={classes.donations__describe__listProducts__product}>
                   <CardProduct Details={el} />
                 </div>
               ))

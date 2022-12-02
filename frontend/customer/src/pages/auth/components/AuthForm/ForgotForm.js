@@ -1,19 +1,30 @@
+/* eslint-disable max-len */
+/* eslint-disable no-unused-vars */
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { RecaptchaVerifier, signInWithPhoneNumber, getIdToken, onAuthStateChanged } from 'firebase/auth';
+import axios from 'axios';
 import { auth } from '../../../../configs/firebase-config';
 import classes from './AuthForm.module.scss';
 import InputCT from '../InputCT/InputCT';
 import ButtonCT from '../../../../components/ButtonCT/ButtonCT';
 import SocialLogin from '../SocialLogin/SocialLogin';
 import { validatePassword, validatePhone } from './handler';
+import { axiosPrivate } from '../../../../api/axios';
+import useAxiosPrivate from '../../../../hooks/useAxiosPrivate';
 
 const ForgotForm = () => {
   const [phone, setPhone] = useState('');
   const [otp, setOTP] = useState('');
   const [step, setStep] = useState(1);
   const [token, setToken] = useState('');
+  const axiosPrivate = useAxiosPrivate();
+  const [password, setPassword] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
+  const [verifyToken, setVerifyToken] = useState('');
+  const [tokenFirebase, setTokenFirebase] = useState('');
 
+  const navigate = useNavigate();
   console.log(phone);
 
   const generateRecaptcha = () => {
@@ -25,8 +36,19 @@ const ForgotForm = () => {
     }, auth);
   };
 
-  const requestOTP = () => {
+  const requestOTP = (e) => {
+    e.preventDefault();
     if (phone !== '') {
+      const obj = {
+        phone
+      };
+      axiosPrivate.post('/auth/forgot', obj).then(res => {
+        console.log(res.data);
+        // auth.setAccessToken(res.data.access_token);
+        setVerifyToken(res.data.verify_token);
+      }).catch(err => {
+        console.log(err);
+      });
       generateRecaptcha();
       const appVerifier = window.recaptchaVerifier;
       signInWithPhoneNumber(auth, `+84${phone}`, appVerifier)
@@ -40,7 +62,8 @@ const ForgotForm = () => {
     }
   };
 
-  const confirmOTP = () => {
+  const confirmOTP = (e) => {
+    e.preventDefault();
     const { confirmationResult } = window;
     console.log(otp);
     if (otp.length === 6) {
@@ -48,13 +71,12 @@ const ForgotForm = () => {
         // User signed in successfully.
         console.log(result);
         setStep(3);
-
         setToken(confirmationResult.user);
-
         onAuthStateChanged(auth, async (user) => {
           if (user) {
-            const token = await getIdToken(user);
-            console.log(token);
+            setTokenFirebase(await getIdToken(user));
+            // const token = await getIdToken(user); 0862573811
+            console.log(await getIdToken(user));
           }
         });
       }).catch((error) => {
@@ -65,12 +87,32 @@ const ForgotForm = () => {
     }
   };
 
-  // const handleSubmitPassword = () => {
+  const handleConfirmPassword = (e) => {
+    e.preventDefault();
+    const obj = {
+      phone,
+      password,
+      tokenVerify: verifyToken,
+      tokenFirebase,
+    };
 
-  // };
+    console.log(password);
+    console.log(confirmPassword);
+    console.log(verifyToken);
+    console.log(tokenFirebase);
+
+    if (password === confirmPassword) {
+      axiosPrivate.post('/auth/forgot/password', obj).then(res => {
+        console.log(res.data);
+        navigate('/login');
+      }).catch(err => {
+        console.log(err);
+      });
+    }
+  };
 
   const StepPhone = (
-    <>
+    <form onSubmit={requestOTP}>
       <InputCT
         placeholder="Nhập số điện thoại"
         type="tel"
@@ -84,6 +126,7 @@ const ForgotForm = () => {
         primary
         borderRadius
         medium
+        type="submit"
         className={classes.btn}
         onClick={requestOTP}
       >
@@ -91,11 +134,11 @@ const ForgotForm = () => {
       </ButtonCT>
 
       <div id="verify-container" />
-    </>
+    </form>
   );
 
   const StepOTP = (
-    <>
+    <form onSubmit={confirmOTP}>
       <p className={classes.notice}>Chúng tôi đã gửi mã OTP vào số điện thoại của bạn</p>
       <InputCT
         placeholder="Nhập OTP"
@@ -125,27 +168,45 @@ const ForgotForm = () => {
       >
         Xác nhận
       </ButtonCT>
-    </>
+    </form>
   );
 
   const StepPassword = (
-    <>
-      <InputCT placeholder="Nhập mật khẩu" type="password" validation={validatePassword} required />
-      <InputCT placeholder="Nhập lại mật khẩu" type="password" validation={validatePassword} required />
+    <form onSubmit={handleConfirmPassword}>
+      <InputCT
+        placeholder="Nhập mật khẩu"
+        type="password"
+        setValue={setPassword}
+        validation={validatePassword}
+        required
+      />
+      <InputCT
+        placeholder="Nhập lại mật khẩu"
+        type="password"
+        setValue={setConfirmPassword}
+        validation={validatePassword}
+        required
+      />
 
-      <ButtonCT primary borderRadius medium className={classes.btn}>
+      <ButtonCT
+        primary
+        borderRadius
+        medium
+        className={classes.btn}
+        onClick={handleConfirmPassword}
+      >
         Cập nhật
       </ButtonCT>
-    </>
+    </form>
   );
 
   return (
     <div className={classes['auth-form']}>
       <div className={classes['auth-form__form']}>
         <h3>Quên mật khẩu</h3>
-        {step === 1 && StepPhone}
-        {step === 2 && StepOTP}
-        {step === 3 && StepPassword}
+          {step === 1 && StepPhone}
+          {step === 2 && StepOTP}
+          {step === 3 && StepPassword}
       </div>
 
       <div className={classes['auth-form__footer']}>
