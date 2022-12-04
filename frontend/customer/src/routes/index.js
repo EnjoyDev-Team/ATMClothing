@@ -64,6 +64,7 @@ const Navigation = () => {
 
               <Route path="*" name="notFound" element={<NotFound />} />
           </Route>
+
         </Routes>
   );
 };

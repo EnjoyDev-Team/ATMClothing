@@ -1,7 +1,7 @@
 /* eslint-disable react/forbid-prop-types */
 import { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
-import axiosClient from '../api/axios';
+import { axiosClient } from '../api/axios';
 
 const useAxios = (method, api, body, options, deps) => {
   const [isLoading, setLoading] = useState(false);

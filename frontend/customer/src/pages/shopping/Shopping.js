@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import classes from './Shopping.module.scss';
 import Cartproductcard from '../../components/cartproductcard/CartProductCard';
@@ -62,7 +62,12 @@ const listProducts = [
   },
 ];
 
-const Shopping = () => (
+const Shopping = () => {
+  const [state, setState] = useState(false);
+  const handleState = () => {
+    setState((prev) => !prev);
+  };
+  return (
     <div>
         <div className={classes.header}>
             <h1>Giỏ hàng của bạn</h1>
@@ -141,7 +146,8 @@ const Shopping = () => (
             </div>
         </div>
     </div>
-);
+  );
+};
 
 Shopping.propTypes = {
 

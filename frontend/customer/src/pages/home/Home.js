@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowDown } from '@fortawesome/free-solid-svg-icons';
 import { useSelector } from 'react-redux';
@@ -13,63 +13,44 @@ import doDungGiaDinh from '../../assets/imgs/doDungGiaDinh.png';
 import khac from '../../assets/imgs/khac.png';
 import Slider from '../../components/Slider/Slider';
 import { SliderData } from '../../components/Slider/SliderData';
-
-const listProducts = [
-  {
-    img: quanaoNu,
-    name: 'Quần Áo Nữ',
-    address: 'Cơ sở ĐH Ngân Hàng',
-    price: '100.000',
-  },
-  {
-    img: quanaoNam,
-    name: 'Quần Áo Nam',
-    address: 'Cơ sở ĐH Khoa Học Tư Nhiên',
-    price: '200.000',
-  },
-  {
-    img: thoiTrangNu,
-    name: 'Thời Trang Nữ',
-    address: 'Cơ sở ĐH Khoa Học Tư Nhiên',
-    price: '300.000',
-  },
-  {
-    img: thoiTrangNam,
-    name: 'Thời Trang Nam',
-    address: 'Cơ sở ĐH Ngân Hàng',
-    price: '400.000',
-  },
-  {
-    img: choTreem,
-    name: 'Thời Trang Cho Trẻ Em',
-    address: 'Cơ sở ĐH Ngân Hàng',
-    price: '40.000',
-  },
-  {
-    img: doDungGiaDinh,
-    name: 'Đồ Dùng Gia đình',
-    address: 'Cơ sở ĐH Khoa Học Tự Nhiên',
-    price: '1.000.000',
-  },
-  {
-    img: choTreem,
-    name: 'Thời Trang Cho Trẻ Em',
-    address: 'Cơ sở ĐH Khoa Học Tự Nhiên',
-    price: '80.000',
-  },
-  {
-    img: thoiTrangNam,
-    name: 'Thời Trang Nam',
-    address: 'Cơ sở ĐH Ngân Hàng',
-    price: '400.000',
-  },
-];
+import SliderFooter from '../../components/SliderFooter/SliderFooter';
+import CardSlider from '../../components/CardSlider/CardSlider';
+import imgHome from '../../assets/imgs/imgHome.jpg';
+import Report from '../../components/Report/Report';
+import useAxios from '../../hooks/useAxios';
 
 const Home = () => {
-  const photo = useSelector((state) => state.photos);
-  console.log(photo);
+  const [flashSale, setFlashSale] = useState('');
+  const [response, error, isLoading] = useAxios('get', '/products/san-pham-noi-bat', {}, {}, []);
+
+  useEffect(() => {
+    if (isLoading === false && !error && response.data) {
+      setFlashSale(response.data);
+    }
+  }, [isLoading]);
+
+  const [donation, setDonation] = useState('');
+  const [response0d, error0d, isLoading0d] = useAxios('get', '/products/goc-0d', {}, {}, []);
+  useEffect(() => {
+    if (isLoading0d === false && !error0d && response0d.data) {
+      setDonation(response0d.data);
+    }
+  }, [isLoading0d]);
+
+  const [TTN, setTTN] = useState('');
+  const [responseTTN, errorTTN, isLoadingTTN] = useAxios('get', '/products?fields=-other_img,-__v&limit=6&category=thoi-trang-nu-ao-nu', {}, {}, []);
+  useEffect(() => {
+    console.log(responseTTN.data);
+    if (isLoadingTTN === false && !errorTTN && responseTTN.data) {
+      setTTN(responseTTN.data);
+    }
+  }, [isLoadingTTN]);
+
   return (
     <>
+    <div className={classes.imghome}>
+      <img src={imgHome} alt="" />
+    </div>
     <Slider data={SliderData} />
       <div className={classes.header}>
         <h2 className={classes.header__content}>Danh mục yêu thích</h2>
@@ -127,7 +108,7 @@ const Home = () => {
       </div>
       <div className={classes.listProducts}>
           {
-            listProducts.slice(0, 6).map((el, idx) => (
+            flashSale && flashSale.map((el, idx) => (
               <div key={+idx} className={classes.listProducts__product}>
                 <CardProduct Details={el} />
               </div>
@@ -143,7 +124,7 @@ const Home = () => {
       </div>
       <div className={classes.listProducts}>
         {
-          listProducts.slice(0, 6).map((el, idx) => (
+          TTN && TTN.slice(0, 6).map((el, idx) => (
           <div key={+idx} className={classes.listProducts__product}>
             <CardProduct Details={el} />
           </div>
@@ -165,16 +146,41 @@ const Home = () => {
           </div>
           <div className={classes.donations__describe__listProducts}>
             {
-              listProducts.slice(0, 4).map((el, idx) => (
-                <div className={classes.donations__describe__listProducts__product}>
+              donation && donation.slice(0, 4).map((el, idx) => (
+                <div key={+idx} className={classes.donations__describe__listProducts__product}>
                   <CardProduct Details={el} />
                 </div>
               ))
             }
           </div>
         </div>
-        <div className={classes.donations__carproduct}>
-          <CardProduct cardproduct2 Details={listProducts[5]} />
+        {
+          donation.length >= 4
+            ? (
+                <div className={classes.donations__carproduct}>
+                            <CardProduct cardproduct2 Details={donation[4]} />
+                </div>
+            ) : ''
+        }
+      </div>
+      <div className={classes.sliderfooter}>
+        <div className={classes.sliderfooter__header}>
+              <h1 className={classes.sliderfooter__header__content}>Kết nối vùng cao</h1>
+        </div>
+        <SliderFooter />
+      </div>
+      <div className={classes.containerreport}>
+        <h1 className={classes.containerreport__header}>Phản hồi từ khách hàng</h1>
+        <div className={classes.containerreport__listreport}>
+          <div className={classes.containerreport__listreport__report}>
+            <Report cardreport />
+          </div>
+          <div className={classes.containerreport__listreport__report}>
+            <Report />
+          </div>
+          <div className={classes.containerreport__listreport__report}>
+            <Report cardreport />
+          </div>
         </div>
       </div>
     </>

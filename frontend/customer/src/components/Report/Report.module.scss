@@ -1,0 +1,98 @@
+.container {
+    width: 32rem;
+    display: flex;
+    flex-direction: column;
+    background-color: #fff;
+    border-radius: 15px;
+    &__report {
+        margin: 1.8rem 1.4rem;
+        background: linear-gradient(180deg, #000092 0%, #FF00F3 100%);
+        display: flex;
+        text-align: center;
+        flex-direction: column;
+        color: #fff;
+
+        &__content {
+            padding: 6rem 2.5rem;
+            font-size: 2rem;
+            line-height: 2.4rem;
+        }
+
+        &__icon {
+            font-size: 7rem;
+            padding-bottom: 3rem;
+        }
+    }
+
+    &__information {
+        display: flex;
+        text-align: center;
+        flex-direction: column;
+
+        &__img {
+            img {
+                padding-top: 5px;
+                width: 5rem;
+                border-radius: 50%;
+            }
+        }
+
+        &__name {
+            font-size: 2rem;
+            font-weight: 800;
+            padding-top: 0.6rem;
+            padding-bottom: 1.2rem;
+        }
+    }
+}
+
+.cardreport.container {
+        width: 32rem;
+        display: flex;
+        flex-direction: column;
+        background-color: #fff;
+        border-radius: 0px;
+        .container__report {
+            margin: 0 1.4rem;
+            display: flex;
+            text-align: center;
+            flex-direction: column;
+            background: #fff;
+
+            &__content {
+                padding: 5rem 2.5rem;
+                font-size: 2rem;
+                color: #ADADAD;
+                // color:#d62178;
+                line-height: 2.4rem;
+            }
+
+            &__icon {
+                font-size: 7rem;
+                padding-bottom: 3rem;
+                color: #d62178;
+            }
+        }
+
+        .container__information {
+            display: flex;
+            text-align: center;
+            flex-direction: column;
+            background: rgba(60, 125, 8, 0.4);
+
+            &__img {
+                padding-top: 1.8rem;
+                img {
+                    // width: 5rem;
+                    border-radius: 50%;
+                }
+            }
+
+           &__name {
+                font-size: 2rem;
+                font-weight: 800;
+                padding-top: 0.6rem;
+                padding-bottom: 1.2rem;
+            }
+        }
+}

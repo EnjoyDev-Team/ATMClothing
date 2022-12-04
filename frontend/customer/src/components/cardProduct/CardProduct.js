@@ -1,3 +1,4 @@
+/* eslint-disable react/forbid-prop-types */
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faLocationDot } from '@fortawesome/free-solid-svg-icons';
@@ -18,10 +19,12 @@ const CardProduct = ({ cardproduct2, Details }) => (
                         {' '}
                         <u>đ</u>
                     </h1>
-                    <div className={classes.cardproduct__address}>
+                    { Details.facility.length ? (
+                      <div className={classes.cardproduct__address}>
                         <i><FontAwesomeIcon icon={faLocationDot} /></i>
-                        <p>{Details.address}</p>
-                    </div>
+                        <p>{Details.facility[0].name}</p>
+                      </div>
+                    ) : <span>&nbsp;</span>}
             </div>
             <div>
             <ButtonCT primary medium className={classes.btn}>Thêm vào giỏ hàng</ButtonCT>
@@ -37,7 +40,7 @@ CardProduct.propTypes = {
     img: PropTypes.string.isRequired,
     name: PropTypes.string.isRequired,
     price: PropTypes.string.isRequired,
-    address: PropTypes.string.isRequired,
+    facility: PropTypes.array.isRequired,
   }),
 };
 CardProduct.defaultProps = {
