@@ -19,7 +19,11 @@ const Header = () => {
   const [isOpen, setOpen] = useState(false);
   const [fixedNavbar, setFixedNavbar] = useState(false);
   const [isAccount, setAccount] = useState(true);
+<<<<<<< HEAD
   const [isAvt, setAvt] = useState(!!auth.getAccessToken());
+=======
+  const [isAvt, setAvt] = useState(false);
+>>>>>>> 956be43 (update logic productlist, search, productdetail)
   const [isSearch, setSearch] = useState('');
   const navigate = useNavigate();
 
@@ -27,12 +31,16 @@ const Header = () => {
     setOpen((prev) => !prev);
   };
 
+<<<<<<< HEAD
   const handleBlur = (e) => {
     if (e.nativeEvent.explicitOriginalTarget
         && e.nativeEvent.explicitOriginalTarget === e.nativeEvent.originalTarget) {
       return;
     }
 
+=======
+  const handleBlur = () => {
+>>>>>>> 956be43 (update logic productlist, search, productdetail)
     setOpen((prev) => {
       if (prev === false) {
         return prev;
@@ -171,6 +179,10 @@ const Header = () => {
                                     <img className={classes['header__avatar-img']} src={avatar} alt="" />
                                     {isOpen && <Profile onClick={handleClickProfile} />}
                                 </button>
+<<<<<<< HEAD
+=======
+                                {isOpen && <Profile onClick={handleClickProfile} />}
+>>>>>>> 956be43 (update logic productlist, search, productdetail)
                             </div>
                         )}
                     </div>
