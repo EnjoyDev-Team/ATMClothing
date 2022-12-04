@@ -13,6 +13,7 @@ import doDungGiaDinh from '../../assets/imgs/doDungGiaDinh.png';
 import khac from '../../assets/imgs/khac.png';
 import Slider from '../../components/Slider/Slider';
 import { SliderData } from '../../components/Slider/SliderData';
+import auth from '../../utils/auth';
 
 const listProducts = [
   {
@@ -67,7 +68,7 @@ const listProducts = [
 
 const Home = () => {
   const photo = useSelector((state) => state.photos);
-  console.log(photo);
+  console.log(auth.getPhone());
   return (
     <>
     <Slider data={SliderData} />

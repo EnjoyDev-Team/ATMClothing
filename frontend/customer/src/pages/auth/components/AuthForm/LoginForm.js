@@ -1,5 +1,3 @@
-/* eslint-disable no-unused-vars */
-/* eslint-disable max-len */
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 import React, { useState } from 'react';
@@ -9,49 +7,46 @@ import InputCT from '../InputCT/InputCT';
 import ButtonCT from '../../../../components/ButtonCT/ButtonCT';
 import classes from './AuthForm.module.scss';
 import { validatePassword, validatePhone } from './handler';
-import { axiosClient } from '../../../../api/axios';
 import auth from '../../../../utils/auth';
 import useAxiosPrivate from '../../../../hooks/useAxiosPrivate';
+import useMergeState from '../../../../hooks/useMergeState';
 
 const LoginForm = () => {
-  const axiosPrivate = useAxiosPrivate();
   const navigate = useNavigate();
+  const axiosPrivate = useAxiosPrivate();
+
   const [phone, setPhone] = useState('');
-  const [password, settPassword] = useState('');
+  const [password, setPassword] = useState('');
+  const [state, setState] = useMergeState({
+    error: '',
+    loading: false
+  });
 
   const handleLogin = (event) => {
     event.preventDefault();
-    if (phone === '' || password === '') {
-      console.log('Sai');
-      console.log(phone);
-      console.log(password);
-    } else {
+    if (phone !== '' && password !== '' && phone.length >= 10) {
+      setState({
+        loading: true,
+        error: ''
+      });
       const object = {
         phone,
         password,
       };
-      console.log(phone);
-      console.log(password);
       axiosPrivate.post(
         '/auth/login',
         object
       ).then(res => {
-        console.log(res.data);
-        auth.setAccessToken(res.data.access_token);
+        auth.login(res.data);
         navigate('/');
       }).catch(err => {
         console.log(err);
+        setState({
+          loading: false,
+          error: 'Số điện thoại hoặc mật khẩu không đúng. Vui lòng thử lại!'
+        });
       });
     }
-  };
-
-  const getOrder = () => {
-    axiosPrivate.get('/orders')
-      .then(res => {
-        console.log(res.data);
-      }).catch(err => {
-        console.log(err);
-      });
   };
 
   return (
@@ -62,8 +57,22 @@ const LoginForm = () => {
       >
         <h3>Đăng nhập</h3>
 
-        <InputCT placeholder="Nhập số điện thoại" type="tel" setValue={setPhone} validation={validatePhone} maxLength="10" required />
-        <InputCT placeholder="Nhập mật khẩu" type="password" setValue={settPassword} validation={validatePassword} required />
+        <InputCT
+          placeholder="Nhập số điện thoại"
+          type="tel"
+          setValue={setPhone}
+          validation={validatePhone}
+          maxLength="10"
+          required
+        />
+        <InputCT
+          placeholder="Nhập mật khẩu"
+          type="password"
+          message={state.error}
+          setValue={setPassword}
+          validation={validatePassword}
+          required
+        />
         <Link
           to="/forgot"
           className={classes.forgot}
@@ -75,10 +84,8 @@ const LoginForm = () => {
           primary
           borderRadius
           medium
+          loading={state.loading}
           className={classes.btn}
-        // onClick={() => refreshToken()}
-        // onClick={() => setIsLLogin(pre => !pre)}
-        // onClick={getOrder}
           onClick={handleLogin}
         >
           Đăng nhập

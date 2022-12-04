@@ -1,30 +1,29 @@
-/* eslint-disable max-len */
-/* eslint-disable no-unused-vars */
-import React, { useState } from 'react';
-import PropTypes from 'prop-types';
+/* eslint-disable jsx-a11y/no-static-element-interactions */
+/* eslint-disable jsx-a11y/click-events-have-key-events */
+import React, { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { RecaptchaVerifier, signInWithPhoneNumber, getIdToken, onAuthStateChanged } from 'firebase/auth';
-import { result } from 'lodash';
 import classes from './AuthForm.module.scss';
 import InputCT from '../InputCT/InputCT';
 import ButtonCT from '../../../../components/ButtonCT/ButtonCT';
 import SocialLogin from '../SocialLogin/SocialLogin';
 import { auth } from '../../../../configs/firebase-config';
-import { validatePassword, validatePhone } from './handler';
+import { validatePassword, validatePhone, validateOTP } from './handler';
 import { axiosPrivate } from '../../../../api/axios';
+import useMergeState from '../../../../hooks/useMergeState';
 
 const RegisterForm = () => {
+  const navigate = useNavigate();
   const [step, setStep] = useState(1);
-  const [token, setToken] = useState('');
+  const [timer, setTimer] = useState(0);
+  const [state, setState] = useMergeState({
+    error: '',
+    loading: false,
+    resend: true
+  });
 
   const [verifyToken, setVerifyToken] = useState('');
   const [tokenFirebase, setTokenFirebase] = useState('');
-  const navigate = useNavigate();
-
-  const [accountWrong, setAccountWrong] = useState(false);
-  const [accountExist, setAccountExist] = useState(false);
-  const [passwordWrong, setPasswordWrong] = useState(false);
-  const [confirmPasswordWrong, setConfirmPasswordWrong] = useState(false);
 
   const [phone, setPhone] = useState('');
   const [OTPConfirm, setOTPConfirm] = useState('');
@@ -40,82 +39,127 @@ const RegisterForm = () => {
     }, auth);
   };
 
-  const requestOTP = (e) => {
+  const resendOTP = () => {
+    if (!state.resend) { return; }
+
+    const appVerifier = window.recaptchaVerifier;
+    signInWithPhoneNumber(auth, `+84${phone}`, appVerifier)
+      .then((confirmationResult) => {
+        window.confirmationResult = confirmationResult;
+        setStep(2);
+        setState({
+          loading: false,
+          error: ''
+        });
+      }).catch((error) => {
+        console.log(error);
+        setState({ loading: false });
+      });
+    setState({ resend: false });
+    setTimer(90);
+  };
+
+  const requestOTP = async (e) => {
     e.preventDefault();
-    if (phone !== '') {
+
+    if (phone !== '' && phone.length >= 10) {
+      setState({ loading: true });
       const obj = {
         phone
       };
       axiosPrivate.post('/auth/register', obj).then(res => {
-        console.log(res.data);
-        // auth.setAccessToken(res.data.access_token);
         setVerifyToken(res.data.verify_token);
-      }).catch(err => {
+
+        generateRecaptcha();
+        const appVerifier = window.recaptchaVerifier;
+        signInWithPhoneNumber(auth, `+84${phone}`, appVerifier)
+          .then((confirmationResult) => {
+            window.confirmationResult = confirmationResult;
+            setStep(2);
+            setState({
+              loading: false,
+              error: ''
+            });
+          }).catch((error) => {
+            console.log(error);
+            setState({ loading: false });
+          });
+        setState({ resend: false });
+        setTimer(90);
+      }).catch((err) => {
         console.log(err);
-      });
-      generateRecaptcha();
-      const appVerifier = window.recaptchaVerifier;
-      signInWithPhoneNumber(auth, `+84${phone}`, appVerifier)
-        .then((confirmationResult) => {
-          window.confirmationResult = confirmationResult;
-          console.log(confirmationResult);
-          setStep(2);
-        }).catch((error) => {
-          console.log(error);
+        setState({
+          loading: false,
+          error: 'Số điện thoại đã có tài khoản! Vui lòng đăng nhập!'
         });
+      });
     }
   };
 
   const handleConfirmOTP = (e) => {
     e.preventDefault();
-    const { confirmationResult } = window;
-    console.log(OTPConfirm);
     if (OTPConfirm.length === 6) {
+      setState({ loading: true });
+      const { confirmationResult } = window;
       confirmationResult.confirm(OTPConfirm).then((result) => {
-        console.log(result);
         setStep(3);
-        setToken(confirmationResult.user);
         onAuthStateChanged(auth, async (user) => {
           if (user) {
-            // const token = await getIdToken(user);
             setTokenFirebase(await getIdToken(user));
-            // const token = await getIdToken(user);
-            console.log(`Vinh: ${await getIdToken(user)}`);
-            // console.log(tokenFirebase);
-            console.log(user);
           }
         });
+        setState({
+          loading: false,
+          error: ''
+        });
       }).catch((error) => {
-        // User couldn't sign in (bad verification code?)
         console.log(error);
-        // ...
+        setState({
+          loading: false,
+          error: 'OTP không hợp lệ. Vui lòng thử lại!'
+        });
       });
     }
   };
 
   const handleConfirmPassword = (e) => {
     e.preventDefault();
-    const objPass = {
-      phone,
-      password,
-      tokenVerify: verifyToken,
-      tokenFirebase,
-    };
-
-    console.log(phone);
-    console.log(password);
-    console.log(verifyToken);
-    console.log(tokenFirebase);
 
     if (password === confirmPassword) {
+      setState({ loading: true });
+      const objPass = {
+        phone,
+        password,
+        tokenVerify: verifyToken,
+        tokenFirebase,
+      };
       axiosPrivate.post('/auth/register/password', objPass).then(res => {
-        console.log(res.data);
         navigate('/login');
       }).catch(err => {
         console.log(err);
+        setState({ loading: false });
       });
+    } else {
+      setState({ error: 'Confirm password không hợp lệ!' });
     }
   };
+
+  useEffect(() => {
+    let timeInterval;
+    if (step === 2 && !state.resend && timer > 0) {
+      timeInterval = setInterval(() => {
+        if (timer > 0) {
+          setTimer(prev => prev - 1);
+        }
+      }, 1000);
+    }
+    if (timer <= 0) {
+      setState({ resend: true });
+    }
+    return () => {
+      clearInterval(timeInterval);
+    };
+  }, [step, state.resend, timer]);
 
   const StepPhone = (
     <form onSubmit={requestOTP}>
@@ -125,13 +169,20 @@ const RegisterForm = () => {
         setValue={setPhone}
         validation={validatePhone}
         maxLength="10"
+        message={state.error}
         required
       />
 
-      <ButtonCT primary borderRadius medium className={classes.btn}>
+      <ButtonCT
+        primary
+        borderRadius
+        medium
+        loading={state.loading}
+        className={classes.btn}
+        onClick={requestOTP}
+      >
         Tiếp tục
       </ButtonCT>
-      <div id="verify-container" />
     </form>
   );
 
@@ -140,19 +191,29 @@ const RegisterForm = () => {
       <InputCT
         placeholder="Nhập OTP"
         setValue={setOTPConfirm}
+        validation={validateOTP}
         type="tel"
         maxLength="6"
+        message={state.error}
         required
       />
       <p className={classes.messageOTP}>
         Bạn không nhận được mã OTP?
         {' '}
-        <span>Gửi lại</span>
+        <span
+          className={`${state.resend ? classes.messageOTP__resend : ''}`}
+          onClick={resendOTP}
+        >
+          Gửi lại
+        </span>
         {' '}
         <span>
           sau
           {' '}
-          <span className={classes.messageOTP__time}>1:59s</span>
+          <span className={classes.messageOTP__time}>
+            {timer}
+            s
+          </span>
         </span>
       </p>
 
@@ -160,6 +221,7 @@ const RegisterForm = () => {
         primary
         borderRadius
         medium
+        loading={state.loading}
         className={classes.btn}
         onClick={handleConfirmOTP}
       >
@@ -196,6 +258,7 @@ const RegisterForm = () => {
         type="password"
         setValue={setConfirmPassword}
         validation={validatePassword}
+        message={state.error}
         required
       />
 
@@ -203,6 +266,7 @@ const RegisterForm = () => {
         primary
         borderRadius
         medium
+        loading={state.loading}
         className={classes.btn}
         onClick={handleConfirmPassword}
       >
@@ -219,6 +283,8 @@ const RegisterForm = () => {
         {step === 2 && StepOTP}
         {step === 3 && StepPassword}
       </div>
+
+      <div id="verify-container" />
 
       <div className={classes['auth-form__footer']}>
         <SocialLogin />

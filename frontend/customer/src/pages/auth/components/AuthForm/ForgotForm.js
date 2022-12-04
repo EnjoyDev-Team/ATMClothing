@@ -1,115 +1,168 @@
-/* eslint-disable max-len */
-/* eslint-disable no-unused-vars */
-import React, { useState } from 'react';
+/* eslint-disable jsx-a11y/no-static-element-interactions */
+/* eslint-disable jsx-a11y/click-events-have-key-events */
+import React, { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { RecaptchaVerifier, signInWithPhoneNumber, getIdToken, onAuthStateChanged } from 'firebase/auth';
-import axios from 'axios';
 import { auth } from '../../../../configs/firebase-config';
 import classes from './AuthForm.module.scss';
 import InputCT from '../InputCT/InputCT';
 import ButtonCT from '../../../../components/ButtonCT/ButtonCT';
 import SocialLogin from '../SocialLogin/SocialLogin';
-import { validatePassword, validatePhone } from './handler';
-import { axiosPrivate } from '../../../../api/axios';
+import { validatePassword, validatePhone, validateOTP } from './handler';
 import useAxiosPrivate from '../../../../hooks/useAxiosPrivate';
+import useMergeState from '../../../../hooks/useMergeState';
 
 const ForgotForm = () => {
-  const [phone, setPhone] = useState('');
-  const [otp, setOTP] = useState('');
-  const [step, setStep] = useState(1);
-  const [token, setToken] = useState('');
+  const navigate = useNavigate();
   const axiosPrivate = useAxiosPrivate();
-  const [password, setPassword] = useState('');
-  const [confirmPassword, setConfirmPassword] = useState('');
+  const [step, setStep] = useState(1);
+  const [timer, setTimer] = useState(0);
+  const [state, setState] = useMergeState({
+    error: '',
+    loading: false,
+    resend: true
+  });
+
   const [verifyToken, setVerifyToken] = useState('');
   const [tokenFirebase, setTokenFirebase] = useState('');
 
-  const navigate = useNavigate();
-  console.log(phone);
+  const [phone, setPhone] = useState('');
+  const [otp, setOTP] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
+  const [password, setPassword] = useState('');
 
   const generateRecaptcha = () => {
-    window.recaptchaVerifier = new RecaptchaVerifier('verify-container', {
-      size: 'invisible',
-      callback: (response) => {
+    if (!window.recaptchaVerifier) {
+      window.recaptchaVerifier = new RecaptchaVerifier('verify-container', {
+        size: 'invisible',
+        callback: (response) => {
         // reCAPTCHA solved, allow signInWithPhoneNumber.
-      }
-    }, auth);
+        }
+      }, auth);
+    }
+  };
+
+  const resendOTP = () => {
+    if (!state.resend) { return; }
+
+    const appVerifier = window.recaptchaVerifier;
+    signInWithPhoneNumber(auth, `+84${phone}`, appVerifier)
+      .then((confirmationResult) => {
+        window.confirmationResult = confirmationResult;
+        setStep(2);
+        setState({
+          loading: false,
+          error: ''
+        });
+      }).catch((error) => {
+        console.log(error);
+        setState({ loading: false });
+      });
+    setState({ resend: false });
+    setTimer(90);
   };
 
   const requestOTP = (e) => {
     e.preventDefault();
-    if (phone !== '') {
+
+    if (phone !== '' && phone.length >= 10) {
+      setState({ loading: true });
       const obj = {
         phone
       };
       axiosPrivate.post('/auth/forgot', obj).then(res => {
-        console.log(res.data);
-        // auth.setAccessToken(res.data.access_token);
         setVerifyToken(res.data.verify_token);
+
+        generateRecaptcha();
+        const appVerifier = window.recaptchaVerifier;
+        signInWithPhoneNumber(auth, `+84${phone}`, appVerifier)
+          .then((confirmationResult) => {
+            window.confirmationResult = confirmationResult;
+            setStep(2);
+            setState({
+              loading: false,
+              error: ''
+            });
+          }).catch((error) => {
+            console.log(error);
+            setState({ loading: false });
+          });
+        setState({ resend: false });
+        setTimer(90);
       }).catch(err => {
         console.log(err);
-      });
-      generateRecaptcha();
-      const appVerifier = window.recaptchaVerifier;
-      signInWithPhoneNumber(auth, `+84${phone}`, appVerifier)
-        .then((confirmationResult) => {
-          window.confirmationResult = confirmationResult;
-          console.log(confirmationResult);
-          setStep(2);
-        }).catch((error) => {
-          console.log(error);
+        setState({
+          loading: false,
+          error: 'Số điện thoại chưa có tài khoản! Vui lòng đăng ký!'
         });
+      });
     }
   };
 
   const confirmOTP = (e) => {
     e.preventDefault();
-    const { confirmationResult } = window;
-    console.log(otp);
     if (otp.length === 6) {
+      setState({ loading: true });
+      const { confirmationResult } = window;
       confirmationResult.confirm(otp).then((result) => {
-        // User signed in successfully.
-        console.log(result);
         setStep(3);
-        setToken(confirmationResult.user);
         onAuthStateChanged(auth, async (user) => {
           if (user) {
             setTokenFirebase(await getIdToken(user));
-            // const token = await getIdToken(user); 0862573811
-            console.log(await getIdToken(user));
           }
         });
+        setState({
+          loading: false,
+          error: ''
+        });
       }).catch((error) => {
-        // User couldn't sign in (bad verification code?)
         console.log(error);
-        // ...
+        setState({
+          loading: false,
+          error: 'OTP không hợp lệ. Vui lòng thử lại!'
+        });
       });
     }
   };
 
   const handleConfirmPassword = (e) => {
     e.preventDefault();
-    const obj = {
-      phone,
-      password,
-      tokenVerify: verifyToken,
-      tokenFirebase,
-    };
-
-    console.log(password);
-    console.log(confirmPassword);
-    console.log(verifyToken);
-    console.log(tokenFirebase);
 
     if (password === confirmPassword) {
-      axiosPrivate.post('/auth/forgot/password', obj).then(res => {
-        console.log(res.data);
+      setState({ loading: true });
+      const objPass = {
+        phone,
+        password,
+        tokenVerify: verifyToken,
+        tokenFirebase,
+      };
+      axiosPrivate.post('/auth/forgot/password', objPass).then(res => {
         navigate('/login');
       }).catch(err => {
         console.log(err);
+        setState({ loading: false });
       });
+    } else {
+      setState({ error: 'Confirm password không hợp lệ!' });
     }
   };
+
+  useEffect(() => {
+    let timeInterval;
+    if (step === 2 && !state.resend && timer > 0) {
+      timeInterval = setInterval(() => {
+        if (timer > 0) {
+          setTimer(prev => prev - 1);
+        }
+      }, 1000);
+    }
+    if (timer <= 0) {
+      setState({ resend: true });
+    }
+    return () => {
+      clearInterval(timeInterval);
+    };
+  }, [step, state.resend, timer]);
 
   const StepPhone = (
     <form onSubmit={requestOTP}>
@@ -119,6 +172,7 @@ const ForgotForm = () => {
         validation={validatePhone}
         setValue={setPhone}
         maxLength="10"
+        message={state.error}
         required
       />
 
@@ -127,13 +181,12 @@ const ForgotForm = () => {
         borderRadius
         medium
         type="submit"
+        loading={state.loading}
         className={classes.btn}
         onClick={requestOTP}
       >
         Tiếp tục
       </ButtonCT>
-
-      <div id="verify-container" />
     </form>
   );
 
@@ -145,17 +198,27 @@ const ForgotForm = () => {
         type="tel"
         maxLength="6"
         required
+        message={state.error}
         setValue={setOTP}
+        validation={validateOTP}
       />
       <p className={classes.messageOTP}>
         Bạn không nhận được mã OTP?
         {' '}
-        <span>Gửi lại</span>
+        <span
+          className={`${state.resend ? classes.messageOTP__resend : ''}`}
+          onClick={resendOTP}
+        >
+          Gửi lại
+        </span>
         {' '}
         <span>
           sau
           {' '}
-          <span className={classes.messageOTP__time}>1:59s</span>
+          <span className={classes.messageOTP__time}>
+            {timer}
+            s
+          </span>
         </span>
       </p>
 
@@ -163,6 +226,7 @@ const ForgotForm = () => {
         primary
         borderRadius
         medium
+        loading={state.loading}
         className={classes.btn}
         onClick={confirmOTP}
       >
@@ -183,6 +247,7 @@ const ForgotForm = () => {
       <InputCT
         placeholder="Nhập lại mật khẩu"
         type="password"
+        message={state.error}
         setValue={setConfirmPassword}
         validation={validatePassword}
         required
@@ -192,6 +257,7 @@ const ForgotForm = () => {
         primary
         borderRadius
         medium
+        loading={state.loading}
         className={classes.btn}
         onClick={handleConfirmPassword}
       >
@@ -208,6 +274,8 @@ const ForgotForm = () => {
           {step === 2 && StepOTP}
           {step === 3 && StepPassword}
       </div>
+
+      <div id="verify-container" />
 
       <div className={classes['auth-form__footer']}>
         <SocialLogin />
