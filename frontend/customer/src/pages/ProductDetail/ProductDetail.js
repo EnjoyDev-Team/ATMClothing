@@ -1,15 +1,16 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faMapLocationDot } from '@fortawesome/free-solid-svg-icons';
+import { faMapLocationDot, faHeart } from '@fortawesome/free-solid-svg-icons';
 import { Link } from 'react-router-dom';
 import classes from './styles.module.scss';
 import jacket from '../../assets/imgs/jacket.png';
 import other from '../../assets/imgs/other.png';
 import coin from '../../assets/imgs/coin.png';
-import Button from '../ButtonCT/ButtonCT';
+import Button from '../../components/ButtonCT/ButtonCT';
 import facebook from '../../assets/imgs/facebook.png';
 import instagram from '../../assets/imgs/instagram.png';
+import useAxios from '../../hooks/useAxios';
 
 const productDetail = {
   imgJacket: jacket,
@@ -23,11 +24,11 @@ const productDetail = {
   size: 'XL, oversize, m70-m75, 50kg-65kg',
   color: 'Xám đen',
   amount: 1,
-  material: 'len',
+  material: 'Len',
   category: 'Thời trang nam',
   condition: 'Như mới',
   describe:
-        'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
+        'Ngoài sản phẩm này ra, chúng mình có nhận pre - order sản phẩm tương tự hoặc custom theo yêu cầu của các bạn. Với sự tâm huyết và tỉ mỉ trong từng sản phẩm, chúng mình luôn sẵn sàng gửi đến bạn những trải nghiệm tuyệt vời nhất khi mua sắm. Chính vì vậy bạn hãy đến với chúng mình nhé, chúng ta sẽ cùng nhau tạo ra những giá trị tuyệt vời! CHÚNG MÌNH Ở ĐÂY CHỜ CẬU!',
   storageInstructions: 'Hướng dẫn bảo quản: ',
   preserves: [
     'Hạn chế không nên để giày tiếp xúc nhiều với chất bẩn, đặc biệt là các chất bẩn cứng đầu như máu, cà phê, nhựa trái cây...',
@@ -36,7 +37,9 @@ const productDetail = {
 };
 
 const ProductDetail = () => {
-  const all = 1;
+  const [response, error, isLoading] = useAxios('get', '/products?limit=2', {}, {}, []);
+  console.log(response);
+
   return (
         <div className={classes.product__detail}>
             <div className={classes['product__detail-infomation']}>
@@ -47,7 +50,9 @@ const ProductDetail = () => {
                     <ul className={classes['product__imgs-other-style']}>
                         {productDetail.imgsOther.map((img, index) => (
                             <li key={+index} className={classes['product__img-wrap-other-style']}>
-                                <img src={img} alt="" className={classes['product__img-other-style']} />
+                                <div className={classes['product__img-wrap-other-style-bg']}>
+                                    <img src={img} alt="" className={classes['product__img-other-style']} />
+                                </div>
                             </li>
                         ))}
                     </ul>
@@ -177,6 +182,7 @@ sản phẩm
                     <span className={classes['product__detail-describe-heading-content']}>
                         {productDetail.describe}
                     </span>
+                    <FontAwesomeIcon className={classes['product__detail-describe-heading-icon']} icon={faHeart} />
                 </div>
 
                 <div className={classes['product__detail-describe-wrap-storage-instructions']}>
