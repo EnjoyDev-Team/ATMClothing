@@ -20,6 +20,7 @@ import ProductLayout from '../layouts/ProductLayout';
 import Product from '../pages/Products/Product/Product';
 import auth from '../utils/auth';
 import Detail from '../pages/detail_request/Detail';
+import PaymentProduct from '../pages/PaymentProduct/PaymentProduct';
 
 const Navigation = () => {
     const authenticated = !!auth.getAccessToken();
@@ -50,6 +51,7 @@ const Navigation = () => {
                     {/* USER ROUTE */}
                     <Route path="/profile" name="profile" element={<Profile />} />
                     <Route path="/detailOrder" name="detailOrder" element={<Detail />} />
+                    <Route path="/paymentproduct" element={<PaymentProduct />} />
                 </Route>
 
                  {/* PRODUCT ROUTE */}
