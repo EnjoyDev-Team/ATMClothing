@@ -10,9 +10,8 @@ const orderSchema = new mongoose.Schema(
       default: new Date().toLocaleString('en-US', { timeZone: 'Asia/Ho_Chi_Minh' }),
     },
     receiveMethod: {
-      type: String,
-      enum: ['Giao hàng', 'Nhận hàng tại trụ sở'],
-      default: 'Giao hàng'
+      type: Number,
+      default: 0
     },
     address: {
       name: String,
@@ -20,8 +19,7 @@ const orderSchema = new mongoose.Schema(
       address: String
     },
     paymentMethod: {
-      type: String,
-      enum: ['Thanh toán khi nhận hàng', 'Thanh toán Momo'],
+      type: Number,
       required: [true, 'The order must have a payment method']
     },
     user: {
@@ -30,16 +28,15 @@ const orderSchema = new mongoose.Schema(
       required: [true, 'Review must belong to an user']
     },
     status: {
-      type: String,
-      enum: ['Đang kiểm tra', 'Đã xác nhận', 'Đang giao hàng', 'Chờ nhận hàng', 'Đã nhận hàng', 'Đã hủy'],
-      default: 'Đang kiểm tra'
+      type: Number,
+      default: 0
     },
     totalPriceProduct: String,
     shipFee: String,
     totalPrice: String,
     products: [
       {
-        detail: {
+        idProduct: {
           type: mongoose.Schema.ObjectId,
           ref: 'products',
         },
@@ -47,7 +44,8 @@ const orderSchema = new mongoose.Schema(
           type: Number,
           required: [true, 'Must have the amount of product']
         },
-        size: String
+        size: String,
+        _id: false
       }
     ]
   }, 
@@ -58,66 +56,17 @@ const orderSchema = new mongoose.Schema(
 )
 
 
-reviewSchema.pre(/^find/, function(next) {
-  // this.populate({
-  //   path: 'tour',
-  //   select: 'name'
-  // }).populate({
-  //   path: 'user',
-  //   select: 'name photo'
-  // });
+orderSchema.pre(/^findOne/, function(next) {
 
   this.populate({
-    path: 'products.products',
-    select: 'name price img'
+    path: 'products.idProduct',
+    select: 'name price img _id'
   });
 
   next();
 })
 
-reviewSchema.statics.calcAverageRatings = async function(tourId) {
- const stats = await this.aggregate([
-    {
-      $match: {tour: tourId}
-    },
-    {
-      $group: {
-        _id: '$tour',
-        nRating: { $sum: 1 },
-        avgRating: { $avg: '$rating' }
-      }
-    }
-  ]);
-  // console.log(stats);
 
-  if (stats.length > 0) {
-    await Tour.findByIdAndUpdate(tourId, {
-      ratingsQuantity: stats[0].nRating,
-      ratingsAverage: stats[0].avgRating
-    })
-  } else {
-    await Tour.findByIdAndUpdate(tourId, {
-      ratingsQuantity: 0,
-      ratingsAverage: 4.5
-    })
-  }
-}
+const Order = mongoose.model('Order', orderSchema)
 
-reviewSchema.post('save', function() {
-  // this points to current review
-  this.constructor.calcAverageRatings(this.tour)
-})
-
-reviewSchema.pre(/^findOneAnd/, async function(next) {
-  this.r = await this.findOne();
-  next()
-})
-
-reviewSchema.post(/^findOneAnd/, async function() {
-  // this.r = await this.findOne(); does NOT work here has already axecuted
-  await this.r.constructor.calcAverageRatings(this.r.tour)
-})
-
-const Review = mongoose.model('Review', reviewSchema)
-
-module.exports = Review;
+module.exports = Order;

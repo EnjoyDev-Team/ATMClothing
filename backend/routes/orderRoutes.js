@@ -6,21 +6,21 @@ const orderController = require('../controllers/orderController')
 
 const router = express.Router();
 
-// List all
-router.get('/', 
-  authMiddleware.protect,
-  orderController.getAllOrders);
+router.use(authMiddleware.protect)
 
-// Filter
-router.route('/filter/:params').get();
+// Get enum list
+router.get('/enum', orderController.getEnumList)
+
+// router.use(authMiddleware.protect)
+
+// List all
+router.get('/', orderController.filter);
 
 // Order detail
-router.route('/:id').get();
+router.get('/:id', orderController.getById);
 
 // Create cart
-router.route('/').post();
+router.post('/', orderController.createOrder);
 
-// Cancel cart
-router.route('/').patch();
 
 module.exports = router;

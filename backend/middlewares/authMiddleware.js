@@ -76,6 +76,11 @@ exports.tokenPhone = catchAsync(async (req, res, next) => {
     return next(new AppError('Please provide a mobile phone', 400));
   }
 
+  const user = await User.findOne({ phone: phone });
+  if (user) {
+    return next(new AppError('Account has existed with this phone', 401));
+  }
+
   const token = jwt.sign(
     {phone},
     process.env.PHONE_TOKEN_SECRET,

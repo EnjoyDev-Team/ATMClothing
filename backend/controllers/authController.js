@@ -215,9 +215,6 @@ exports.forgotPassword = catchAsync(async ( req, res, next) => {
     return next(new Error('Phone is invalid with the phone verification', 401));
   }
 
-  console.log(decodedPhone?.phone.substring(1));
-  console.log(decodedFirebase?.phone_number.substring(3));
-
   user.password = password;
   await user.save();
     
@@ -228,7 +225,6 @@ exports.updatePassword = catchAsync(async (req, res, next) => {
   // 1) Get user from colection
   const user = await User.findOne({phone: req.body.phone}).select('+password');
   // 2) Check if current password is correct
-  console.log(req.body);
   if (!user 
     || !(await user.correctPassword(req.body.passwordCurrent, user.password))
     ) {
