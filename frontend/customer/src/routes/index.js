@@ -18,6 +18,7 @@ import Custom from '../pages/Service/Custom';
 import Donate from '../pages/Service/Donate';
 import Shopping from '../pages/shopping/Shopping';
 import Detail from '../pages/detail_request/Detail';
+import PaymentProduct from '../pages/PaymentProduct/PaymentProduct';
 
 const Navigation = () => {
     const authenticated = true;
@@ -48,6 +49,7 @@ const Navigation = () => {
                     {/* USER ROUTE */}
                     <Route path="/profile" name="profile" element={<Profile />} />
                     <Route path="/detailOrder" name="detailOrder" element={<Detail />} />
+                    <Route path="/paymentproduct" element={<PaymentProduct />} />
                 </Route>
 
                 {/* PRODUCT ROUTE */}
