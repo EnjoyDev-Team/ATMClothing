@@ -18,15 +18,16 @@ import Donate from '../pages/Service/Donate';
 import Shopping from '../pages/shopping/Shopping';
 import ProductLayout from '../layouts/ProductLayout';
 import Product from '../pages/Products/Product/Product';
+import auth from '../utils/auth';
 
 const Navigation = () => {
-    const authenticated = true;
+    const authenticated = !!auth.getAccessToken();
     return (
         <Routes>
             <Route path="/" element={<Navigate to="/home" />} />
 
             {/* AUTH ROUTE */}
-            <Route element={<PrivateRoute isAllowed={authenticated} redirectPath="/home" />}>
+            <Route element={<PrivateRoute isAllowed={!authenticated} redirectPath="/home" />}>
                 <Route path="/login" name="login" element={<Login />} />
                 <Route path="/register" name="register" element={<Register />} />
             </Route>
@@ -65,7 +66,6 @@ const Navigation = () => {
                     <Route index element={<Shopping />} />
                     <Route path="payment" element={<>Payment Page</>} />
                 </Route>
-
                 <Route path="*" name="notFound" element={<NotFound />} />
             </Route>
         </Routes>

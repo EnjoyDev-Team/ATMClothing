@@ -7,32 +7,46 @@ import InputCT from '../InputCT/InputCT';
 import ButtonCT from '../../../../components/ButtonCT/ButtonCT';
 import classes from './AuthForm.module.scss';
 import { validatePassword, validatePhone } from './handler';
-import { axiosClient } from '../../../../api/axios';
 import auth from '../../../../utils/auth';
 import useAxiosPrivate from '../../../../hooks/useAxiosPrivate';
+import useMergeState from '../../../../hooks/useMergeState';
 
 const LoginForm = () => {
+  const navigate = useNavigate();
   const axiosPrivate = useAxiosPrivate();
 
-  const handleLogin = () => {
-    axiosPrivate.post('/auth/login', {
-      phone: '0824704786',
-      password: 'khuong1209'
-    }).then(res => {
-      console.log(res.data);
-      auth.setAccessToken(res.data.access_token);
-    }).catch(err => {
-      console.log(err);
-    });
-  };
+  const [phone, setPhone] = useState('');
+  const [password, setPassword] = useState('');
+  const [state, setState] = useMergeState({
+    error: '',
+    loading: false
+  });
 
-  const getOrder = () => {
-    axiosPrivate.get('/orders')
-      .then(res => {
-        console.log(res.data);
+  const handleLogin = (event) => {
+    event.preventDefault();
+    if (phone !== '' && password !== '' && phone.length >= 10) {
+      setState({
+        loading: true,
+        error: ''
+      });
+      const object = {
+        phone,
+        password,
+      };
+      axiosPrivate.post(
+        '/auth/login',
+        object
+      ).then(res => {
+        auth.login(res.data);
+        navigate('/');
       }).catch(err => {
         console.log(err);
+        setState({
+          loading: false,
+          error: 'Số điện thoại hoặc mật khẩu không đúng. Vui lòng thử lại!'
+        });
       });
+    }
   };
 
   return (
@@ -43,8 +57,22 @@ const LoginForm = () => {
       >
         <h3>Đăng nhập</h3>
 
-        <InputCT placeholder="Nhập số điện thoại" type="tel" validation={validatePhone} maxLength="10" required />
-        <InputCT placeholder="Nhập mật khẩu" type="password" validation={validatePassword} required />
+        <InputCT
+          placeholder="Nhập số điện thoại"
+          type="tel"
+          setValue={setPhone}
+          validation={validatePhone}
+          maxLength="10"
+          required
+        />
+        <InputCT
+          placeholder="Nhập mật khẩu"
+          type="password"
+          message={state.error}
+          setValue={setPassword}
+          validation={validatePassword}
+          required
+        />
         <Link
           to="/forgot"
           className={classes.forgot}
@@ -56,11 +84,9 @@ const LoginForm = () => {
           primary
           borderRadius
           medium
+          loading={state.loading}
           className={classes.btn}
-          // onClick={() => refreshToken()}
-          // onClick={() => setIsLLogin(pre => !pre)}
-          onClick={getOrder}
-          // onClick={handleLogin}
+          onClick={handleLogin}
         >
           Đăng nhập
         </ButtonCT>
