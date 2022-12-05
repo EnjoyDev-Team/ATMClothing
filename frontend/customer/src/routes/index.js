@@ -1,22 +1,16 @@
 /* eslint-disable indent */
 import React from 'react';
 import { Navigate, Route, Routes } from 'react-router-dom';
-
 import PrivateRoute from './privateRoute';
+
 import Home from '../pages/home/Home';
 import NotFound from '../pages/notFound';
 import Login from '../pages/auth/Login';
 import Register from '../pages/auth/Register';
 import ForgotPassword from '../pages/auth/ForgotPassword';
 import Profile from '../pages/auth/Profile';
-<<<<<<< HEAD
 import Layout from '../layouts';
 import ProductDetail from '../pages/ProductDetail/ProductDetail';
-=======
-import Products from '../components/ListProduct/ListProduct';
-import Layout from '../layouts';
-import ProductDetail from '../components/ProductDetail/ProductDetail';
->>>>>>> 4774f17 (update: routes)
 import Services from '../pages/Service/Service';
 import Sell from '../pages/Service/Sell';
 import Custom from '../pages/Service/Custom';
@@ -46,23 +40,17 @@ const Navigation = () => {
 
                 {/* PROTECTED ROUTE */}
                 <Route element={<PrivateRoute isAllowed={authenticated} redirectPath="/login" />}>
-
                     {/* Sale/Custom/Donate */}
                     <Route path="/services">
                         <Route index element={<Services />} />
                         <Route path="sale" name="sale" element={<Sell />} />
                         <Route path="custom" name="custom" element={<Custom />} />
                         <Route path="donate" name="donate" element={<Donate />} />
+                        <Route path="orders" name="orders" element={<ServiceOrdersDetails />} />
                     </Route>
 
                     {/* USER ROUTE */}
-                    <Route path="/profile" name="profile" element={<Profile />}>
-                        <Route path="orders" name="orders" element={<ServiceOrdersDetails />}>
-                            <Route path=":id" element={<> </>} />
-                        </Route>
-                    </Route>
-
-                    {/* <Route path="/detailOrder" name="detailOrder" element={<Detail />} /> */}
+                    <Route path="/profile" name="profile" element={<Profile />} />
                 </Route>
 
                  {/* PRODUCT ROUTE */}
