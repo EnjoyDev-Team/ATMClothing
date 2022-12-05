@@ -53,13 +53,16 @@ const Navigation = () => {
                         <Route path="sale" name="sale" element={<Sell />} />
                         <Route path="custom" name="custom" element={<Custom />} />
                         <Route path="donate" name="donate" element={<Donate />} />
+                    </Route>
+
+                    {/* USER ROUTE */}
+                    <Route path="/profile" name="profile" element={<Profile />}>
                         <Route path="orders" name="orders" element={<ServiceOrdersDetails />}>
                             <Route path=":id" element={<> </>} />
                         </Route>
                     </Route>
 
-                    {/* USER ROUTE */}
-                    <Route path="/profile" name="profile" element={<Profile />} />
+                    {/* <Route path="/detailOrder" name="detailOrder" element={<Detail />} /> */}
                 </Route>
 
                  {/* PRODUCT ROUTE */}
