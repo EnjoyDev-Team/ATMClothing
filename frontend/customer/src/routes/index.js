@@ -17,7 +17,6 @@ import Sell from '../pages/Service/Sell';
 import Custom from '../pages/Service/Custom';
 import Donate from '../pages/Service/Donate';
 import Shopping from '../pages/shopping/Shopping';
-import Detail from '../pages/detail_request/Detail';
 import PaymentProduct from '../pages/PaymentProduct/PaymentProduct';
 import ServiceOrdersDetails from '../pages/detail_request/ServiceOrdersDetails';
 
@@ -37,23 +36,23 @@ const Navigation = () => {
             <Route element={<Layout />}>
                 <Route path="/home" element={<Home />} />
 
-                {/* Sale/Custom/Donate */}
-                <Route path="/services">
-                    <Route index element={<Services />} />
-                    <Route path="sale" name="sale" element={<Sell />} />
-                    <Route path="custom" name="custom" element={<Custom />} />
-                    <Route path="donate" name="donate" element={<Donate />} />
+                {/* PROTECTED ROUTE */}
+                <Route element={<PrivateRoute isAllowed={authenticated} redirectPath="/login" />}>
+                    {/* Sale/Custom/Donate */}
+                    <Route path="/services">
+                        <Route index element={<Services />} />
+                        <Route path="sale" name="sale" element={<Sell />} />
+                        <Route path="custom" name="custom" element={<Custom />} />
+                        <Route path="donate" name="donate" element={<Donate />} />
+                    </Route>
+
+                    {/* USER ROUTE */}
+                    <Route path="/profile" name="profile" element={<Profile />} />
                     <Route path="orders" name="orders" element={<ServiceOrdersDetails />}>
                         <Route path=":id" element={<> </>} />
                     </Route>
-                </Route>
 
-                {/* PROTECTED ROUTE */}
-                <Route element={<PrivateRoute isAllowed={authenticated} redirectPath="/login" />}>
-                    {/* USER ROUTE */}
-                    <Route path="/profile" name="profile" element={<Profile />} />
-                    <Route path="/detailOrder" name="detailOrder" element={<Detail />} />
-                    <Route path="/paymentproduct" element={<PaymentProduct />} />
+                    {/* <Route path="/detailOrder" name="detailOrder" element={<Detail />} /> */}
                 </Route>
 
                 {/* PRODUCT ROUTE */}
@@ -67,7 +66,7 @@ const Navigation = () => {
                 {/* ShoppingCart + Payment ROUTE */}
                 <Route path="/shopping">
                     <Route index element={<Shopping />} />
-                    <Route path="payment" element={<>Payment Page</>} />
+                    <Route path="payment" element={<PaymentProduct />} />
                 </Route>
 
                 <Route path="*" name="notFound" element={<NotFound />} />

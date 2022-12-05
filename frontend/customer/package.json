@@ -57,7 +57,6 @@
     "eslint-plugin-jsx-a11y": "^6.6.1",
     "eslint-plugin-react": "^7.31.10",
     "font-awesome-sass-loader": "^2.0.1",
-    "node-sass": "^7.0.3",
     "sass": "^1.56.1",
     "sass-loader": "^13.1.0"
   }
