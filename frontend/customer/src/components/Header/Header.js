@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import { ReactDOM } from 'react-dom';
 import PropTypes from 'prop-types';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
@@ -8,30 +7,31 @@ import {
   faCartShopping,
   faMountainSun,
 } from '@fortawesome/free-solid-svg-icons';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import Profile from '../Profile/Profile';
 import classes from './styles.module.scss';
-import logo from '../../assets/imgs/logo.png';
+import logo from '../../assets/imgs/PNG-logo.png';
 import avatar from '../../assets/imgs/Screenshot 2022-09-28 184909.png';
 import ButtonCT from '../ButtonCT/ButtonCT';
 
 const Header = () => {
   const [isOpen, setOpen] = useState(false);
-  const [isBlur, setBlur] = useState(!isOpen);
   const [fixedNavbar, setFixedNavbar] = useState(false);
   const [isAccount, setAccount] = useState(true);
   const [isAvt, setAvt] = useState(false);
+  const [isSearch, setSearch] = useState('');
+  const navigate = useNavigate();
 
   const handleProfile = () => {
     setOpen((prev) => !prev);
   };
 
   const handleBlur = () => {
-    setBlur(() => {
-      if (isOpen) {
-        return false;
+    setOpen((prev) => {
+      if (prev === false) {
+        return prev;
       }
-      return true;
+      return !prev;
     });
   };
 
@@ -55,6 +55,20 @@ const Header = () => {
     };
   }, []);
 
+  const handleSearch = (e) => {
+    setSearch(e.target.value);
+  };
+
+  const handleSubmit = () => {
+    if (isSearch !== '') {
+      navigate(`/products/search/${isSearch}`);
+    }
+  };
+
+  const handleClickProfile = () => {
+    setOpen(true);
+  };
+
   return (
         <div className={classes.header}>
             <div className={classes.header__mission}>
@@ -75,14 +89,19 @@ const Header = () => {
                     </div>
 
                     <div className={classes.header__search}>
-                        <input type="text" className={classes['header__search-input']} placeholder=" " />
+                        <input
+                          onChange={(e) => handleSearch(e)}
+                          type="text"
+                          className={classes['header__search-input']}
+                          placeholder=" "
+                        />
                         <span htmlFor="name" className={classes['header__search-label']}>
                             Search
                         </span>
 
-                        <div className={classes['header__search-wrap-icon']}>
+                        <button onClick={handleSubmit} className={classes['header__search-wrap-icon']}>
                             <FontAwesomeIcon icon={faMagnifyingGlass} />
-                        </div>
+                        </button>
                     </div>
                 </div>
 
@@ -91,13 +110,21 @@ const Header = () => {
                         {isAccount && (
                             <div className={classes.header__account}>
                                 <div className={classes['header__right-account-signup']}>
-                                    <Link onClick={handleAccount} to="/register">
+                                    <Link
+                                      className={classes['header__right-account-signup-link']}
+                                      onClick={handleAccount}
+                                      to="/register"
+                                    >
                                         Đăng ký
                                     </Link>
                                 </div>
 
                                 <div className={classes['header__right-account-signin']}>
-                                    <Link onClick={handleAccount} to="/login">
+                                    <Link
+                                      className={classes['header__right-account-signin-link']}
+                                      onClick={handleAccount}
+                                      to="/login"
+                                    >
                                         Đăng nhập
                                     </Link>
                                 </div>
@@ -137,7 +164,7 @@ const Header = () => {
                                 >
                                     <img className={classes['header__avatar-img']} src={avatar} alt="" />
                                 </button>
-                                {isOpen && <Profile />}
+                                {isOpen && <Profile onClick={handleClickProfile} />}
                             </div>
                         )}
                     </div>

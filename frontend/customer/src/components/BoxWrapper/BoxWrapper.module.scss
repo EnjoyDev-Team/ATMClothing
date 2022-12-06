@@ -2,17 +2,14 @@
 {
     background-color: white;
     border-radius: 1rem;
-    -webkit-border-radius: 1rem;
-    -moz-border-radius: 1rem;
-    -ms-border-radius: 1rem;
-    -o-border-radius: 1rem;
     box-shadow: 0rem .1rem .3rem rgba(0, 0, 0, .15);
     overflow: hidden;
 
     &__heading{
         display: flex;
         justify-content: space-between;
-        padding: 2.8rem 2.6rem;
+        align-items: center;
+        padding: 0rem 2.6rem;
         border-bottom: 1px solid #E0E0E0;
     }
     &__heading h1{
@@ -20,6 +17,7 @@
         text-transform: uppercase;
         font-size: 2.2rem;
         line-height: 1em;
+        margin: 2.6rem 0rem;
     }
 
     &__scrollview{
