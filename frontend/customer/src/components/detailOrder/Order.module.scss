@@ -1,6 +1,16 @@
 .body {
     padding: 1rem;
     width: 42rem;
+<<<<<<< HEAD
+=======
+    cursor: pointer;
+}
+.body:hover {
+    background-color: rgba($color: #85be83, $alpha: .1);
+}
+.body.active {
+    background-color: rgba($color: #85be83, $alpha: .3);
+>>>>>>> 5bd48b3f3183847844f879186359d29a7c49ddda
 }
 .content__container {
     display: flex;
@@ -31,7 +41,29 @@
     padding-left: 15rem;
 }
 
+<<<<<<< HEAD
+=======
+.right__section p:nth-child(2) {
+    text-transform: capitalize;
+}
+
+>>>>>>> 5bd48b3f3183847844f879186359d29a7c49ddda
 .right__section p:nth-child(4) {
     padding-left: 6rem;
     color: #0d6ab0;
 }
+<<<<<<< HEAD
+=======
+
+.right__section > p.processing {
+    color: #ED4C4C;
+}
+
+.right__section > p.waiting {
+    color: #EDAD4C;
+}
+
+.right__section > p.success {
+    color: #4ced8f;
+}
+>>>>>>> 5bd48b3f3183847844f879186359d29a7c49ddda

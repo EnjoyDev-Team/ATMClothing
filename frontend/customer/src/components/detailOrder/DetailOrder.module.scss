@@ -21,6 +21,10 @@
     margin: 2rem;
 }
 
+.middle__section p:nth-child(3) {
+    text-transform: capitalize;
+}
+
 .left__section {
     width: 22rem;
 }
@@ -31,24 +35,24 @@
 
 .qr__section {
     position: absolute;
-    top: -3rem;
-    right: 5rem;
+    top: -7rem;
+    right: 0rem;
 }
 
-.state {
-    color: #edad4c;
-    font-weight: bold;
+.status {
+    font-weight: 700;
 }
 
 .required__message {
     font-size: 18px;
     font-weight: bold;
-    margin: 3rem 0;
+    margin: 2rem 2rem;
 }
 
 .price__section__container {
     display: flex;
     gap: 3rem;
+    margin: auto 1rem;
 }
 
 .price__button__section {
@@ -74,4 +78,16 @@
     font-size: 2rem;
     font-weight: bold;
     margin-top: 3rem;
+}
+
+p.processing {
+    color: #ed4c4c;
+}
+
+p.waiting {
+    color: #edad4c;
+}
+
+p.success {
+    color: #4ced8f;
 }

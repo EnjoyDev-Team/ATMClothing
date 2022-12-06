@@ -5,13 +5,11 @@ import Header from '../components/Header/Header';
 import Footer from '../components/Footer/Footer';
 
 const Layout = () => (
-  <>
+  <div style={{ backgroundColor: '#f3f3f3' }}>
     <Header />
-      <div style={{ backgroundColor: '#f3f3f3' }}>
         <Outlet />
-      </div>
     <Footer />
-  </>
+  </div>
 );
 
 Layout.propTypes = {
