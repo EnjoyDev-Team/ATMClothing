@@ -30,8 +30,7 @@ const Profile = () => {
   const [type, setType] = useState('GENERAL');
 
   return (
-    <div className={classes.profileWrap}>
-      <div className={classes.profile}>
+    <div className={classes.profile}>
       <div className={classes.profile__nav}>
         <ul>
           {initial.map((item, idx) => (
@@ -58,7 +57,6 @@ const Profile = () => {
           {type === 'CHANGEPW' && <ChangePassword />}
           {type === 'AVATAR' && <Avatar />}
         </div>
-      </div>
       </div>
     </div>
   );

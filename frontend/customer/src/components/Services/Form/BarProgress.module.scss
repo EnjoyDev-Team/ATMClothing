@@ -26,30 +26,11 @@
     background-color: #A0E7D2;
 }
 
-
-.progress__bar .rectangle__bar__item.active::before {
-    right: 0%;
-}
-
-.progress__bar .rectangle__bar__item::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 100%;
-    bottom: 0;
-    z-index: 2;
-    background-color: #A0E7D2;
-    transition: all .5s ease;
-}
-
 .progress__bar .rectangle__bar__item {
-    position: relative;
     padding: .2rem;
     background-color: #D9D9D9;
     width: 100%;
     z-index: 1;
-    transition: all 1s ease;
 }
 
 .progress__bar .status {

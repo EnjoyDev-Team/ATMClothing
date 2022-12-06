@@ -1,39 +1,22 @@
-.inputSection label input {
+label input {
     display: block;
     font-family: 'Inter';
     font-size: 1.6rem;
-    margin: 0rem;
+    margin: 1.5rem auto;
 }
 
-.inputSection label input::-webkit-input-placeholder {
+label input::placeholder {
     font-family: 'Inter';
     font-size: 1.6rem;
 }
 
-.inputSection label input:-ms-input-placeholder {
-    font-family: 'Inter';
-    font-size: 1.6rem;
-}
-
-.inputSection label input::-ms-input-placeholder {
-    font-family: 'Inter';
-    font-size: 1.6rem;
-}
-
-.inputSection label input::placeholder {
-    font-family: 'Inter';
-    font-size: 1.6rem;
-}
-
-.inputSection label {
+label {
     font-size: 18px;
 }
 
-.inputSection label > span {
-    display: inline-block;
+label > span {
     font-size: 1.8rem;
     font-weight: 500;
-    margin: 1.5rem 0rem;
     margin-left: .5rem;
 }
 
@@ -53,16 +36,8 @@
     gap: 2rem;
 }
 
-.inputSection input[placeholder="Danh mục"] {
+input[placeholder="Danh mục"] {
     cursor: pointer;
-    -webkit-user-select: none;
-       -moz-user-select: none;
-        -ms-user-select: none;
-            user-select: none;
-}
-
-.inputSection label {
-    margin-bottom: 2rem;
 }
 
 .input2 {
@@ -70,8 +45,11 @@
     border: 1px solid #CCC;
     padding: .7rem 2rem;
     font-size: 16px;
+    -webkit-border-radius: 5rem;
+    -moz-border-radius: 5rem;
+    -ms-border-radius: 5rem;
+    -o-border-radius: 5rem;
     border-radius: 5rem;
-    margin-bottom: 0rem;
 }
 
 // ICON
@@ -81,8 +59,8 @@
 
 .icon {
     position: absolute;
-    top: -3%;
-    left: 90%;
+    top: 24%;
+    left: 92%;
     cursor: pointer;
 }
 
@@ -99,61 +77,9 @@
     width: 14rem;
     font-size: 1.6rem;
     padding: 1rem 0rem;
+    -webkit-border-radius: 5rem;
+    -moz-border-radius: 5rem;
+    -ms-border-radius: 5rem;
+    -o-border-radius: 5rem;
     border-radius: 5rem;
-}
-
-.dropdown {
-    position: relative;
-    display: inline-block;
-    width: 100%;
-}
-
-.dropdown svg {
-    padding: 1rem;
-}
-
-.dropdown input[id="dropdown_toggle"]:checked ~ .dropdown__list {
-    max-height: 19rem;
-    border-color: lightgray;
-    visibility: visible;
-    overflow: auto;
-}
-
-.dropdown input[id="dropdown_toggle"] ~ label svg {
-    rotate: 0deg;
-    transition: all .35s ease-in-out;
-}
-
-.dropdown input[id="dropdown_toggle"]:checked ~ label svg {
-    rotate: -180deg;
-}
-
-.dropdown input[id="dropdown_toggle"] {
-    display: none;
-}
-
-.dropdown__list {
-    position: absolute;
-    top: 100%;
-    left: 1.5rem;
-    right: 1.5rem;
-    background-color: white;
-    border: 1px solid transparent;
-    border-top: none;
-    max-height: 0rem;
-    overflow: hidden;
-    visibility: hidden;
-    border-radius: 0rem 0rem .5rem .5rem;
-    box-shadow: 0 0 .2rem rgba(0, 0, 0, .15);
-    transition: all .35s ease-in-out;
-
-    &__item {
-        padding: 1rem;
-        // border-bottom: 1px solid #CCC;
-        font-size: 1.4rem;
-        cursor: pointer;
-    }
-    &__item:hover {
-        background-color: rgba($color: #000000, $alpha: .04);
-    }
 }

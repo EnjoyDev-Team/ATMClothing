@@ -8,7 +8,7 @@ import ButtonCT from '../../../components/ButtonCT/ButtonCT';
 import { ReactComponent as SuccessImg } from '../../../assets/svg/Service/Group 555.svg';
 import { ReactComponent as FailImg } from '../../../assets/svg/Service/Group 556.svg';
 
-const FormStepFinal = ({ close, success = true }) => (!success ? (
+const FormStepFinal = ({ success = true }) => (!success ? (
         <main>
             <div className={classes.field}>
                 <FailImg className={classes.img} />
@@ -16,13 +16,12 @@ const FormStepFinal = ({ close, success = true }) => (!success ? (
             </div>
             <div className={classes.btn__field}>
                 <ButtonCT
-                    onClick={close}
                     style={{
                         width: '140px',
                         padding: '1rem',
                         borderRadius: '5rem',
                         fontSize: '1.6rem',
-                        marginBottom: '3rem',
+                        marginBottom: '3rem'
                     }}
                     // className={classes.button__choose}
                     redLinear
@@ -38,13 +37,12 @@ const FormStepFinal = ({ close, success = true }) => (!success ? (
             </div>
             <div className={classes.btn__field}>
                 <ButtonCT
-                    onClick={close}
                     style={{
                         width: '140px',
                         padding: '1rem',
                         borderRadius: '5rem',
                         fontSize: '1.6rem',
-                        marginBottom: '3rem',
+                        marginBottom: '3rem'
                     }}
                     // className={classes.button__choose}
                     greenLinear

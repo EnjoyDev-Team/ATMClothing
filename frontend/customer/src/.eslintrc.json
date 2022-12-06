@@ -14,30 +14,27 @@
   "rules": {
     "no-console": "off",
     "no-tabs": 0,
-    "comma-dangle": [ 0 ],
+    "comma-dangle": [0],
     "arrow-parens": 0,
-    "import/prefer-default-export": [ 0 ],
+    "import/prefer-default-export": [0],
     "import/no-named-as-default": 0,
     "import/no-named-as-default-member": 0,
     "react/button-has-type": 0,
     "react/no-access-state-in-setstate": 0,
     "react/destructuring-assignment": 0,
     "react/sort-comp": 0,
-    "react/jsx-indent": [ 0 ],
-    "react/function-component-definition": [
-      1,
-      {
-        "namedComponents": "arrow-function",
-        "unnamedComponents": "arrow-function"
-      }
-    ],
+    "react/jsx-indent": [0],
+    "react/function-component-definition": [1, {
+      "namedComponents": "arrow-function",
+      "unnamedComponents": "arrow-function"
+    }],
     "no-eval": 1,
     "no-const-assign": "warn",
     "react/no-did-mount-set-state": 0,
     "no-this-before-super": "warn",
     "no-undef": "warn",
     "no-unreachable": "warn",
-    "linebreak-style": 0,
+    "linebreak-style":0,
     "no-unused-vars": [
       "warn",
       {
@@ -106,9 +103,9 @@
         "functions": false
       }
     ],
-    "import/no-extraneous-dependencies": [ 0 ],
+    "import/no-extraneous-dependencies": [0],
     "object-curly-newline": 0
   },
   "extends": "airbnb"
-  // "react/jsx-props-no-spreading": "off"
+    // "react/jsx-props-no-spreading": "off"
 }

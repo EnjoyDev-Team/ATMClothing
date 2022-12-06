@@ -19,7 +19,7 @@ const CardProduct = ({ cardproduct2, Details }) => (
                         {' '}
                         <u>đ</u>
                     </h1>
-                    { Details.facility && Details.facility.length ? (
+                    { Details.facility.length ? (
                       <div className={classes.cardproduct__address}>
                         <i><FontAwesomeIcon icon={faLocationDot} /></i>
                         <p>{Details.facility[0].name}</p>
@@ -40,7 +40,7 @@ CardProduct.propTypes = {
     img: PropTypes.string.isRequired,
     name: PropTypes.string.isRequired,
     price: PropTypes.string.isRequired,
-    facility: PropTypes.array,
+    facility: PropTypes.array.isRequired,
   }),
 };
 CardProduct.defaultProps = {

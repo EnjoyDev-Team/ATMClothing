@@ -30,6 +30,10 @@
     gap: 3.5rem;
     border: 1px dashed lightgrey;
     padding: 3.5rem 16rem;
+    -webkit-border-radius: 2rem;
+    -moz-border-radius: 2rem;
+    -ms-border-radius: 2rem;
+    -o-border-radius: 2rem;
     border-radius: 2rem;
 }
 
@@ -39,7 +43,6 @@
 }
 
 .btn__choose {
-    text-align: center;
     border: 1px #0d6ab0 solid;
     color: #0d6ab0;
     background-color: white;
@@ -47,8 +50,15 @@
     padding: .7rem;
     font-size: 1.8rem;
     font-weight: 400;
+    -webkit-border-radius: 5rem;
+    -moz-border-radius: 5rem;
+    -ms-border-radius: 5rem;
+    -o-border-radius: 5rem;
     border-radius: 5rem;
-    cursor: pointer;
+    -webkit-transition: all .25s ease;
+    -moz-transition: all .25s ease;
+    -ms-transition: all .25s ease;
+    -o-transition: all .25s ease;
     transition: all .25s ease;
 }
 
@@ -64,6 +74,10 @@
     padding: 1.5rem 2rem;
     border: 1px #CCC solid;
     resize: none;
+    -webkit-border-radius: 2rem;
+    -moz-border-radius: 2rem;
+    -ms-border-radius: 2rem;
+    -o-border-radius: 2rem;
     border-radius: 2rem;
 }
 
@@ -99,8 +113,8 @@
 
 .icon {
     position: absolute;
-    top: 0%;
-    left: 88%;
+    top: 24%;
+    left: 91%;
     cursor: pointer;
 }
 
@@ -116,65 +130,9 @@
     width: 14rem;
     font-size: 1.6rem;
     padding: 1rem 0rem;
+    -webkit-border-radius: 5rem;
+    -moz-border-radius: 5rem;
+    -ms-border-radius: 5rem;
+    -o-border-radius: 5rem;
     border-radius: 5rem;
-}
-
-.input__file {
-    display: none;
-}
-
-.dropdown {
-    position: relative;
-    display: inline-block;
-    width: 100%;
-}
-
-.dropdown .dropdown__toggle {
-    display: none;
-}
-
-.dropdown svg {
-    padding: 1rem;
-}
-
-.dropdown input[id="dropdown_toggle"]:checked ~ .dropdown__list {
-    max-height: 19rem;
-    border-color: lightgray;
-    visibility: visible;
-    overflow: auto;
-}
-
-.dropdown input[id="dropdown_toggle"] ~ label svg {
-    rotate: 0deg;
-    transition: all .35s ease-in-out;
-}
-
-.dropdown input[id="dropdown_toggle"]:checked ~ label svg {
-    rotate: -180deg;
-}
-
-.dropdown__list {
-    position: absolute;
-    top: 100%;
-    left: 1.5rem;
-    right: 1.5rem;
-    background-color: white;
-    border: 1px solid transparent;
-    border-top: none;
-    max-height: 0rem;
-    overflow: hidden;
-    visibility: hidden;
-    border-radius: 0rem 0rem .5rem .5rem;
-    box-shadow: 0 0 .2rem rgba(0, 0, 0, .15);
-    transition: all .35s ease-in-out;
-
-    &__item {
-        padding: 1rem;
-        // border-bottom: 1px solid #CCC;
-        font-size: 1.4rem;
-        cursor: pointer;
-    }
-    &__item:hover {
-        background-color: rgba($color: #000000, $alpha: .04);
-    }
 }

@@ -2,22 +2,21 @@ const { localStorage } = global.window;
 
 const auth = {
   login(data) {
-    localStorage.phone = data.data.user.phone;
-    localStorage.role = data.data.user.role;
-    localStorage._id = data.data.user._id;
-    localStorage.accessToken = data.access_token;
+    const { user, isSuccess } = data;
+    const { userName, _id } = user;
+
+    localStorage.userName = userName;
+    localStorage.userId = _id;
+    localStorage.isSuccess = isSuccess;
+    localStorage.role = user.role;
   },
 
-  setAccessToken(token) {
-    localStorage.accessToken = token;
+  userId() {
+    return localStorage.userId;
   },
 
-  getAccessToken() {
-    return localStorage.accessToken;
-  },
-
-  getPhone() {
-    return localStorage.phone;
+  username() {
+    return localStorage.userName;
   },
 
   role() {

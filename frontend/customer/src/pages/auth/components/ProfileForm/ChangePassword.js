@@ -7,21 +7,22 @@ const ChangePassword = () => {
   const a = 0;
   return (
     <>
-      <ul className={classes.profileForm}>
-        <li className={classes.profileForm__item}>
-          <p className={classes['profileForm__item-title']}>Mật khẩu cũ</p>
-          <input type="password" placeholder="Nhập mật khẩu cũ" />
-        </li>
-        <Link className={classes.forgotPW} to="/forgot">Quên mật khẩu</Link>
-        <li className={classes.profileForm__item}>
-          <p className={classes['profileForm__item-title']}>Mật khẩu mới</p>
+      <div className={classes.profileForm}>
+        <div className={classes.profileForm__title}>
+          <p>Mật khẩu cũ</p>
+          <p>Mật khẩu mới</p>
+          <p>Xác nhận mật khẩu</p>
+        </div>
+
+        <div className={classes.profileForm__input}>
+          <div className={classes['profileForm__input-oldPW']}>
+            <input type="password" placeholder="Nhập mật khẩu cũ" />
+            <Link to="/forgot">Quên mật khẩu</Link>
+          </div>
           <input type="password" placeholder="Nhập mật khẩu mới" />
-        </li>
-        <li className={classes.profileForm__item}>
-          <p className={classes['profileForm__item-title']}>Xác nhận mật khẩu</p>
           <input type="password" placeholder="Nhập lại mật khẩu mới" />
-        </li>
-      </ul>
+        </div>
+      </div>
       <ButtonCT primary medium className={classes.btn}>
         Lưu thay đổi
       </ButtonCT>

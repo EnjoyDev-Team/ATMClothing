@@ -6,10 +6,10 @@ import { faCheck } from '@fortawesome/free-solid-svg-icons';
 import React from 'react';
 import classes from './StateItem.module.scss';
 
-const StateItem = ({ content, description, checked = false }) => (
+const StateItem = ({ content, description }) => (
     <div className={classes.radio__item}>
         <label>
-            <input type="radio" name="productStatus" value={content} defaultChecked={checked} />
+            <input type="radio" name="group" value={content} />
             <div className={classes.radio__tick}>
                 <FontAwesomeIcon icon={faCheck} />
             </div>

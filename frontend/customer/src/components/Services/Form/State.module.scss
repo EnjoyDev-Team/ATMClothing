@@ -14,11 +14,9 @@
 .stateContainer {
     display: flex;
     justify-content: space-between;
-    align-items: stretch;
 }
 
 .stateBox {
-    height: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -28,16 +26,24 @@
     width: 18.5rem;
     padding: 2rem;
     cursor: pointer;
+    -webkit-transition: all 0.3s ease;
+    -moz-transition: all 0.3s ease;
+    -ms-transition: all 0.3s ease;
+    -o-transition: all 0.3s ease;
     transition: all 0.3s ease;
+    -webkit-border-radius: 2rem;
+    -moz-border-radius: 2rem;
+    -ms-border-radius: 2rem;
+    -o-border-radius: 2rem;
     border-radius: 2rem;
 }
 
 .stateBox * {
+    -webkit-transition: all 0.3s ease;
+    -moz-transition: all 0.3s ease;
+    -ms-transition: all 0.3s ease;
+    -o-transition: all 0.3s ease;
     transition: all 0.3s ease;
-    -webkit-user-select: none;
-       -moz-user-select: none;
-        -ms-user-select: none;
-            user-select: none;
 }
 
 .stateBox:hover,
@@ -62,10 +68,4 @@ div.stateContent {
     color: #666;
     text-align: center;
     margin-bottom: auto;
-}
-
-.stateContainer input[type="radio"]:checked + .stateBox,
-.stateContainer input[type="radio"]:checked + .stateBox div {
-    border-color: #0d6ab0;
-    color: #0d6ab0;
 }
