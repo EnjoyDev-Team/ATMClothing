@@ -1,37 +1,16 @@
+@import '../../../../styles/colors';
 
 .profileForm {
-  display: flex;
-  justify-content: space-between;
+  list-style: none;
 
-  &__title {
-    flex: 1;
-    font-size: 1.6rem;
-    color: #333;
-    font-weight: 400;
-    
-    p {
+  &__item {
+    display: flex;
+    margin-top: 20px;
+
+    &-title {
       line-height: 32px;
-      margin-bottom: 20px;
-    }
-  }
-
-  &__input {
-    flex: 2;
-
-    &-oldPW {
-      display: flex;
-
-      a {
-        padding-left: 6px;
-        line-height: 32px;
-        font-size: 1.4rem;
-        color: #13488C;
-        cursor: pointer;
-      }
-    }
-
-    input {
-      margin-bottom: 20px;
+      font-size: 1.6rem;
+      min-width: 200px;
     }
 
     input[type=text],
@@ -61,25 +40,38 @@
     }
 
     input[type=radio] {
-      appearance: auto;
       padding-right: 4px;
       margin-right: 6px;
       cursor: pointer;
     }
 
-    &-gender {
-      height: 52px;
+    input[type=radio]:checked {
+      accent-color: $main-color;
+    }
+  }
 
-      label {
-        padding-right: 16px;
-        cursor: pointer;
+  &__gender {
+    display: flex;
+
+    label {
+      padding-right: 16px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+
+      input {
+        margin: 0;
       }
     }
+  }
 
-    .phone {
-      line-height: 32px;
-      font-size: 1.6rem;
-    }
+  .forgotPW {
+    line-height: 32px;
+    font-size: 1.4rem;
+    color: #13488C;
+    cursor: pointer;
+    display: block;
+    text-align: right;
   }
 }
 

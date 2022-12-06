@@ -1,3 +1,5 @@
+/* eslint-disable react/prop-types */
+/* eslint-disable react/forbid-prop-types */
 import React from 'react';
 import PropTypes from 'prop-types';
 
@@ -29,7 +31,7 @@ const DetailCard = ({ details }) => (
                     && details.title.map((el) => (
                         <div
                           className={`${classes.card__content__item} ${classes['card__content__item-title']}`}
-                          key={el}
+                          key={`${details._id}_${el}`}
                         >
                             {el}
                         </div>
@@ -39,7 +41,7 @@ const DetailCard = ({ details }) => (
                 {details
                     && details.content
                     && details.content.map((el) => (
-                        <div className={classes.card__content__item} key={el}>
+                        <div className={classes.card__content__item} key={`${details._id}_${el}`}>
                             {el}
                         </div>
                     ))}
@@ -58,7 +60,7 @@ DetailCard.propTypes = {
   details: PropTypes.shape({
     name: PropTypes.string.isRequired,
     title: PropTypes.arrayOf(PropTypes.string).isRequired,
-    content: PropTypes.arrayOf(PropTypes.string).isRequired,
+    content: PropTypes.any.isRequired,
     price: PropTypes.string,
   }),
 };

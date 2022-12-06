@@ -33,6 +33,10 @@ const InputCT = (props) => {
     } else {
       setData(value);
     }
+
+    if (setValue) {
+      setValue(value);
+    }
   };
 
   const handleBlur = (e) => {
@@ -66,6 +70,10 @@ const InputCT = (props) => {
       inputRef.current.focus();
     }
   }, [state.isFocus]);
+
+  useEffect(() => {
+    setState({ error: message });
+  }, [message]);
 
   return (
     <>
