@@ -1,23 +1,39 @@
-label input {
+.inputSection label input {
     display: block;
     font-family: 'Inter';
     font-size: 1.6rem;
-    margin: 1.5rem auto;
 }
 
-label input::placeholder {
+.inputSection label input::-webkit-input-placeholder {
     font-family: 'Inter';
     font-size: 1.6rem;
 }
 
-label {
+.inputSection label input:-ms-input-placeholder {
+    font-family: 'Inter';
+    font-size: 1.6rem;
+}
+
+.inputSection label input::-ms-input-placeholder {
+    font-family: 'Inter';
+    font-size: 1.6rem;
+}
+
+.inputSection label input::placeholder {
+    font-family: 'Inter';
+    font-size: 1.6rem;
+}
+
+.inputSection label {
     font-size: 18px;
 }
 
-label > span {
+.inputSection label > span {
+    display: inline-block;
     font-size: 1.8rem;
     font-weight: 500;
     margin-left: .5rem;
+    margin: 1.5rem auto;
 }
 
 .inputSection {
@@ -45,10 +61,6 @@ input[placeholder="Danh mục"] {
     border: 1px solid #CCC;
     padding: .7rem 2rem;
     font-size: 16px;
-    -webkit-border-radius: 5rem;
-    -moz-border-radius: 5rem;
-    -ms-border-radius: 5rem;
-    -o-border-radius: 5rem;
     border-radius: 5rem;
 }
 
@@ -59,8 +71,8 @@ input[placeholder="Danh mục"] {
 
 .icon {
     position: absolute;
-    top: 24%;
-    left: 92%;
+    top: -3%;
+    left: 90%;
     cursor: pointer;
 }
 
@@ -77,10 +89,6 @@ input[placeholder="Danh mục"] {
     width: 14rem;
     font-size: 1.6rem;
     padding: 1rem 0rem;
-    -webkit-border-radius: 5rem;
-    -moz-border-radius: 5rem;
-    -ms-border-radius: 5rem;
-    -o-border-radius: 5rem;
     border-radius: 5rem;
 }
 
@@ -116,10 +124,6 @@ input[placeholder="Danh mục"] {
     gap: 3.5rem;
     border: 1px dashed lightgrey;
     padding: 3.5rem 16rem;
-    -webkit-border-radius: 2rem;
-    -moz-border-radius: 2rem;
-    -ms-border-radius: 2rem;
-    -o-border-radius: 2rem;
     border-radius: 2rem;
 }
 
@@ -134,17 +138,11 @@ input[placeholder="Danh mục"] {
     background-color: white;
     width: 15.5rem;
     padding: .7rem;
+    text-align: center;
     font-size: 1.8rem;
     font-weight: 400;
-    -webkit-border-radius: 5rem;
-    -moz-border-radius: 5rem;
-    -ms-border-radius: 5rem;
-    -o-border-radius: 5rem;
     border-radius: 5rem;
-    -webkit-transition: all .25s ease;
-    -moz-transition: all .25s ease;
-    -ms-transition: all .25s ease;
-    -o-transition: all .25s ease;
+    cursor: pointer;
     transition: all .25s ease;
 }
 
@@ -161,10 +159,6 @@ input[placeholder="Danh mục"] {
     padding: 1.5rem 2rem;
     border: 1px #CCC solid;
     resize: none;
-    -webkit-border-radius: 2rem;
-    -moz-border-radius: 2rem;
-    -ms-border-radius: 2rem;
-    -o-border-radius: 2rem;
     border-radius: 2rem;
 }
 
@@ -206,4 +200,64 @@ input[placeholder="Danh mục"] {
 .dropdownContent {
     font-size: 46px;
     padding-left: 2rem;
+}
+
+.input__file {
+    display: none;
+}
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+    width: 100%;
+}
+
+.dropdown svg {
+    padding: 1rem;
+}
+
+.dropdown input[id="dropdown_toggle"]:checked ~ .dropdown__list {
+    max-height: 19rem;
+    border-color: lightgray;
+    visibility: visible;
+    overflow: auto;
+}
+
+.dropdown input[id="dropdown_toggle"] ~ label svg {
+    rotate: 0deg;
+    transition: all .35s ease-in-out;
+}
+
+.dropdown input[id="dropdown_toggle"]:checked ~ label svg {
+    rotate: -180deg;
+}
+
+.dropdown input[id="dropdown_toggle"] {
+    display: none;
+}
+
+.dropdown__list {
+    position: absolute;
+    top: 100%;
+    left: 1.5rem;
+    right: 1.5rem;
+    background-color: white;
+    border: 1px solid transparent;
+    border-top: none;
+    max-height: 0rem;
+    overflow: hidden;
+    visibility: hidden;
+    border-radius: 0rem 0rem .5rem .5rem;
+    box-shadow: 0 0 .2rem rgba(0, 0, 0, .15);
+    transition: all .35s ease-in-out;
+
+    &__item {
+        padding: 1rem;
+        // border-bottom: 1px solid #CCC;
+        font-size: 1.4rem;
+        cursor: pointer;
+    }
+    &__item:hover {
+        background-color: rgba($color: #000000, $alpha: .04);
+    }
 }

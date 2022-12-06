@@ -34,7 +34,7 @@ const Slider = () => {
         </div>
         <div className={classes.content}>
           {SliderData.map((item, index) => (
-            <div className={idx === index ? classes.show : classes.hidden}>
+            <div key={+index} className={idx === index ? classes.show : classes.hidden}>
               <div className={classes.content__titles}>
                 <h1>{item.title}</h1>
                 <p>{item.describe}</p>
@@ -48,7 +48,7 @@ const Slider = () => {
             {/* <FontAwesomeIcon className={classes['content__suggestBtn--iconArrow']} icon={item.iconArow} /> */}
           </div>
           {SliderData.map((item, index) => (
-            <div className={idx === index ? classes.show : classes.hidden}>
+            <div key={+index} className={idx === index ? classes.show : classes.hidden}>
               <div className={classes.content__feedback}>
                 <div className={classes['content__feedback--avatar']}>
                   <img src={item.avatarIcon} alt="avatar-icon" />
@@ -69,7 +69,7 @@ const Slider = () => {
 
         <div className={classes.imageSlider}>
           {SliderData.map((item, index) => (
-            <img className={idx === index ? classes.show : classes.hidden} src={item.image} alt="slider" />
+            <img key={+index} className={idx === index ? classes.show : classes.hidden} src={item.image} alt="slider" />
           ))}
         </div>
 
