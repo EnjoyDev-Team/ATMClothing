@@ -50,10 +50,10 @@ const LoginForm = () => {
   };
 
   return (
-    <div className={classes['auth-form']}>
+    <form onSubmit={handleLogin} className={classes['auth-form']}>
       <div
         className={classes['auth-form__form']}
-        onClick={() => {}}
+        onClick={() => { }}
       >
         <h3>Đăng nhập</h3>
 
@@ -101,7 +101,7 @@ const LoginForm = () => {
           <Link to="/register">Đăng ký</Link>
         </p>
       </div>
-    </div>
+    </form>
   );
 };
 
