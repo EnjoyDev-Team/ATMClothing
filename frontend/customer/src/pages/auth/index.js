@@ -1,17 +1,40 @@
 import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+import { addPhoto } from '../../store/reducers/photoSlice';
+import useMergeState from '../../hooks/useMergeState';
 import classes from './styles.module.scss';
-import Header from '../../components/Header/Header';
-import Footer from '../../components/Footer/Footer';
-import ListProduct from '../../components/ListProduct/ListProduct';
 
-const Login = () => (
-    <div>
-        <Header />
-        <ListProduct />
-        <Footer />
+const Login = () => {
+  // Example to use Redux
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const handleClick = () => {
+    console.log('click');
+    const action = addPhoto('19892');
+    dispatch(action);
+
+    navigate('/home');
+  };
+
+  return (
+    <div className={classes.login}>
+      Login
+      <h1
+        className={classes.login__test}
+        onClick={handleClick}
+        onMouseDown={() => {}}
+        role="presentation"
+      >
+        Test
+      </h1>
+      <i className="fa-solid fa-users" />
     </div>
-);
+  );
+};
 
-Login.propTypes = {};
+Login.propTypes = {
+
+};
 
 export default Login;
