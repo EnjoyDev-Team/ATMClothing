@@ -279,7 +279,9 @@ const RegisterForm = () => {
     <div className={classes['auth-form']}>
       <div className={classes['auth-form__form']}>
         <h3>Đăng ký</h3>
-        {StepPhone}
+        {step === 1 && StepPhone}
+        {step === 2 && StepOTP}
+        {step === 3 && StepPassword}
       </div>
 
       <div id="verify-container" />
