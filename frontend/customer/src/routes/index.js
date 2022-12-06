@@ -21,6 +21,7 @@ import Product from '../pages/Products/Product/Product';
 import auth from '../utils/auth';
 import PaymentProduct from '../pages/PaymentProduct/PaymentProduct';
 import ServiceOrdersDetails from '../pages/detail_request/ServiceOrdersDetails';
+import ProductOrderDetails from '../pages/ProductOrder/ProductOrdersDetails';
 
 const Navigation = () => {
     const authenticated = !!auth.getAccessToken();
@@ -68,6 +69,7 @@ const Navigation = () => {
                 <Route path="/shopping">
                     <Route index element={<Shopping />} />
                     <Route path="payment" element={<PaymentProduct />} />
+                    <Route path="orders" element={<ProductOrderDetails />} />
                 </Route>
 
                 <Route path="*" name="notFound" element={<NotFound />} />
