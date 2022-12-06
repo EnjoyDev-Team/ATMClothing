@@ -1,0 +1,24 @@
+.header {
+    top: 0;
+    left: 0;
+    right: 0;
+    position: fixed;
+} 
+.navigation {
+    position: fixed;
+    top: 0;
+    left: 0;
+    // right: 0;
+}
+.listrevenue {
+    margin-left: 12.6rem;
+    margin-top: 11rem;
+    margin-right: 3rem;
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    &__revenue {
+        padding-bottom: 1rem;
+    }
+}
