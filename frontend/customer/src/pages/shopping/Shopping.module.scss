@@ -25,7 +25,6 @@ body {
 .container {
     margin: 0 15rem;
     margin-top: 3rem;
-    background-color: #E7E8EC;
     display: flex;
     &__content {
         border-radius: 5px;
@@ -57,7 +56,9 @@ body {
                     width: 2rem;
                     height: 2rem;
                     border-radius: 4px;
-                    appearance: auto;
+                    -webkit-appearance: auto;
+                       -moz-appearance: auto;
+                            appearance: auto;
                 }
             }
         }
@@ -86,7 +87,9 @@ body {
                         width: 2rem;
                         height: 2rem;
                         border-radius: 4px;
-                        appearance: auto;
+                        -webkit-appearance: auto;
+                           -moz-appearance: auto;
+                                appearance: auto;
                     }
                 }
             }
@@ -106,6 +109,11 @@ body {
                 }
             }
         }
+    }
+
+    .container__content__cart .container__content__cart__listproduct > div:last-child > .container__content__cart__listproduct__line {
+        height: 0rem;
+        background-color: transparent;
     }
 
     &__status {
