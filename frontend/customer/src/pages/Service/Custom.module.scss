@@ -10,6 +10,7 @@
     left: 0;
     right: 0;
     background-color: rgba($color: #000000, $alpha: .4);
+    z-index: 2;
 }
 
 .title {
@@ -26,4 +27,32 @@
     left: 50%;
     translate: -50% 0%;
     z-index: 2;
+}
+
+.addbtn {
+    align-items: center;
+    width: auto;
+    background-color: rgba($color: #98e35b, $alpha: 0.5);
+    border: 1px solid #3c7d08;
+    border-radius: 1rem;
+    font-family: inherit;
+    padding: .8rem 1.4rem;
+    font-weight: 500;
+    line-height: 1em;
+    transition: all .35s ease;
+    
+    &__content {
+        display: flex;
+        align-items: center;
+        gap: .7rem;
+        
+        img {
+            display: block;
+        }
+    }
+}
+
+.addbtn:hover {
+    background-color: #a4db78;
+    opacity: 1;
 }
