@@ -69,7 +69,6 @@ const ServiceOrdersDetails = () => {
     }, [isLoadingID]);
 
     return (
-
         <div className={classes.body}>
             <div className={classes.title}>
                 <h1>Chi tiết đơn hàng bạn đã tạo</h1>
