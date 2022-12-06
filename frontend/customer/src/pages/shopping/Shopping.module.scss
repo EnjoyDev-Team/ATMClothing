@@ -96,16 +96,16 @@ body {
                     padding-top: 3rem;
                 }
                 &__line {
-                    border-bottom: 2px solid #6666;
-                    margin-left: 2.5rem;
-                    margin-right: 5.8rem;
+                    height: 1.5px;
+                    width: 91%;
+                    background-color:  #6666;
+                    margin-left: 2rem;
                 }
                 &__line:last-child {
                    border: none;
                 }
             }
         }
-
     }
 
     &__status {

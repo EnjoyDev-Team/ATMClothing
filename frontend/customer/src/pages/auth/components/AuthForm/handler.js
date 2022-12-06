@@ -16,3 +16,11 @@ export const validatePassword = ({ value }) => {
 
   return '';
 };
+
+export const validateOTP = ({ value }) => {
+  if (value.length < 6) {
+    return 'OTP ít nhất 6 ký tự';
+  }
+
+  return '';
+};
