@@ -33,14 +33,14 @@ const ProductOrdersDetails = () => {
 
     useEffect(() => {
         if (!isLoading && !error && response.data) {
-            console.log(response.data);
+            console.log(response.data.data[0].IdOrder);
             setOrderList([...response.data.data]);
-            console.log(response.data.data);
         }
     }, [isLoading]);
 
     useEffect(() => {
         if (!isLoadingID && !errorID && responseID.data) {
+            console.log(responseID.data);
             setOrderDetail(responseID.data.order);
         } else setOrderDetail('');
     }, [isLoadingID]);

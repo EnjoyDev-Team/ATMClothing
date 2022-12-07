@@ -28,7 +28,7 @@ const Order = ({ orderList, id }) => {
                   <div className={classes.date__container}>
                       <FontAwesomeIcon icon={faClock} className={classes.icon} />
                       <span className={classes.date}>
-                          {new Date(item.create_at).toLocaleDateString('vi', {
+                          {new Date(item.createAt).toLocaleDateString('vi', {
                               timeZone: 'Asia/Ho_Chi_Minh',
                           })}
                       </span>
@@ -40,8 +40,8 @@ const Order = ({ orderList, id }) => {
                           <p>Trạng thái</p>
                       </div>
                       <div className={classes.right__section}>
-                          <p>{item.code}</p>
-                          <p>{item.service}</p>
+                          <p>{item.IdOrder}</p>
+                          <p>{item.status}</p>
                           <p className={`${statusClass[item.status]}`}>{item.status}</p>
                       </div>
                   </div>

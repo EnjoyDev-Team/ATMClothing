@@ -30,11 +30,17 @@ const DetailProduct = ({ orderDetail, id, isLoading }) => {
                     <p>Trạng thái</p>
                 </div>
                 <div className={classes.middle__section}>
-                    <p>{!isLoading ? (orderDetail && orderDetail.code ? orderDetail.code : '\u00A0') : 'loading...'}</p>
                     <p>
                         {!isLoading
-                            ? orderDetail && orderDetail.create_at
-                                ? new Date(orderDetail.create_at).toLocaleString('vi', { timeZone: 'Asia/Ho_Chi_Minh' })
+                            ? orderDetail && orderDetail.IdOrder
+                                ? orderDetail.IdOrder
+                                : '\u00A0'
+                            : 'loading...'}
+                    </p>
+                    <p>
+                        {!isLoading
+                            ? orderDetail && orderDetail.createAt
+                                ? new Date(orderDetail.createAt).toLocaleString('vi', { timeZone: 'Asia/Ho_Chi_Minh' })
                                 : '\u00A0'
                             : 'loading...'}
                     </p>
