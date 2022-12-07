@@ -29,19 +29,20 @@ const ProductOrdersDetails = () => {
     const [orderDetail, setOrderDetail] = useState('');
 
     const [response, error, isLoading] = useAxios('get', '/orders?idUser=637af77f7821c5c0011f3829', {}, {}, []);
-    const [responseID, errorID, isLoadingID] = useAxios('get', `/services/${id}`, {}, {}, [id]);
+    const [responseID, errorID, isLoadingID] = useAxios('get', `/orders/${id}`, {}, {}, [id]);
 
     useEffect(() => {
         if (!isLoading && !error && response.data) {
-            console.log(response.data.data[0].IdOrder);
+            // console.log(response.data.data[0]);
             setOrderList([...response.data.data]);
         }
     }, [isLoading]);
 
+    // console.log('id', id);
     useEffect(() => {
         if (!isLoadingID && !errorID && responseID.data) {
             console.log(responseID.data);
-            setOrderDetail(responseID.data.order);
+            setOrderDetail(responseID.data);
         } else setOrderDetail('');
     }, [isLoadingID]);
 
@@ -90,7 +91,7 @@ const ProductOrdersDetails = () => {
                 {!isLoadingID ? (
                     orderDetail && orderDetail.products && orderDetail.products.length ? (
                         orderDetail.products.map((el, index) => (
-                            <DetailProduct key={el._id} productDetail={el} index={index} />
+                            <DetailProduct key={el.idProduct} productDetail={el} index={index} />
                         ))
                     ) : (
                         <span style={{ margin: '2rem 7rem', display: 'block' }}>There is no information</span>

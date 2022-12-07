@@ -70,6 +70,7 @@ const Navigation = () => {
                     <Route index element={<Shopping />} />
                     <Route path="payment" element={<PaymentProduct />} />
                     <Route path="orders" element={<ProductOrderDetails />} />
+                    <Route path="orders/:id" element={<ProductOrderDetails />} />
                 </Route>
 
                 <Route path="*" name="notFound" element={<NotFound />} />

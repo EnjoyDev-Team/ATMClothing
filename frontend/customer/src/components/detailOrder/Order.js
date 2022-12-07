@@ -21,7 +21,7 @@ const Order = ({ orderList, id }) => {
     return orderList && orderList.length
         ? orderList.map((item, index) => (
               <div
-                  onClick={() => navigate(`/services/orders/${item.code}`)}
+                  onClick={() => navigate(`/shopping/orders/${item._id}`)}
                   key={+index}
                   className={`${classes.body}${id === item.code ? ` ${classes.active}` : ''}`}
               >
