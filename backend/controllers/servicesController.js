@@ -2,9 +2,10 @@ const { sellModel, customModel, orderModel, donateModel } = require('../models/s
 const catchAsync = require('../utils/catchAsync');
 const AppError = require('../utils/appError');
 const slugify = require('slugify');
+const APIFeatures = require('../utils/apiFeature');
 
 module.exports.getSellProducts = catchAsync(async (req, res, next) => {
-    const sellProductList = await sellModel.find().sort({ create_at: 'desc' });
+    const sellProductList = await sellModel.find({ uid: req.user._id }).sort({ create_at: 'desc' });
 
     res.status(200).json({
         status: 'success',
@@ -45,7 +46,7 @@ module.exports.addCustomProduct = catchAsync(async (req, res, next) => {
 });
 
 module.exports.getCustomProducts = catchAsync(async (req, res, next) => {
-    const CustomProductList = await customModel.find().sort({ create_at: 'desc' });
+    const CustomProductList = await customModel.find({ uid: req.user._id }).sort({ create_at: 'desc' });
 
     res.status(200).json({
         status: 'success',
@@ -91,14 +92,12 @@ module.exports.addPayment = catchAsync(async (req, res, next) => {
     }
 
     const payment = await orderModel.create(paymentData);
-    
+
     if (paymentData.service.toLowerCase() === 'sell') {
         await sellModel.deleteMany();
-    }
-    else if (paymentData.service.toLowerCase() === 'custom') {
+    } else if (paymentData.service.toLowerCase() === 'custom') {
         await customModel.deleteMany();
-    }
-    else if (paymentData.service.toLowerCase() === 'donate') {
+    } else if (paymentData.service.toLowerCase() === 'donate') {
         await donateModel.deleteMany();
     }
     // else if (paymentData.service === 'donate') {
@@ -115,7 +114,9 @@ module.exports.addPayment = catchAsync(async (req, res, next) => {
 });
 
 module.exports.getPayments = catchAsync(async (req, res, next) => {
-    const payments = await orderModel.find().sort({ create_at: 'desc' });
+    const features = new APIFeatures(orderModel.find({ uid: req.user._id }), req.query).filter().sort().limitFields();
+
+    const payments = await features.query;
 
     res.status(200).json({
         status: 'success',
@@ -126,9 +127,11 @@ module.exports.getPayments = catchAsync(async (req, res, next) => {
 });
 
 module.exports.getPaymentById = catchAsync(async (req, res, next) => {
-    const filter = req.params.id ? {code: req.params.id} : {};
-    
-    const payment = await orderModel.findOne(filter).sort({ create_at: 'desc' });
+    const filter = req.params.id ? { code: req.params.id, uid: req.user._id } : {};
+
+    const features = new APIFeatures(orderModel.findOne(filter), req.query).sort().limitFields();
+
+    const payment = await features.query;
 
     res.status(200).json({
         status: 'success',
