@@ -13,10 +13,16 @@ import DetailOrder from '../../components/detailOrder/DetailOrder';
 import DetailProduct from '../../components/detailOrder/DetailProduct';
 import FilterTable from '../../components/detailOrder/FilterTable';
 import filter from '../../assets/imgs/detailRequest/Filter Edit.png';
-import useAxios from '../../hooks/useAxios';
-import auth from '../../utils/auth';
+import useAxiosPrivate from '../../hooks/useAxiosPrivate';
 
 const ServiceOrdersDetails = () => {
+    const [response, setResponse] = useState('');
+    const [responseID, setResponseID] = useState('');
+    const [isLoading, setIsLoading] = useState(false);
+    const [isLoadingID, setIsLoadingID] = useState(false);
+    const [error, setError] = useState('');
+    const [errorID, setErrorID] = useState('');
+
     const params = useParams();
     const id = params.id || '';
 
@@ -28,13 +34,31 @@ const ServiceOrdersDetails = () => {
     const [orderList, setOrderList] = useState('');
     const [orderDetail, setOrderDetail] = useState('');
 
-    const [response, error, isLoading] = useAxios('get', `/services?uid=${auth.getID()}`, {}, {}, []);
-    const [responseID, errorID, isLoadingID] = useAxios('get', `/services/${id}?uid=${auth.getID()}`, {}, {}, [id]);
+    const axiosPrivate = useAxiosPrivate();
+
+    useEffect(() => {
+        if (!isLoading) {
+            setIsLoading(true);
+            axiosPrivate.get('/services')
+            .then(res => setResponse(res.data))
+            .catch(err => setError(err.response.data))
+            .finally(() => setIsLoading(false));
+        }
+    }, []);
+
+    useEffect(() => {
+        if (!isLoadingID) {
+            setIsLoadingID(true);
+            axiosPrivate.get(`/services/${id}`)
+            .then(res => setResponseID(res.data))
+            .catch(err => setErrorID(err.response.data))
+            .finally(() => setIsLoadingID(false));
+        }
+    }, [id]);
 
     useEffect(() => {
         if (!isLoading && !error && response.data) {
             setOrderList(response.data.orders);
-            console.log(response.data.orders);
         }
     }, [isLoading]);
 
@@ -45,6 +69,7 @@ const ServiceOrdersDetails = () => {
     }, [isLoadingID]);
 
     return (
+
         <div className={classes.body}>
             <div className={classes.title}>
                 <h1>Chi tiết đơn hàng bạn đã tạo</h1>
