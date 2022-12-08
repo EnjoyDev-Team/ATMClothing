@@ -1,7 +1,11 @@
 const express = require('express');
+
+const authMiddleware = require('../middlewares/authMiddleware')
 const serviceController = require('../controllers/servicesController');
 
 const router = express.Router();
+
+router.use(authMiddleware.protect);
 
 router.route('/sell')
 .get(serviceController.getSellProducts)
