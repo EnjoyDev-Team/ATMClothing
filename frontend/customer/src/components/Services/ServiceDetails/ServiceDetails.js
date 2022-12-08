@@ -7,9 +7,9 @@ import PropTypes from 'prop-types';
 import BoxWrapper from '../../BoxWrapper/BoxWrapper';
 import ButtonCT from '../../ButtonCT/ButtonCT';
 import classes from './ServiceDetails.module.scss';
-import { axiosClient } from '../../../api/axios';
 import { OrderIDGenerator } from '../../../utils/IDGenerator';
 import auth from '../../../utils/auth';
+import useAxiosPrivate from '../../../hooks/useAxiosPrivate';
 
 const ServiceDetails = ({ button, productDetails, screens, service, totalPrice }) => {
   const [step, setStep] = useState(0);
@@ -18,6 +18,8 @@ const ServiceDetails = ({ button, productDetails, screens, service, totalPrice }
   const [isPayment, setIsPayment] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
   const navigate = useNavigate();
+
+  const axiosPrivate = useAxiosPrivate();
 
   useEffect(() => {
     paymentData.current = {
@@ -50,7 +52,7 @@ const ServiceDetails = ({ button, productDetails, screens, service, totalPrice }
       // send a payment
       console.log(paymentData.current);
       setIsPayment(true);
-      axiosClient
+      axiosPrivate
         .post('/services', {
           paymentData: { ...paymentData.current, uid: auth.getID(), code: OrderIDGenerator() },
         })
@@ -58,9 +60,9 @@ const ServiceDetails = ({ button, productDetails, screens, service, totalPrice }
           console.log(res.data);
           setIsPayment(false);
           setPayment(false);
-          navigate(`/services/orders/${res.data.order.code}`);
+          navigate(`/services/orders/${res.data.data.order.code}`);
         })
-        .catch((err) => console.log(err));
+        .catch((err) => console.log(err.response.data));
       return;
     }
 
@@ -114,7 +116,7 @@ const ServiceDetails = ({ button, productDetails, screens, service, totalPrice }
                             <div>Tổng tiền dự kiến</div>
                         </div>
                         <div className={classes['order__content-item']}>
-                            <div>2</div>
+                            <div>{productDetails.length || 0}</div>
                             <div>2</div>
                             <div>{ totalPrice.totalPrice ? totalPrice.totalPrice : '' }</div>
                         </div>
