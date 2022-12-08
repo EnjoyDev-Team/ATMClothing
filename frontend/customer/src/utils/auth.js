@@ -16,6 +16,10 @@ const auth = {
     return localStorage.accessToken;
   },
 
+  getID() {
+    return localStorage._id;
+  },
+
   getPhone() {
     return localStorage.phone;
   },

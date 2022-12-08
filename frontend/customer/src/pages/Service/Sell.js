@@ -8,12 +8,16 @@ import FormStep3 from './screens/FormStep3';
 import FormStepFinal from './screens/FormStepFinal';
 import ButtonCT from '../../components/ButtonCT/ButtonCT';
 import addBtn from '../../assets/imgs/service/add-btn.png';
-import useAxios from '../../hooks/useAxios';
 import Details from './screens/Details';
 import PaymentDelivery from './screens/PaymentDelivery';
 import PaymentMethod from './screens/PaymentMethod';
+import useAxiosPrivate from '../../hooks/useAxiosPrivate';
 
 const Sell = () => {
+  const [response, setResponse] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState('');
+
   const screens = [SellFormStep1, OptionalDetails, FormStep3, FormStepFinal];
 
   const [addNewProduct, setAddNewProduct] = useState(false);
@@ -21,7 +25,17 @@ const Sell = () => {
   const [product, setProduct] = useState([]);
   const [totalPrice, setTotalPrice] = useState({ totalPrice: '0đ' });
 
-  const [response, error, isLoading] = useAxios('get', '/services/sell', {}, {}, []);
+  const axiosPrivate = useAxiosPrivate();
+
+  useEffect(() => {
+    if (!isLoading) {
+      setIsLoading(true);
+      axiosPrivate.get('/services/sell')
+        .then(res => setResponse(res.data))
+        .catch(err => setError(err.response.data))
+        .finally(() => setIsLoading(false));
+    }
+  }, []);
 
   useEffect(() => {
     if (!isLoading && !error && response.data) {
