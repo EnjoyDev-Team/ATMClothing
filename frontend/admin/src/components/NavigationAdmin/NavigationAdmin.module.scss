@@ -1,7 +1,7 @@
 .navigation {
     height: 100%;
     background-color: #fff;
-    width: 12rem;
+    // width: 12rem;
     display: flex;
     align-items: center;
     flex-direction: column;
@@ -9,31 +9,35 @@
     &__logo {
         text-align: center;
         padding-top: 2.5rem;
-        padding-bottom: 17rem;
+        padding-bottom: 14rem;
         img {
             cursor: pointer;
+            width: 8rem;
             justify-items: center;
         }
     }
     &__container {
         &__listcontent {
             &__components {
-                position: relative;
-                // transition: 2s;
                 padding-bottom: 5rem ;
                 &__component {
+                    position: relative;
+                    img {
+                        width: 4.5rem;
+                    }
                     &__title {
                         opacity: 0;
                         // display: none;
                         border: 2px solid #615F5F;
                         border-radius: 12px;
-                        bottom: 4.8rem;
-                        left: -1.8rem;
+                        bottom: -0.2rem;
+                        left: -1.6rem;
                         position: absolute;
-                        background: linear-gradient(270.32deg, #645F5F -12.43%, rgba(217, 217, 217, 0) 64.25%);
+                        background: linear-gradient(-90deg, #D8D8D8, rgb(242, 242, 242));
                         overflow: hidden;
                         display: flex;
                         img {
+                            width: 5.9rem;
                             text-align: center;
                             display: inline-block;
                             padding: 0.4rem 0;
@@ -45,19 +49,17 @@
                             font-weight: 600;
                             padding-left: 1.6rem;
                             padding-right: 5rem;
-                            // word-wrap: break-word;
-                            // word-break: break-all;
                             white-space: nowrap;
                         }
-                    }
+                    }   
                 }
-                &__component:hover .navigation__container__listcontent__components__component__title  {
+                &__component:hover > .navigation__container__listcontent__components__component__title {
                     opacity: 1;
-                    transition: 1s;
-
+                    transition: 1.8s;
                 }
                 &__component:hover>img {
                     opacity: 0;
+                    transition: 1.8s;
                 }
             }
         }
