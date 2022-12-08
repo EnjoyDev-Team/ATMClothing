@@ -46,7 +46,7 @@ module.exports.getById = catchAsync(async (req, res, next) => {
 });
 
 module.exports.filter = catchAsync(async (req, res, next) => {
-  const filter = { user: req.body.idUser };
+  const filter = { user: req.query.idUser };
   const features = new APIFeatures(Order.find(filter), req.query)
                       .filter()
                       .sort()
