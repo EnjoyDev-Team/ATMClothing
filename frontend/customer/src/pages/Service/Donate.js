@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import ButtonCT from '../../components/ButtonCT/ButtonCT';
 import Form from '../../components/Services/Form/Form';
 import ServiceDetails from '../../components/Services/ServiceDetails/ServiceDetails';
-import useAxios from '../../hooks/useAxios';
 import classes from './Donate.module.scss';
 import addBtn from '../../assets/imgs/service/add-btn.png';
 import Details from './screens/Details';
@@ -12,15 +11,30 @@ import FormStep3 from './screens/FormStep3';
 import FormStepFinal from './screens/FormStepFinal';
 import PaymentDelivery from './screens/PaymentDelivery';
 import PaymentMethod from './screens/PaymentMethod';
+import useAxiosPrivate from '../../hooks/useAxiosPrivate';
 
 const Donate = () => {
+  const [response, setResponse] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState('');
+
   const screens = [DonateFormStep1, DonateFormStep2, FormStep3, FormStepFinal];
 
   const [addNewProduct, setAddNewProduct] = useState(false);
 
   const [product, setProduct] = useState([]);
 
-  const [response, error, isLoading] = useAxios('get', '/services/donate', {}, {}, []);
+  const axiosPrivate = useAxiosPrivate();
+
+  useEffect(() => {
+    if (!isLoading) {
+      setIsLoading(true);
+      axiosPrivate.get('/services/donate')
+        .then(res => setResponse(res.data))
+        .catch(err => setError(err.response.data))
+        .finally(() => setIsLoading(false));
+    }
+  }, []);
 
   useEffect(() => {
     if (!isLoading && !error && response.data) {

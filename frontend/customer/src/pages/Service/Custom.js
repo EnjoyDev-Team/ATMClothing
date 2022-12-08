@@ -6,21 +6,35 @@ import FormStep3 from './screens/FormStep3';
 import Form from '../../components/Services/Form/Form';
 import FormStepFinal from './screens/FormStepFinal';
 import ServiceDetails from '../../components/Services/ServiceDetails/ServiceDetails';
-import useAxios from '../../hooks/useAxios';
 import ButtonCT from '../../components/ButtonCT/ButtonCT';
 import addBtn from '../../assets/imgs/service/add-btn.png';
 import Details from './screens/Details';
 import PaymentDelivery from './screens/PaymentDelivery';
 import PaymentMethod from './screens/PaymentMethod';
+import useAxiosPrivate from '../../hooks/useAxiosPrivate';
 
 const Custom = () => {
+  const [response, setResponse] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState('');
+
   const screens = [CustomFormStep1, OptionalDetails, FormStep3, FormStepFinal];
 
   const [addNewProduct, setAddNewProduct] = useState(false);
 
   const [product, setProduct] = useState([]);
 
-  const [response, error, isLoading] = useAxios('get', '/services/custom', {}, {}, []);
+  const axiosPrivate = useAxiosPrivate();
+
+  useEffect(() => {
+    if (!isLoading) {
+      setIsLoading(true);
+      axiosPrivate.get('/services/custom')
+        .then(res => setResponse(res.data))
+        .catch(err => setError(err.response.data))
+        .finally(() => setIsLoading(false));
+    }
+  }, []);
 
   useEffect(() => {
     if (!isLoading && !error && response.data) {

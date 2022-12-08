@@ -1,18 +1,28 @@
 /* eslint-disable react/prop-types */
 /* eslint-disable react/jsx-indent-props */
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import Spinner from '../../../components/Services/Spinner';
-import useAxios from '../../../hooks/useAxios';
+import useAxiosPrivate from '../../../hooks/useAxiosPrivate';
+import auth from '../../../utils/auth';
 import classes from './FormStep3.module.scss';
 
 const FormStep3 = ({ onSubmit, data, setProduct, onError, service }) => {
-  const [response, error, isLoading] = useAxios(
-    'post',
-    `/services/${service}`,
-    { product: { ...data, uid: '123acb123ns3' } },
-    { headers: { 'Content-Type': 'application/json' } },
-    []
-  );
+  const axiosPrivate = useAxiosPrivate();
+  const [response, setResponse] = useState('');
+  const [error, setError] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
+
+  useEffect(() => {
+    if (isLoading === false) {
+      setIsLoading(true);
+      axiosPrivate.post(`/services/${service}`, {
+        product: { ...data, uid: auth.getID() }
+      })
+        .then((res) => setResponse(res.data))
+        .catch(err => setError(err.response.data))
+        .finally(() => setIsLoading(false));
+    }
+  }, []);
 
   const successHandle = () => {
     const { product } = response.data;

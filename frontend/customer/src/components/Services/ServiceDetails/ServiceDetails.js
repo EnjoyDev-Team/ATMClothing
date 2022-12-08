@@ -1,14 +1,15 @@
 /* eslint-disable react/forbid-prop-types */
+// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+// import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 import React, { useEffect, useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import PropTypes from 'prop-types';
-// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-// import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 import BoxWrapper from '../../BoxWrapper/BoxWrapper';
 import ButtonCT from '../../ButtonCT/ButtonCT';
 import classes from './ServiceDetails.module.scss';
 import { axiosClient } from '../../../api/axios';
 import { OrderIDGenerator } from '../../../utils/IDGenerator';
+import auth from '../../../utils/auth';
 
 const ServiceDetails = ({ button, productDetails, screens, service, totalPrice }) => {
   const [step, setStep] = useState(0);
@@ -51,7 +52,7 @@ const ServiceDetails = ({ button, productDetails, screens, service, totalPrice }
       setIsPayment(true);
       axiosClient
         .post('/services', {
-          paymentData: { ...paymentData.current, uid: '123acb123ns3', code: OrderIDGenerator() },
+          paymentData: { ...paymentData.current, uid: auth.getID(), code: OrderIDGenerator() },
         })
         .then((res) => {
           console.log(res.data);
@@ -91,10 +92,12 @@ const ServiceDetails = ({ button, productDetails, screens, service, totalPrice }
   const maxHeight = step === 0 ? '41.3rem' : '';
   const minHeight = step === 2 ? '28.8rem' : '';
 
+  const heading = service === 'sell' ? 'Bán sản phẩm' : service === 'custom' ? 'Custom sản phẩm' : 'Donate sản phẩm';
+
   return (
         <form className={classes.main} onSubmit={handleNext}>
             <BoxWrapper
-              heading="Bán sản phẩm"
+              heading={heading}
               width="69.5rem"
               maxHeight={maxHeight}
               minHeight={minHeight}

@@ -14,6 +14,7 @@ import DetailProduct from '../../components/detailOrder/DetailProduct';
 import FilterTable from '../../components/detailOrder/FilterTable';
 import filter from '../../assets/imgs/detailRequest/Filter Edit.png';
 import useAxios from '../../hooks/useAxios';
+import auth from '../../utils/auth';
 
 const ServiceOrdersDetails = () => {
     const params = useParams();
@@ -27,12 +28,13 @@ const ServiceOrdersDetails = () => {
     const [orderList, setOrderList] = useState('');
     const [orderDetail, setOrderDetail] = useState('');
 
-    const [response, error, isLoading] = useAxios('get', '/services', {}, {}, []);
-    const [responseID, errorID, isLoadingID] = useAxios('get', `/services/${id}`, {}, {}, [id]);
+    const [response, error, isLoading] = useAxios('get', `/services?uid=${auth.getID()}`, {}, {}, []);
+    const [responseID, errorID, isLoadingID] = useAxios('get', `/services/${id}?uid=${auth.getID()}`, {}, {}, [id]);
 
     useEffect(() => {
         if (!isLoading && !error && response.data) {
             setOrderList(response.data.orders);
+            console.log(response.data.orders);
         }
     }, [isLoading]);
 
