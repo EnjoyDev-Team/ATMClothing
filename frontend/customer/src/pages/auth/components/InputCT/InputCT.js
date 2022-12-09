@@ -60,12 +60,6 @@ const InputCT = (props) => {
     }
   };
 
-  const handleEnter = (e) => {
-    if (e.key === 'Enter') {
-      handleBlur(e);
-    }
-  };
-
   const handleClickEye = () => {
     if (state.type === 'password') setState({ type: 'text' });
     else setState({ type: 'password' });
@@ -83,18 +77,17 @@ const InputCT = (props) => {
 
   return (
     <>
-      <div className={classes.inputCT}>
-        <input
-          onFocusCapture={() => setState({ isFocus: 1 })}
-          onKeyDown={handleEnter}
-          onBlur={handleBlur}
-          onChange={handleChange}
-          value={data}
-          type={state.type}
-          ref={inputRef}
-          {...passProps}
-        />
-        {type === 'password' && (
+    <div className={classes.inputCT}>
+      <input
+        onFocusCapture={() => setState({ isFocus: 1 })}
+        onBlur={handleBlur}
+        onChange={handleChange}
+        value={data}
+        type={state.type}
+        ref={inputRef}
+        {...passProps}
+      />
+      {type === 'password' && (
           <div
             className={classes['input-eye']}
             onClick={handleClickEye}
@@ -105,19 +98,19 @@ const InputCT = (props) => {
               <FontAwesomeIcon className={classes['input-eye__icon']} icon={faEye} />
             )}
           </div>
-        )}
-        <span
-          className={`${classes.label} 
+      )}
+      <span
+        className={`${classes.label} 
         ${state.isFocus === 1 && classes.focusAnimate}
         ${state.isFocus === 0 && classes.unFocusAnimate}`}
-          onClick={() => setState({ isFocus: 1 })}
-        >
-          {placeholder}
-        </span>
-      </div>
-      <div className={classes.message}>
-        {state.error && <span>{state.error}</span>}
-      </div>
+        onClick={() => setState({ isFocus: 1 })}
+      >
+        {placeholder}
+      </span>
+    </div>
+    <div className={classes.message}>
+      {state.error && <span>{state.error}</span>}
+    </div>
     </>
   );
 };

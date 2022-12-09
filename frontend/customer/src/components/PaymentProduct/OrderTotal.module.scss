@@ -1,0 +1,25 @@
+.total__container {
+    display: flex;
+    justify-content: space-between;
+    background-color: white;
+}
+
+.total__container div {
+    margin: 1rem 2rem;
+}
+
+.total__container div:nth-child(2) {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+
+.total__container div:nth-child(3) {
+    margin-right: 7rem;
+}
+
+.totalPrice {
+    font-weight: bold;
+    // font-size: 2rem;
+    margin: 1rem 0;
+}

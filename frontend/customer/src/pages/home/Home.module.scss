@@ -4,6 +4,11 @@ body {
     background-color: #F3F3F3;
 }
 
+.imghome {
+    img {
+        width: 100%;
+    }
+}
 .header {
     background-color: #fff;
     margin: 3rem 3.5rem;
@@ -14,7 +19,6 @@ body {
         flex-wrap: wrap;
         margin: auto;
         margin-top: 1rem;
-
     }
 
     &__content {
@@ -90,11 +94,11 @@ body {
 }
 
 .listProducts {
+    margin: 0 2.6rem;
     text-align: center;
     display: flex;
     align-items: center;
     justify-content: space-around;
-    margin: 0 2.6rem;
     flex-wrap: wrap;
 
     &__product {
@@ -173,4 +177,47 @@ body {
 }
 .hover:hover {
     color: rgb(206, 18, 197);
+}
+.sliderfooter {
+    margin-top: 18rem;  
+    &__header {
+        &__content {
+            // color: #3C7D08;
+            text-align: center;
+            font-size: 4rem;
+            letter-spacing: 3px;
+            padding-bottom: 1.5rem;
+            background:  linear-gradient(180deg, #3C7D08 29.17%, rgba(8, 125, 118, 0.45) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+    }
+}
+.containerreport {
+    &__header {
+        margin-top: 15rem;
+        text-align: center;
+        font-size: 4rem;
+        letter-spacing: 3px;
+        padding-bottom: 2rem;
+        background:  linear-gradient(180deg, #3C7D08 29.17%, rgba(8, 125, 118, 0.45) 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+    }
+    &__listreport {
+        background-color:rgba(60, 125, 8, 0.4);
+        margin: 0 3.5rem;
+        text-align: center;
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+        flex-wrap: wrap;
+        &__report {
+            justify-content: center;
+            padding: 2.5rem 3rem;
+            &__cardreport:first-child {
+                background-color: #3C7D08;
+            }
+        }
+    }
 }

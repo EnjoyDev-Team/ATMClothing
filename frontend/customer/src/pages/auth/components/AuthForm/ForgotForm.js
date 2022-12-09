@@ -270,9 +270,9 @@ const ForgotForm = () => {
     <div className={classes['auth-form']}>
       <div className={classes['auth-form__form']}>
         <h3>Quên mật khẩu</h3>
-          {step === 1 && StepPhone}
-          {step === 2 && StepOTP}
-          {step === 3 && StepPassword}
+        {step === 1 && StepPhone}
+        {step === 2 && StepOTP}
+        {step === 3 && StepPassword}
       </div>
 
       <div id="verify-container" />

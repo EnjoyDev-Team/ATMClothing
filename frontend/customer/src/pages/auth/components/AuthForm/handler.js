@@ -11,7 +11,7 @@ export const validatePassword = ({ value }) => {
   const regex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/;
 
   if (!regex.test(value)) {
-    return 'Ít nhất 8 ký tự bao gồm số và chữ cái!(Không sử dụng khoảng cách)';
+    return 'Ít nhất 8 ký tự bao gồm số và chữ cái!';
   }
 
   return '';
