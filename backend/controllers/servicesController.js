@@ -143,9 +143,6 @@ module.exports.addPayment = catchAsync(async (req, res, next) => {
     } else if (paymentData.service.toLowerCase() === 'donate') {
         await donateModel.deleteMany();
     }
-    // else if (paymentData.service === 'donate') {
-    //     await donateModel.deleteMany();
-    // }
 
     res.status(200).json({
         status: 'success',
