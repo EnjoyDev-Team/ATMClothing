@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
+import { useSelector } from 'react-redux';
 import classes from './Shopping.module.scss';
 import Cartproductcard from '../../components/cartproductcard/CartProductCard';
 import ButtonCT from '../../components/ButtonCT/ButtonCT';
@@ -63,6 +64,8 @@ const listProducts = [
 ];
 
 const Shopping = () => {
+  const cart = useSelector(state => state.cart);
+  console.log(cart);
   const [state, setState] = useState(false);
   const handleState = () => {
     setState((prev) => !prev);

@@ -2,6 +2,7 @@
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
 import SocialLogin from '../SocialLogin/SocialLogin';
 import InputCT from '../InputCT/InputCT';
 import ButtonCT from '../../../../components/ButtonCT/ButtonCT';
@@ -10,8 +11,10 @@ import { validatePassword, validatePhone } from './handler';
 import auth from '../../../../utils/auth';
 import useAxiosPrivate from '../../../../hooks/useAxiosPrivate';
 import useMergeState from '../../../../hooks/useMergeState';
+import { init } from '../../../../store/reducers/cartSlice';
 
 const LoginForm = () => {
+  const dispatch = useDispatch();
   const navigate = useNavigate();
   const axiosPrivate = useAxiosPrivate();
 
@@ -38,7 +41,14 @@ const LoginForm = () => {
         object
       ).then(res => {
         auth.login(res.data);
-        navigate('/');
+        axiosPrivate.get(`/carts?idUser=${res.data.data.user._id}`)
+          .then(res => {
+            dispatch(init(res.data.data));
+            navigate('/shopping');
+          })
+          .catch(e => {
+            navigate('/');
+          });
       }).catch(err => {
         console.log(err);
         setState({

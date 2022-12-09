@@ -20,6 +20,10 @@ const auth = {
     return localStorage.phone;
   },
 
+  getId() {
+    return localStorage._id;
+  },
+
   role() {
     return localStorage.role;
   },

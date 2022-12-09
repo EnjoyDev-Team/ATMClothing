@@ -3,10 +3,29 @@ import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faLocationDot } from '@fortawesome/free-solid-svg-icons';
 import PropTypes from 'prop-types';
+import { useDispatch } from 'react-redux';
 import classes from './CardProduct.module.scss';
 import ButtonCT from '../ButtonCT/ButtonCT';
+import auth from '../../utils/auth';
+import { addToCart } from '../../store/reducers/cartSlice';
 
-const CardProduct = ({ cardproduct2, Details }) => (
+const CardProduct = ({ cardproduct2, Details }) => {
+  const dispatch = useDispatch();
+
+  const handleAddToCart = () => {
+    if (auth.getAccessToken()) {
+      dispatch(addToCart({ data: {
+        idUser: auth.getId(),
+        idProduct: Details._id,
+        size: Details.size,
+        quality: 1
+      } }));
+    } else {
+      console.log('No login');
+    }
+  };
+
+  return (
     <div className={`${classes.cardproduct} ${cardproduct2 && classes.cardproduct2}`}>
         <div className={classes.cardproduct__img}>
             <img src={Details.img} alt="" />
@@ -27,12 +46,19 @@ const CardProduct = ({ cardproduct2, Details }) => (
                     ) : <span>&nbsp;</span>}
             </div>
             <div>
-            <ButtonCT primary medium className={classes.btn}>Thêm vào giỏ hàng</ButtonCT>
+            <ButtonCT
+              primary
+              medium
+              className={classes.btn}
+              onClick={handleAddToCart}
+            >
+              Thêm vào giỏ hàng
+            </ButtonCT>
             </div>
        </div>
     </div>
-
-);
+  );
+};
 CardProduct.propTypes = {
   cardproduct2: PropTypes.bool,
 
@@ -41,6 +67,8 @@ CardProduct.propTypes = {
     name: PropTypes.string.isRequired,
     price: PropTypes.string.isRequired,
     facility: PropTypes.array,
+    _id: PropTypes.string,
+    size: PropTypes.string
   }),
 };
 CardProduct.defaultProps = {

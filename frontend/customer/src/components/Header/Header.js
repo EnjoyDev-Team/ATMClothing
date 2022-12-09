@@ -1,3 +1,5 @@
+/* eslint-disable jsx-a11y/click-events-have-key-events */
+/* eslint-disable jsx-a11y/no-static-element-interactions */
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -8,6 +10,7 @@ import {
   faMountainSun,
 } from '@fortawesome/free-solid-svg-icons';
 import { Link, useNavigate } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 import Profile from '../Profile/Profile';
 import classes from './styles.module.scss';
 import logo from '../../assets/imgs/PNG-logo.png';
@@ -21,6 +24,7 @@ const Header = () => {
   const [isAvt, setAvt] = useState(false);
   const [isSearch, setSearch] = useState('');
   const navigate = useNavigate();
+  const cart = useSelector(state => state.cart);
 
   const handleProfile = () => {
     setOpen((prev) => !prev);
@@ -146,12 +150,15 @@ const Header = () => {
                         </div>
                     </div>
 
-                    <div className={classes['header__right-wrap-avt-cart']}>
+                    <div
+                      className={classes['header__right-wrap-avt-cart']}
+                      onClick={e => navigate('/shopping')}
+                    >
                         <div className={classes.header__cart}>
                             <div className={classes['header__cart-wrap-icon']}>
                                 <FontAwesomeIcon className={classes['header__cart-icon']} icon={faCartShopping} />
 
-                                <div className={classes['header__cart-count']}>3</div>
+                                <div className={classes['header__cart-count']}>{cart.cart.length}</div>
                             </div>
                         </div>
 
