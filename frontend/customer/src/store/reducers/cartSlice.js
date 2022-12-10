@@ -14,10 +14,29 @@ export const addToCart = createAsyncThunk(
   }
 );
 
+export const updateCart = createAsyncThunk(
+  '/cart/update',
+  async ({ data }) => {
+    const res = await axiosPrivate.patch(`/carts/${data._id}`, {
+      quality: data.quality
+    });
+    return res.data.data;
+  }
+);
+
+export const removeFromCart = createAsyncThunk(
+  '/cart/remove',
+  async ({ _id }) => {
+    await axiosPrivate.delete(`/carts/${_id}`);
+    return _id;
+  }
+);
+
 const cart = createSlice({
   name: 'cart',
   initialState: {
-    cart: []
+    cart: [],
+    payments: {}
   },
   extraReducers: {
     [addToCart.fulfilled]: (state, action) => {
@@ -25,24 +44,31 @@ const cart = createSlice({
         state.cart.push(action.payload);
       }
     },
+    [updateCart.fulfilled]: (state, action) => {
+      const newItem = action.payload;
+      const itemIdx = state.cart.findIndex((item) => item._id === newItem._id);
+
+      if (itemIdx >= 0) {
+        state.cart[itemIdx] = newItem;
+      }
+    },
+    [removeFromCart.fulfilled]: (state, action) => {
+      state.cart = state.cart.filter((item) => item._id !== action.payload);
+    }
   },
   reducers: {
     init: (state, action) => {
       state.cart = action.payload;
     },
-    // removePhoto: (state, action) => state = state.filter((photo) => photo.id != action.payload),
-
-    updatePhoto: (state, action) => {
-      const newPhoto = action.payload;
-      const photoIdx = state.findIndex((photo) => photo.id === newPhoto.id);
-
-      if (photoIdx >= 0) {
-        state[photoIdx] = newPhoto;
-      }
+    addToPayment: (state, action) => {
+      state.payments[action.payload._id] = action.payload._id;
+    },
+    removeFromPayment: (state, action) => {
+      delete state.payments[action.payload._id];
     },
   },
 });
 
 const { reducer, actions } = cart;
-export const { init, updatePhoto } = actions;
+export const { init, addToPayment, removeFromPayment } = actions;
 export default reducer;

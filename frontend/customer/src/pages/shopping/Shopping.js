@@ -1,75 +1,52 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import classes from './Shopping.module.scss';
 import Cartproductcard from '../../components/cartproductcard/CartProductCard';
 import ButtonCT from '../../components/ButtonCT/ButtonCT';
-import quanaoNu from '../../assets/imgs/quanaoNu.png';
-import quanaoNam from '../../assets/imgs/quanaoNam.png';
-import thoiTrangNu from '../../assets/imgs/thoiTrangNu.png';
-import thoiTrangNam from '../../assets/imgs/thoiTrangNam.png';
-import choTreem from '../../assets/imgs/choTreem.png';
-import doDungGiaDinh from '../../assets/imgs/doDungGiaDinh.png';
-import khac from '../../assets/imgs/khac.png';
-
-const listProducts = [
-  {
-    img: quanaoNu,
-    name: 'Quần Áo Nữ',
-    price: '100.000',
-    describe: 'Cơ sở ĐH Ngân Hàng',
-  },
-  {
-    img: quanaoNam,
-    name: 'Quần Áo Nam',
-    describe: 'Cơ sở ĐH Khoa Học Tư Nhiên',
-    price: '200.000',
-  },
-  {
-    img: thoiTrangNu,
-    name: 'Thời Trang Nữ',
-    describe: 'Cơ sở ĐH Khoa Học Tư Nhiên',
-    price: '300.000',
-  },
-  {
-    img: thoiTrangNam,
-    name: 'Thời Trang Nam',
-    describe: 'Cơ sở ĐH Ngân Hàng',
-    price: '400.000',
-  },
-  {
-    img: choTreem,
-    name: 'Thời Trang Cho Trẻ Em',
-    describe: 'Cơ sở ĐH Ngân Hàng',
-    price: '40.000',
-  },
-  {
-    img: doDungGiaDinh,
-    name: 'Đồ Dùng Gia đình',
-    describe: 'Cơ sở ĐH Khoa Học Tự Nhiên',
-    price: '1.000.000',
-  },
-  {
-    img: choTreem,
-    name: 'Thời Trang Cho Trẻ Em',
-    describe: 'Cơ sở ĐH Khoa Học Tự Nhiên',
-    price: '80.000',
-  },
-  {
-    img: thoiTrangNam,
-    name: 'Thời Trang Nam',
-    describe: 'Cơ sở ĐH Ngân Hàng',
-    price: '400.000',
-  },
-];
+import { addToPayment, removeFromPayment } from '../../store/reducers/cartSlice';
 
 const Shopping = () => {
-  const cart = useSelector(state => state.cart);
-  console.log(cart);
-  const [state, setState] = useState(false);
-  const handleState = () => {
-    setState((prev) => !prev);
+  const dispatch = useDispatch();
+  const cart = useSelector(state => state.cart.cart);
+  const payments = useSelector(state => state.cart.payments);
+  const [data, setData] = useState({});
+
+  const handleCheckedFacility = (e, key) => {
+    for (let i = 0; i < cart.length; i += 1) {
+      const { facility } = cart[i].detail;
+      if (facility.length && facility[0].code === key) {
+        if (e.target.checked) {
+          dispatch(addToPayment({ _id: cart[i]._id }));
+          dispatch(addToPayment({ _id: key }));
+        } else {
+          dispatch(removeFromPayment({ _id: cart[i]._id }));
+          dispatch(removeFromPayment({ _id: key }));
+        }
+      }
+    }
   };
+  console.log(payments);
+
+  useEffect(() => {
+    const divide = {};
+    for (let i = 0; i < cart.length; i += 1) {
+      const { facility } = cart[i].detail;
+      const newItem = {
+        check: (cart[i]._id in payments),
+        item: cart[i]
+      };
+      if (facility.length) {
+        if (facility[0].code in divide) {
+          divide[facility[0].code].push(newItem);
+        } else {
+          divide[facility[0].code] = [newItem];
+        }
+      }
+    }
+    setData(divide);
+  }, [cart, payments]);
+
   return (
     <div>
         <div className={classes.header}>
@@ -79,52 +56,57 @@ const Shopping = () => {
         <div className={classes.container}>
             <div className={classes.container__content}>
                 <div className={classes.container__content__header}>
-                    <h2>3 sản phẩm trong giỏ hàng</h2>
+                    <h2>
+                        {cart.length}
+                        {' '}
+                        sản phẩm trong giỏ hàng
+                    </h2>
                     <div className={classes.container__content__header__all}>
                         <input type="checkbox" />
                         <p>Chọn tất cả</p>
                     </div>
                 </div>
-                <div className={classes.container__content__cart}>
-                    <div className={classes.container__content__cart__address}>
-                        <div className={classes.container__content__cart__address__all}>
-                            <input type="checkbox" />
-                            <p>Cơ sở Đại Học Ngân Hàng</p>
-                        </div>
-                    </div>
-                    <div className={classes.container__content__cart__listproduct}>
-                        {
-                            listProducts.map((el, idx) => (
-                                <div key={+idx}>
-                                    <div className={classes.container__content__cart__listproduct__product}>
-                                        <Cartproductcard Details={el} />
-                                    </div>
-                                    <div className={classes.container__content__cart__listproduct__line} />
+                {
+                    Object.keys(data).map((key, idx) => (
+                        <div className={classes.container__content__cart} key={+idx}>
+                            <div className={classes.container__content__cart__address}>
+                                <div className={classes.container__content__cart__address__all}>
+                                    <input
+                                      type="checkbox"
+                                      checked={(key in payments)}
+                                      onChange={(e) => handleCheckedFacility(e, key)}
+                                    />
+                                    <p>
+                                        Cơ sở
+                                        {' '}
+                                        {data[key][0].item.detail.facility[0].name}
+                                    </p>
                                 </div>
-                            ))
-                        }
-                    </div>
-                </div>
-                <div className={classes.container__content__cart}>
-                    <div className={classes.container__content__cart__address}>
-                        <div className={classes.container__content__cart__address__all}>
-                            <input type="checkbox" />
-                            <p>Cơ sở Đại Học SPKT</p>
+                            </div>
+                            <div className={classes.container__content__cart__listproduct}>
+                                {
+                                    data[key].map((el, idx) => (
+                                        <div key={+idx}>
+                                            <div className={classes.container__content__cart__listproduct__product}>
+                                                <Cartproductcard Details={
+                                                    {
+                                                      size: el.item.size,
+                                                      quality: el.item.quality,
+                                                      detail: el.item.detail,
+                                                      _id: el.item._id,
+                                                      checked: el.check
+                                                    }
+                                                }
+                                                />
+                                            </div>
+                                            <div className={classes.container__content__cart__listproduct__line} />
+                                        </div>
+                                    ))
+                                }
+                            </div>
                         </div>
-                    </div>
-                    <div className={classes.container__content__cart__listproduct}>
-                        {
-                            listProducts.map((el, idx) => (
-                                <div key={+idx}>
-                                    <div className={classes.container__content__cart__listproduct__product}>
-                                        <Cartproductcard Details={el} />
-                                    </div>
-                                    <div className={classes.container__content__cart__listproduct__line} />
-                                </div>
-                            ))
-                        }
-                    </div>
-                </div>
+                    ))
+                }
             </div>
             <div>
                 <div className={classes.container__status}>
