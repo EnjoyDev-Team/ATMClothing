@@ -26,7 +26,6 @@ const Shopping = () => {
       }
     }
   };
-  console.log(payments);
 
   useEffect(() => {
     const divide = {};
