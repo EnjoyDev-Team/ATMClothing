@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowDown } from '@fortawesome/free-solid-svg-icons';
-import { useSelector } from 'react-redux';
 import CardProduct from '../../components/cardProduct/CardProduct';
 import classes from './Home.module.scss';
 import quanaoNu from '../../assets/imgs/quanaoNu.png';
@@ -14,7 +13,6 @@ import khac from '../../assets/imgs/khac.png';
 import Slider from '../../components/Slider/Slider';
 import { SliderData } from '../../components/Slider/SliderData';
 import SliderFooter from '../../components/SliderFooter/SliderFooter';
-import CardSlider from '../../components/CardSlider/CardSlider';
 import imgHome from '../../assets/imgs/imgHome.jpg';
 import Report from '../../components/Report/Report';
 import useAxios from '../../hooks/useAxios';
