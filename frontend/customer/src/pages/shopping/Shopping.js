@@ -1,23 +1,31 @@
+/* eslint-disable no-restricted-syntax */
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { useSelector, useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 import classes from './Shopping.module.scss';
 import Cartproductcard from '../../components/cartproductcard/CartProductCard';
 import ButtonCT from '../../components/ButtonCT/ButtonCT';
 import { addToPayment, removeFromPayment } from '../../store/reducers/cartSlice';
+import { formatMoney } from '../../utils/formatMoney';
 
 const Shopping = () => {
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   const cart = useSelector(state => state.cart.cart);
   const payments = useSelector(state => state.cart.payments);
   const [data, setData] = useState({});
+  const [totalPayment, setTotalPayment] = useState({
+    quality: 0,
+    price: 0
+  });
 
   const handleCheckedFacility = (e, key) => {
     for (let i = 0; i < cart.length; i += 1) {
       const { facility } = cart[i].detail;
       if (facility.length && facility[0].code === key) {
         if (e.target.checked) {
-          dispatch(addToPayment({ _id: cart[i]._id }));
+          dispatch(addToPayment({ _id: cart[i]._id, quality: cart[i].quality }));
           dispatch(addToPayment({ _id: key }));
         } else {
           dispatch(removeFromPayment({ _id: cart[i]._id }));
@@ -29,20 +37,51 @@ const Shopping = () => {
 
   useEffect(() => {
     const divide = {};
+    const count = {};
+    let quality = 0;
+    let price = 0;
+
     for (let i = 0; i < cart.length; i += 1) {
       const { facility } = cart[i].detail;
       const newItem = {
         check: (cart[i]._id in payments),
         item: cart[i]
       };
+
       if (facility.length) {
+        // Divide products into facility
         if (facility[0].code in divide) {
           divide[facility[0].code].push(newItem);
         } else {
           divide[facility[0].code] = [newItem];
         }
+
+        // Checked and calc payment
+        if (cart[i]._id in payments) {
+          quality += payments[cart[i]._id];
+          price += +cart[i].detail.price.replaceAll('.', '') * payments[cart[i]._id];
+
+          if (facility[0].code in count) {
+            count[facility[0].code].push(cart[i]._id);
+          } else {
+            count[facility[0].code] = [cart[i]._id];
+          }
+        }
       }
     }
+
+    // Checked facility
+    const keys = Object.keys(count);
+    for (let i = 0; i < keys.length; i += 1) {
+      if (count[keys[i]].length === divide[keys[i]].length) {
+        dispatch(addToPayment({ _id: keys[i] }));
+      } else {
+        dispatch(removeFromPayment({ _id: keys[i] }));
+      }
+    }
+    setTotalPayment({
+      quality, price
+    });
     setData(divide);
   }, [cart, payments]);
 
@@ -60,10 +99,10 @@ const Shopping = () => {
                         {' '}
                         sản phẩm trong giỏ hàng
                     </h2>
-                    <div className={classes.container__content__header__all}>
+                    {/* <div className={classes.container__content__header__all}>
                         <input type="checkbox" />
                         <p>Chọn tất cả</p>
-                    </div>
+                    </div> */}
                 </div>
                 {
                     Object.keys(data).map((key, idx) => (
@@ -93,6 +132,7 @@ const Shopping = () => {
                                                       quality: el.item.quality,
                                                       detail: el.item.detail,
                                                       _id: el.item._id,
+                                                      img: el.item.img,
                                                       checked: el.check
                                                     }
                                                 }
@@ -114,18 +154,26 @@ const Shopping = () => {
                     </div>
                     <div className={classes.container__status__valueproduct}>
                         <p>Số lượng sản phẩm</p>
-                        <h3>2</h3>
+                        <h3>{totalPayment.quality}</h3>
                     </div>
                     <div className={classes.container__status__total}>
                         <p>Tổng cộng</p>
                         <h3>
-                            437.000
+                            {formatMoney(totalPayment.price.toString())}
                             {' '}
                             <p>đ</p>
                             {' '}
                         </h3>
                     </div>
-                    <ButtonCT greenLinear medium className={classes.container__status__btn}>Thanh toán ngay</ButtonCT>
+                    <ButtonCT
+                      greenLinear
+                      medium
+                      disabled={!(totalPayment.quality !== 0)}
+                      className={classes.container__status__btn}
+                      onClick={() => navigate('/shopping/payment')}
+                    >
+                      Thanh toán ngay
+                    </ButtonCT>
                 </div>
             </div>
         </div>

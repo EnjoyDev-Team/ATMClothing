@@ -9,6 +9,7 @@ body {
         width: 100%;
     }
 }
+
 .header {
     background-color: #fff;
     margin: 3rem 3.5rem;
@@ -16,9 +17,31 @@ body {
     &>div {
         display: flex;
         justify-items: center;
-        flex-wrap: wrap;
+        overflow-x: scroll;
         margin: auto;
         margin-top: 1rem;
+
+        /* width */
+        &::-webkit-scrollbar {
+            height: 10px;
+        }
+
+        /* Track */
+        &::-webkit-scrollbar-track {
+            background: #F5F5F5;
+        }
+
+        /* Handle */
+        &::-webkit-scrollbar-thumb {
+            background: #E6E9EB;
+            border-radius: 10px;
+        }
+
+        /* Handle on hover */
+        &::-webkit-scrollbar-thumb:hover {
+            background: #ccc;
+            cursor: pointer;
+        }
     }
 
     &__content {
@@ -29,7 +52,7 @@ body {
 
     &__container {
         justify-content: center;
-        margin: 0 3.5rem;
+        flex: 1;
 
         p {
             text-align: center;
@@ -48,7 +71,7 @@ body {
             margin: 0 auto;
             transition: 0.5s;
             // overflow: hidden;
-            
+
             img {
                 height: 7rem;
                 position: absolute;
@@ -56,6 +79,7 @@ body {
                 top: 50%
             }
         }
+
         &__sample:hover {
             // opacity: 0.8;
             background-color: #70b261;
@@ -87,6 +111,7 @@ body {
         font-size: 1.6rem;
         color: #13488C;
         min-width: 19rem;
+
         i {
             padding-left: 1rem;
         }
@@ -113,46 +138,55 @@ body {
     display: flex;
     justify-content: space-between;
     padding-right: 2rem;
+
     &__describe {
-        flex:1;
+        flex: 1;
 
         &__header {
             display: flex;
             align-items: flex-end;
             justify-content: space-between;
             padding: 0rem 2.5rem;
+
             &__content {
                 min-width: 227px;
+
                 h1 {
                     display: inline-block;
                 }
+
                 &__1 {
                     color: $main_color;
                     font-weight: 600;
                     font-size: 5rem;
                     padding-right: 1.2rem;
                 }
+
                 &__2 {
                     color: #FF424D;
                     font-size: 12rem;
                     line-height: 12rem;
                 }
+
                 &__3 {
                     font-size: 5rem;
                     font-weight: 500;
                     color: #FF424D;
-                    padding-left: 0.4rem;                    
+                    padding-left: 0.4rem;
                 }
             }
+
             a {
                 margin-bottom: 2.5rem;
                 color: #13488C;
                 min-width: 103px;
+
                 i {
                     margin-left: 1rem;
                 }
             }
         }
+
         &__listProducts {
             text-align: center;
             display: flex;
@@ -162,7 +196,7 @@ body {
             margin: 1rem 2rem;
             // border-style: solid;
             margin-bottom: 5rem;
-            
+
             &__product {
                 justify-content: center;
                 margin-top: 2rem;
@@ -170,16 +204,20 @@ body {
             }
         }
     }
+
     &__carproduct {
         // border-style: solid;
         margin: auto 0 3.2rem 0;
     }
 }
+
 .hover:hover {
     color: rgb(206, 18, 197);
 }
+
 .sliderfooter {
-    margin-top: 18rem;  
+    margin-top: 18rem;
+
     &__header {
         &__content {
             // color: #3C7D08;
@@ -187,12 +225,13 @@ body {
             font-size: 4rem;
             letter-spacing: 3px;
             padding-bottom: 1.5rem;
-            background:  linear-gradient(180deg, #3C7D08 29.17%, rgba(8, 125, 118, 0.45) 100%);
+            background: linear-gradient(180deg, #3C7D08 29.17%, rgba(8, 125, 118, 0.45) 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
     }
 }
+
 .containerreport {
     &__header {
         margin-top: 15rem;
@@ -200,21 +239,24 @@ body {
         font-size: 4rem;
         letter-spacing: 3px;
         padding-bottom: 2rem;
-        background:  linear-gradient(180deg, #3C7D08 29.17%, rgba(8, 125, 118, 0.45) 100%);
+        background: linear-gradient(180deg, #3C7D08 29.17%, rgba(8, 125, 118, 0.45) 100%);
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
     }
+
     &__listreport {
-        background-color:rgba(60, 125, 8, 0.4);
+        background-color: rgba(60, 125, 8, 0.4);
         margin: 0 3.5rem;
         text-align: center;
         display: flex;
         align-items: center;
         justify-content: space-around;
         flex-wrap: wrap;
+
         &__report {
             justify-content: center;
             padding: 2.5rem 3rem;
+
             &__cardreport:first-child {
                 background-color: #3C7D08;
             }

@@ -3,7 +3,7 @@
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 import React, { useEffect, useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faTrashCan } from '@fortawesome/free-solid-svg-icons';
+import { faTrashCan } from '@fortawesome/free-regular-svg-icons';
 import PropTypes from 'prop-types';
 import { useDispatch } from 'react-redux';
 import classes from './CartProductCard.module.scss';
@@ -22,6 +22,10 @@ const Cartproductcard = ({ Details }) => {
         _id: Details._id,
         quality: cnt
       } }));
+      dispatch(addToPayment({
+        _id: Details._id,
+        quality: cnt
+      }));
     }
   };
   const increase = () => {
@@ -31,17 +35,25 @@ const Cartproductcard = ({ Details }) => {
       _id: Details._id,
       quality: cnt
     } }));
+    dispatch(addToPayment({
+      _id: Details._id,
+      quality: cnt
+    }));
   };
 
   const handleRemove = () => {
     dispatch(removeFromCart({ _id: Details._id }));
+    dispatch(removeFromPayment({ _id: Details._id }));
   };
 
   const handleChecked = () => {
     if (!check) {
-      dispatch(addToPayment({ _id: Details._id }));
+      dispatch(addToPayment({ _id: Details._id, quality: count }));
     } else {
       dispatch(removeFromPayment({ _id: Details._id }));
+      if (Details.detail.facility.length) {
+        dispatch(removeFromPayment({ _id: Details.detail.facility[0].code }));
+      }
     }
     setCheck(prev => !prev);
   };
@@ -62,7 +74,7 @@ const Cartproductcard = ({ Details }) => {
                 </div>
                 <div className={classes.cartproductcard__product}>
                     <div className={classes.cartproductcard__product__img}>
-                        <img src={Details.detail.img} alt="" />
+                        <img src={Details.img} alt="" />
                     </div>
                     <div className={classes.cartproductcard__product__content}>
                         <h2 className={classes.cartproductcard__product_content__name}>{Details.detail.name}</h2>
@@ -106,6 +118,7 @@ Cartproductcard.propTypes = {
     size: PropTypes.string.isRequired,
     _id: PropTypes.string.isRequired,
     checked: PropTypes.bool,
+    img: PropTypes.string,
     detail: PropTypes.objectOf(),
   }),
 };

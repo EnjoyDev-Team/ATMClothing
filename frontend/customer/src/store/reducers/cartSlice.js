@@ -1,15 +1,23 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
+import { toast } from 'react-toastify';
 import { axiosPrivate } from '../../api/axios';
 
 export const addToCart = createAsyncThunk(
   'cart/add',
   async ({ data }) => {
-    const res = await axiosPrivate.post('/carts', {
-      idUser: data.idUser,
-      idProduct: data.idProduct,
-      size: data.size,
-      quality: data.quality
-    });
+    const res = await toast.promise(
+      axiosPrivate.post('/carts', {
+        idUser: data.idUser,
+        idProduct: data.idProduct,
+        size: data.size,
+        quality: data.quality
+      }),
+      {
+        pending: 'Thêm vào giỏ hàng...',
+        success: 'Thêm vào giỏ hàng thành công!',
+        error: 'Thêm thất bại! Vui lòng thử lại!'
+      }
+    );
     return res.data.data;
   }
 );
@@ -61,7 +69,7 @@ const cart = createSlice({
       state.cart = action.payload;
     },
     addToPayment: (state, action) => {
-      state.payments[action.payload._id] = action.payload._id;
+      state.payments[action.payload._id] = action.payload.quality;
     },
     removeFromPayment: (state, action) => {
       delete state.payments[action.payload._id];

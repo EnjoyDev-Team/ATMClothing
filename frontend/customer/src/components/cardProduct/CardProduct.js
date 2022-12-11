@@ -1,9 +1,12 @@
+/* eslint-disable jsx-a11y/click-events-have-key-events */
+/* eslint-disable jsx-a11y/no-static-element-interactions */
 /* eslint-disable react/forbid-prop-types */
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faLocationDot } from '@fortawesome/free-solid-svg-icons';
 import PropTypes from 'prop-types';
 import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 import classes from './CardProduct.module.scss';
 import ButtonCT from '../ButtonCT/ButtonCT';
 import auth from '../../utils/auth';
@@ -11,6 +14,7 @@ import { addToCart } from '../../store/reducers/cartSlice';
 
 const CardProduct = ({ cardproduct2, Details }) => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const handleAddToCart = () => {
     if (auth.getAccessToken()) {
@@ -27,11 +31,17 @@ const CardProduct = ({ cardproduct2, Details }) => {
 
   return (
     <div className={`${classes.cardproduct} ${cardproduct2 && classes.cardproduct2}`}>
-        <div className={classes.cardproduct__img}>
+        <div
+          className={classes.cardproduct__img}
+          onClick={() => navigate(`/products/${Details._id}`)}
+        >
             <img src={Details.img} alt="" />
         </div>
        <div className={classes.cardproduct__content}>
-            <div className={classes.cardproduct__container}>
+            <div
+              className={classes.cardproduct__container}
+              onClick={() => navigate(`/products/${Details._id}`)}
+            >
                     <h1 className={classes.cardproduct__name}>{Details.name}</h1>
                     <h1 className={classes.cardproduct__price}>
                         {Details.price}
@@ -45,16 +55,15 @@ const CardProduct = ({ cardproduct2, Details }) => {
                       </div>
                     ) : <span>&nbsp;</span>}
             </div>
-            <div>
             <ButtonCT
               primary
               medium
+              disabled={(Details.amount === 0)}
               className={classes.btn}
               onClick={handleAddToCart}
             >
-              Thêm vào giỏ hàng
+              {Details.amount === 0 ? 'Hết hàng' : 'Thêm vào giỏ hàng'}
             </ButtonCT>
-            </div>
        </div>
     </div>
   );
@@ -68,7 +77,8 @@ CardProduct.propTypes = {
     price: PropTypes.string.isRequired,
     facility: PropTypes.array,
     _id: PropTypes.string,
-    size: PropTypes.string
+    size: PropTypes.string,
+    amount: PropTypes.string
   }),
 };
 CardProduct.defaultProps = {

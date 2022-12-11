@@ -4,11 +4,13 @@
     display: flex;
     // border-bottom: 2px solid #6666;
     &__input {
-        input {
+        input[type=checkbox] {
             appearance: auto;
+            accent-color: $main_color;
             width: 2rem;
             height: 2rem;
             margin-top: 4.5rem;
+            cursor: pointer;
         }
         padding-right: 5rem;
     }
@@ -23,7 +25,7 @@
             img {
                 // min-width: 20rem;
                 margin-right: 2rem;
-                width: 14rem;
+                width: 10rem;
             }
         }
 
@@ -50,9 +52,10 @@
         
         &__container {
             margin-right: 3rem;
+            padding-bottom: 2rem;
             display: flex;
             flex-direction: column;
-            justify-content: space-around;
+            justify-content: space-between;
             align-items: center;
             
             .cartproductcard__remove-icon {
