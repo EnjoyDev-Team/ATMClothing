@@ -34,7 +34,7 @@ module.exports.filter = catchAsync(async (req, res, next) => {
 });
 
 module.exports.getById = catchAsync(async (req, res, next) => {
-    const features = new APIFeatures(productModel.findById(req.params.id))
+    const features = new APIFeatures(productModel.findById(req.params.id), req.query)
                         .limitFields();
 
     const product = await features.query;
