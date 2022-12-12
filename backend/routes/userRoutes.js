@@ -1,5 +1,7 @@
 const { Router } = require('express');
 const express = require('express');
+
+const authMiddleware = require('../middlewares/authMiddleware')
 const authController = require('../controllers/authController');
 const userController = require('../controllers/userController');
 
@@ -14,14 +16,15 @@ router.route('/:id')
 .get(userController.getById)
 .patch(userController.updateUser)
 .delete(userController.deleteUser)
+router.use(authMiddleware.protect)
 
 // Update profile
-router.route('/update').post()
+router.patch('/update', authController.updateProfile);
 
 // Update avatar
-router.patch('/avatar')
+router.patch('/avatar' , authController.updateAvatar)
 
 // Update password
-router.post('/password', authController.updatePassword)
+router.patch('/password', authController.updatePassword)
 
 module.exports = router; 

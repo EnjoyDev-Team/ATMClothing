@@ -233,19 +233,61 @@ exports.forgotPassword = catchAsync(async ( req, res, next) => {
 });
 
 exports.updatePassword = catchAsync(async (req, res, next) => {
+  if (!req.user) 
+    return next(new AppError('Please login to continue.', 401));
+
   // 1) Get user from colection
-  const user = await User.findOne({phone: req.body.phone}).select('+password');
+  const user = await User.findOne({_id: req.user._id}).select('+password');
   // 2) Check if current password is correct
   if (!user 
-    || !(await user.correctPassword(req.body.passwordCurrent, user.password))
+    || !(await user.correctPassword(req.body.user.passwordCurrent, user.password))
     ) {
     return next(new AppError('Incorrect current password', 401));
   }
 
   // 3) If so, update password
-  user.password = req.body.password;
+  user.password = req.body.user.password;
   await user.save();
 
   // 4) Log user in, send JWT
   createSendToken(user, 200, req, res);
+});
+
+module.exports.updateProfile = catchAsync(async (req, res, next) => {
+  if (!req.user) 
+    return next(new AppError('Please login to continue.', 401));
+    
+  const user = await User.findOne({ _id: req.user._id });
+  
+  const { name, email, gender, dob } = req.body.user;
+  user.name = name;
+  user.email = email;
+  user.gender = gender;
+  if (dob && dob !== 'null' && dob !== 'undefined') user.dob = dob;
+  
+  await user.save();
+  
+  res.status(200).json({
+    status: 'success',
+    user: {
+      name,
+      email,
+      gender,
+      dob
+    }
+  });
+});
+
+module.exports.updateAvatar = catchAsync(async (req, res, next) => { 
+  if (!req.user) 
+    return next(new AppError('Please login to continue.', 401));
+
+    const user = await User.findOne({ _id: req.user._id });
+  user.photo = req.body.user.avatar;
+
+  await user.save();
+
+  res.status(200).json({ 
+    status: 'success',
+  });
 });
