@@ -1,0 +1,49 @@
+.productInfo {
+  background-color: white;
+  display: flex;
+  padding: 2rem;
+  border-bottom: 1px solid #ccc;
+
+  &__quantity {
+    display: flex;
+    align-items: center;
+    flex: 1;
+  }
+
+  img {
+    width: 60px;
+    height: 60px;
+    flex: 2;
+  }
+
+  &__info {
+    flex: 16;
+
+    &-name {
+      font-size: 1.6rem;
+    }
+    &-price {
+      color: #ff424e;
+      font-size: 1.6rem;
+    }
+    &-detail {
+      color: #444444;
+      font-size: 1.4rem;
+    }
+  }
+
+  &__handle {
+    flex: 4;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    &-location {
+      font-size: 1.2rem;
+    }
+    &-icon {
+      padding-right: 4px;
+    }
+  }
+}
+

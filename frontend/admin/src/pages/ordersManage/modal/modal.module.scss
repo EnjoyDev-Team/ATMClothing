@@ -1,0 +1,120 @@
+.modal {
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba($color: #000000, $alpha: 0.8);
+  z-index: 100;
+
+  &__container {
+    width: 80%;
+    min-width: 900px;
+    height:calc(100vh - 80px);
+    background-color: #fff;
+    margin: auto;
+    margin-top: 20px;
+  }
+
+  &__heading {
+    display: flex;
+    border-bottom: 1px solid #ccc;
+    padding: 6px 20px;
+    align-items: center;
+    justify-content: space-between;
+
+    h3 {
+
+    }
+    &-iconRemove {
+      font-size: 1.8rem;
+      cursor: pointer;
+      padding: 4px;
+
+      &:hover {
+        color: #FF0000;
+      }
+    }
+  }
+
+  &__content {
+    padding: 20px;
+  }
+}
+
+// PRODUCT ORDER
+.productOrderModal {
+  display: flex;
+  justify-content: space-between;
+
+  &__information {
+    flex: 2;
+    margin-right: 20px;
+    
+    .information__list {
+      list-style: none;
+      margin-bottom: 10px;
+      border: 1px solid #ccc;
+      border-bottom: none;
+
+      li {
+        padding: 8px;
+        font-size: 1.4rem;
+        border-bottom: 1px solid #ccc;
+      }
+
+      &-icon {
+        padding-right: 16px;
+      }
+    }
+  }
+
+  .productOrderModal__detailWrap {
+    flex: 3;
+  }
+
+  &__detail {
+    border: 1px solid #ccc;
+  }
+
+  .detail__status {
+    display: flex;
+    align-items: center;
+    padding: 6px;
+    border-bottom: 1px solid #ccc;
+
+    span {
+      padding-right: 8px;
+    }
+  }
+
+  .detail__list {
+    max-height: 400px;
+    overflow-y: scroll;
+
+    &::-webkit-scrollbar {
+      width: 10px;
+    }
+
+    /* Track */
+    &::-webkit-scrollbar-track {
+        background: #F5F5F5;
+    }
+
+    /* Handle */
+    &::-webkit-scrollbar-thumb {
+        background: #dfe0e0;
+        border-radius: 10px;
+    }
+
+    /* Handle on hover */
+    &::-webkit-scrollbar-thumb:hover {
+        background: #ccc;
+        cursor: pointer;
+    }
+  }
+
+  &__btn {
+    margin-top: 10px;
+    max-width: 100px;
+    float: right;
+  }
+}

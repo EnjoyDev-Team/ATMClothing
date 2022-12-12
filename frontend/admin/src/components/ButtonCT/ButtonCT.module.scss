@@ -1,0 +1,86 @@
+.my-btn {
+ display: flex;
+ width: 100%;
+ text-align: center;
+ align-items: center;
+ justify-content: center;
+ background-color: transparent;
+ padding: 0.4rem 1rem;
+ border: none;
+ position: relative;
+
+    &:focus {
+        outline: none;
+    }
+
+    &:hover {
+        opacity: 0.9;
+        cursor: pointer;
+    }
+
+    &__loading {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translateX(-50%) translateY(-50%);
+    }
+
+    .icon-left {
+        padding-right: 4px;
+    }
+    .icon-right {
+        margin-left: 4px;
+    }
+}
+
+.disabled {
+    opacity: 0.5;
+    pointer-events: none;
+}
+
+.block {
+    display: block;
+}
+
+.large {
+  height: 4rem;
+  line-height: 4rem;
+  font-size: 1.6rem;
+}
+
+.medium {
+  height: 3.4rem;
+  line-height: 3.4rem;
+  font-size: 1.5rem;
+}
+
+.small {
+  height: 3rem;
+  line-height: 3rem;
+  font-size: 1.4rem;
+}
+
+.borderRadius {
+    border-radius: 40px;
+}
+
+.outlineBtn {
+  border: 1px solid #597D32;
+  color: #597D32;
+  font-weight: 500;
+}
+
+.primary {
+    background-color: #597d32;
+    color: #fff;
+}
+
+.redLinear {
+  color: #fff;
+  background-image: linear-gradient(90deg, #C15D5D, rgba(193, 99, 93, 0.8));
+}
+
+.greenLinear {
+  color: #fff;
+  background-image: linear-gradient(90deg, #79B14D, rgba(93, 193, 151, 0.8));
+}
