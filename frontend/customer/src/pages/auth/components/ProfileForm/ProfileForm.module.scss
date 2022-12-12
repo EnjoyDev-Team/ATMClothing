@@ -1,5 +1,25 @@
 @import '../../../../styles/colors';
 
+.success {
+  color: $main-color;
+  font-weight: 700;
+  background-color: rgba($color: #c0ffda, $alpha: .5);
+  padding: 1rem;
+  border-radius: .5rem;
+  border: 1px solid rgba($color: #c0ffda, $alpha: 1);
+  margin-bottom: 1rem;
+}
+
+.error {
+  color: rgba(193, 99, 93, 0.8);
+  font-weight: 700;
+  background-color: rgba($color: #ffc0c0, $alpha: .5);
+  padding: 1rem;
+  border-radius: .5rem;
+  border: 1px solid rgba($color: #ffc0c0, $alpha: 1);
+  margin-bottom: 1rem;
+}
+
 .profileForm {
   list-style: none;
 
@@ -30,6 +50,18 @@
       padding: 6px;
       width: 80%;
       width: 100%;
+
+      &::-webkit-input-placeholder {
+        font-size: 1.4rem;
+      }
+
+      &:-ms-input-placeholder {
+        font-size: 1.4rem;
+      }
+
+      &::-ms-input-placeholder {
+        font-size: 1.4rem;
+      }
 
       &::placeholder {
         font-size: 1.4rem;
@@ -83,6 +115,25 @@
 }
 
 .avatar {
+
+  .add__btn {
+    background-color: $main-color;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    padding: .7rem 2rem;
+    margin: 0rem 1rem;
+    cursor: pointer;
+  }
+
+  .add__btn:hover {
+    opacity: .9;
+  }
+
+  input[type=file] {
+    display: none;
+  }
 
   img {
     width: 150px;
