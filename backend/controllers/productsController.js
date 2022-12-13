@@ -2,6 +2,7 @@ const catchAsync = require('../utils/catchAsync');
 const productModel = require('../models/productModel');
 const APIFeatures = require('../utils/apiFeature');
 const imageEncode = require('../utils/imageEncode');
+const AppError = require('../utils/appError');
 const { categoryModel, materialModel, facilityModel } = require('../models/productItemModel');
 
 module.exports.aliasTopProducts = (req, res, next) => {
@@ -38,6 +39,14 @@ module.exports.getById = catchAsync(async (req, res, next) => {
                         .limitFields();
 
     const product = await features.query;
+    
+    if (!product){
+        return res.status(404).json({
+            status: 'error',
+            message: 'Product not found'
+        });
+    }
+
     const newproducts = imageEncode([product]);
 
     res.status(200).json({
