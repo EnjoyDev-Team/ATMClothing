@@ -37,6 +37,27 @@ const listItem = [
         position: 'Manager',
         day: '20',
     },
+    {
+        img: avatar,
+        name: 'Trần Duy Khương',
+        salary: '20$/h',
+        position: 'Manager',
+        day: '20',
+    },
+    {
+        img: avatar,
+        name: 'Trần Duy Khương',
+        salary: '20$/h',
+        position: 'Manager',
+        day: '20',
+    },
+    {
+        img: avatar,
+        name: 'Trần Duy Khương',
+        salary: '20$/h',
+        position: 'Manager',
+        day: '20',
+    },
 ];
 
 const UserItem = () => {

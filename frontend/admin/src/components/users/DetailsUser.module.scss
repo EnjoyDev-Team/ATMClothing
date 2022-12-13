@@ -1,0 +1,91 @@
+.detail_user__main {
+    width: 85rem;
+}
+
+.info {
+    display: flex;
+    // width: 8rem;
+    gap: 2rem;
+    padding: 2rem 5rem;
+}
+
+.info p {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.info img {
+    width: 62px;
+    height: 62px;
+}
+
+.info :nth-child(2) {
+    font-weight: bold;
+    font-size: 24px;
+}
+
+.info :nth-child(3) {
+    margin-left: 25rem;
+}
+
+.detail_user__main {
+    position: relative;
+}
+
+.function__bar {
+    position: absolute;
+    top: 5.5rem;
+
+    display: flex;
+    gap: 4rem;
+    padding: 2rem 13.2rem;
+}
+
+.form__table {
+    padding: 2rem 13.2rem;
+}
+
+.form__table div {
+    padding: 0.5rem 0;
+}
+
+.container__flex {
+    display: flex;
+    gap: 4rem;
+}
+
+.input__container p {
+    color: #5b5b5b;
+    padding-bottom: 0.5rem;
+}
+
+.input__container input {
+    border: #5b5b5b 1px solid;
+    border-radius: 5px;
+    height: 42px;
+    font-size: 1.6rem;
+    width: 175px;
+}
+
+// STATUS
+.status {
+    display: flex;
+    gap: 4rem;
+}
+
+.status p {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.status input[type='radio'] {
+    font-size: 2rem;
+    appearance: auto;
+    padding-top: 1rem;
+}
+
+.status label {
+    padding-left: 0.5rem;
+}

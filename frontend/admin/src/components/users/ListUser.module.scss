@@ -34,6 +34,7 @@
 
 .list__head img {
     padding-right: 2rem;
+    font-size: 10px;
 }
 
 .search__bar {
@@ -48,4 +49,9 @@
     background-color: #d9d9d9;
     font-size: 22px;
     border-radius: 10px;
+}
+
+.list {
+    max-height: 519px;
+    overflow: auto;
 }
