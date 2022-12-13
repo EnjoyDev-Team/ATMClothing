@@ -5,6 +5,7 @@ const auth = {
     localStorage.phone = data.data.user.phone;
     localStorage.role = data.data.user.role;
     localStorage._id = data.data.user._id;
+    localStorage.avatar = data.data.user.photo;
     localStorage.accessToken = data.access_token;
   },
 
@@ -26,6 +27,10 @@ const auth = {
 
   role() {
     return localStorage.role;
+  },
+
+  getAvatar() {
+    return localStorage.avatar;
   },
 
   logout() {

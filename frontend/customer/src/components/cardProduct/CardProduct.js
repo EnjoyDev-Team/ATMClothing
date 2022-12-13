@@ -1,6 +1,7 @@
-/* eslint-disable jsx-a11y/click-events-have-key-events */
-/* eslint-disable jsx-a11y/no-static-element-interactions */
 /* eslint-disable react/forbid-prop-types */
+/* eslint-disable jsx-a11y/no-static-element-interactions */
+/* eslint-disable jsx-a11y/click-events-have-key-events */
+
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faLocationDot } from '@fortawesome/free-solid-svg-icons';
@@ -78,7 +79,7 @@ CardProduct.propTypes = {
     facility: PropTypes.array,
     _id: PropTypes.string,
     size: PropTypes.string,
-    amount: PropTypes.string
+    amount: PropTypes.number
   }),
 };
 CardProduct.defaultProps = {

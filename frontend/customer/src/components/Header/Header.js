@@ -14,14 +14,12 @@ import { useSelector } from 'react-redux';
 import Profile from '../Profile/Profile';
 import classes from './styles.module.scss';
 import logo from '../../assets/imgs/PNG-logo.png';
-import avatar from '../../assets/imgs/Screenshot 2022-09-28 184909.png';
 import ButtonCT from '../ButtonCT/ButtonCT';
+import auth from '../../utils/auth';
 
 const Header = () => {
   const [isOpen, setOpen] = useState(false);
   const [fixedNavbar, setFixedNavbar] = useState(false);
-  const [isAccount, setAccount] = useState(true);
-  const [isAvt, setAvt] = useState(false);
   const [isSearch, setSearch] = useState('');
   const navigate = useNavigate();
   const cart = useSelector(state => state.cart);
@@ -30,16 +28,23 @@ const Header = () => {
     setOpen((prev) => !prev);
   };
 
-  const handleBlur = () => {
-    setOpen((prev) => {
-      if (prev === false) {
-        return prev;
-      }
-      return !prev;
-    });
+  const handleBlur = (e) => {
+    if (e.nativeEvent.explicitOriginalTarget
+        && e.nativeEvent.explicitOriginalTarget === e.nativeEvent.originalTarget) {
+      return;
+    }
+    setOpen(false);
   };
 
-  const handleAccount = () => {};
+  const handleSearch = (e) => {
+    setSearch(e.target.value);
+  };
+
+  const handleSubmit = () => {
+    if (isSearch !== '') {
+      navigate(`/products/search/${isSearch}`);
+    }
+  };
 
   useEffect(() => {
     const handleScroll = () => {
@@ -58,20 +63,6 @@ const Header = () => {
       window.removeEventListener('scroll', handleScroll);
     };
   }, []);
-
-  const handleSearch = (e) => {
-    setSearch(e.target.value);
-  };
-
-  const handleSubmit = () => {
-    if (isSearch !== '') {
-      navigate(`/products/search/${isSearch}`);
-    }
-  };
-
-  const handleClickProfile = () => {
-    setOpen(true);
-  };
 
   return (
         <div className={classes.header}>
@@ -111,12 +102,11 @@ const Header = () => {
 
                 <div className={classes.header__right}>
                     <div className={classes['header__right-account']}>
-                        {isAccount && (
+                        {!!auth.getAccessToken() === false && (
                             <div className={classes.header__account}>
                                 <div className={classes['header__right-account-signup']}>
                                     <Link
                                       className={classes['header__right-account-signup-link']}
-                                      onClick={handleAccount}
                                       to="/register"
                                     >
                                         Đăng ký
@@ -126,7 +116,6 @@ const Header = () => {
                                 <div className={classes['header__right-account-signin']}>
                                     <Link
                                       className={classes['header__right-account-signin-link']}
-                                      onClick={handleAccount}
                                       to="/login"
                                     >
                                         Đăng nhập
@@ -144,7 +133,12 @@ const Header = () => {
                         </div>
 
                         <div className={classes['header__old-product']}>
-                            <ButtonCT medium borderRadius outlineBtn>
+                            <ButtonCT
+                              medium
+                              borderRadius
+                              outlineBtn
+                              onClick={() => navigate('/')}
+                            >
                                 Tôi có sản phẩm cũ
                             </ButtonCT>
                         </div>
@@ -152,9 +146,11 @@ const Header = () => {
 
                     <div
                       className={classes['header__right-wrap-avt-cart']}
-                      onClick={e => navigate('/shopping')}
                     >
-                        <div className={classes.header__cart}>
+                        <div
+                          className={classes.header__cart}
+                          onClick={() => navigate('/shopping')}
+                        >
                             <div className={classes['header__cart-wrap-icon']}>
                                 <FontAwesomeIcon className={classes['header__cart-icon']} icon={faCartShopping} />
 
@@ -162,16 +158,18 @@ const Header = () => {
                             </div>
                         </div>
 
-                        {isAvt && (
+                        {!!auth.getAccessToken() && (
                             <div className={classes.header__avatar}>
                                 <button
                                   onClick={handleProfile}
                                   onBlur={handleBlur}
                                   className={classes['header__avatar-button']}
                                 >
-                                    <img className={classes['header__avatar-img']} src={avatar} alt="" />
+                                    <img className={classes['header__avatar-img']} src={auth.getAvatar()} alt="" />
+                                    {isOpen && (
+                                        <Profile />
+                                    )}
                                 </button>
-                                {isOpen && <Profile onClick={handleClickProfile} />}
                             </div>
                         )}
                     </div>

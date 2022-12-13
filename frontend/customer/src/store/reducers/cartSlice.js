@@ -68,6 +68,10 @@ const cart = createSlice({
     init: (state, action) => {
       state.cart = action.payload;
     },
+    clear: (state, action) => {
+      state.cart = [];
+      state.payments = {};
+    },
     addToPayment: (state, action) => {
       state.payments[action.payload._id] = action.payload.quality;
     },
@@ -78,5 +82,5 @@ const cart = createSlice({
 });
 
 const { reducer, actions } = cart;
-export const { init, addToPayment, removeFromPayment } = actions;
+export const { init, clear, addToPayment, removeFromPayment } = actions;
 export default reducer;

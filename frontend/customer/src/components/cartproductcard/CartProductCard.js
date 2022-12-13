@@ -1,3 +1,4 @@
+/* eslint-disable react/forbid-prop-types */
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 /* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
@@ -119,12 +120,20 @@ Cartproductcard.propTypes = {
     _id: PropTypes.string.isRequired,
     checked: PropTypes.bool,
     img: PropTypes.string,
-    detail: PropTypes.objectOf(),
+    detail: PropTypes.shape({
+      facility: PropTypes.array,
+      price: PropTypes.string,
+      name: PropTypes.string
+    }),
   }),
 };
 Cartproductcard.defaultProps = {
   Details: {
-    detail: {}
+    detail: {
+      facility: [],
+      price: '',
+      name: ''
+    }
   },
 };
 
