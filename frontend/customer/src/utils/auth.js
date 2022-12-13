@@ -3,12 +3,13 @@ const { localStorage } = global.window;
 const auth = {
   login(data) {
     localStorage.name = data.data.user.name;
+    localStorage.email = data.data.user.email;
     localStorage.gender = data.data.user.gender;
     localStorage.dob = data.data.user.dob;
     localStorage.phone = data.data.user.phone;
     localStorage.role = data.data.user.role;
     localStorage._id = data.data.user._id;
-    localStorage.avatar = data.data.user.avatar;
+    localStorage.avatar = data.data.user.photo;
     localStorage.accessToken = data.access_token;
   },
 
