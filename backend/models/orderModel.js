@@ -22,7 +22,7 @@ const orderSchema = new mongoose.Schema(
       type: Number,
       required: [true, 'The order must have a payment method']
     },
-    user: {
+    idUser: {
       type: mongoose.Schema.ObjectId,
       ref: 'User',
       required: [true, 'Review must belong to an user']

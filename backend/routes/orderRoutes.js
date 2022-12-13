@@ -6,8 +6,6 @@ const orderController = require('../controllers/orderController')
 
 const router = express.Router();
 
-router.use(authMiddleware.protect)
-
 // Get enum list
 router.get('/enum', orderController.getEnumList)
 

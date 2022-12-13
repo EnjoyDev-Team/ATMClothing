@@ -3,6 +3,7 @@ const User = require('../models/userModel');
 const catchAsync = require('../utils/catchAsync');
 const AppError = require('../utils/appError');
 const { promisify } = require('util');
+const fs = require('fs');
 const jwt = require('jsonwebtoken'); 
 const firebase = require('../configs/firebase');
 
@@ -13,6 +14,13 @@ const cookieOptions = {
   httpOnly: true,
   sameSite: 'None',
   secure: true
+};
+
+const base64_encode = (path, root = '') => {
+  const ext = path.substring(path.lastIndexOf('.')).split('.')[1];
+  const base64 = fs.readFileSync(`${root}${path}`, 'base64');
+
+  return `data:${ext};base64,${base64}`;
 };
 
 const signToken = (phone, expires = null) => 
@@ -138,9 +146,12 @@ exports.signup = catchAsync(async (req, res, next) => {
     return next(new Error('Phone number is invalid with the phone varification', 401));
   }
 
+  const avatar = base64_encode(`assets/avatars/${parseInt(Math.random() * 10 % 8 + 1, 10)}.png`);
+
   const newUser = await User.create({
     phone,
-    password
+    password,
+    photo: avatar
   });
     
   createSendToken(newUser, 201, req, res);

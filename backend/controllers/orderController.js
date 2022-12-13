@@ -9,7 +9,7 @@ const imageEncode = require('../utils/imageEncode');
 const { statusEnum, receiveEnum, paymentEnum } = require('../constants/orderConstants');
 
 exports.getAllOrders = catchAsync(async (req, res, next) => {
-    const filter = { user: req.body.idUser };
+    const filter = { user: req.query.idUser };
 
     const features = new APIFeatures(Order.find(filter)).filter().sort().limitFields().paginate();
     const doc = await features.query;
@@ -46,8 +46,7 @@ module.exports.getById = catchAsync(async (req, res, next) => {
 });
 
 module.exports.filter = catchAsync(async (req, res, next) => {
-  const filter = { user: req.query.idUser };
-  const features = new APIFeatures(Order.find(filter), req.query)
+  const features = new APIFeatures(Order.find(), req.query)
                       .filter()
                       .sort()
                       .limitFields()
@@ -67,7 +66,7 @@ module.exports.filter = catchAsync(async (req, res, next) => {
 exports.createOrder = catchAsync(async (req, res, next) => {
     const data = req.body;
 
-    const user = await User.findOne({ _id: data.user }).exec();
+    const user = await User.findOne({ _id: data.idUser }).exec();
     if (!user) {
         return next(new AppError('There is not user with this id', 404));
     }
