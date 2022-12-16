@@ -8,24 +8,37 @@ import {
   faMountainSun,
 } from '@fortawesome/free-solid-svg-icons';
 import { Link, useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
 import Profile from '../Profile/Profile';
 import classes from './styles.module.scss';
 import logo from '../../assets/imgs/PNG-logo.png';
 import avatar from '../../assets/imgs/Screenshot 2022-09-28 184909.png';
 import ButtonCT from '../ButtonCT/ButtonCT';
+<<<<<<< HEAD
 import auth from '../../utils/auth';
+=======
+import { addDataSearch } from '../../store/reducers/dataSearch';
+>>>>>>> 09f8b94 (update product)
 
 const Header = () => {
   const [isOpen, setOpen] = useState(false);
   const [fixedNavbar, setFixedNavbar] = useState(false);
+<<<<<<< HEAD
   const [isAccount, setAccount] = useState(true);
 <<<<<<< HEAD
   const [isAvt, setAvt] = useState(!!auth.getAccessToken());
 =======
   const [isAvt, setAvt] = useState(false);
 >>>>>>> 956be43 (update logic productlist, search, productdetail)
+=======
+  const [isAccount, setAccount] = useState(false);
+  const [isAvt, setAvt] = useState(true);
+>>>>>>> 09f8b94 (update product)
   const [isSearch, setSearch] = useState('');
   const navigate = useNavigate();
+
+  const dispatch = useDispatch();
+  const dispatchAddToCart = () => dispatch(addDataSearch(isSearch));
 
   const handleProfile = () => {
     setOpen((prev) => !prev);
@@ -74,9 +87,10 @@ const Header = () => {
   };
 
   const handleSubmit = () => {
-    if (isSearch !== '') {
-      navigate(`/products/search/${isSearch}`);
-    }
+    // if (isSearch !== '') {
+    dispatchAddToCart();
+    // }
+    navigate('/products');
   };
 
   const handleClickProfile = () => {
