@@ -2,11 +2,15 @@
 
 .products__filter {
     width: 20%;
-
+    
     .products__filter-wrap {
         background-color: #fff;
         border-radius: 8px;
-
+        position: sticky;
+        position: -webkit-sticky;
+        top: 85px;
+        overflow-y: scroll;
+        
         .products__filter-price-wrap {
             padding: 14px;
             border-bottom: 1px solid #ccc;

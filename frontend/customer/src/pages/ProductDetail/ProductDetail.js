@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMapLocationDot, faHeart } from '@fortawesome/free-solid-svg-icons';
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import classes from './styles.module.scss';
 import jacket from '../../assets/imgs/jacket.png';
 import other from '../../assets/imgs/other.png';
@@ -11,10 +11,11 @@ import Button from '../../components/ButtonCT/ButtonCT';
 import facebook from '../../assets/imgs/facebook.png';
 import instagram from '../../assets/imgs/instagram.png';
 import useAxios from '../../hooks/useAxios';
+import CardProduct from '../../components/cardProduct/CardProduct';
 
 const productDetail = {
   imgJacket: jacket,
-  imgsOther: [other, other, other, other, other],
+  imgsOther: [other, other, other, other, other, other],
   title: 'Áo blazer unisex caro phối jeans cá tính',
   currentPrice: '189.000đ',
   initialPrice: '438.000đ',
@@ -37,40 +38,62 @@ const productDetail = {
 };
 
 const ProductDetail = () => {
-  const [response, error, isLoading] = useAxios('get', '/products?limit=2', {}, {}, []);
-  console.log(response);
+  const params = useParams();
+  const [response, error, isLoading] = useAxios('get', `/products/${params.id}?fields=-__v`, {}, {}, []);
+  const responseData = response.data !== undefined && response.data[0];
+  const percentSale = Math.floor(((+responseData.price) - (+responseData.sale)) / (+responseData.price) * 100);
 
   return (
         <div className={classes.product__detail}>
             <div className={classes['product__detail-infomation']}>
                 <div className={classes['product__detail-infomation-imgs']}>
                     <div className={classes['product__wrap-img-detail']}>
-                        <img src={productDetail.imgJacket} alt="" className={['product__img-detail']} />
+                        <img src={responseData.img} alt="" className={classes['product__img-detail']} />
                     </div>
-                    <ul className={classes['product__imgs-other-style']}>
-                        {productDetail.imgsOther.map((img, index) => (
-                            <li key={+index} className={classes['product__img-wrap-other-style']}>
-                                <div className={classes['product__img-wrap-other-style-bg']}>
-                                    <img src={img} alt="" className={classes['product__img-other-style']} />
-                                </div>
-                            </li>
-                        ))}
+                    <ul
+                      className={`${classes['product__imgs-other-style']} ${responseData.other_img !== undefined && responseData.other_img.length > 3
+                        ? classes['product__imgs-other-style--jtc']
+                        : classes['product__imgs-other-style--njtc']}`}
+                    >
+                        {responseData.other_img !== undefined && responseData.other_img.length > 5
+                          ? responseData.other_img.slice(0, 5).map((item, idx) => (
+                                <li key={+idx} className={classes['product__img-wrap-other-style']}>
+                                    <p className={classes['product__img-wrap-other-style-bg']}>
+                                        Xem thêm
+                                        {' '}
+                                        {responseData.other_img.length - 5}
+                                        {' '}
+                                        ảnh
+                                    </p>
+                                    <img src={item} alt="" className={classes['product__img-other-style']} />
+                                </li>
+                          ))
+                          : responseData.other_img !== undefined
+                            && responseData.other_img.map((item, idx) => (
+                                <li key={+idx} className={classes['product__img-wrap-other-style']}>
+                                    <img src={item} alt="" className={classes['product__img-other-style']} />
+                                </li>
+                            ))}
                     </ul>
                 </div>
                 <div className={classes['product__detail-infomation-content']}>
-                    <span className={classes['product__detail-infomation-content-heading']}>{productDetail.title}</span>
+                    <span className={classes['product__detail-infomation-content-heading']}>{responseData.name}</span>
 
                     <div className={classes['product__detail-wrap-price']}>
                         <div className={classes['product__detail-price-information']}>
                             <div className={classes['product__detail-price']}>
                                 <span className={classes['product__detail-price-current']}>
-                                    {productDetail.currentPrice}
+                                    {responseData.sale}
+                                    đ
                                 </span>
                                 <span className={classes['product__detail-price-initial']}>
-                                    {productDetail.initialPrice}
+                                    {responseData.price}
+                                    đ
                                 </span>
                                 <span className={classes['product__detail-price-discount']}>
-                                    {productDetail.discountPrice}
+                                    -
+{percentSale}
+%
                                 </span>
                             </div>
 
@@ -80,7 +103,7 @@ const ProductDetail = () => {
                                   icon={faMapLocationDot}
                                 />
                                 <span className={classes['product__detail-price-place-content']}>
-                                    {productDetail.location}
+                                    {responseData.facility && responseData.facility[0].name}
                                 </span>
                             </div>
                         </div>
@@ -88,8 +111,8 @@ const ProductDetail = () => {
                         <div className={classes['product__detail-bonus']}>
                             <span className={classes['product__detail-bunus-content']}>
                                 Thưởng
-{' '}
-{productDetail.coin}
+                                {' '}
+                                {productDetail.coin}
                             </span>
                             <img src={coin} alt="" className={classes['product__detail-bonus-img']} />
                         </div>
@@ -98,20 +121,20 @@ const ProductDetail = () => {
                     <div className={classes['product__wrap-infomation']}>
                         <div className={classes['product__wrap-infomation-element']}>
                             <span className={classes['product__wrap-infomation-label']}>Size</span>
-                            <span className={classes['product__wrap-infomation-detail']}>{productDetail.size}</span>
+                            <span className={classes['product__wrap-infomation-detail']}>{responseData.size}</span>
                         </div>
 
                         <div className={classes['product__wrap-infomation-element']}>
                             <span className={classes['product__wrap-infomation-label']}>Màu sắc</span>
-                            <span className={classes['product__wrap-infomation-detail']}>{productDetail.color}</span>
+                            <span className={classes['product__wrap-infomation-detail']}>{responseData.color}</span>
                         </div>
 
                         <div className={classes['product__wrap-infomation-element']}>
                             <span className={classes['product__wrap-infomation-label']}>Số Lượng</span>
                             <span className={classes['product__wrap-infomation-amount-detail']}>
-                                {productDetail.amount}
-{' '}
-sản phẩm
+                                {responseData.amount}
+                                {' '}
+                                sản phẩm
                             </span>
                         </div>
                     </div>
@@ -134,21 +157,21 @@ sản phẩm
                         <div className={classes['product__detail-infomation-footer-element']}>
                             <span className={classes['product_wrap-infomation-footer-label']}>Chất liệu</span>
                             <span className={classes['product_wrap-infomation-footer-detail']}>
-                                {productDetail.material}
+                                {responseData.material}
                             </span>
                         </div>
 
                         <div className={classes['product__detail-infomation-footer-element']}>
                             <span className={classes['product_wrap-infomation-footer-label']}>Danh mục</span>
                             <span className={classes['product_wrap-infomation-footer-detail']}>
-                                {productDetail.category}
+                                {responseData.category}
                             </span>
                         </div>
 
                         <div className={classes['product__detail-infomation-footer-element']}>
                             <span className={classes['product_wrap-infomation-footer-label']}>Tình trạng</span>
                             <span className={classes['product_wrap-infomation-footer-detail']}>
-                                {productDetail.condition}
+                                {responseData.status}
                             </span>
                         </div>
 
@@ -180,7 +203,7 @@ sản phẩm
 
                 <div className={classes['product__detail-describe-heading-wrap-content']}>
                     <span className={classes['product__detail-describe-heading-content']}>
-                        {productDetail.describe}
+                        {responseData.description}
                     </span>
                     <FontAwesomeIcon className={classes['product__detail-describe-heading-icon']} icon={faHeart} />
                 </div>
@@ -208,7 +231,7 @@ sản phẩm
                 </div>
                 <span className={classes['product__detail-benefit-heading-content']}>
                     Lợi ích khi mua hàng chính hãng Supersports trên sàn Thương mại điện tử:
-{' '}
+                    {' '}
                 </span>
                 <span className={classes['product__detail-benefit-heading-content']}>
                     100% sản phẩm bạn nhận được là hàng thật, hàng chính hãng với chất lượng tương đương khi mua tại các
@@ -243,12 +266,10 @@ sản phẩm
             </div>
 
             <div className={classes['product__detail-watched']}>
-                <span className={classes['product__detail-watched-heading']}>Sản phẩm tương tự</span>
+                <span className={classes['product__detail-watched-heading']}>Sản phẩm đã xem</span>
 
                 <div className={classes['product__detail-watched-list']}>
-                    <div className={classes['product__detail-watched-item']}>
-                        <p>1</p>
-                    </div>
+                    <div className={classes['product__detail-watched-item']}>{/* <CardProduct /> */}</div>
                     <div className={classes['product__detail-watched-item']}>
                         <p>1</p>
                     </div>

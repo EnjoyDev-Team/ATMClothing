@@ -6,9 +6,11 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronDown, faXmark } from '@fortawesome/free-solid-svg-icons';
 import Slider from '@mui/material/Slider';
 import { useParams } from 'react-router';
+import { useDispatch, useSelector } from 'react-redux';
 import Button from '../../../components/ButtonCT/ButtonCT';
 import classes from './styles.module.scss';
 import useAxios from '../../../hooks/useAxios';
+import { addDataFilter, addDataPagination, addDataIsLoading } from '../../../store/reducers/dataFilter';
 
 const dimensions = [
   {
@@ -54,8 +56,16 @@ const Filter = () => {
   const [renderRenderFacilities, setRenderFacilities] = useState([]);
   const [renderRenderMaterials, setRenderMaterials] = useState([]);
 
-  const params = useParams();
+  const dispatch = useDispatch();
 
+  const dataSearch = useSelector((state) => state.datasearch);
+  const dataCategory = useSelector((state) => state.datacategory);
+  const category = dataCategory.slug !== undefined ? dataCategory.slug : '';
+  const dataSort = useSelector((state) => state.datasort);
+  const sort = dataSort.sort !== undefined ? dataSort.sort : '';
+  const pages = dataSort.offset !== undefined ? dataSort.offset : '';
+
+  const limit = 12;
   const queryFilter = `${
     filter0d !== '0'
       ? `min=${filterPriceRange[0]}
@@ -65,9 +75,13 @@ const Filter = () => {
   ${filterFacility.length !== 0 ? `&facility=${filterFacility.join(',')}` : ''}
   ${filterMaterial.length !== 0 ? `&material=${filterMaterial.join(',')}` : ''}
   ${filterSize.length !== 0 ? `&size=${filterSize.join(',')}` : ''}
-  &sale=${filter0d}
-  ${params.name ? `&name=${params.name}` : ''}`;
-  const queryString = `/products?limit=12&${queryFilter}`;
+  ${pages !== '' ? `&offset=${pages}` : ''}
+  ${sort !== '' ? `&sort=${sort}` : ''}
+  ${filter0d !== '' ? `&sale=${filter0d}` : ''}
+  ${category !== '' ? `&category=${category}` : ''}
+  ${dataSearch.name ? `&name=${dataSearch.name}` : ''}`;
+
+  const queryString = `/products?limit=${limit}&${queryFilter}`;
   const queryTotal = `/products/total?${queryFilter}`;
 
   const [responseFilter, errorFilter, isLoadingFilter] = useAxios('get', queryString, {}, {}, [
@@ -76,6 +90,10 @@ const Filter = () => {
     filterMaterial,
     filterSize,
     filter0d,
+    dataSearch,
+    category,
+    sort,
+    pages,
   ]);
   const [responseTotal, errorTotal, isLoadingTotal] = useAxios('get', queryTotal, {}, {}, [
     filterPriceRange,
@@ -83,11 +101,24 @@ const Filter = () => {
     filterMaterial,
     filterSize,
     filter0d,
+    dataSearch,
+    category,
+    sort,
+    // pages
   ]);
 
-  console.log(responseTotal.total);
+  const dispatchDataIsLoading = () => dispatch(addDataIsLoading(isLoadingFilter));
+  useEffect(() => {
+    dispatchDataIsLoading();
+  }, [filterPriceRange, filterFacility, filterMaterial, filterSize, filter0d, dataSearch, category, sort, pages]);
 
-  // console.log(responseData && facilities.map(item => console.log(item.name)));
+  const total = responseTotal && responseTotal.data.total;
+  const totalPage = Math.ceil(total / limit);
+  const dispatchDataPagination = () => dispatch(addDataPagination(totalPage));
+  useEffect(() => {
+    dispatchDataPagination();
+  }, [totalPage]);
+
   const [responseData, errorData, isLoadingData] = useAxios('get', '/products/filters', {}, {}, []);
   useEffect(() => {
     setRenderFacilities(
@@ -101,6 +132,11 @@ const Filter = () => {
                 && responseData.data.materials.map((facility) => ({ ...facility, selected: false }))
     );
   }, [responseData]);
+
+  const dispatchDataFilter = () => dispatch(addDataFilter(responseFilter && responseFilter));
+  useEffect(() => {
+    dispatchDataFilter();
+  }, [responseFilter]);
 
   const valuetext = (value) => value;
 

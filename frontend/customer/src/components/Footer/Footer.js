@@ -74,17 +74,17 @@ const Footer = () => (
                     <ul className={classes['footer__category-list']}>
                         <li className={classes['footer__category-item']}>
                             <a className={classes['footer__category-item-link']} href="#top" alt="">
-                                Hướng dẫn bán quần áo
+                                Chính sách bảo mật
                             </a>
                         </li>
                         <li className={classes['footer__category-item']}>
                             <a className={classes['footer__category-item-link']} href="#top" alt="">
-                                Hướng dẫn mua quần áo
+                                Điều khoản dịch vụ
                             </a>
                         </li>
                         <li className={classes['footer__category-item']}>
                             <a className={classes['footer__category-item-link']} href="#top" alt="">
-                                Các câu hỏi thường gặp
+                                Những món đồ bị cấm
                             </a>
                         </li>
                     </ul>
@@ -95,12 +95,12 @@ const Footer = () => (
                     <ul className={classes['footer__category-list']}>
                         <li className={classes['footer__category-item']}>
                             <a className={classes['footer__category-item-link']} href="#top" alt="">
-                                Hướng dẫn bán quần áo
+                                Giới thiệu
                             </a>
                         </li>
                         <li className={classes['footer__category-item']}>
                             <a className={classes['footer__category-item-link']} href="#top" alt="">
-                                Hướng dẫn mua quần áo
+                                Liên hệ với chúng tôi
                             </a>
                         </li>
                     </ul>
