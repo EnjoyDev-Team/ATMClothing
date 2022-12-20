@@ -1,0 +1,23 @@
+.activity__history__main {
+    border-top: 3px solid #b0b0b0;
+    padding: 2rem;
+}
+
+.title {
+    font-size: 2rem;
+    color: #404040;
+}
+
+.title__bar {
+    display: flex;
+    gap: 5rem;
+    padding: 1rem;
+}
+
+.title__bar p:nth-child(3) {
+    margin-left: 10rem;
+}
+
+.title__bar p:nth-child(4) {
+    margin-left: 7rem;
+}

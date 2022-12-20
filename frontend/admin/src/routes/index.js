@@ -1,3 +1,4 @@
+/* eslint-disable import/no-useless-path-segments */
 /* eslint-disable indent */
 import React from 'react';
 import { Route, Routes } from 'react-router-dom';
@@ -7,6 +8,8 @@ import Login from '../pages/auth';
 import Home from '../pages/home';
 import NotFound from '../pages/notFound';
 import User from '../pages/users/User';
+import EditUser from './../pages/users/EditUser';
+import AddUser from './../pages/users/AddUser';
 
 const Navigation = () => {
     const authenticated = true;
@@ -18,6 +21,8 @@ const Navigation = () => {
                     <Route path="/home" name="home" element={<Home />} />
                 </Route>
                 <Route path="/users" element={<User />} />
+                <Route path="/users/editUser" element={<EditUser />} />
+                <Route path="/users/addUser" element={<AddUser />} />
                 <Route path="*" name="notFound" element={<NotFound />} />
             </Routes>
         </main>

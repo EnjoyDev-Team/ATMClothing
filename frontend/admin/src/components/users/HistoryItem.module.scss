@@ -1,0 +1,28 @@
+.body__item {
+    display: flex;
+    padding: 1rem;
+    border-bottom: solid 1px #828282;
+}
+
+.body__item {
+    display: flex;
+    gap: 3.5rem;
+}
+
+.body__item p {
+    width: 15rem;
+    color: #828282;
+}
+
+.body__item p:first-child {
+    width: 4rem;
+}
+
+.body__item p:nth-child(3) {
+    margin-left: 5.5rem;
+}
+
+.body__item p:nth-child(4) {
+    width: 30rem;
+    margin-left: 1rem;
+}

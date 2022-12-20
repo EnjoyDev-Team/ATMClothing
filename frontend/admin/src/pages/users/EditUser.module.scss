@@ -1,0 +1,70 @@
+.edit__body {
+    margin: 2rem auto;
+}
+
+.edit__header p:first-child {
+    font-size: 24px;
+
+    text-align: center;
+    color: #696666;
+}
+
+.edit__header div {
+    text-align: center;
+    padding: 2rem;
+}
+
+.avatar {
+    height: 91px;
+    width: 91px;
+    border-radius: 50%;
+}
+
+.camera__icon {
+    height: 3rem;
+    width: 3rem;
+    margin-left: -2.5rem;
+}
+
+.username {
+    font-size: 24px;
+    font-weight: bold;
+    text-align: center;
+}
+
+.edit__form {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.btn__container {
+    margin: 5rem auto;
+    // text-align: center;
+}
+
+.btn__container button {
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.saveBtn,
+.saveBtnSuccess {
+    width: 70rem;
+    padding: 1rem 20rem;
+    font-size: 18px;
+    border-radius: 10px;
+    color: #353434;
+    font-weight: bold;
+}
+
+.saveBtn {
+    background-color: #bec6c0;
+}
+
+.saveBtnSuccess {
+    background-color: #3ad52dca;
+    color: white;
+}
