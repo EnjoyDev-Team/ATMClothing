@@ -65,6 +65,7 @@ const Sell = () => {
             <ServiceDetails
               screens={detailsScreen}
               productDetails={product}
+              setProduct={setProduct}
               totalPrice={totalPrice}
               service="sell"
               button={(

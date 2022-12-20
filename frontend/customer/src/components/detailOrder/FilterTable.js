@@ -18,11 +18,12 @@ const FilterTable = ({ className }) => (
                     <input type="text" placeholder="Tìm theo tên gợi nhớ" />
                     {/* <FontAwesomeIcon icon={faChevronDown} /> */}
                 </div>
-                <div className={classes.time__option}>
+                <div htmlFor="dateTime" className={classes.time__option}>
                     <FontAwesomeIcon icon={faCalendarDays} />
+                    <input type="date" id="dateTime" name="date" className={classes.filter__datetime} />
                     {/* <input type="text" placeholder="Thời gian tạo" /> */}
-                    Thời gian tạo
-                    <FontAwesomeIcon icon={faChevronDown} />
+                    {/* Thời gian tạo */}
+                    <FontAwesomeIcon className={classes['time__icon-down']} icon={faChevronDown} />
                 </div>
                 <div className={classes.state__option}>
                     <FontAwesomeIcon icon={faHourglass} />

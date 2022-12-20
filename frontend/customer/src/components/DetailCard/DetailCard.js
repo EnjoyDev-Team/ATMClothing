@@ -8,8 +8,24 @@ import classes from './DetailCard.module.scss';
 import { ReactComponent as ListIcon } from '../../assets/svg/detailCard/list.svg';
 import { ReactComponent as EditIcon } from '../../assets/svg/detailCard/edit.svg';
 import { ReactComponent as DeleteIcon } from '../../assets/svg/detailCard/delete.svg';
+import useAxiosPrivate from '../../hooks/useAxiosPrivate';
 
-const DetailCard = ({ details }) => (
+const DetailCard = ({ details, setProduct, service }) => {
+  const axiosPrivate = useAxiosPrivate();
+
+  const handleRemove = () => {
+    axiosPrivate.delete(`/services/${service}/${details._id}`)
+      .then((res) => {
+        if (res.status === 204) { setProduct((prev) => [...prev, details]); }
+      })
+      .catch((err) => {
+        console.log(err);
+        setProduct((prev) => [...prev, details]);
+      });
+    setProduct((prev) => prev.filter(el => el._id !== details._id));
+  };
+
+  return (
     <div className={classes.card}>
         <div className={classes.card__heading}>
             {/* <img src={viewIco} alt="view-icon" /> */}
@@ -20,7 +36,7 @@ const DetailCard = ({ details }) => (
                     <EditIcon />
                 </button>
                 <button type="button">
-                    <DeleteIcon />
+                    <DeleteIcon onClick={handleRemove} />
                 </button>
             </span>
         </div>
@@ -54,7 +70,8 @@ const DetailCard = ({ details }) => (
             )}
         </div>
     </div>
-);
+  );
+};
 
 DetailCard.propTypes = {
   details: PropTypes.shape({

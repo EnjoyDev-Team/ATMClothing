@@ -38,7 +38,7 @@
     padding: 1rem 5rem 1rem 2rem;
     width: 330px;
     border-radius: 50px;
-    font-weight: bold;
+    border-color: lightgray;
     font-size: 1.6rem;
 }
 
@@ -48,7 +48,7 @@
     justify-content: center;
     align-items: center;
     gap: 1rem;
-    border: 2px lightgray solid;
+    border: 1px lightgray solid;
     // width: 250px;
     padding: 0 2rem;
     color: #666666;
@@ -75,4 +75,26 @@
     border-top: 20px solid transparent;
     border-bottom: 20px solid transparent;
     border-right: 40px solid white;
+}
+
+.filter__datetime {
+    width: 100%;
+    border: none;
+    padding: 0rem 1rem;
+    color: #666666;
+    font-size: 1.4rem;
+}
+
+.search__container .time__option {
+    position: relative;
+    padding: 0rem 1.5rem;
+    padding-right: .5rem;
+    margin: 2rem 0rem;
+}
+
+.time__icon-down {
+    position: absolute;
+    right: 1.5rem;
+    pointer-events: none;
+    background-color: white;
 }
