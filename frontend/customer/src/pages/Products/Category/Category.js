@@ -127,10 +127,16 @@ const Category = () => {
 
   const dispatchSlug = () => dispatch(addDataCategory(dataSlugCategory));
   const dispatchTitle = () => dispatch(addDataTitle(activeCategory.name));
-  // useEffect(() => {
-  //   dispatchSlug();
-  //   dispatchTitle();
-  // }, [activeCategory]);
+
+  const dispatchOffset = (page) => {
+    dispatch(addDataOffset(page));
+  };
+
+  useEffect(() => {
+    dispatchSlug();
+    dispatchTitle();
+    dispatchOffset(1);
+  }, [activeCategory]);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -155,16 +161,10 @@ const Category = () => {
     }
   };
 
-  const dispatchOffset = (page) => {
-    dispatch(addDataOffset(page));
-    console.log(5);
-  };
-
   const handleActiveCategory = (e, id, idChild) => {
     setActiveCategory({ name: e.target.childNodes[0].nodeValue, id, idChild });
-    dispatch(addDataCategory(dataSlugCategory));
-    dispatch(addDataTitle(e.target.childNodes[0].nodeValue));
-    dispatchOffset(1);
+    // dispatch(addDataCategory(dataSlugCategory));
+    // dispatch(addDataTitle(e.target.childNodes[0].nodeValue));
   };
 
   return (
