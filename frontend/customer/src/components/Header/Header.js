@@ -13,12 +13,13 @@ import classes from './styles.module.scss';
 import logo from '../../assets/imgs/PNG-logo.png';
 import avatar from '../../assets/imgs/Screenshot 2022-09-28 184909.png';
 import ButtonCT from '../ButtonCT/ButtonCT';
+import auth from '../../utils/auth';
 
 const Header = () => {
   const [isOpen, setOpen] = useState(false);
   const [fixedNavbar, setFixedNavbar] = useState(false);
   const [isAccount, setAccount] = useState(true);
-  const [isAvt, setAvt] = useState(false);
+  const [isAvt, setAvt] = useState(!!auth.getAccessToken());
   const [isSearch, setSearch] = useState('');
   const navigate = useNavigate();
 
@@ -26,7 +27,12 @@ const Header = () => {
     setOpen((prev) => !prev);
   };
 
-  const handleBlur = () => {
+  const handleBlur = (e) => {
+    if (e.nativeEvent.explicitOriginalTarget
+        && e.nativeEvent.explicitOriginalTarget === e.nativeEvent.originalTarget) {
+      return;
+    }
+
     setOpen((prev) => {
       if (prev === false) {
         return prev;
@@ -163,8 +169,8 @@ const Header = () => {
                                   className={classes['header__avatar-button']}
                                 >
                                     <img className={classes['header__avatar-img']} src={avatar} alt="" />
+                                    {isOpen && <Profile onClick={handleClickProfile} />}
                                 </button>
-                                {isOpen && <Profile onClick={handleClickProfile} />}
                             </div>
                         )}
                     </div>

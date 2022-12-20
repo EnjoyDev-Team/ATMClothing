@@ -3,16 +3,22 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import DetailCard from '../../../components/DetailCard/DetailCard';
 
-const Details = ({ productDetails }) => (
+const Details = ({ productDetails, setProduct, service }) => (
     <>
         {productDetails && productDetails.length
-          ? productDetails.map((el) => <DetailCard key={el._id} details={el} />)
-          : !productDetails ? 'loading...' : 'Vui lòng thêm sản phẩm để tiếp tục sử dụng dịch vụ'}
+          ? productDetails.map((el) => (
+            <DetailCard service={service} setProduct={setProduct} key={el._id} details={el} />
+          ))
+          : !productDetails
+            ? 'loading...'
+            : 'Vui lòng thêm sản phẩm để tiếp tục sử dụng dịch vụ'}
         {}
     </>
 );
 
 Details.propTypes = {
+  setProduct: PropTypes.func.isRequired,
+  service: PropTypes.string.isRequired,
   productDetails: PropTypes.arrayOf(
     PropTypes.shape({
       name: PropTypes.string.isRequired,
@@ -20,11 +26,11 @@ Details.propTypes = {
       content: PropTypes.any.isRequired,
       price: PropTypes.string,
     })
-  )
+  ),
 };
 
 Details.defaultProps = {
-  productDetails: []
+  productDetails: [],
 };
 
 export default Details;

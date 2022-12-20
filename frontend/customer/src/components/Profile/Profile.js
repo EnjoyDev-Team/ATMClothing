@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/anchor-is-valid */
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 import React from 'react';
@@ -23,13 +24,13 @@ const Profile = () => (
             <ul className={classes.profile__list}>
                 <li className={classes.profile__item}>
                     <FontAwesomeIcon className={classes['profile__item-icon']} icon={faBell} />
-                    <a className={classes['profile__item-link']} href="#1" alt="">
+                    <a className={classes['profile__item-link']} onClick={() => console.log(2)} alt="">
                         Thông báo
                     </a>
                 </li>
                 <li className={classes.profile__item}>
                     <FontAwesomeIcon className={classes['profile__item-icon']} icon={faUser} />
-                    <a className={classes['profile__item-link']} href="#1" alt="">
+                    <a className={classes['profile__item-link']} onClick={() => console.log(1)} alt="">
                         Hồ sơ cá nhân
                     </a>
                 </li>

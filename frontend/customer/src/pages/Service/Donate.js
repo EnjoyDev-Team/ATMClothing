@@ -57,15 +57,16 @@ const Donate = () => {
             <ServiceDetails
               screens={DetailScreen}
               productDetails={product}
+              setProduct={setProduct}
               service="donate"
               button={(
-                    <ButtonCT type="button" className={classes.addbtn} onClick={() => setAddNewProduct(true)}>
-                        <div className={classes.addbtn__content}>
-                            <span>Thêm sản phẩm</span>
-                            <img width={27} src={addBtn} alt="add" />
-                        </div>
-                    </ButtonCT>
-                  )}
+                <ButtonCT type="button" className={classes.addbtn} onClick={() => setAddNewProduct(true)}>
+                    <div className={classes.addbtn__content}>
+                        <span>Thêm sản phẩm</span>
+                        <img width={27} src={addBtn} alt="add" />
+                    </div>
+                </ButtonCT>
+              )}
             />
             {addNewProduct && (
                 <>

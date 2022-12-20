@@ -58,6 +58,7 @@ const Custom = () => {
             <ServiceDetails
               screens={DetailScreen}
               productDetails={product}
+              setProduct={setProduct}
               service="custom"
               button={(
                     <ButtonCT type="button" className={classes.addbtn} onClick={() => setAddNewProduct(true)}>

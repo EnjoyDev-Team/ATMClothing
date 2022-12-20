@@ -11,7 +11,7 @@ import { OrderIDGenerator } from '../../../utils/IDGenerator';
 import auth from '../../../utils/auth';
 import useAxiosPrivate from '../../../hooks/useAxiosPrivate';
 
-const ServiceDetails = ({ button, productDetails, screens, service, totalPrice }) => {
+const ServiceDetails = ({ button, productDetails, setProduct, screens, service, totalPrice }) => {
   const [step, setStep] = useState(0);
   const paymentData = useRef('');
   const [payment, setPayment] = useState(false);
@@ -26,7 +26,7 @@ const ServiceDetails = ({ button, productDetails, screens, service, totalPrice }
       products: productDetails,
       status: 'Đang kiểm tra',
       service,
-      ...totalPrice
+      ...totalPrice,
     };
 
     setIsLoading(false);
@@ -37,7 +37,7 @@ const ServiceDetails = ({ button, productDetails, screens, service, totalPrice }
       products: productDetails,
       status: 'Đang kiểm tra',
       service,
-      ...totalPrice
+      ...totalPrice,
     };
 
     setPayment(false);
@@ -98,14 +98,14 @@ const ServiceDetails = ({ button, productDetails, screens, service, totalPrice }
 
   return (
         <form className={classes.main} onSubmit={handleNext}>
-            <BoxWrapper
-              heading={heading}
-              width="69.5rem"
-              maxHeight={maxHeight}
-              minHeight={minHeight}
-              button={buttons}
-            >
-                <Screen productDetails={productDetails} onChange={onChange} setPayment={setPayment} />
+            <BoxWrapper heading={heading} width="69.5rem" maxHeight={maxHeight} minHeight={minHeight} button={buttons}>
+                <Screen
+                  productDetails={productDetails}
+                  service={service}
+                  setProduct={setProduct}
+                  onChange={onChange}
+                  setPayment={setPayment}
+                />
             </BoxWrapper>
             <BoxWrapper heading="Chi tiết hóa đơn" width="40.7rem">
                 <>
@@ -118,7 +118,7 @@ const ServiceDetails = ({ button, productDetails, screens, service, totalPrice }
                         <div className={classes['order__content-item']}>
                             <div>{productDetails.length || 0}</div>
                             <div>2</div>
-                            <div>{ totalPrice.totalPrice ? totalPrice.totalPrice : '' }</div>
+                            <div>{totalPrice.totalPrice ? totalPrice.totalPrice : ''}</div>
                         </div>
                     </div>
                     <div className={classes.order__content__controls}>
@@ -148,8 +148,9 @@ ServiceDetails.propTypes = {
   screens: PropTypes.arrayOf(PropTypes.elementType).isRequired,
   service: PropTypes.string.isRequired,
   totalPrice: PropTypes.shape({
-    totalPrice: PropTypes.string
+    totalPrice: PropTypes.string,
   }),
+  setProduct: PropTypes.func.isRequired,
   productDetails: PropTypes.arrayOf(
     PropTypes.shape({
       name: PropTypes.string.isRequired,
