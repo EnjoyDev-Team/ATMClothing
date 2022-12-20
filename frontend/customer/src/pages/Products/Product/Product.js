@@ -56,12 +56,15 @@ const Products = () => {
   const pages = Array.from(new Array(dataPagination), () => 0);
 
   const dispatch = useDispatch();
+
+  const dispatchOffset = (page) => dispatch(addDataOffset(page));
+
   const dispatchSort = () => dispatch(addDataSort(Outstanding.sort));
   useEffect(() => {
+    dispatchOffset(1);
     dispatchSort();
   }, [Outstanding]);
 
-  const dispatchOffset = (page) => dispatch(addDataOffset(page));
   // useEffect(() => {
   //   dispatchOffset();
   // }, [pagination]);

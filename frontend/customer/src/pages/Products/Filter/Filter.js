@@ -188,9 +188,8 @@ const Filter = () => {
   };
 
   const handlePriceRange = () => {
-    dispatchOffset(1);
-
     setFilterPriceRange(value);
+    dispatchOffset(1);
   };
   return (
         <div className={classes.products__filter}>
