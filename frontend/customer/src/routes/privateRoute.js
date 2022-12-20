@@ -4,19 +4,25 @@ import { Navigate, Outlet } from 'react-router-dom';
 
 const PrivateRoute = ({
   isAllowed,
-  redirectPath,
+  redirectPath = '/login',
   children,
-}) => ((isAllowed) ? children || <Outlet /> : <Navigate to={redirectPath} replace />);
+}) => {
+  if (!isAllowed) {
+    return <Navigate to={redirectPath} replace />;
+  }
+
+  return children || <Outlet />;
+};
 
 PrivateRoute.propTypes = {
   isAllowed: PropTypes.bool,
   redirectPath: PropTypes.string,
-  children: PropTypes.element
+  children: PropTypes.element,
 };
 
 PrivateRoute.defaultProps = {
   isAllowed: false,
-  redirectPath: '/login',
+  redirectPath: '',
   children: null,
 };
 

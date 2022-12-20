@@ -5,9 +5,6 @@ import PrivateRoute from './privateRoute';
 import Login from '../pages/auth';
 import Home from '../pages/home';
 import NotFound from '../pages/notFound';
-import Products from '../pages/Products/Products';
-import EditProduct from '../pages/EditProduct/EditProduct';
-import AddProduct from '../pages/AddProduct/AddProduct';
 
 const Navigation = () => {
   const authenticated = true;
@@ -22,9 +19,6 @@ const Navigation = () => {
             element={<Home />}
           />
         </Route>
-        <Route path="/products" name="products" element={<Products />} />
-        <Route path="/edit" name="products" element={<EditProduct />} />
-        <Route path="/add_product" name="products" element={<AddProduct />} />
         <Route path="*" name="notFound" element={<NotFound />} />
       </Routes>
     </main>
