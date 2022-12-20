@@ -2,13 +2,21 @@ import { createSlice } from '@reduxjs/toolkit';
 
 const datasort = createSlice({
   name: 'datasorts',
-  initialState: Object,
+  initialState: {
+    sort: '',
+    offset: '',
+    isPagination: false
+  },
   reducers: {
     addDataSort: (state, action) => {
       state.sort = (action.payload);
     },
     addDataOffset: (state, action) => {
       state.offset = (action.payload);
+      state.isPagination = true;
+    },
+    clearDataPagination: (state) => {
+      state.isPagination = false;
     },
     updateDataSort: (state, action) => {
       const newDataSort = action.payload;
@@ -22,5 +30,5 @@ const datasort = createSlice({
 });
 
 const { reducer, actions } = datasort;
-export const { addDataSort, addDataOffset, updateDataSort } = actions;
+export const { addDataSort, addDataOffset, updateDataSort, clearDataPagination } = actions;
 export default reducer;

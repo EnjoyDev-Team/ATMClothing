@@ -8,6 +8,7 @@ import { faChevronDown } from '@fortawesome/free-solid-svg-icons';
 import { useSelector, useDispatch } from 'react-redux';
 import classes from './styles.module.scss';
 import { addDataCategory, addDataTitle } from '../../../store/reducers/dataCategory';
+import { addDataOffset } from '../../../store/reducers/dataSort';
 
 const categories = [
   {
@@ -126,10 +127,10 @@ const Category = () => {
 
   const dispatchSlug = () => dispatch(addDataCategory(dataSlugCategory));
   const dispatchTitle = () => dispatch(addDataTitle(activeCategory.name));
-  useEffect(() => {
-    dispatchSlug();
-    dispatchTitle();
-  }, [activeCategory]);
+  // useEffect(() => {
+  //   dispatchSlug();
+  //   dispatchTitle();
+  // }, [activeCategory]);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -154,8 +155,16 @@ const Category = () => {
     }
   };
 
+  const dispatchOffset = (page) => {
+    dispatch(addDataOffset(page));
+    console.log(5);
+  };
+
   const handleActiveCategory = (e, id, idChild) => {
     setActiveCategory({ name: e.target.childNodes[0].nodeValue, id, idChild });
+    dispatch(addDataCategory(dataSlugCategory));
+    dispatch(addDataTitle(e.target.childNodes[0].nodeValue));
+    dispatchOffset(1);
   };
 
   return (

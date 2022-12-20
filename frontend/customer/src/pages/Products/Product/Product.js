@@ -10,7 +10,7 @@ import { faChevronLeft, faChevronRight } from '@fortawesome/free-solid-svg-icons
 import { useSelector, useDispatch } from 'react-redux';
 import classes from './styles.module.scss';
 import CardProduct from '../../../components/cardProduct/CardProduct';
-import { addDataSort, addDataOffset } from '../../../store/reducers/dataSort';
+import { addDataSort, addDataOffset, clearDataPagination } from '../../../store/reducers/dataSort';
 
 const listOutstading = [
   {
@@ -33,9 +33,13 @@ const listOutstading = [
 
 const Products = () => {
   const [Outstanding, setOutstanding] = useState({});
-  const [pagination, setPagination] = useState(1);
-  const [checkPagination, setCheckPagination] = useState(true);
-  const [isLoading, setIsLoading] = useState(false);
+  const dataSort = useSelector((state) => state.datasort);
+
+  const [pagination, setPagination] = useState(dataSort.offset);
+  // const [checkPagination, setCheckPagination] = useState(true);
+  // const [isLoading, setIsLoading] = useState(false);
+
+  useEffect(() => setPagination(dataSort.offset), [dataSort]);
 
   const data = useSelector((state) => state.datafilter);
   const dataFilter = data.products !== undefined && data.products;
@@ -57,53 +61,37 @@ const Products = () => {
     dispatchSort();
   }, [Outstanding]);
 
-  const dispatchOffset = () => dispatch(addDataOffset(pagination));
-  useEffect(() => {
-    dispatchOffset();
-  }, [pagination]);
+  const dispatchOffset = (page) => dispatch(addDataOffset(page));
+  // useEffect(() => {
+  //   dispatchOffset();
+  // }, [pagination]);
 
   const handleOutstanding = (e, sort) => {
     setOutstanding({ title: e.target.childNodes[0].nodeValue, sort });
   };
 
   useEffect(() => {
-    setPagination(dataPagination === 0 ? 0 : 1);
+    dispatchOffset(dataPagination === 0 ? 0 : 1);
   }, [dataPagination]);
 
-  useEffect(() => {
-    setCheckPagination(true);
-    setIsLoading(false);
-  }, [pagination]);
-
-  useEffect(() => {
-    if (checkPagination) {
-      setCheckPagination(false);
-      return;
-    }
-    setPagination(1);
-    setIsLoading(true);
-  }, [data]);
+  // useEffect(() => {
+  //   if (data && dataSort.isPagination === true) {
+  //     console.log(2);
+  //     dispatch(clearDataPagination());
+  //   }
+  // }, [data]);
 
   const handlePaginationIncrease = () => {
-    setPagination((prev) => {
-      if (prev >= dataPagination) {
-        return dataPagination;
-      }
-      return prev + 1;
-    });
+    dispatchOffset(dataSort.offset >= dataPagination ? dataSort.offset : dataSort.offset + 1);
   };
 
   const handlePaginationDecrease = () => {
-    setPagination((prev) => {
-      if (prev <= 1) {
-        return prev;
-      }
-      return prev - 1;
-    });
+    dispatchOffset(dataSort.offset <= 1 ? dataSort.offset : dataSort.offset - 1);
   };
 
   const hanllePaginationUnder = (e) => {
-    setPagination(+e.target.childNodes[0].nodeValue);
+    dispatchOffset(+e.target.childNodes[0].nodeValue);
+    // setPagination(+e.target.childNodes[0].nodeValue);
   };
 
   // console.log(`cũ ${pagination}`);
@@ -175,7 +163,7 @@ const Products = () => {
             </div>
 
             <div className={classes['products__product-wrap-item']}>
-                {responseDataFilter && !isLoading
+                {responseDataFilter
                     && responseDataFilter.map((item, index) => (
                         <>
                             {/* <div

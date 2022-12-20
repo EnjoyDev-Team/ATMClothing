@@ -1,5 +1,4 @@
 /* eslint-disable react/forbid-prop-types */
-<<<<<<< HEAD
 // import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 // import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 import React, { useEffect, useRef, useState } from 'react';
@@ -13,24 +12,6 @@ import auth from '../../../utils/auth';
 import useAxiosPrivate from '../../../hooks/useAxiosPrivate';
 
 const ServiceDetails = ({ button, productDetails, setProduct, screens, service, totalPrice }) => {
-=======
-import React, { useEffect, useRef, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import PropTypes from 'prop-types';
-// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-// import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
-import BoxWrapper from '../../BoxWrapper/BoxWrapper';
-import ButtonCT from '../../ButtonCT/ButtonCT';
-import classes from './ServiceDetails.module.scss';
-import { axiosClient } from '../../../api/axios';
-import { OrderIDGenerator } from '../../../utils/IDGenerator';
-
-<<<<<<< HEAD
-const ServiceDetails = ({ button, productDetails, screens, service, totalPrice }) => {
->>>>>>> b16604d (update after pull)
-=======
-const ServiceDetails = ({ button, productDetails, setProduct, screens, service, totalPrice }) => {
->>>>>>> 7934844 (fixed: service)
   const [step, setStep] = useState(0);
   const paymentData = useRef('');
   const [payment, setPayment] = useState(false);
@@ -38,11 +19,8 @@ const ServiceDetails = ({ button, productDetails, setProduct, screens, service, 
   const [isLoading, setIsLoading] = useState(true);
   const navigate = useNavigate();
 
-<<<<<<< HEAD
   const axiosPrivate = useAxiosPrivate();
 
-=======
->>>>>>> b16604d (update after pull)
   useEffect(() => {
     paymentData.current = {
       products: productDetails,
@@ -140,10 +118,6 @@ const ServiceDetails = ({ button, productDetails, setProduct, screens, service, 
                         <div className={classes['order__content-item']}>
                             <div>{productDetails.length || 0}</div>
                             <div>2</div>
-<<<<<<< HEAD
-=======
-                            <div>2</div>
->>>>>>> 7934844 (fixed: service)
                             <div>{totalPrice.totalPrice ? totalPrice.totalPrice : ''}</div>
                         </div>
                     </div>

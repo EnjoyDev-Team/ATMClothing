@@ -8,67 +8,31 @@ import {
   faMountainSun,
 } from '@fortawesome/free-solid-svg-icons';
 import { Link, useNavigate } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
 import Profile from '../Profile/Profile';
 import classes from './styles.module.scss';
 import logo from '../../assets/imgs/PNG-logo.png';
 import avatar from '../../assets/imgs/Screenshot 2022-09-28 184909.png';
 import ButtonCT from '../ButtonCT/ButtonCT';
-<<<<<<< HEAD
 import auth from '../../utils/auth';
-=======
-import { addDataSearch } from '../../store/reducers/dataSearch';
-<<<<<<< HEAD
->>>>>>> 09f8b94 (update product)
-=======
-import auth from '../../utils/auth';
->>>>>>> 7934844 (fixed: service)
 
 const Header = () => {
   const [isOpen, setOpen] = useState(false);
   const [fixedNavbar, setFixedNavbar] = useState(false);
-<<<<<<< HEAD
-<<<<<<< HEAD
-  const [isAccount, setAccount] = useState(true);
-<<<<<<< HEAD
-  const [isAvt, setAvt] = useState(!!auth.getAccessToken());
-=======
-  const [isAvt, setAvt] = useState(false);
->>>>>>> 956be43 (update logic productlist, search, productdetail)
-=======
-  const [isAccount, setAccount] = useState(false);
-  const [isAvt, setAvt] = useState(true);
->>>>>>> 09f8b94 (update product)
-=======
   const [isAccount, setAccount] = useState(true);
   const [isAvt, setAvt] = useState(!!auth.getAccessToken());
->>>>>>> 7934844 (fixed: service)
   const [isSearch, setSearch] = useState('');
   const navigate = useNavigate();
-
-  const dispatch = useDispatch();
-  const dispatchAddToCart = () => dispatch(addDataSearch(isSearch));
 
   const handleProfile = () => {
     setOpen((prev) => !prev);
   };
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> 7934844 (fixed: service)
   const handleBlur = (e) => {
     if (e.nativeEvent.explicitOriginalTarget
         && e.nativeEvent.explicitOriginalTarget === e.nativeEvent.originalTarget) {
       return;
     }
 
-<<<<<<< HEAD
-=======
-  const handleBlur = () => {
->>>>>>> 956be43 (update logic productlist, search, productdetail)
-=======
->>>>>>> 7934844 (fixed: service)
     setOpen((prev) => {
       if (prev === false) {
         return prev;
@@ -102,10 +66,9 @@ const Header = () => {
   };
 
   const handleSubmit = () => {
-    // if (isSearch !== '') {
-    dispatchAddToCart();
-    // }
-    navigate('/products');
+    if (isSearch !== '') {
+      navigate(`/products/search/${isSearch}`);
+    }
   };
 
   const handleClickProfile = () => {
@@ -208,13 +171,6 @@ const Header = () => {
                                     <img className={classes['header__avatar-img']} src={avatar} alt="" />
                                     {isOpen && <Profile onClick={handleClickProfile} />}
                                 </button>
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-                                {isOpen && <Profile onClick={handleClickProfile} />}
->>>>>>> 956be43 (update logic productlist, search, productdetail)
-=======
->>>>>>> 7934844 (fixed: service)
                             </div>
                         )}
                     </div>

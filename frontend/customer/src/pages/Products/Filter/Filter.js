@@ -11,6 +11,7 @@ import Button from '../../../components/ButtonCT/ButtonCT';
 import classes from './styles.module.scss';
 import useAxios from '../../../hooks/useAxios';
 import { addDataFilter, addDataPagination, addDataIsLoading } from '../../../store/reducers/dataFilter';
+import { addDataOffset, clearDataPagination } from '../../../store/reducers/dataSort';
 
 const dimensions = [
   {
@@ -64,14 +65,20 @@ const Filter = () => {
   const dataSort = useSelector((state) => state.datasort);
   const sort = dataSort.sort !== undefined ? dataSort.sort : '';
   const pages = dataSort.offset !== undefined ? dataSort.offset : '';
-
   const limit = 12;
+
+  const dispatchOffset = (page) => {
+    dispatch(addDataOffset(page));
+    console.log(5);
+  };
+
   const queryFilter = `${
     filter0d !== '0'
       ? `min=${filterPriceRange[0]}
   &max=${filterPriceRange[1]}`
       : ''
   }
+
   ${filterFacility.length !== 0 ? `&facility=${filterFacility.join(',')}` : ''}
   ${filterMaterial.length !== 0 ? `&material=${filterMaterial.join(',')}` : ''}
   ${filterSize.length !== 0 ? `&size=${filterSize.join(',')}` : ''}
@@ -95,6 +102,7 @@ const Filter = () => {
     sort,
     pages,
   ]);
+
   const [responseTotal, errorTotal, isLoadingTotal] = useAxios('get', queryTotal, {}, {}, [
     filterPriceRange,
     filterFacility,
@@ -141,10 +149,13 @@ const Filter = () => {
   const valuetext = (value) => value;
 
   const handleChange = (event, newValue) => {
+    dispatchOffset(1);
     setValue(newValue);
   };
 
   const handleCheckedRadio = () => {
+    dispatchOffset(1);
+
     setCheckedRadio((prev) => {
       if (!prev) {
         setFilter0d('0');
@@ -156,11 +167,15 @@ const Filter = () => {
   };
 
   const handleCloseTag = (data) => {
+    dispatchOffset(1);
+
     setFilterFacility((prev) => prev.filter((item) => item !== data));
     setFilterMatirial((prev) => prev.filter((item) => item !== data));
   };
 
   const handleFilterSize = (size) => {
+    dispatchOffset(1);
+
     setFilterSize((prev) => {
       const isChecked = filterSize.includes(size);
 
@@ -173,6 +188,8 @@ const Filter = () => {
   };
 
   const handlePriceRange = () => {
+    dispatchOffset(1);
+
     setFilterPriceRange(value);
   };
   return (
@@ -249,6 +266,7 @@ const Filter = () => {
                                                 <li
                                                   onClick={() => {
                                                     facility.selected = true;
+                                                    dispatchOffset(1);
                                                     setFilterFacility((prev) => [facility.code, ...prev]);
                                                     setChangeContentFacility(facility.name);
                                                   }}
@@ -311,6 +329,7 @@ const Filter = () => {
                                                 <li
                                                   onClick={() => {
                                                     material.selected = true;
+                                                    dispatchOffset(1);
                                                     setFilterMatirial((prev) => [material.name, ...prev]);
                                                     setChangeContentMaterial(material.name);
                                                   }}

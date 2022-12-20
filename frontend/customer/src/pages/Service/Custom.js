@@ -6,16 +6,11 @@ import FormStep3 from './screens/FormStep3';
 import Form from '../../components/Services/Form/Form';
 import FormStepFinal from './screens/FormStepFinal';
 import ServiceDetails from '../../components/Services/ServiceDetails/ServiceDetails';
-<<<<<<< HEAD
-=======
-import useAxios from '../../hooks/useAxios';
->>>>>>> b16604d (update after pull)
 import ButtonCT from '../../components/ButtonCT/ButtonCT';
 import addBtn from '../../assets/imgs/service/add-btn.png';
 import Details from './screens/Details';
 import PaymentDelivery from './screens/PaymentDelivery';
 import PaymentMethod from './screens/PaymentMethod';
-<<<<<<< HEAD
 import useAxiosPrivate from '../../hooks/useAxiosPrivate';
 
 const Custom = () => {
@@ -25,17 +20,10 @@ const Custom = () => {
 
   const screens = [CustomFormStep1, OptionalDetails, FormStep3, FormStepFinal];
 
-=======
-
-const Custom = () => {
-  const screens = [CustomFormStep1, OptionalDetails, FormStep3, FormStepFinal];
-
->>>>>>> b16604d (update after pull)
   const [addNewProduct, setAddNewProduct] = useState(false);
 
   const [product, setProduct] = useState([]);
 
-<<<<<<< HEAD
   const axiosPrivate = useAxiosPrivate();
 
   useEffect(() => {
@@ -47,9 +35,6 @@ const Custom = () => {
         .finally(() => setIsLoading(false));
     }
   }, []);
-=======
-  const [response, error, isLoading] = useAxios('get', '/services/custom', {}, {}, []);
->>>>>>> b16604d (update after pull)
 
   useEffect(() => {
     if (!isLoading && !error && response.data) {
@@ -73,14 +58,7 @@ const Custom = () => {
             <ServiceDetails
               screens={DetailScreen}
               productDetails={product}
-<<<<<<< HEAD
-<<<<<<< HEAD
               setProduct={setProduct}
-=======
->>>>>>> b16604d (update after pull)
-=======
-              setProduct={setProduct}
->>>>>>> 7934844 (fixed: service)
               service="custom"
               button={(
                     <ButtonCT type="button" className={classes.addbtn} onClick={() => setAddNewProduct(true)}>
