@@ -18,11 +18,16 @@ import ButtonCT from '../ButtonCT/ButtonCT';
 import auth from '../../utils/auth';
 =======
 import { addDataSearch } from '../../store/reducers/dataSearch';
+<<<<<<< HEAD
 >>>>>>> 09f8b94 (update product)
+=======
+import auth from '../../utils/auth';
+>>>>>>> 7934844 (fixed: service)
 
 const Header = () => {
   const [isOpen, setOpen] = useState(false);
   const [fixedNavbar, setFixedNavbar] = useState(false);
+<<<<<<< HEAD
 <<<<<<< HEAD
   const [isAccount, setAccount] = useState(true);
 <<<<<<< HEAD
@@ -34,6 +39,10 @@ const Header = () => {
   const [isAccount, setAccount] = useState(false);
   const [isAvt, setAvt] = useState(true);
 >>>>>>> 09f8b94 (update product)
+=======
+  const [isAccount, setAccount] = useState(true);
+  const [isAvt, setAvt] = useState(!!auth.getAccessToken());
+>>>>>>> 7934844 (fixed: service)
   const [isSearch, setSearch] = useState('');
   const navigate = useNavigate();
 
@@ -45,15 +54,21 @@ const Header = () => {
   };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 7934844 (fixed: service)
   const handleBlur = (e) => {
     if (e.nativeEvent.explicitOriginalTarget
         && e.nativeEvent.explicitOriginalTarget === e.nativeEvent.originalTarget) {
       return;
     }
 
+<<<<<<< HEAD
 =======
   const handleBlur = () => {
 >>>>>>> 956be43 (update logic productlist, search, productdetail)
+=======
+>>>>>>> 7934844 (fixed: service)
     setOpen((prev) => {
       if (prev === false) {
         return prev;
@@ -194,9 +209,12 @@ const Header = () => {
                                     {isOpen && <Profile onClick={handleClickProfile} />}
                                 </button>
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
                                 {isOpen && <Profile onClick={handleClickProfile} />}
 >>>>>>> 956be43 (update logic productlist, search, productdetail)
+=======
+>>>>>>> 7934844 (fixed: service)
                             </div>
                         )}
                     </div>

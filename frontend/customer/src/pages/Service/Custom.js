@@ -74,9 +74,13 @@ const Custom = () => {
               screens={DetailScreen}
               productDetails={product}
 <<<<<<< HEAD
+<<<<<<< HEAD
               setProduct={setProduct}
 =======
 >>>>>>> b16604d (update after pull)
+=======
+              setProduct={setProduct}
+>>>>>>> 7934844 (fixed: service)
               service="custom"
               button={(
                     <ButtonCT type="button" className={classes.addbtn} onClick={() => setAddNewProduct(true)}>
