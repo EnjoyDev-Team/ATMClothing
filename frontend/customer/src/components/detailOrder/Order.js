@@ -1,7 +1,4 @@
-<<<<<<< HEAD
 /* eslint-disable react/jsx-indent-props */
-=======
->>>>>>> 6e29aa4 (feat: create donate services)
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 /* eslint-disable implicit-arrow-linebreak */

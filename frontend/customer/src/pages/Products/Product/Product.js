@@ -8,9 +8,11 @@ import PropTypes from 'prop-types';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronLeft, faChevronRight } from '@fortawesome/free-solid-svg-icons';
 import { useSelector, useDispatch } from 'react-redux';
+import { useParams } from 'react-router';
 import classes from './styles.module.scss';
 import CardProduct from '../../../components/cardProduct/CardProduct';
 import { addDataSort, addDataOffset, clearDataPagination } from '../../../store/reducers/dataSort';
+import { addDataSearch } from '../../../store/reducers/dataSearch';
 
 const listOutstading = [
   {
@@ -32,6 +34,8 @@ const listOutstading = [
 ];
 
 const Products = () => {
+  const params = useParams();
+
   const [Outstanding, setOutstanding] = useState({});
   const dataSort = useSelector((state) => state.datasort);
 
@@ -58,6 +62,12 @@ const Products = () => {
   const dispatch = useDispatch();
 
   const dispatchOffset = (page) => dispatch(addDataOffset(page));
+  const dispatchSearch = (data) => dispatch(addDataSearch(data));
+
+  useEffect(() => {
+    console.log(params.name);
+    dispatchSearch(params.name);
+  }, [params.name]);
 
   const dispatchSort = () => dispatch(addDataSort(Outstanding.sort));
   useEffect(() => {
@@ -96,6 +106,13 @@ const Products = () => {
     dispatchOffset(+e.target.childNodes[0].nodeValue);
     // setPagination(+e.target.childNodes[0].nodeValue);
   };
+
+  useEffect(
+    () => {
+      console.log('1');
+    },
+    [responseDataFilter]
+  );
 
   // console.log(`cũ ${pagination}`);
   // console.log(`mới ${prePagination}`);
