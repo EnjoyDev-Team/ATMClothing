@@ -26,7 +26,6 @@ const server = app.listen(port, () => {
 // SOCKET
 const socketIO = require('socket.io')(server, {cors:{origin: '*'}});
 
-
 process.on('unhandledRejection', (err) => {
     console.log('Unhandled Rejection. Shutting down...');
     console.log(err.name, err.message);

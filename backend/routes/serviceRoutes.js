@@ -11,20 +11,30 @@ router.route('/sell')
 .get(serviceController.getSellProducts)
 .post(serviceController.addSellProduct);
 
+router.route('/sell/:id')
+.delete(serviceController.removeSellProduct);
+
 router.route('/custom')
 .get(serviceController.getCustomProducts)
 .post(serviceController.addCustomProduct);
 
+router.route('/custom/:id')
+.delete(serviceController.removeCustomProduct);
+
 router.route('/donate')
 .get(serviceController.getDonateProducts)
 .post(serviceController.addDonateProduct);
+
+router.route('/donate/:id')
+.delete(serviceController.removeCustomProduct);
 
 router.route('/')
 .get(serviceController.getPayments)
 .post(serviceController.addPayment);
 
 // Cart detail
-router.route('/:id').get(serviceController.getPaymentById);
+router.route('/:id')
+.get(serviceController.getPaymentById);
 
 // Add cart
 router.route('/').post();
