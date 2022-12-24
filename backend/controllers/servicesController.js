@@ -30,6 +30,20 @@ module.exports.addSellProduct = catchAsync(async (req, res, next) => {
     });
 });
 
+module.exports.removeSellProduct = catchAsync(async (req, res, next) => {
+
+    const config = await sellModel.deleteOne({ _id: req.params.id, uid: req.user._id });
+
+    if (config.deletedCount === 0) {
+        return res.status(204).json();
+    }
+
+    res.status(200).json({
+        status: 'success',
+        message: 'Product delete successfully'
+    });
+});
+
 module.exports.addCustomProduct = catchAsync(async (req, res, next) => {
     const { product } = req.body;
     product.slug = slugify(product.category, { lower: true });
@@ -56,6 +70,20 @@ module.exports.getCustomProducts = catchAsync(async (req, res, next) => {
     });
 });
 
+module.exports.removeCustomProduct = catchAsync(async (req, res, next) => {
+
+    const config = await customModel.deleteOne({ _id: req.params.id, uid: req.user._id });
+
+    if (config.deletedCount === 0) {
+        return res.status(204).json();
+    }
+
+    res.status(200).json({
+        status: 'success',
+        message: 'Product delete successfully'
+    });
+});
+
 module.exports.addDonateProduct = catchAsync(async (req, res, next) => {
     const { product } = req.body;
     product.slug = slugify(product.category, { lower: true });
@@ -79,6 +107,20 @@ module.exports.getDonateProducts = catchAsync(async (req, res, next) => {
         data: {
             products: DonateProductList,
         },
+    });
+});
+
+module.exports.removeDonateProduct = catchAsync(async (req, res, next) => {
+
+    const config = await customModel.deleteOne({ _id: req.params.id, uid: req.user._id });
+
+    if (config.deletedCount === 0) {
+        return res.status(204).json();
+    }
+
+    res.status(200).json({
+        status: 'success',
+        message: 'Product delete successfully'
     });
 });
 
