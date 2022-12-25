@@ -22,7 +22,6 @@ import useAxios from '../../hooks/useAxios';
 const Home = () => {
   const [flashSale, setFlashSale] = useState('');
   const [response, error, isLoading] = useAxios('get', '/products/san-pham-noi-bat', {}, {}, []);
-
   useEffect(() => {
     if (isLoading === false && !error && response.data) {
       setFlashSale(response.data);

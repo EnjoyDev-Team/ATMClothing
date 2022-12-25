@@ -17,37 +17,37 @@ const NavigationAdmin = () => (
                 </div>
                 <div className={classes.navigation__container}>
                     <div className={classes.navigation__container__listcontent}>
-                        <div className={classes.navigation__container__listcontent__components}>
-                                <a className={classes.navigation__container__listcontent__components__component} href="#1">
+                        <div className={classes.components}>
+                                <a className={classes.components__component} href="#1">
                                     <img src={dashboard} alt="" />
-                                    <div className={classes.navigation__container__listcontent__components__component__title}>
+                                    <div className={classes.components__component__title}>
                                         <img src={dashboard} alt="" />
                                         <p>Dashboard</p>
                                     </div>
                                 </a>
                         </div>
-                        <div className={classes.navigation__container__listcontent__components}>
-                                <a className={classes.navigation__container__listcontent__components__component} href="#1">
+                        <div className={classes.components}>
+                                <a className={classes.components__component} href="#1">
                                     <img src={products} alt="" />
-                                    <div className={classes.navigation__container__listcontent__components__component__title}>
+                                    <div className={classes.components__component__title}>
                                         <img src={products} alt="" />
                                         <p>Products</p>
                                     </div>
                                 </a>
                         </div>
-                        <div className={classes.navigation__container__listcontent__components}>
-                                <a className={classes.navigation__container__listcontent__components__component} href="#1">
+                        <div className={classes.components}>
+                                <a className={classes.components__component} href="#1">
                                     <img src={users} alt="" />
-                                    <div className={classes.navigation__container__listcontent__components__component__title}>
+                                    <div className={classes.components__component__title}>
                                         <img src={users} alt="" />
                                         <p>Users</p>
                                     </div>
                                 </a>
                         </div>
-                        <div className={classes.navigation__container__listcontent__components}>
-                                <a className={classes.navigation__container__listcontent__components__component} href="#1">
+                        <div className={classes.components}>
+                                <a className={classes.components__component} href="#1">
                                     <img src={ordersControl} alt="" />
-                                    <div className={classes.navigation__container__listcontent__components__component__title}>
+                                    <div className={classes.components__component__title}>
                                         <img src={ordersControl} alt="" />
                                         <p>Orders Control</p>
                                     </div>

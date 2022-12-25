@@ -15,18 +15,19 @@
         margin: 0 1.5rem;
         padding-left: 2rem;
         &__content {
+            p {
+                min-width: 13rem;
+            }
             h2 {
                 font-size: 3.8rem;
                 padding-top:0.6rem;
                 padding-bottom: 1rem;
                 font-weight: 500;
-                width: 9rem;
+                min-width: 19rem;
             }
         }
         &__icon {
-            justify-content: flex-end;
             font-size: 4rem;
-            padding-left: 9rem;
             margin-top: -1rem;
             color: #fff;
         }
@@ -36,4 +37,13 @@
         padding-top: 2px;
         padding-bottom: 8px;
     }
+}
+.greenbackgroud {
+    background-color: #66B92E;
+}
+.redbackgroud {
+    background-color: #D65B4A;
+}
+.orangebackgroud {
+    background-color: #DA932C;
 }

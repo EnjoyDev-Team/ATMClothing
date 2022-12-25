@@ -18,16 +18,27 @@
     }
     &__container {
         &__listcontent {
-            &__components {
+            .components {
                 padding-bottom: 5rem ;
+                &__component:hover > img {
+                    opacity: 0;
+                }
+                &__component:hover .components__component__title {
+                    opacity: 1;
+                    visibility: visible;
+                }
                 &__component {
                     position: relative;
+                    cursor: pointer;
                     img {
                         width: 4.5rem;
+                        cursor: pointer;
+                        transition: all .3s ease;
                     }
                     &__title {
+                        transition: all .3s ease;
+                        visibility: hidden;
                         opacity: 0;
-                        // display: none;
                         border: 2px solid #615F5F;
                         border-radius: 12px;
                         bottom: -0.2rem;
@@ -42,6 +53,7 @@
                             display: inline-block;
                             padding: 0.4rem 0;
                             padding-left: calc(1.5rem - 1px);
+                            transition: 1.8s;
                         }
                         P {
                             margin: auto;
@@ -53,14 +65,11 @@
                         }
                     }   
                 }
-                &__component:hover > .navigation__container__listcontent__components__component__title {
-                    opacity: 1;
-                    transition: 1.8s;
-                }
-                &__component:hover>img {
-                    opacity: 0;
-                    transition: 1.8s;
-                }
+                // &__component>img:hover +.components__component__title {
+                //     opacity: 1;
+                //     transition: 1.8s;
+                // }
+
             }
         }
     }
