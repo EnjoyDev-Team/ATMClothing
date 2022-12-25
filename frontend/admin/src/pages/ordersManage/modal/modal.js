@@ -1,3 +1,5 @@
+/* eslint-disable jsx-a11y/no-static-element-interactions */
+/* eslint-disable jsx-a11y/click-events-have-key-events */
 import React from 'react';
 import PropTypes from 'prop-types';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -8,7 +10,11 @@ const Modal = (props) => {
   const a = 0;
 
   return (
-    <div className={classes.modal}>
+    <>
+    <div
+      className={classes.modal}
+      onClick={() => (props.setIsOpen ? props.setIsOpen(false) : null)}
+    />
       <div className={classes.modal__container}>
         <div className={classes.modal__heading}>
           <h3>Order Information</h3>
@@ -22,7 +28,7 @@ const Modal = (props) => {
           {props.children}
         </div>
       </div>
-    </div>
+    </>
   );
 };
 

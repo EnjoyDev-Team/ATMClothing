@@ -8,6 +8,7 @@ import classes from './ordersManage.module.scss';
 import StatusLabel from './statusLabel/statusLabel';
 import Modal from './modal/modal';
 import ProductOrderModal from './modal/productOrderModal';
+import ServiceOrderModal from './modal/serviceOrderModal';
 
 const listItem = [
   {
@@ -44,12 +45,15 @@ const listItem = [
 
 const OrdersManage = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const [typeOrder, setTypeOrder] = useState('PRODUCT');
 
   return (
     <>
       {isOpen && (
         <Modal setIsOpen={setIsOpen}>
-          <ProductOrderModal />
+          {typeOrder === 'PRODUCT'
+            ? <ProductOrderModal />
+            : <ServiceOrderModal />}
         </Modal>
       )}
       <div className={classes.orders}>
@@ -67,8 +71,19 @@ const OrdersManage = () => {
       <div className={classes.orders__content}>
         <div className={classes.content__filter}>
           <ul className={classes['content__filter-typeOrder']}>
-            <li className={classes['orders--active']}>Product Orders</li>
-            <li className={classes['orders--notice']}>Service Orders</li>
+            <li
+              className={typeOrder === 'PRODUCT' ? classes['orders--active'] : ''}
+              onClick={() => setTypeOrder('PRODUCT')}
+            >
+              Product Orders
+            </li>
+            <li
+              className={`${classes['orders--notice']} 
+                ${typeOrder === 'SERVICE' ? classes['orders--active'] : ''}`}
+              onClick={() => setTypeOrder('SERVICE')}
+            >
+              Service Orders
+            </li>
           </ul>
           <ul className={classes['content__filter-typeStatus']}>
             <li className={classes['orders--active']}>All orders</li>
@@ -84,7 +99,8 @@ const OrdersManage = () => {
             <li style={{ flex: 4 }}>Order ID</li>
             <li style={{ flex: 6 }}>Address</li>
             <li style={{ flex: 4 }}>Date</li>
-            <li style={{ flex: 4 }}>Total</li>
+            {typeOrder === 'PRODUCT' ? <li style={{ flex: 4 }}>Total</li>
+              : <li style={{ flex: 4 }}>Service</li>}
             <li style={{ flex: 4 }}>Status</li>
             <li style={{ flex: 1 }} />
           </ul>
@@ -94,13 +110,13 @@ const OrdersManage = () => {
               <ul
                 className={classes['content__table-item']}
                 key={+idx}
-                onClick={() => setIsOpen(true)}
               >
-                <li style={{ flex: 1, textAlign: 'center' }}>{idx}</li>
-                <li style={{ flex: 4 }}>HB2343</li>
-                <li style={{ flex: 6 }}>Tran Hung Dao, Q1, HCM</li>
-                <li style={{ flex: 4 }}>20/12/2022</li>
-                <li style={{ flex: 4 }}>220.000 vnđ</li>
+                <li style={{ flex: 1, textAlign: 'center' }} onClick={() => setIsOpen(true)}>{idx}</li>
+                <li style={{ flex: 4 }} onClick={() => setIsOpen(true)}>HB2343</li>
+                <li style={{ flex: 6 }} onClick={() => setIsOpen(true)}>Tran Hung Dao, Q1, HCM</li>
+                <li style={{ flex: 4 }} onClick={() => setIsOpen(true)}>20/12/2022</li>
+                {typeOrder === 'PRODUCT' ? <li style={{ flex: 4 }} onClick={() => setIsOpen(true)}>220.000 vnđ</li>
+                  : <li style={{ flex: 4 }} onClick={() => setIsOpen(true)}>Custom</li>}
                 <li style={{ flex: 4 }}>
                   <StatusLabel
                     listItem={listItem}
@@ -110,7 +126,8 @@ const OrdersManage = () => {
                 <li
                   style={{ flex: 1, textAlign: 'center' }}
                 >
-                  <FontAwesomeIcon className={classes['content__table-item-icon1']} icon={faPencil} />
+                  {typeOrder === 'SERVICE'
+                    && <FontAwesomeIcon className={classes['content__table-item-icon1']} icon={faPencil} />}
                   <FontAwesomeIcon className={classes['content__table-item-icon2']} icon={faXmark} />
                 </li>
               </ul>

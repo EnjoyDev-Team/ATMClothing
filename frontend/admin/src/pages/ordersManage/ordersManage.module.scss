@@ -128,7 +128,7 @@
         list-style: none;
         display: flex;
         border-bottom: 1px solid #E3E3E3;
-        padding: 10px 0;
+        
 
         &:hover {
           background-color: rgb(235, 253, 235);
@@ -136,7 +136,8 @@
         }
 
         li {
-          font-size: 1.5rem;
+          font-size: 1.6rem;
+          padding: 10px 0;
         }
 
         &-icon1 {

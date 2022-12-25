@@ -47,3 +47,133 @@
   }
 }
 
+
+.detail__product__main {
+  padding: 3rem 4rem;
+  padding-bottom: 0rem;
+  margin: 0 auto;
+}
+
+.number__product {
+  // margin-left: 10rem;
+}
+
+.detail__container {
+  // width: 984px;
+  padding-bottom: 2rem;
+  border: 1px solid #CCC;
+  border-radius: 10px;
+  margin: 2rem auto;
+  overflow: hidden;
+}
+
+.detail__container__view {
+  max-height: 190px;
+  overflow: hidden;
+  transition: all .5s ease-in-out;
+}
+
+.detail__container__view.show {
+  max-height: 900px;
+}
+
+.content__section {
+  position: relative;
+  display: flex;
+  gap: 2rem;
+  padding: 1rem;
+}
+
+.detail__content {
+  flex: 1;
+}
+
+.content__section p {
+  margin: 2rem;
+}
+
+.title p {
+  font-weight: bold;
+}
+
+.button__see {
+  position: absolute;
+  width: auto;
+  right: 3rem;
+  background-color: #3f7673 !important;
+  border-radius: 10px;
+  color: white;
+}
+
+.button__see > span {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  width: 9rem;
+}
+
+// IMG SECTION
+
+.img__container {
+  padding: 0 10px;
+  display: flex;
+  justify-content: space-around;
+  gap: 0.8rem;
+  align-items: center;
+}
+
+.img__container div p {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 1rem;
+  color: #666666;
+}
+
+// DESCRIPTION SECTION
+.description__product {
+  display: flex;
+  margin: 0 auto;
+  gap: 5rem;
+  padding: 1rem 10rem;
+}
+
+.description__product p:first-child {
+  color: #333333;
+  font-weight: bold;
+}
+
+// OTHER INFP SECTION
+.other__info__header {
+  font-weight: bold;
+  color: #333333;
+  padding: 0.5rem 10rem;
+}
+.other__info__container {
+  display: flex;
+  margin: 0.5rem 0;
+  padding: 3rem 0rem;
+  padding-top: 0rem;
+}
+
+.other__info__title p {
+  color: #666666;
+  margin: 0 0 0 15rem;
+}
+
+.other__info__content p {
+  margin: 0 0 0 3rem;
+}
+
+// IDEA CUSTOM SECTION
+.idea__custom__container {
+  display: flex;
+  gap: 4rem;
+  margin: 0.5rem 0;
+  padding: 0rem 10rem;
+}
+
+.idea__custom__container p:first-child {
+  color: #333333;
+  font-weight: bold;
+}

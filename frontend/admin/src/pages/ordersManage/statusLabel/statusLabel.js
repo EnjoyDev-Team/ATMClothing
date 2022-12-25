@@ -21,7 +21,7 @@ const StatusLabel = (props) => {
 
     className,
 
-    ...passProps
+    ...passprops
   } = props;
 
   const classProps = Object.keys(props)
@@ -37,23 +37,21 @@ const StatusLabel = (props) => {
 
   const handleSelected = (item) => {
     setSelected(item);
-    setOpen(false);
+    setOpen(prev => !prev);
   };
-
-  console.log(open);
 
   return (
     <button
       className={`${classProps} ${className} 
       ${classes[selected.style]} ${classes.statusLabel}`}
-      {...{ passProps }}
+      {...{ passprops }}
       key={selected.code}
-      onBlur={() => setOpen(false)}
+      onBlur={() => setOpen(prev => !prev)}
     >
       <span
         onClick={() => {
           if (selected.code !== 5) {
-            setOpen(true);
+            setOpen(prev => !prev);
           }
         }}
       >

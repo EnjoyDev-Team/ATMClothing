@@ -1,17 +1,22 @@
 .modal {
   position: fixed;
+  top: 0;
   width: 100vw;
   height: 100vh;
   background-color: rgba($color: #000000, $alpha: 0.8);
   z-index: 100;
+  cursor: pointer;
 
   &__container {
+    position: fixed;
     width: 80%;
     min-width: 900px;
-    height:calc(100vh - 80px);
+    height: 560px;
     background-color: #fff;
-    margin: auto;
-    margin-top: 20px;
+    left: 50%;
+    top: 50%;
+    transform: translateX(-50%) translateY(-50%);
+    z-index: 101;
   }
 
   &__heading {

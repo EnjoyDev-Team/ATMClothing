@@ -25,11 +25,17 @@ const ProductInfo = ({ detail }) => (
 );
 
 ProductInfo.propTypes = {
-  img: PropTypes.string.isRequired,
-  name: PropTypes.string.isRequired,
-  price: PropTypes.string.isRequired,
-  detail: PropTypes.string.isRequired,
-  facility: PropTypes.string.isRequired,
+  detail: PropTypes.shape({
+    img: PropTypes.string.isRequired,
+    name: PropTypes.string.isRequired,
+    price: PropTypes.string.isRequired,
+    facility: PropTypes.string.isRequired,
+    detail: PropTypes.string.isRequired,
+  }),
+};
+
+ProductInfo.defaultProps = {
+  detail: {}
 };
 
 export default ProductInfo;
