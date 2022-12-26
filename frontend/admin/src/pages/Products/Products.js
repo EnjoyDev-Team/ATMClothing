@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMagnifyingGlass, faPlus, faPen, faTrashCan } from '@fortawesome/free-solid-svg-icons';
@@ -8,7 +8,6 @@ import test from '../../assets/imgs/test.jpg';
 
 const products = [
   {
-    id: 1,
     image: test,
     title: 'Áo',
     noproduct: 'NBE100',
@@ -18,120 +17,108 @@ const products = [
     status: 'Instock',
   },
   {
-    id: 2,
     image: test,
     title: 'Áo',
-    noproduct: 'NBE100',
+    noproduct: 'NBE101',
     sales: 10,
     instock: 2,
     price: '150.000',
     status: 'Out of stock',
   },
   {
-    id: 3,
     image: test,
     title: 'Áo',
-    noproduct: 'NBE100',
+    noproduct: 'NBE102',
     sales: 10,
     instock: 2,
     price: '150.000',
     status: 'Instock',
   },
   {
-    id: 4,
     image: test,
     title: 'Áo',
-    noproduct: 'NBE100',
+    noproduct: 'NBE103',
     sales: 10,
     instock: 2,
     price: '150.000',
     status: 'Instock',
   },
   {
-    id: 5,
     image: test,
     title: 'Áo',
-    noproduct: 'NBE100',
+    noproduct: 'NBE104',
     sales: 10,
     instock: 2,
     price: '150.000',
     status: 'Out of stock',
   },
   {
-    id: 6,
     image: test,
     title: 'Áo',
-    noproduct: 'NBE100',
+    noproduct: 'NBE105',
     sales: 10,
     instock: 2,
     price: '150.000',
     status: 'Instock',
   },
   {
-    id: 7,
     image: test,
     title: 'Áo',
-    noproduct: 'NBE100',
+    noproduct: 'NBE106',
     sales: 10,
     instock: 2,
     price: '150.000',
     status: 'Out of stock',
   },
   {
-    id: 8,
     image: test,
     title: 'Áo',
-    noproduct: 'NBE100',
+    noproduct: 'NBE107',
     sales: 10,
     instock: 2,
     price: '150.000',
     status: 'Out of stock',
   },
   {
-    id: 9,
     image: test,
     title: 'Áo',
-    noproduct: 'NBE100',
+    noproduct: 'NBE108',
     sales: 10,
     instock: 2,
     price: '150.000',
     status: 'Instock',
   },
   {
-    id: 10,
     image: test,
     title: 'Áo',
-    noproduct: 'NBE100',
+    noproduct: 'NBE109',
     sales: 10,
     instock: 2,
     price: '150.000',
     status: 'Out of stock',
   },
   {
-    id: 11,
     image: test,
     title: 'Áo',
-    noproduct: 'NBE100',
+    noproduct: 'NBE110',
     sales: 10,
     instock: 2,
     price: '150.000',
     status: 'Instock',
   },
   {
-    id: 12,
     image: test,
     title: 'Áo',
-    noproduct: 'NBE100',
+    noproduct: 'NBE111',
     sales: 10,
     instock: 2,
     price: '150.000',
     status: 'Instock',
   },
   {
-    id: 13,
     image: test,
     title: 'Áo',
-    noproduct: 'NBE100',
+    noproduct: 'NBE112',
     sales: 10,
     instock: 2,
     price: '150.000',
@@ -139,15 +126,20 @@ const products = [
   },
 ];
 
-const Products = (props) => {
-  const [removeProduct, setRemoveProduct] = useState(products[0].id);
+const Products = () => {
+  const [removeProduct, setRemoveProduct] = useState([]);
+  const [dataSearch, setDataSearch] = useState('');
 
-  const HandleRemoveProduct = (id) => {
-    setRemoveProduct(prev => {
-      if (prev === id) {
-        products.filter(item => item.id !== id);
-      }
-    });
+  useEffect(() => {
+    setRemoveProduct([...products]);
+  }, []);
+
+  const handleRemoveProduct = (id) => {
+    setRemoveProduct((prev) => prev.filter((item) => item.noproduct !== id));
+  };
+
+  const handleDataSearch = (e) => {
+    setDataSearch(e.target.value);
   };
 
   return (
@@ -161,12 +153,17 @@ const Products = (props) => {
                     <div className={classes['products__header-search']}>
                         <FontAwesomeIcon className={classes['products__header-search-icon']} icon={faMagnifyingGlass} />
                         <form className={classes['products__header-search-form']} type="text">
-                          <input className={classes['products__header-search-input']} type="text" placeholder="Search" />
+                            <input
+                              onChange={(e) => handleDataSearch(e)}
+                              className={classes['products__header-search-input']}
+                              type="text"
+                              placeholder="Search"
+                            />
                         </form>
                     </div>
 
                     <div className={classes['products__header-add']}>
-                        <Link to="/add_product">
+                        <Link to="add_product">
                             <FontAwesomeIcon className={classes['products__header-add-icon']} icon={faPlus} />
                         </Link>
                         <p className={classes['products__header-add-content']}>New product</p>
@@ -186,42 +183,43 @@ const Products = (props) => {
                         <th>Status</th>
                         <th> </th>
                     </tr>
-                    {products.map((product, index) => (
-                        <tr key={product.id}>
-                            <td>{product.id}</td>
-                            <td>
-                                <div>
-                                    <img src={product.image} alt="" />
-                                    <p>{product.title}</p>
-                                </div>
-                            </td>
-                            <td>{product.noproduct}</td>
-                            <td>{product.sales}</td>
-                            <td>{product.instock}</td>
-                            <td>{product.price}</td>
-                            <td>
-                                <p
-                                  className={`${classes.status} ${
-                                    product.status === 'Instock'
-                                      ? classes['status--purpel-color']
-                                      : classes['status--pink-color']
-                                  }`}
-                                >
-                                    {product.status}
-                                </p>
-                            </td>
-                            <td>
-                                <Link to="/edit">
-                                    <FontAwesomeIcon className={classes.icon} icon={faPen} />
-                                </Link>
-                                <FontAwesomeIcon
-                                  onClick={() => HandleRemoveProduct(product.id)}
-                                  className={classes.icon}
-                                  icon={faTrashCan}
-                                />
-                            </td>
-                        </tr>
-                    ))}
+                    {removeProduct
+                        && removeProduct.map((product, index) => (
+                            <tr key={+index}>
+                                <td>{index + 1}</td>
+                                <td>
+                                    <div>
+                                        <img src={product.image} alt="" />
+                                        <p>{product.title}</p>
+                                    </div>
+                                </td>
+                                <td>{product.noproduct}</td>
+                                <td>{product.sales}</td>
+                                <td>{product.instock}</td>
+                                <td>{product.price}</td>
+                                <td>
+                                    <p
+                                      className={`${classes.status} ${
+                                        product.status === 'Instock'
+                                          ? classes['status--purpel-color']
+                                          : classes['status--pink-color']
+                                      }`}
+                                    >
+                                        {product.status}
+                                    </p>
+                                </td>
+                                <td>
+                                    <Link to="edit">
+                                        <FontAwesomeIcon className={classes.icon} icon={faPen} />
+                                    </Link>
+                                    <FontAwesomeIcon
+                                      onClick={() => handleRemoveProduct(product.noproduct)}
+                                      className={classes.icon}
+                                      icon={faTrashCan}
+                                    />
+                                </td>
+                            </tr>
+                        ))}
                 </table>
             </div>
         </div>
