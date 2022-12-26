@@ -20,5 +20,8 @@ router.get('/:id', orderController.getById);
 // Create cart
 router.post('/', orderController.createOrder);
 
+// Update status
+router.patch('/status/:id', orderController.updateStatus);
+
 
 module.exports = router;

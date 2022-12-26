@@ -1,4 +1,5 @@
 const { sellModel, customModel, orderModel, donateModel } = require('../models/serviceModel');
+const User = require('../models/userModel')
 const catchAsync = require('../utils/catchAsync');
 const AppError = require('../utils/appError');
 const slugify = require('slugify');
@@ -128,7 +129,10 @@ module.exports.getPayments = catchAsync(async (req, res, next) => {
 module.exports.getPaymentById = catchAsync(async (req, res, next) => {
     const filter = req.params.id ? {code: req.params.id} : {};
     
-    const payment = await orderModel.findOne(filter).sort({ create_at: 'desc' });
+    let payment = await orderModel.findOne(filter).sort({ create_at: 'desc' });
+    
+    const user = await User.findById(payment.uid);
+    payment = {...payment, user: {...user}}
 
     res.status(200).json({
         status: 'success',

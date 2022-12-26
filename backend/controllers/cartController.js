@@ -48,7 +48,7 @@ exports.addToCart = catchAsync(async (req, res, next) => {
         return next(new AppError('There is not procduct with this idProduct', 404));
     }
 
-    if (data.quality <= 0) {
+    if (data.amount <= 0) {
         return next(new AppError('Number of invalid products', 404));
     }
 
@@ -60,7 +60,7 @@ exports.addToCart = catchAsync(async (req, res, next) => {
         createAt: tmp.createAt,
         idUser: tmp.idUser,
         idProduct: tmp.idProduct._id,
-        quality: tmp.quality,
+        amount: tmp.amount,
         size: tmp.size,
         detail: tmp.idProduct,
     };
@@ -87,7 +87,7 @@ exports.updateCart = catchAsync(async (req, res, next) => {
         createAt: result.createAt,
         idUser: result.idUser,
         idProduct: result.idProduct._id,
-        quality: result.quality,
+        amount: result.amount,
         size: result.size,
         detail: result.idProduct,
     };

@@ -15,6 +15,7 @@ class APIFeatures {
             { size: '{ "size": "in" }', caseSensitive: 2, split: ',', replace: true },
             { material: '{ "material": "in" }', split: ',', replace: true },
             { name: '{ "name": "regex" }', replace: true, regexSensitive: true },
+            { id: '{ "IdOrder": "regex" }', replace: true, regexSensitive: true },
         ];
 
         replaceFields.forEach((el) => {

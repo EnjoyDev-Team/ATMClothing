@@ -16,7 +16,6 @@ const cartRouter = require('./routes/cartRoutes');
 const orderRoutes = require('./routes/orderRoutes');
 const servicesRoutes = require('./routes/serviceRoutes');
 const addressRouter = require('./routes/addressRoutes');
-const searchRoutes = require('./routes/searchRoutes');
 const corsOptions = require('./configs/corsOptions');
 const credentials = require('./middlewares/credentials');
 
@@ -48,8 +47,7 @@ app.use('/api/v1/products', productRouter)
 app.use('/api/v1/carts', cartRouter)
 app.use('/api/v1/orders', orderRoutes)
 app.use('/api/v1/services', servicesRoutes)
-app.use('/api/v1/addresses', addressRouter)
-app.use('/api/v1/search', searchRoutes)
+app.use('/api/v1/address', addressRouter)
 
 app.all('*', (req, res, next) => {
   next(new AppError(`Can't find ${req.originalUrl} on this server!`, 404))

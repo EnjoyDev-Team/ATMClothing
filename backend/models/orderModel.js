@@ -1,5 +1,6 @@
 // review / rating / creatAt / ref to tour / ref to user
 const mongoose = require('mongoose')
+const User = require('./userModel')
 
 const orderSchema = new mongoose.Schema(
   {
@@ -16,7 +17,10 @@ const orderSchema = new mongoose.Schema(
     address: {
       name: String,
       phone: String,
-      address: String
+      street: String,
+      ward: String,
+      district: String,
+      city: String,
     },
     paymentMethod: {
       type: Number,
@@ -31,8 +35,10 @@ const orderSchema = new mongoose.Schema(
       type: Number,
       default: 0
     },
+    note: String,
     totalPriceProduct: String,
     shipFee: String,
+    discount: String,
     totalPrice: String,
     products: [
       {
@@ -56,11 +62,30 @@ const orderSchema = new mongoose.Schema(
 )
 
 
+orderSchema.statics.calcTotal = async function(userId, totalPriceProduct) {
+  const user = await User.findOne({_id:userId});
+  
+  const nOrders = user.nOrders + +totalPriceProduct.replaceAll('.', '')
+  
+  await User.findByIdAndUpdate(userId, {
+    nOrders,
+  })
+ }
+
+orderSchema.post('save', function() {
+  this.constructor.calcTotal(this.idUser, this.totalPriceProduct)
+})
+
 orderSchema.pre(/^findOne/, function(next) {
 
   this.populate({
     path: 'products.idProduct',
-    select: 'name price img _id'
+    select: 'name price img _id facility amount'
+  });
+
+  this.populate({
+    path: 'idUser',
+    select: 'name phone _id'
   });
 
   next();

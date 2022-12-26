@@ -13,7 +13,18 @@ const userSchema = new mongoose.Schema({
   },
   name: {
     type: String,
+    default: ''
   },
+  address: [
+    {
+      name: String,
+      phone: String,
+      street: String,
+      ward: String,
+      district: String,
+      city: String,
+    }
+  ],
   email: {
     type: String,
     lowercase: true,
@@ -36,6 +47,14 @@ const userSchema = new mongoose.Schema({
     enum: ['user', 'admin'],
     default: 'user'
   },
+  nOrders: {
+    type: Number,
+    default: 0
+  },
+  nDayOfWorks: {
+    type: Number,
+    default: 0
+  },
   password: {
     type: String,
     required: [true, 'Please provide a password!'],
@@ -48,8 +67,7 @@ const userSchema = new mongoose.Schema({
   passwordResetExpires: Date,
   active: {
     type: Boolean,
-    default: true,
-    select: false
+    default: true
   }
 });
 
@@ -74,7 +92,7 @@ userSchema.pre('save', function(next) {
 
 userSchema.pre(/^find/, function(next) {
   // this points to the current query
-  this.find({active: { $ne: false }})
+  // this.find({active: { $ne: false }})
   next();
 })
 

@@ -16,7 +16,7 @@ const cartSchema = new mongoose.Schema(
       ref: 'products',
       required: [true, 'Review must belong to an user']
     },
-    quality: Number,
+    amount: Number,
     size: String
   }, 
   {

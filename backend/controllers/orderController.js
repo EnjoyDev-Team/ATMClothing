@@ -33,6 +33,8 @@ module.exports.getById = catchAsync(async (req, res, next) => {
         product.name = product.idProduct.name;
         product.price = product.idProduct.price;
         product.img = product.idProduct.img;
+        product.facility = product.idProduct.facility;
+        product.instock = product.idProduct.amount;
         product.idProduct = id;
         product._id = null;
     });
@@ -71,12 +73,23 @@ exports.createOrder = catchAsync(async (req, res, next) => {
         return next(new AppError('There is not user with this id', 404));
     }
 
-    data.products.map(async (el) => {
+    for (const el of data.products) {
         const product = await products.findOne({ _id: el.idProduct }).exec();
         if (el.amount <= 0 || product.amount < el.amount) {
-            return next(new AppError('Number of invalid products', 404));
+            check = true;
+            return next(new AppError(`${product.name}: Số lượng sản phẩm trong kho không đủ!`, 404));
         }
-    });
+    }
+
+    // REDUCE THE AMOUNT OF PRODUCTS AFTER ORDER SUCCESSFULLY 
+    // (RUN PRODUCTION)
+    // for (const el of data.products) {
+    //     const product = await products.findOne({ _id: el.idProduct }).exec();
+    //     const amount = product.amount - el.amount;
+    //     await products.findOneAndUpdate({ _id: el.idProduct }, {
+    //         amount
+    //     });
+    // }
 
     const doc = await Order.create(data);
 
@@ -87,6 +100,25 @@ exports.createOrder = catchAsync(async (req, res, next) => {
         },
     });
 });
+
+exports.updateStatus = catchAsync(async (req, res, next) => {
+    const id = req.params.id;
+    const status = req.body.status;
+
+    const order = await Order.findOneAndUpdate({ _id: id }, { status }, {
+        new: true,
+        runValidators: true,
+      });
+
+    if (!order) {
+        return next(new AppError('There is not order with this id', 404));
+    }
+
+    res.status(200).json({
+        status: 'success',
+        data: order
+    });
+  });
 
 
 exports.getEnumList = catchAsync(async (req, res, next) => {
