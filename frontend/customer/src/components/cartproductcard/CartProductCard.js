@@ -12,7 +12,7 @@ import { updateCart, removeFromCart, addToPayment, removeFromPayment } from '../
 
 const Cartproductcard = ({ Details }) => {
   const dispatch = useDispatch();
-  const [count, setcount] = useState(Details.quality);
+  const [count, setcount] = useState(Details.amount);
   const [check, setCheck] = useState(Details.checked);
 
   const decrease = () => {
@@ -21,11 +21,11 @@ const Cartproductcard = ({ Details }) => {
       setcount(cnt);
       dispatch(updateCart({ data: {
         _id: Details._id,
-        quality: cnt
+        amount: cnt
       } }));
       dispatch(addToPayment({
         _id: Details._id,
-        quality: cnt
+        amount: cnt
       }));
     }
   };
@@ -34,11 +34,11 @@ const Cartproductcard = ({ Details }) => {
     setcount(cnt);
     dispatch(updateCart({ data: {
       _id: Details._id,
-      quality: cnt
+      amount: cnt
     } }));
     dispatch(addToPayment({
       _id: Details._id,
-      quality: cnt
+      amount: cnt
     }));
   };
 
@@ -49,7 +49,7 @@ const Cartproductcard = ({ Details }) => {
 
   const handleChecked = () => {
     if (!check) {
-      dispatch(addToPayment({ _id: Details._id, quality: count }));
+      dispatch(addToPayment({ _id: Details._id, amount: count }));
     } else {
       dispatch(removeFromPayment({ _id: Details._id }));
       if (Details.detail.facility.length) {
@@ -115,7 +115,7 @@ const Cartproductcard = ({ Details }) => {
 
 Cartproductcard.propTypes = {
   Details: PropTypes.shape({
-    quality: PropTypes.number.isRequired,
+    amount: PropTypes.number.isRequired,
     size: PropTypes.string.isRequired,
     _id: PropTypes.string.isRequired,
     checked: PropTypes.bool,

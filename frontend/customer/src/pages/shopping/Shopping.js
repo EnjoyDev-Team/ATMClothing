@@ -16,7 +16,7 @@ const Shopping = () => {
   const payments = useSelector(state => state.cart.payments);
   const [data, setData] = useState({});
   const [totalPayment, setTotalPayment] = useState({
-    quality: 0,
+    amount: 0,
     price: 0
   });
 
@@ -25,7 +25,7 @@ const Shopping = () => {
       const { facility } = cart[i].detail;
       if (facility.length && facility[0].code === key) {
         if (e.target.checked) {
-          dispatch(addToPayment({ _id: cart[i]._id, quality: cart[i].quality }));
+          dispatch(addToPayment({ _id: cart[i]._id, amount: cart[i].amount }));
           dispatch(addToPayment({ _id: key }));
         } else {
           dispatch(removeFromPayment({ _id: cart[i]._id }));
@@ -38,7 +38,7 @@ const Shopping = () => {
   useEffect(() => {
     const divide = {};
     const count = {};
-    let quality = 0;
+    let amount = 0;
     let price = 0;
 
     for (let i = 0; i < cart.length; i += 1) {
@@ -58,7 +58,7 @@ const Shopping = () => {
 
         // Checked and calc payment
         if (cart[i]._id in payments) {
-          quality += payments[cart[i]._id];
+          amount += payments[cart[i]._id];
           price += +cart[i].detail.price.replaceAll('.', '') * payments[cart[i]._id];
 
           if (facility[0].code in count) {
@@ -80,7 +80,7 @@ const Shopping = () => {
       }
     }
     setTotalPayment({
-      quality, price
+      amount, price
     });
     setData(divide);
   }, [cart, payments]);
@@ -129,7 +129,7 @@ const Shopping = () => {
                                                 <Cartproductcard Details={
                                                     {
                                                       size: el.item.size,
-                                                      quality: el.item.quality,
+                                                      amount: el.item.amount,
                                                       detail: el.item.detail,
                                                       _id: el.item._id,
                                                       img: el.item.img,
@@ -154,7 +154,7 @@ const Shopping = () => {
                     </div>
                     <div className={classes.container__status__valueproduct}>
                         <p>Số lượng sản phẩm</p>
-                        <h3>{totalPayment.quality}</h3>
+                        <h3>{totalPayment.amount}</h3>
                     </div>
                     <div className={classes.container__status__total}>
                         <p>Tổng cộng</p>
@@ -168,7 +168,7 @@ const Shopping = () => {
                     <ButtonCT
                       greenLinear
                       medium
-                      disabled={!(totalPayment.quality !== 0)}
+                      disabled={!(totalPayment.amount !== 0)}
                       className={classes.container__status__btn}
                       onClick={() => navigate('/shopping/payment')}
                     >

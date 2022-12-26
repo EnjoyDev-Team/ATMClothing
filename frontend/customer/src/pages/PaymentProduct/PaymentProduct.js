@@ -1,7 +1,6 @@
-/* eslint-disable react/jsx-indent-props */
-/* eslint-disable arrow-body-style */
-/* eslint-disable indent */
 import React from 'react';
+import { useSelector } from 'react-redux';
+import { RecoilRoot } from 'recoil';
 import classes from './PaymentProduct.module.scss';
 import ButtonCT from '../../components/ButtonCT/ButtonCT';
 import OrderInfo from '../../components/PaymentProduct/OrderInfo';
@@ -9,8 +8,7 @@ import OrderTotal from '../../components/PaymentProduct/OrderTotal';
 import DeliveryInfo from '../../components/PaymentProduct/DeliveryInfo';
 import PaymentMethod from '../../components/PaymentProduct/PaymentMethod';
 
-const PaymentProduct = () => {
-    return (
+const PaymentProductRecoil = () => (
         <main>
             <div className={classes.title}>
                 <h1 className={classes.align_center}>THANH TOÁN</h1>
@@ -21,11 +19,12 @@ const PaymentProduct = () => {
             <div className={classes.btn__container}>
                 <ButtonCT className={classes.btn__online__delivery} large borderRadius content="Giao hàng trực tuyến" />
                 <ButtonCT
-                    className={classes.btn__system__atm}
-                    large
-                    borderRadius
-                    outlineBtn
-                    content="Nhận hàng tại hệ thống ATM Clothing"
+                  className={classes.btn__system__atm}
+                  large
+                  borderRadius
+                  outlineBtn
+                  content="Nhận hàng tại hệ thống ATM Clothing"
+                  disabled
                 />
             </div>
             <div className={classes.talbe__container}>
@@ -60,7 +59,12 @@ const PaymentProduct = () => {
                 </div>
             </div>
         </main>
-    );
-};
+);
+
+const PaymentProduct = () => (
+    <RecoilRoot>
+      <PaymentProductRecoil />
+    </RecoilRoot>
+);
 
 export default PaymentProduct;

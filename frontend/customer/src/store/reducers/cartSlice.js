@@ -10,7 +10,7 @@ export const addToCart = createAsyncThunk(
         idUser: data.idUser,
         idProduct: data.idProduct,
         size: data.size,
-        quality: data.quality
+        amount: data.amount
       }),
       {
         pending: 'Thêm vào giỏ hàng...',
@@ -26,7 +26,7 @@ export const updateCart = createAsyncThunk(
   '/cart/update',
   async ({ data }) => {
     const res = await axiosPrivate.patch(`/carts/${data._id}`, {
-      quality: data.quality
+      amount: data.amount
     });
     return res.data.data;
   }
@@ -73,7 +73,7 @@ const cart = createSlice({
       state.payments = {};
     },
     addToPayment: (state, action) => {
-      state.payments[action.payload._id] = action.payload.quality;
+      state.payments[action.payload._id] = action.payload.amount;
     },
     removeFromPayment: (state, action) => {
       delete state.payments[action.payload._id];

@@ -1,43 +1,55 @@
-/* eslint-disable jsx-a11y/label-has-associated-control */
-/* eslint-disable react/self-closing-comp */
 /* eslint-disable jsx-a11y/no-static-element-interactions */
-/* eslint-disable no-undef */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
-/* eslint-disable camelcase */
-/* eslint-disable indent */
-/* eslint-disable arrow-body-style */
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faLocationDot, faChevronDown, faPencil } from '@fortawesome/free-solid-svg-icons';
+import { useRecoilValue, useRecoilState } from 'recoil';
 import classes from './DeliveryInfo.module.scss';
 import AddressItem from './AddressItem';
+import { addressRecoil, noteRecoil } from './recoil';
 
 const DeliveryInfo = () => {
-    const [show, setShow] = useState(false);
-    function toggle__address__table() {
-        setShow((prev) => !prev);
-    }
-    return (
+  const [show, setShow] = useState(false);
+  const [note, setNote] = useRecoilState(noteRecoil);
+  const address = useRecoilValue(addressRecoil);
+
+  const toggleAddressTable = () => {
+    setShow((prev) => !prev);
+  };
+
+  return (
         <main className={classes.delivery__info}>
-            <div className={classes.address__delivery} onClick={toggle__address__table}>
+            <div className={classes.address__delivery} onClick={toggleAddressTable}>
                 <FontAwesomeIcon icon={faLocationDot} className={classes.location__delivery__icon} />
-                <p>Vui lòng chọn địa chỉ giao hàng</p>
+                {address.name === '' ? <p>Vui lòng chọn địa chỉ giao hàng</p>
+                  : (
+                        <div>
+                            <strong>{`${address.name} | ${address.phone}`}</strong>
+                            <br />
+                            <p>{`${address.street}, ${address.ward}, ${address.district}, ${address.city}`}</p>
+                        </div>
+                  )}
                 <FontAwesomeIcon icon={faChevronDown} className={classes.chevrondown__icon} />
             </div>
             {show === true ? (
                 <div className={classes.address__table}>
-                    <AddressItem />
+                    <AddressItem setOpen={toggleAddressTable} />
                 </div>
             ) : (
-                ''
+              ''
             )}
             <div className={classes.note}>
                 <FontAwesomeIcon icon={faPencil} />
                 {/* <p>Ghi chú giao hàng</p> */}
-                <input type="text" placeholder="Ghi chú giao hàng"></input>
+                <input
+                  type="text"
+                  value={note}
+                  placeholder="Ghi chú giao hàng"
+                  onChange={(e) => setNote(e.target.value)}
+                />
             </div>
         </main>
-    );
+  );
 };
 
 export default DeliveryInfo;

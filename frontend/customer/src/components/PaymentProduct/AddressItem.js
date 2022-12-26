@@ -1,47 +1,50 @@
-/* eslint-disable implicit-arrow-linebreak */
-/* eslint-disable arrow-body-style */
-/* eslint-disable semi */
-/* eslint-disable indent */
-import React from 'react';
+/* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
+/* eslint-disable jsx-a11y/click-events-have-key-events */
+import React, { useState } from 'react';
+import { useSetRecoilState } from 'recoil';
 import classes from './AddressItem.module.scss';
+import useAxiosPrivate from '../../hooks/useAxiosPrivate';
+import auth from '../../utils/auth';
+import { addressRecoil } from './recoil';
 
-const addressList = [
-    {
-        name: 'Trần Duy Khương',
-        phone: '082 478 4789',
-        street: '135 Trần Hưng Đạo',
-        detail: 'Phường Cầu Ông Lãnh, Quận 1, Hồ Chí Minh',
-    },
-    {
-        name: 'Trần Duy Khương',
-        phone: '082 478 4789',
-        street: '135 Trần Hưng Đạo',
-        detail: 'Phường Cầu Ông Lãnh, Quận 1, Hồ Chí Minh',
-    },
-    {
-        name: 'Trần Duy Khương',
-        phone: '082 478 4789',
-        street: '135 Trần Hưng Đạo',
-        detail: 'Phường Cầu Ông Lãnh, Quận 1, Hồ Chí Minh',
-    },
-    {
-        name: 'Trần Duy Khương',
-        phone: '082 478 4789',
-        street: '135 Trần Hưng Đạo',
-        detail: 'Phường Cầu Ông Lãnh, Quận 1, Hồ Chí Minh',
-    },
-];
+const AddressItem = ({ setOpen }) => {
+  const axiosPrivate = useAxiosPrivate();
+  const [address, setAddress] = useState([]);
+  const setDelivery = useSetRecoilState(addressRecoil);
 
-const AddressItem = () =>
-    addressList.map((item) => (
-        <main className={classes.address__item__container}>
+  axiosPrivate.get(`/address/${auth.getId()}`)
+    .then((res) => {
+      setAddress(res.data.data);
+    }).catch((err) => {
+
+    });
+
+  const handleSelect = (item) => {
+    setDelivery({
+      name: item.name,
+      phone: item.phone,
+      street: item.street,
+      ward: item.ward,
+      district: item.district,
+      city: item.city
+    });
+    setOpen();
+  };
+
+  return address.map((item, idx) => (
+        <main
+          className={classes.address__item__container}
+          key={+idx}
+          onClick={() => handleSelect(item)}
+        >
             <div className={classes.name__phone}>
                 <p>{item.name}</p>
                 <p>{item.phone}</p>
             </div>
             <p>{item.street}</p>
-            <p>{item.detail}</p>
+            <p>{`${item.ward}, ${item.district}, ${item.city}`}</p>
         </main>
-    ));
+  ));
+};
 
 export default AddressItem;

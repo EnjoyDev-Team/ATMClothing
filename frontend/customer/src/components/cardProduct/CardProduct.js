@@ -23,7 +23,7 @@ const CardProduct = ({ cardproduct2, Details }) => {
         idUser: auth.getId(),
         idProduct: Details._id,
         size: Details.size,
-        quality: 1
+        amount: 1
       } }));
     } else {
       console.log('No login');

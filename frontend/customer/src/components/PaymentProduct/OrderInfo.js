@@ -1,47 +1,69 @@
-/* eslint-disable react/jsx-one-expression-per-line */
-/* eslint-disable implicit-arrow-linebreak */
-/* eslint-disable indent */
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrashCan, faLocationDot } from '@fortawesome/free-solid-svg-icons';
+import { useSelector, useDispatch } from 'react-redux';
+import { useSetRecoilState, useRecoilState } from 'recoil';
 import classes from './OrderInfo.module.scss';
-import khoacNam2 from '../../assets/imgs/khoacNam 2.png';
-import muBe1 from '../../assets/imgs/muBe 1.png';
+import { removeFromPayment } from '../../store/reducers/cartSlice';
+import { paymentRecoil, productsPaymentRecoil } from './recoil';
 
-const orderInfo = [
-    {
-        img: khoacNam2,
-        name: 'Áo blazer unisex caro phối jeans cá tính ',
-        price: '189.000 đ',
-        detail: 'XL, oversize, m70-m75, 50kg-65kg',
-    },
-    {
-        img: muBe1,
-        name: 'Set đầm phối',
-        price: '129.000đ',
-        detail: 'XL, oversize, m70-m75, 50kg-65kg',
-    },
-];
+const OrderInfo = () => {
+  const dispatch = useDispatch();
+  const cart = useSelector(state => state.cart.cart);
+  const payments = useSelector(state => state.cart.payments);
 
-const OrderInfo = () =>
-    orderInfo.map((item) => (
-        <main className={classes.order_container}>
-            <div className={classes.quantity}>1x</div>
-            <div>
-                <img src={item.img} alt="" />
+  const [data, setData] = useRecoilState(productsPaymentRecoil);
+  const setTotalPayment = useSetRecoilState(paymentRecoil);
+
+  useEffect(() => {
+    let amount = 0;
+    let price = 0;
+
+    const newData = cart.filter((item) => {
+      if (item._id in payments) {
+        amount += payments[item._id];
+        price += +item.detail.price.replaceAll('.', '') * payments[item._id];
+
+        return item;
+      }
+      return null;
+    });
+
+    setData(newData);
+    setTotalPayment({ amount, price, ship: 20000, discount: 0 });
+  }, [payments]);
+
+  const handleRemoveFromPayment = (id) => {
+    dispatch(removeFromPayment({ _id: id }));
+  };
+
+  return data.map((item) => (
+        <main className={classes.order_container} key={item._id}>
+            <div className={classes.amount}>
+                {item.amount}
+                x
+            </div>
+            <div className={classes.orderInfo__img}>
+                <img width={80} src={item.img} alt="" />
             </div>
             <div className={classes.info}>
-                <p className={classes.product__name}>{item.name}</p>
-                <p className={classes.product__price}>{item.price}</p>
-                <p className={classes.product__details}>{item.detail}</p>
+                <p className={classes.product__name}>{item.detail.name}</p>
+                <p className={classes.product__price}>{item.detail.price}</p>
+                <p className={classes.product__details}>{item.size}</p>
             </div>
             <div className={classes.icon__container}>
-                <FontAwesomeIcon className={classes.icon__trash} icon={faTrashCan} />
+                <FontAwesomeIcon
+                  className={classes.icon__trash}
+                  icon={faTrashCan}
+                  onClick={() => handleRemoveFromPayment(item._id)}
+                />
                 <p className={classes.location}>
-                    <FontAwesomeIcon className={classes.icon__location} icon={faLocationDot} /> Thủ Đức
+                    <FontAwesomeIcon className={classes.icon__location} icon={faLocationDot} />
+                    {item.detail.facility.length ? item.detail.facility[0].name : ''}
                 </p>
             </div>
         </main>
-    ));
+  ));
+};
 
 export default OrderInfo;
