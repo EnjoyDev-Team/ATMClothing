@@ -1,3 +1,5 @@
+/* eslint-disable jsx-a11y/click-events-have-key-events */
+/* eslint-disable jsx-a11y/no-static-element-interactions */
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -8,20 +10,19 @@ import {
   faMountainSun,
 } from '@fortawesome/free-solid-svg-icons';
 import { Link, useNavigate } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 import Profile from '../Profile/Profile';
 import classes from './styles.module.scss';
 import logo from '../../assets/imgs/PNG-logo.png';
-import avatar from '../../assets/imgs/Screenshot 2022-09-28 184909.png';
 import ButtonCT from '../ButtonCT/ButtonCT';
 import auth from '../../utils/auth';
 
 const Header = () => {
   const [isOpen, setOpen] = useState(false);
   const [fixedNavbar, setFixedNavbar] = useState(false);
-  const [isAccount, setAccount] = useState(true);
-  const [isAvt, setAvt] = useState(!!auth.getAccessToken());
   const [isSearch, setSearch] = useState('');
   const navigate = useNavigate();
+  const cart = useSelector(state => state.cart);
 
   const handleProfile = () => {
     setOpen((prev) => !prev);
@@ -32,16 +33,18 @@ const Header = () => {
         && e.nativeEvent.explicitOriginalTarget === e.nativeEvent.originalTarget) {
       return;
     }
-
-    setOpen((prev) => {
-      if (prev === false) {
-        return prev;
-      }
-      return !prev;
-    });
+    setOpen(false);
   };
 
-  const handleAccount = () => {};
+  const handleSearch = (e) => {
+    setSearch(e.target.value);
+  };
+
+  const handleSubmit = () => {
+    if (isSearch !== '') {
+      navigate(`/products/search/${isSearch}`);
+    }
+  };
 
   useEffect(() => {
     const handleScroll = () => {
@@ -60,20 +63,6 @@ const Header = () => {
       window.removeEventListener('scroll', handleScroll);
     };
   }, []);
-
-  const handleSearch = (e) => {
-    setSearch(e.target.value);
-  };
-
-  const handleSubmit = () => {
-    if (isSearch !== '') {
-      navigate(`/products/search/${isSearch}`);
-    }
-  };
-
-  const handleClickProfile = () => {
-    setOpen(true);
-  };
 
   return (
         <div className={classes.header}>
@@ -113,12 +102,11 @@ const Header = () => {
 
                 <div className={classes.header__right}>
                     <div className={classes['header__right-account']}>
-                        {isAccount && (
+                        {!!auth.getAccessToken() === false && (
                             <div className={classes.header__account}>
                                 <div className={classes['header__right-account-signup']}>
                                     <Link
                                       className={classes['header__right-account-signup-link']}
-                                      onClick={handleAccount}
                                       to="/register"
                                     >
                                         Đăng ký
@@ -128,7 +116,6 @@ const Header = () => {
                                 <div className={classes['header__right-account-signin']}>
                                     <Link
                                       className={classes['header__right-account-signin-link']}
-                                      onClick={handleAccount}
                                       to="/login"
                                     >
                                         Đăng nhập
@@ -146,30 +133,42 @@ const Header = () => {
                         </div>
 
                         <div className={classes['header__old-product']}>
-                            <ButtonCT medium borderRadius outlineBtn>
+                            <ButtonCT
+                              medium
+                              borderRadius
+                              outlineBtn
+                              onClick={() => navigate('/')}
+                            >
                                 Tôi có sản phẩm cũ
                             </ButtonCT>
                         </div>
                     </div>
 
-                    <div className={classes['header__right-wrap-avt-cart']}>
-                        <div className={classes.header__cart}>
+                    <div
+                      className={classes['header__right-wrap-avt-cart']}
+                    >
+                        <div
+                          className={classes.header__cart}
+                          onClick={() => navigate('/shopping')}
+                        >
                             <div className={classes['header__cart-wrap-icon']}>
                                 <FontAwesomeIcon className={classes['header__cart-icon']} icon={faCartShopping} />
 
-                                <div className={classes['header__cart-count']}>3</div>
+                                <div className={classes['header__cart-count']}>{cart && cart.cart.length}</div>
                             </div>
                         </div>
 
-                        {isAvt && (
+                        {!!auth.getAccessToken() && (
                             <div className={classes.header__avatar}>
                                 <button
                                   onClick={handleProfile}
                                   onBlur={handleBlur}
                                   className={classes['header__avatar-button']}
                                 >
-                                    <img className={classes['header__avatar-img']} src={avatar} alt="" />
-                                    {isOpen && <Profile onClick={handleClickProfile} />}
+                                    <img className={classes['header__avatar-img']} src={auth.getAvatar()} alt="" />
+                                    {isOpen && (
+                                        <Profile />
+                                    )}
                                 </button>
                             </div>
                         )}

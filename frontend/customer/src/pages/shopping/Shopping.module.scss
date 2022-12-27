@@ -70,7 +70,8 @@ body {
             border-bottom-right-radius: 10px;
     
             &__address {
-                background-color: rgba(152, 227, 91, 0.5);
+                background-color: $main_color;
+                color: #fff;
                 &__all {
                     display: flex;
                     align-items: center;
@@ -83,9 +84,11 @@ body {
                         text-align: center;
                     }
 
-                    input {
+                    input[type=checkbox] {
+                        accent-color: #fff;
                         width: 2rem;
                         height: 2rem;
+                        cursor: pointer;
                         border-radius: 4px;
                         -webkit-appearance: auto;
                            -moz-appearance: auto;
@@ -123,6 +126,9 @@ body {
         border-bottom-right-radius: 10px;
         display: flex;
         flex-direction: column;
+        position: sticky;
+        position: -webkit-sticky;
+        top: 100px;
         &__payment {
             background-color: #000;
             h3 {
@@ -130,6 +136,7 @@ body {
                 color:#fff;
                 padding: 1rem;
                 padding-left: 2rem;
+                text-transform: uppercase;
             }
         }
         &__valueproduct {
@@ -156,10 +163,12 @@ body {
             p {
                 flex: auto;
                 padding-right: 2.5rem;
+                font-size: 1.7rem;
             }
             h3 {
                 display: flex;
                 letter-spacing: 1px;
+                font-size: 1.9rem;
                 font-weight: 600;
                 color: $price-color;
                 p {

@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowDown } from '@fortawesome/free-solid-svg-icons';
-import { useSelector } from 'react-redux';
 import CardProduct from '../../components/cardProduct/CardProduct';
 import classes from './Home.module.scss';
 import quanaoNu from '../../assets/imgs/quanaoNu.png';

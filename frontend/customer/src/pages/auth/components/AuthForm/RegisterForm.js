@@ -131,7 +131,7 @@ const RegisterForm = () => {
         phone,
         password,
         tokenVerify: verifyToken,
-        tokenFirebase,
+        tokenFirebase
       };
       axiosPrivate.post('/auth/register/password', objPass).then(res => {
         navigate('/login');

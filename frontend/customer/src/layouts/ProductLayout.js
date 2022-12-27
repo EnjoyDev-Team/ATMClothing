@@ -11,13 +11,17 @@ import Category from '../pages/Products/Category/Category';
 import Filter from '../pages/Products/Filter/Filter';
 import Product from '../pages/Products/Product/Product';
 
-const ProductLayout = () => (
+const ProductLayout = () => {
+  const [fixedCategory, setFixedCategory] = useState(false);
+
+  return (
     <div className={classes.products}>
-      <Category />
-        <Outlet />
+      <Category fixedCategory={fixedCategory} setFixedCategory={setFixedCategory} />
+        <Outlet context={[fixedCategory]} />
       <Filter />
     </div>
-);
+  );
+};
 
 ProductLayout.propTypes = {};
 

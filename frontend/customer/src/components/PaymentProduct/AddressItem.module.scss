@@ -2,6 +2,10 @@
     padding: 0.5rem 0;
     border-top: 1px solid #666666;
     border-bottom: 1px solid #666666;
+    cursor: pointer;
+}
+.address__item__container:hover {
+    background-color: rgb(212, 255, 212);
 }
 .address__item__container:only-child {
     padding: 1rem 0;

@@ -13,6 +13,7 @@ import AddProduct from '../pages/AddProduct/AddProduct';
 import User from '../pages/users/User';
 import EditUser from './../pages/users/EditUser';
 import AddUser from './../pages/users/AddUser';
+import OrdersManage from '../pages/ordersManage/ordersManage';
 
 const Navigation = () => {
     const authenticated = true;
@@ -22,6 +23,7 @@ const Navigation = () => {
                 <Route path="/login" name="login" element={<Login />} />
                 <Route element={<PrivateRoute isAllowed={authenticated} redirectPath="/login" />}>
                     <Route path="/home" name="home" element={<Home />} />
+                    <Route path="/admin-orders" name="admin-orders" element={<OrdersManage />} />
                 </Route>
                 <Route path="/users" element={<User />} />
                 <Route path="/users/editUser" element={<EditUser />} />
@@ -33,6 +35,6 @@ const Navigation = () => {
             </Routes>
         </main>
     );
-};
+}
 
 export default Navigation;
