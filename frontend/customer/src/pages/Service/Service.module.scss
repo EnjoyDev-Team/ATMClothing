@@ -1,0 +1,68 @@
+.title {
+    margin: 5rem auto;
+    margin-left: 10rem;
+}
+
+.container {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    width: 125rem;
+    margin: auto;
+    -webkit-border-radius: 1rem;
+    -moz-border-radius: 1rem;
+    -ms-border-radius: 1rem;
+    -o-border-radius: 1rem;
+    border-radius: 1rem;
+    padding-bottom: 10rem;
+}
+
+.container main {
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 5rem;
+    background-color: white;
+    -webkit-border-radius: 1rem;
+    -moz-border-radius: 1rem;
+    -ms-border-radius: 1rem;
+    -o-border-radius: 1rem;
+    border-radius: 1rem;
+}
+
+.title h1 {
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 34px;
+    line-height: 41px;
+    display: flex;
+    align-items: center;
+    letter-spacing: 0.05em;
+    color: #597d32;
+}
+
+.title p {
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 24px;
+    display: flex;
+    align-items: center;
+    letter-spacing: 0.05em;
+    color: #666666;
+}
+
+.container h2 {
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 30px;
+    line-height: 36px;
+    text-align: center;
+    color: #0d6ab0;
+    letter-spacing: 0.05em;
+    padding: 2rem;
+    border-bottom: 1px solid #CCC;
+    border-radius: 20px 20px 0px 0px;
+}

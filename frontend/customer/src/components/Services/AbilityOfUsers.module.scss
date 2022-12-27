@@ -1,0 +1,110 @@
+h3.title {
+    font-family: 'Inter';
+    font-weight: 600;
+    font-size: 30px;
+    line-height: 36px;
+    letter-spacing: 0.05em;
+    text-align: center;
+    color: #0D6AB0;
+    padding: 2rem;
+    margin-bottom: 1rem;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    width: 100%;
+    padding-bottom: 3rem;
+    padding-left: 7rem;
+    padding-right: 7rem;
+}
+
+.ele h4 {
+    font-family: 'Inter';
+    font-weight: 400;
+    font-size: 32px;
+    line-height: 26px;
+    text-transform: uppercase;
+    text-align: center;
+    color: #666666;
+    margin-top: 2rem;
+}
+
+.ele {
+    width: 35rem;
+    height: 35rem;
+    max-height: 35rem;
+    background-color: #ffffff;
+    border: 1px solid #cccccc;
+    margin: 1rem;
+    -webkit-border-radius: 2rem;
+    -moz-border-radius: 2rem;
+    -ms-border-radius: 2rem;
+    -o-border-radius: 2rem;
+    border-radius: 2rem;
+    overflow: hidden;
+    cursor: pointer;
+    -webkit-transition: all .3s ease;
+    -moz-transition: all .3s ease;
+    -ms-transition: all .3s ease;
+    -o-transition: all .3s ease;
+    transition: all .3s ease;
+}
+
+.ele:hover {
+    background-color: rgb(51, 114, 75);
+    box-shadow: 0rem 0rem .3rem rgba(0, 0, 0, .2);
+    color: white;
+    border-color: transparent;
+}
+
+.ele:hover p, 
+.ele:hover h4{
+    color: white;
+}
+
+.ele:hover svg, 
+.ele:hover svg path:first-child {
+    fill: white;
+}
+
+.ele:hover svg path:nth-child(2) {
+    fill: rgb(196, 196, 196);
+}
+
+.container p {
+    display: block;
+    font-family: 'Inter';
+    font-weight: 400;
+    font-size: 1.4rem;
+    text-align: justify;
+    line-height: 26px;
+    margin: 2rem;
+    height: 8rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.icon, .icon2 {
+    font-size: 12rem;
+    color: #449C24;
+    display: block;
+    margin: 4rem auto;
+    margin-bottom: 3rem;
+    -webkit-transition: all .3s ease;
+    -moz-transition: all .3s ease;
+    -ms-transition: all .3s ease;
+    -o-transition: all .3s ease;
+    transition: all .3s ease;
+}
+
+.icon2 {
+    font-size: 14rem;
+    margin: 3rem auto;
+    margin-bottom: 0rem;
+}
+
+.iconGift {
+    color: #D82929;
+}

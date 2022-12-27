@@ -1,0 +1,100 @@
+.filter__table__main {
+    width: 90rem;
+    // background-color: white;
+    padding: 1rem;
+    // margin: 1rem auto;
+    display: flex;
+}
+
+.right__section {
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.25);
+    margin-left: -0.5rem;
+}
+
+.filter__header {
+    font-weight: bold;
+    font-size: 2rem;
+    margin: 2rem;
+}
+
+.search__container {
+    display: flex;
+}
+
+.search__container div {
+    // padding: 1rem 5rem 1rem 2rem;
+    margin: 2rem;
+}
+
+.search__container div:only-child {
+    display: flex;
+    color: lightgrey;
+}
+
+.name__remember input {
+    // background-color: white;
+    padding: 1rem 5rem 1rem 2rem;
+    width: 330px;
+    border-radius: 50px;
+    border-color: lightgray;
+    font-size: 1.6rem;
+}
+
+.time__option,
+.state__option {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    border: 1px lightgray solid;
+    // width: 250px;
+    padding: 0 2rem;
+    color: #666666;
+    // font-size: 16px;
+}
+
+// TRIAGLE
+.triangle-left {
+    width: 0;
+    height: 0;
+    border-top: 23px solid white transparent;
+    border-bottom: 23px solid white transparent;
+    border-right: 43px solid white;
+    margin: 2rem 0;
+}
+
+.inner-triangle {
+    margin: 0.05rem 0;
+    position: relative;
+    // top: -20px;
+    // left: 2px;
+    width: 0;
+    height: 0;
+    border-top: 20px solid transparent;
+    border-bottom: 20px solid transparent;
+    border-right: 40px solid white;
+}
+
+.filter__datetime {
+    width: 100%;
+    border: none;
+    padding: 0rem 1rem;
+    color: #666666;
+    font-size: 1.4rem;
+}
+
+.search__container .time__option {
+    position: relative;
+    padding: 0rem 1.5rem;
+    padding-right: .5rem;
+    margin: 2rem 0rem;
+}
+
+.time__icon-down {
+    position: absolute;
+    right: 1.5rem;
+    pointer-events: none;
+    background-color: white;
+}

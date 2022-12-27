@@ -1,0 +1,35 @@
+.btn__field {
+    display: flex;
+    gap: 3rem;
+    justify-content: flex-end;
+    padding-right: 4rem;
+}
+
+.field {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 5rem;
+    margin-bottom: 10rem;
+}
+
+.img {
+    display: block;
+}
+
+.fail__message {
+    margin-top: 4rem;
+    font-weight: 500;
+    color: #f12626;
+}
+
+.icon {
+    font-size: 10rem;
+}
+
+.success__message {
+    margin-top: 4rem;
+    font-weight: 500;
+    color: #597d32;
+}

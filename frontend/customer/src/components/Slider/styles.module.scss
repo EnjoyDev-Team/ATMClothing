@@ -1,0 +1,206 @@
+// @import url('../../styles/colors');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=Montserrat:wght@300;600;700;800&display=swap');
+
+.containSlider {
+    display: flex;
+    height: 58rem;
+    overflow: hidden;
+    font-family: 'Montserrat', sans-serif;
+    position: relative;
+    font-size: 16px;
+    .sliders {
+        width: 100%;
+        height: 55rem;
+        margin: 1rem auto;
+        background: #ffffff;
+        display: flex;
+        align-items: center;
+        // background-color: aquamarine;
+
+        .content {
+            width: 60%;
+            // flex: 1;
+            height: 90%;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            padding: 4rem 0 4rem 5rem;
+            position: relative;
+            margin-right: 0;
+            &__titles {
+                // width: 75rem;
+                animation: titleAnimation 1s ease;
+
+                h1 {
+                    color: #597d32;
+                    font-size: 3rem;
+                }
+                p {
+                    margin-top: 1rem;
+                    width: 86%;
+                    font-family: 'Montserrat', sans-serif;
+                    font-style: normal;
+                    font-weight: 500;
+                    line-height: 18px;
+                    text-align: justify;
+                }
+            }
+
+            &__suggestBtn {
+                position: absolute;
+                display: flex;
+                align-items: center;
+                padding-left: 14.5rem;
+                width: 94%;
+                height: 8rem;
+                top: 24rem;
+                left: -9.5rem;
+                background: linear-gradient(
+                    90deg,
+                    #597d32 42.62%,
+                    rgba(105, 148, 64, 0.666667) 99.98%,
+                    rgba(105, 148, 64, 0.666667) 99.99%,
+                    rgba(105, 148, 64, 0.666667) 99.99%,
+                    rgba(214, 243, 192, 0) 100%
+                );
+
+                &--suggest {
+                    font-size: 2.2rem;
+                    color: #ffffff;
+                    font-family: 'Montserrat', sans-serif;
+                    font-weight: 600;
+                    line-height: 2.7rem;
+                    width: 16rem;
+                }
+
+                &--iconArrow {
+                    color: #ffffff;
+                    width: 7rem;
+                    height: 6rem;
+                    margin-left: 2rem;
+                }
+            }
+
+            &__feedback {
+                display: flex;
+                // border: 1px solid black;
+                width: 80%;
+                height: 10rem;
+                border-radius: 1rem;
+                margin-top: 12rem auto;
+                align-items: center;
+                position: relative;
+                box-shadow: inset 0 0 0 2px rgb(220, 217, 217), 0.3em 0.3em 1em rgba(0, 0, 0, 0.3);
+                animation: feedbackAnimation 1s ease;
+                &--avatar img {
+                    width: 6rem;
+                    height: 6rem;
+                    margin: 1.5rem 1.5rem 1.5rem 3rem;
+                    border-radius: 50%;
+                }
+
+                &--feedback {
+                    margin-left: 1.5rem;
+                    margin-right: 1.5rem;
+                }
+            }
+
+            &__buttons {
+                // background: #597d32;
+                display: flex;
+                position: absolute;
+                top: 95%;
+                right: 20%;
+                transform: translateX(10%);
+                margin-top: 2rem;
+                cursor: pointer;
+                &--move {
+                    width: 1.5rem;
+                    height: 1.5rem;
+                    background-color: #d9d9d9;
+                    margin: 0 0.5rem;
+                    border-radius: 50%;
+                }
+
+                &--current {
+                    width: 1.5rem;
+                    height: 1.5rem;
+                    background-color: #3c7d08;
+                    margin: 0 0.5rem;
+                    border-radius: 50%;
+                }
+            }
+        }
+
+        .imageSlider {
+            width: 29%;
+            position: relative;
+            img {
+                width: 35.3rem;
+                height: 43.9rem;
+                animation: imageSlider 1s ease;
+            }
+        }
+    }
+
+    .chevronL {
+        height: 100%;
+        padding-top: 18rem;
+        img {
+            margin-left: 2.5rem;
+            cursor: pointer;
+        }
+    }
+
+    .chevronR {
+        height: 100%;
+        padding-top: 18rem;
+        img {
+            margin-right: 2.5rem;
+            cursor: pointer;
+        }
+    }
+}
+
+.hidden {
+    display: none;
+}
+
+.show {
+    display: block;
+}
+
+
+
+@keyframes feedbackAnimation {
+    0% {
+        top: 1rem;
+        opacity: 0;
+    }
+    to {
+        top: 0;
+        opacity: 1;
+    }
+}
+
+@keyframes imageSlider {
+    0% {
+        opacity: 0;
+        transform: translateX(5rem);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes titleAnimation {
+    0% {
+        opacity: 0.5;
+        transform: translateX(5rem);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}

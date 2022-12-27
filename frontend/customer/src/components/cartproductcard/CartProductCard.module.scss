@@ -1,0 +1,93 @@
+@import '../../styles/colors';
+
+.cartproductcard {
+    display: flex;
+    // border-bottom: 2px solid #6666;
+    &__input {
+        input {
+            appearance: auto;
+            width: 2rem;
+            height: 2rem;
+            margin-top: 4.5rem;
+        }
+        padding-right: 5rem;
+    }
+
+    &__product {
+        display: flex;
+        padding-bottom: 2rem;
+        align-items: center;
+        flex: auto;
+
+        &__img {
+            img {
+                // min-width: 20rem;
+                margin-right: 2rem;
+                width: 14rem;
+            }
+        }
+
+        &__content {
+            justify-content: center;
+            h2 {
+                font-weight: 500;
+                font-size: 2rem;
+            }
+
+            h1 {
+                color: $price-color;
+                font-size: 2.2rem;
+                padding: 1rem 0;
+                font-weight: 550;
+            }
+
+            p {
+                font-size: 1.6rem;
+                color: #444444;
+                font-weight: 400;
+            }
+        }
+        
+        &__container {
+            margin-right: 3rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-around;
+            align-items: center;
+            
+            button {
+                font-size: 2.5rem;
+                border: none ;
+                border-radius: 4px;
+                background-color: #fff;
+
+            }
+            &__amount {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                font-size: 2rem;
+                min-width: 10rem;
+                &__reduce {
+                    border: 1px solid;
+                    padding: 0 0.8rem;
+                    -webkit-user-select: none;
+                    user-select: none;
+                    cursor: pointer;
+                }
+                &__value {
+                    border: 1px solid;
+                    width: 100%;
+                    text-align: center;                   
+                }
+                &__increase {
+                    cursor: pointer;
+                    border: 1px solid;
+                    padding: 0 0.6rem;
+                    -webkit-user-select: none;
+                    user-select: none;
+                }
+            }
+        }
+    }
+}

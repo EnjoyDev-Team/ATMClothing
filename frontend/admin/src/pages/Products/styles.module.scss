@@ -1,0 +1,155 @@
+.products {
+    // width: 1000px;
+    padding: 72px 0 0 116px;
+
+    .products__header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 40px 60px;
+
+        div {
+            display: flex;
+            align-items: center;
+
+            .products__header-heading {
+                font-size: 2.8rem;
+                line-height: 34px;
+                margin-right: 14px;
+            }
+            .products__header-found {
+                font-size: 1.4rem;
+                line-height: 12px;
+                padding-top: 6px;
+            }
+        }
+        div {
+            display: flex;
+            align-items: center;
+
+            .products__header-search {
+                margin-right: 60px;
+
+                .products__header-search-icon {
+                    padding: 8px;
+                    font-size: 20px;
+                    border: 2px solid #ccc;
+                    border-right: none;
+                    opacity: 0.6;
+                    border-top-left-radius: 8px;
+                    border-bottom-left-radius: 8px;
+                }
+                .products__header-search-input {
+                    font-size: 1.7rem;
+                    min-width: 44rem;
+                    padding: 8px;
+                    border-left: none;
+                    border-width: 2px;
+                    border-color: #ccc;
+                    border-top-right-radius: 8px;
+                    border-bottom-right-radius: 8px;
+                    opacity: 0.6;
+                }
+            }
+
+            .products__header-add {
+                .products__header-add-icon {
+                    font-size: 1.8rem;
+                    padding: 7px 8px;
+                    border-radius: 50%;
+                    background-color: #38f100;
+                    color: #fff;
+                    margin-right: 12px;
+                }
+                .products__header-add-content {
+                    font-size: 1.6rem;
+                    line-height: 19px;
+                }
+            }
+        }
+    }
+
+    .products__table-item {
+        padding: 0 40px 0 60px;
+
+        table {
+            border-spacing: 0;
+
+            tr {
+                padding: 12px;
+                text-align: left;
+
+                td {
+                    font-weight: 500;
+                    font-size: 1.8rem;
+                    line-height: 22px;
+                    color: #403f3f;
+                    padding: 6px 0;
+                }
+
+                td:not(:first-child):not(:last-child):not(:nth-child(2)) {
+                    border-bottom: 1px solid #000;
+                    min-width: 15rem;
+
+                    .status {
+                        display: inline-block;
+                        background-color: #eae1ff;
+                        font-weight: 500;
+                        font-size: 1.8rem;
+                        line-height: 22px;
+                        padding: 3px 24px;
+                    }
+                    .status--purpel-color {
+                        color: #9a50f8;
+                    }
+                    .status--pink-color {
+                        color: #ff0099;
+                        background-color: #FFD0F2;
+                    }
+                }
+                td:nth-child(2) {
+                    border-bottom: 1px solid #000;
+                    min-width: 30rem;
+
+                    div {
+                        display: flex;
+                        align-items: center;
+
+                        img {
+                            width: 5rem;
+                            height: 5rem;
+                        }
+                        p {
+                            display: block;
+                            padding: 0 12px;
+                            width: 80%;
+                        }
+                    }
+                }
+                td:first-child {
+                    border-bottom: 1px solid #000;
+                    min-width: 5rem;
+                }
+                td:last-child {
+                    border-bottom: 1px solid #000;
+                    width: 12rem;
+
+                    .icon {
+                        margin: 0 13px;
+                        padding: 6px;
+                        cursor: pointer;
+                        color: #999;
+                    }
+                }
+                th {
+                    border-bottom: 1px solid #000;
+                    padding-bottom: 12px;
+                    font-weight: 500;
+                    font-size: 2.2rem;
+                    line-height: 27px;
+                    color: #3d3c3c;
+                }
+            }
+        }
+    }
+}

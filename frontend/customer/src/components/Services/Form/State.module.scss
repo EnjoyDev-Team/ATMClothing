@@ -1,0 +1,71 @@
+.state {
+    width: 90%;
+    margin: auto;
+}
+
+.stateHeader {
+    display: inline-block;
+    font-size: 1.8rem;
+    font-weight: 500;
+    color: black;
+    margin: 2rem .6rem;
+}
+
+.stateContainer {
+    display: flex;
+    justify-content: space-between;
+    align-items: stretch;
+}
+
+.stateBox {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 3rem;
+    color: #666;
+    border: 1px solid #cccccc;
+    width: 18.5rem;
+    padding: 2rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border-radius: 2rem;
+}
+
+.stateBox * {
+    transition: all 0.3s ease;
+    -webkit-user-select: none;
+       -moz-user-select: none;
+        -ms-user-select: none;
+            user-select: none;
+}
+
+.stateBox:hover,
+.stateBox:hover * {
+    border-color: #0d6ab0;
+    color: #0d6ab0;
+}
+
+.stateBox.active {
+    border-color: #0d6ab0;
+    color: #0d6ab0;
+}
+
+div.stateContent {
+    color: black;
+    font-weight: 500;
+}
+
+.stateDescription {
+    font-size: 1.6rem;
+    line-height: 2.6rem;
+    color: #666;
+    text-align: center;
+    margin-bottom: auto;
+}
+
+.stateContainer input[type="radio"]:checked + .stateBox,
+.stateContainer input[type="radio"]:checked + .stateBox div {
+    border-color: #0d6ab0;
+    color: #0d6ab0;
+}

@@ -1,0 +1,47 @@
+.user__item__main {
+    width: 43rem;
+    background-color: #ffffff;
+    // padding: 2rem;
+    border-radius: 10px;
+    margin: 2rem auto;
+}
+
+.top__section {
+    display: flex;
+    gap: 2rem;
+    border-bottom: solid #898888 1px;
+    padding-bottom: 1rem;
+    padding-top: 1rem;
+}
+
+.top__section {
+    padding: 2rem 2rem 1rem 2rem;
+}
+
+.top__section p {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.top__section :nth-child(2) {
+    font-weight: bold;
+}
+
+.top__section :nth-child(3) {
+    margin-left: 10rem;
+}
+
+.bottom__section {
+    display: flex;
+    gap: 12rem;
+}
+
+.bottom__section p {
+    padding: 2rem;
+}
+
+.bottom__section :nth-child(1) {
+    color: #4a4a4a;
+    font-size: 2rem;
+}

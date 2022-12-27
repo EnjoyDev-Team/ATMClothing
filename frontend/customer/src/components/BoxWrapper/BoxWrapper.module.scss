@@ -1,0 +1,34 @@
+.box
+{
+    background-color: white;
+    border-radius: 1rem;
+    box-shadow: 0rem .1rem .3rem rgba(0, 0, 0, .15);
+    overflow: hidden;
+
+    &__heading{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0rem 2.6rem;
+        border-bottom: 1px solid #E0E0E0;
+    }
+    &__heading h1{
+        font-weight: 600;
+        text-transform: uppercase;
+        font-size: 2.2rem;
+        line-height: 1em;
+        margin: 2.6rem 0rem;
+    }
+
+    &__scrollview{
+        padding: 1rem;
+        overflow-y: auto;
+    }
+
+    &__content{
+        display: flex;
+        flex-direction: column;
+        gap: 3.8rem;
+        padding: 3rem 2rem;
+    }
+}

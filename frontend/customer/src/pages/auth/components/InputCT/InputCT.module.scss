@@ -1,0 +1,75 @@
+@import '../../../../styles/colors.scss';
+
+.inputCT {
+  position: relative;
+  padding-top: 20px;
+  margin-top: 10px;
+  
+  input {
+    padding: 4px;
+    font-size: 1.6rem;
+    width: 100%;
+    background-color: transparent;
+    border: none;
+    border-bottom: 1px solid #597D32;
+  }
+
+  .input-eye {
+    position: absolute;
+    bottom:0.6rem;
+    right: 1rem;
+    cursor: pointer;
+
+    &__icon {
+      color: $main-color;
+    }
+  }
+
+  .hiddenPlaceholder::placeholder {
+    color: transparent;
+  }
+
+  .label {
+    position: absolute;
+    top: 20px;
+    left: 4px;
+    color: #597D32;
+    font-size: 1.6rem;
+    font-weight: 600;
+  }
+
+  .focusAnimate {
+    animation: focusAnimate linear 0.3s forwards;
+  }
+
+  .unFocusAnimate {
+    animation: unFocusAnimate linear 0.3s forwards;
+  }
+
+  @keyframes focusAnimate {
+    to {
+      transform: translateY(-24px) translateX(-4px);
+    }
+  }
+  @keyframes unFocusAnimate {
+    from {
+      transform: translateY(-24px) translateX(-4px);
+    } to {
+      transform: translateY(0) translateX(0);
+    }
+  }
+
+  input[type="password"]::-ms-reveal,
+    input[type="password"]::-ms-clear {
+        display: none;
+    }
+}
+
+.message {
+  height: 21px;
+
+  span {
+    font-size: 1.4rem;
+    color: #FF3434;
+  }
+}

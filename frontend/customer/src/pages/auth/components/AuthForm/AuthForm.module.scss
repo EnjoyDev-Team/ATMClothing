@@ -1,0 +1,85 @@
+@import '../../../../styles/colors';
+
+.auth-form {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 40rem;
+
+  h3 {
+    font-size: 2.4rem;
+    font-weight: 600;
+    color: $main-color;
+    margin-bottom: 2.6rem;
+  }
+
+  .messageOTP {
+    margin: 4px 0;
+    font-size: 1.6rem;
+    color: #666;
+
+    &__time {
+      color: #13488C;
+      font-weight: 600;
+    }
+
+    &__resend {
+      color: red;
+      font-weight: 500;
+      cursor: pointer;
+    }
+  }
+
+  .policy {
+    font-size: 1.4rem;
+    color: #444;
+    text-align: center;
+
+    strong {
+      font-weight: 600;
+    }
+
+    span {
+      color: #0870EB;
+      cursor: pointer;
+    }
+  }
+
+  .forgot {
+    font-size: 1.5rem;
+    color: #13488C;
+    font-weight: 600;
+    text-align: right;
+    cursor: pointer;
+    display: block;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+
+  .notice {
+    color: #666666;
+    font-size: 1.5rem;
+  }
+
+  .btn {
+    margin: 3rem 0;
+  }
+
+  &__footer {
+    text-align: center;
+    font-size: 1.6rem;
+    color: #444;
+
+    a {
+      color: #13488C;
+      font-weight: 600;
+      cursor: pointer;
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+}

@@ -1,0 +1,15 @@
+.loading {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding-bottom: 10rem;
+    padding-top: 5rem;
+    gap: 2rem;
+}
+
+.loading__message {
+    font-weight: bold;
+    color: #597d32;
+    margin-top: 5rem;
+}

@@ -1,0 +1,164 @@
+@import '../../../../styles/colors';
+
+.success {
+  color: $main-color;
+  font-weight: 700;
+  background-color: rgba($color: #c0ffda, $alpha: .5);
+  padding: 1rem;
+  border-radius: .5rem;
+  border: 1px solid rgba($color: #c0ffda, $alpha: 1);
+  margin-bottom: 1rem;
+}
+
+.error {
+  color: rgba(193, 99, 93, 0.8);
+  font-weight: 700;
+  background-color: rgba($color: #ffc0c0, $alpha: .5);
+  padding: 1rem;
+  border-radius: .5rem;
+  border: 1px solid rgba($color: #ffc0c0, $alpha: 1);
+  margin-bottom: 1rem;
+}
+
+.profileForm {
+  list-style: none;
+
+  &__item {
+    display: flex;
+    margin-top: 20px;
+
+    &-title {
+      line-height: 32px;
+      font-size: 1.6rem;
+      min-width: 200px;
+    }
+
+    input[type=text],
+    input[type=password],
+    input[type=date] {
+      display: block;
+      font-size: 1.6rem;
+      border-color: #ccc;
+    }
+    
+    input[type=date] {
+      padding: 4.5px;
+      cursor: pointer;
+    }
+    input[type=text],
+    input[type=password] {
+      padding: 6px;
+      width: 80%;
+      width: 100%;
+
+      &::-webkit-input-placeholder {
+        font-size: 1.4rem;
+      }
+
+      &:-ms-input-placeholder {
+        font-size: 1.4rem;
+      }
+
+      &::-ms-input-placeholder {
+        font-size: 1.4rem;
+      }
+
+      &::placeholder {
+        font-size: 1.4rem;
+      }
+    }
+    input[type=password] {
+      width: 70%;
+    }
+
+    input[type=radio] {
+      padding-right: 4px;
+      margin-right: 6px;
+      cursor: pointer;
+    }
+
+    input[type=radio]:checked {
+      accent-color: $main-color;
+    }
+  }
+
+  &__gender {
+    display: flex;
+
+    label {
+      padding-right: 16px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+
+      input {
+        margin: 0;
+      }
+    }
+  }
+
+  .forgotPW {
+    line-height: 32px;
+    font-size: 1.4rem;
+    color: #13488C;
+    cursor: pointer;
+    display: block;
+    text-align: right;
+  }
+}
+
+.btn {
+  position: absolute;
+  width: 120px;
+  bottom: 20px;
+  right: 30px;
+}
+
+.avatar {
+
+  .add__btn {
+    background-color: $main-color;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    padding: .7rem 2rem;
+    margin: 0rem 1rem;
+    cursor: pointer;
+  }
+
+  .add__btn:hover {
+    opacity: .9;
+  }
+
+  input[type=file] {
+    display: none;
+  }
+
+  img {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    margin: 0 auto;
+    object-fit: cover;
+    display: block;
+  }
+
+  .avatarIcon {
+    font-size: 15rem;
+    color: #bbb;
+    display: block;
+    margin: auto;
+  }
+
+  &__edit {
+    display: flex;
+    justify-content: center;
+    margin: 20px 0;
+
+    button {
+      margin: 0 4px; 
+      width: 120px;
+    }
+  }
+}
