@@ -1,0 +1,19 @@
+.container {
+    background: rgba(217, 217, 217, 0.5);
+    border-radius: 5px;
+    // width: 8rem;
+    position: relative;
+    display: flex;
+    align-items: center;
+    &__name {
+        padding:0 0.5rem;
+        text-transform: capitalize;
+        color: #2d2b2b;
+    }
+    &__icon {
+        font-size: 1.5rem;
+        margin-right: 0.5rem;
+        opacity: 0.7;
+        cursor: pointer;
+    }
+}

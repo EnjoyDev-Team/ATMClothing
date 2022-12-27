@@ -1,0 +1,111 @@
+.modal {
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    position: fixed;
+    background: rgba(0, 0, 0, 0.54);
+}
+
+.container {
+    border-radius: 5px;
+    flex-direction: column;
+    background-color: #fff;
+    width: 50rem;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    position: absolute;
+    display: flex;
+    animation: modalcontainer ease 0.3s ;
+
+    &__icon {
+        color: #04B100;
+        cursor: pointer;
+        place-self: end;
+        font-size: 2.5rem;
+        padding: 1rem 1.5rem;
+    }
+
+    &__icon:hover {
+        background-color: #DBDBDB;
+        color: black;
+    }
+
+    &__title {
+        h1 {
+            font-size: 2.4rem;
+            font-weight: 600;
+            text-align: center;
+            color: #04B100;
+        }
+    }
+
+    &__body {
+        padding: 3rem 6rem;
+
+        &__content {
+            label {
+                // font-size: 3rem;
+                display: inline;
+                font-weight: 600;
+            }
+
+            input {
+                margin: 1rem 0;
+                width: 100%;
+                display: inline;
+                padding: 0.8rem 1rem;
+                font-size: 1.6rem;
+                border-radius: 5px;
+                border: 1px solid #5E5A5A;
+            }
+        }
+
+        &__time {
+            label {
+                // font-size: 3rem;
+                display: inline;
+                font-weight: 600;
+            }
+
+            input {
+                display: block;
+                margin: 1rem 0;
+                width: 50%;
+                padding: 0.8rem 1rem;
+                font-size: 1.6rem;
+                border-radius: 5px;
+                border: 1px solid #5E5A5A;
+            }
+        }
+    }
+
+    &__btn {
+        place-self: end;
+        margin-bottom: 2rem;
+        margin-right: 4rem;
+
+        button {
+            font-size: 1.8rem;
+            font-weight: 600;
+            padding: 0.8rem 4rem;
+            border: none;
+            background: linear-gradient(88.15deg, #6BF854 -96.42%, rgba(4, 177, 0, 0) 169.96%);
+            border-radius: 5px;
+            color: #04B100;
+        }
+
+        button:hover {
+            background: linear-gradient(88.15deg, #31e815 -96.42%, rgba(4, 177, 0, 0) 169.96%);
+        }
+    }
+}
+@keyframes modalcontainer {
+    from {
+        transform: translate(-50%, -100%);
+    }
+    to {
+        transform: translate(-50%, -50%);
+    }
+}

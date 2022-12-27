@@ -1,0 +1,31 @@
+.container {
+    background-color: #D3E6FF;
+    width: 42rem;
+    border-radius: 18px;
+    &__content {
+        margin-left: 1.8rem;
+        &__time {
+            color: #535151;
+            font-size: 1.5rem;
+            font-weight: 500;
+            padding-top: 0.8rem;
+        }
+        &__title {
+            font-size: 2.2rem;
+            font-weight: 500;
+        }
+    }
+    &__listimg {
+        padding: 0.8rem 0;
+        margin-left: 1.8rem;
+        display: flex;
+        flex-direction: row;
+        &__img {
+            padding-right: 1.4rem;
+            img {
+                width: 5rem;
+                border-radius: 50%;
+            }
+        }
+    }
+}

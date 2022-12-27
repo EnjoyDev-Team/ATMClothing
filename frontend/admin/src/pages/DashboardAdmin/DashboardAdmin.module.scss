@@ -1,0 +1,170 @@
+@import '../../styles/colors';
+
+.header {
+    top: 0;
+    left: 0;
+    right: 0;
+    position: fixed;
+}
+
+.navigation {
+    position: fixed;
+    top: 0;
+    left: 0;
+    // right: 0;
+}
+
+.listrevenue {
+    margin-left: 8.6rem;
+    margin-right: 3rem;
+    margin-top: 11rem;
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: space-around;
+    flex-wrap: wrap;
+
+    &__revenue {
+        padding-bottom: 1rem;
+    }
+}
+
+.futureplan {
+    margin-left: 11.5rem;
+    margin-right: 6rem;
+
+    &__title {
+        text-transform: uppercase;
+        font-size: 2.7rem;
+        font-weight: 700;
+        color: #299D00;
+    }
+
+    &__container {
+        display: flex;
+        &__todaytask {
+            flex: 2;
+            .content {
+                border-right: 2px solid #DBDBDB;
+                display: flex;
+                align-items: center;
+                padding-bottom: 2rem;
+                justify-content: center;
+
+                &__titletodaytask {
+                    flex: 2;
+                    color: #299D00;
+                    text-transform: uppercase;
+                    letter-spacing: 1.5px;
+                    font-weight: 650;
+                    font-size: 1.8rem;
+                    text-align: center;
+                }
+
+                i {
+                    font-size: 3.8rem;
+                    color: #28e72c;
+                    margin-right: 8rem;
+                    cursor: pointer;
+                }
+                i:hover {
+                    opacity: 0.8;
+                }
+            }
+
+            .listtask {
+                border-right: 2px solid #DBDBDB;
+                height: 30rem;
+                overflow: auto;
+                &__component {
+                    display: flex;
+                    padding: 0.5rem 0;
+                    align-items: center;
+                    justify-content: space-between;
+                    &__checkbox {
+                        display: flex;
+                        align-items: center;
+                        input {
+                            min-width: 3.6rem;
+                            height: 3.6rem;
+                            justify-content: center;
+                            appearance: auto;
+                        }
+                        p {
+                            font-size: 1.8rem;
+                            font-weight: 500;
+                            justify-content: center;
+                            padding-left: 2.5rem;
+                            padding-right: 8rem;
+                        }
+                    }
+                    &__icon {
+                        font-size: 3rem;
+                        color: rgb(228, 43, 43);
+                        margin-right: 3rem;
+                        cursor: pointer;
+                    }
+                }
+
+            }
+            .listtask::-webkit-scrollbar {
+                width: 0.8rem;
+                background-color: #fff;
+            }
+            .listtask::-webkit-scrollbar-thumb {
+                border-radius: 10px;
+                -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+                background-color: #D9D9D9;
+            }
+        }
+
+        &__schedule {
+            flex: 1.2;
+            &__content {
+                display: flex;
+                align-items: center;
+                padding-bottom: 2rem;
+                
+                .titleschedule {
+                    flex: 2;
+                    color: #299D00;
+                    text-transform: uppercase;
+                    letter-spacing: 1.5px;
+                    font-weight: 650;
+                    font-size: 1.8rem;
+                    text-align: center;
+                }
+                
+                i {
+                    cursor: pointer;
+                    font-size: 3.8rem;
+                    color: #28e72c;
+                    margin-right: 4rem;
+                }
+                i:hover {
+                    opacity: 0.8;
+                }
+            }
+            &__listschedule {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                padding-top:1.2rem ;
+                overflow: auto;
+                height: 30rem ;
+                &__schedule {
+                    justify-content: center;
+                    padding-bottom: 2.6rem;
+                }
+            }
+            &__listschedule::-webkit-scrollbar {
+                width: 0.8rem;
+                background-color: #fff;
+            }
+            &__listschedule::-webkit-scrollbar-thumb {
+                border-radius: 10px;
+                -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+                background-color: #D9D9D9;
+            }
+        }
+    }
+}

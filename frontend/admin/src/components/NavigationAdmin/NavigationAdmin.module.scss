@@ -1,0 +1,76 @@
+.navigation {
+    height: 100%;
+    background-color: #fff;
+    // width: 12rem;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    border-right: 2px solid #B9B9B9;
+    &__logo {
+        text-align: center;
+        padding-top: 2.5rem;
+        padding-bottom: 14rem;
+        img {
+            cursor: pointer;
+            width: 8rem;
+            justify-items: center;
+        }
+    }
+    &__container {
+        &__listcontent {
+            .components {
+                padding-bottom: 5rem ;
+                &__component:hover > img {
+                    opacity: 0;
+                }
+                &__component:hover .components__component__title {
+                    opacity: 1;
+                    visibility: visible;
+                }
+                &__component {
+                    position: relative;
+                    cursor: pointer;
+                    img {
+                        width: 4.5rem;
+                        cursor: pointer;
+                        transition: all .3s ease;
+                    }
+                    &__title {
+                        transition: all .3s ease;
+                        visibility: hidden;
+                        opacity: 0;
+                        border: 2px solid #615F5F;
+                        border-radius: 12px;
+                        bottom: -0.2rem;
+                        left: -1.6rem;
+                        position: absolute;
+                        background: linear-gradient(-90deg, #D8D8D8, rgb(242, 242, 242));
+                        overflow: hidden;
+                        display: flex;
+                        img {
+                            width: 5.9rem;
+                            text-align: center;
+                            display: inline-block;
+                            padding: 0.4rem 0;
+                            padding-left: calc(1.5rem - 1px);
+                            transition: 1.8s;
+                        }
+                        P {
+                            margin: auto;
+                            font-size: 2.2rem;
+                            font-weight: 600;
+                            padding-left: 1.6rem;
+                            padding-right: 5rem;
+                            white-space: nowrap;
+                        }
+                    }   
+                }
+                // &__component>img:hover +.components__component__title {
+                //     opacity: 1;
+                //     transition: 1.8s;
+                // }
+
+            }
+        }
+    }
+}

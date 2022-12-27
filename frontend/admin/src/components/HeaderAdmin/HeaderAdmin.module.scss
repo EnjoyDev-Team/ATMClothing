@@ -1,0 +1,43 @@
+.header {
+    background: linear-gradient( #D8D8D8, rgb(242, 242, 242));
+    &__components {
+        display: flex;
+        justify-content: flex-end;
+        padding-right: 5rem;
+        height: 7rem;
+        align-items: center;
+        border-bottom: 2px solid #B9B9B9;
+        &__icon {
+            font-size: 4rem;
+            padding-right: 4rem;
+            opacity: 0.6;
+            cursor: pointer;
+        }
+        
+        &__profile {
+            display: flex;
+            justify-items: center;
+            align-items: center;
+            padding-right: 2.4rem;  
+            &__avatar {
+                img {
+                    width: 4.5rem;
+                    border-radius: 50%;
+                    cursor: pointer;
+                }
+            }
+            &__name {
+                p {
+                    padding-left: 1rem;
+                    font-size: 2rem;
+                }
+            }
+        }
+        &__iconOut {
+            cursor: pointer;
+            font-size: 4rem;
+            justify-items: center;
+            opacity: 0.5;
+        }
+    }
+}
