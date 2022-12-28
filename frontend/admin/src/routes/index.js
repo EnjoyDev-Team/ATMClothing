@@ -8,6 +8,7 @@ import NotFound from '../pages/notFound';
 import Products from '../pages/Products/Products';
 import EditProduct from '../pages/EditProduct/EditProduct';
 import AddProduct from '../pages/AddProduct/AddProduct';
+import OrdersManage from '../pages/ordersManage/ordersManage';
 
 const Navigation = () => {
   const authenticated = true;

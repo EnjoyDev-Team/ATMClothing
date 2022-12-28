@@ -4,11 +4,14 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMagnifyingGlass, faXmark, faPencil } from '@fortawesome/free-solid-svg-icons';
+import { toast } from 'react-toastify';
 import classes from './ordersManage.module.scss';
 import StatusLabel from './statusLabel/statusLabel';
 import Modal from './modal/modal';
 import ProductOrderModal from './modal/productOrderModal';
 import ServiceOrderModal from './modal/serviceOrderModal';
+import useAxios from '../../hooks/useAxios';
+import useAxiosPrivate from '../../hooks/useAxiosPrivate';
 
 const listItem = [
   {
@@ -46,6 +49,9 @@ const listItem = [
 const OrdersManage = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [typeOrder, setTypeOrder] = useState('PRODUCT');
+  const axiosPrivate = useAxiosPrivate();
+
+  // const [response, error, isLoading] = useAxios('get', '/address/638c9389b2a20677fcccd875', {}, {}, []);
 
   return (
     <>
