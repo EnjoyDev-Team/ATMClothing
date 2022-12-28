@@ -86,3 +86,51 @@ module.exports.getTotal = catchAsync(async (req, res, next) => {
         }
     });
 });
+
+module.exports.updateProduct = catchAsync(async (req, res, next) => { 
+    const productID = req.params.id;
+    const data = req?.body;
+
+    const product = await productModel.findOne({_id: productID});
+    
+    if (!product) {
+        return next(new AppError('There are no product with this id!', 400));
+    }
+
+    const newProduct = await productModel.findByIdAndUpdate(productID, data, {
+        new: true,
+        runValidators: true,
+    });
+
+    res.status(201).json({
+        status: 'success',
+        data: newProduct
+    });
+});
+
+module.exports.deleteProduct = catchAsync(async (req, res, next) => {
+    const product = await productModel.findByIdAndDelete(req.params.id);
+  
+    if (!product) {
+        return next(new AppError('No product found with that ID', 404))
+    }
+  
+    res.status(204).json({
+        status: 'success'
+    });
+});
+
+module.exports.addProduct = catchAsync(async (req, res, next) => {
+    const { product } = req.body;
+    product.slug = slugify(product.category, { lower: true });
+
+    const newproduct = await productModel.create(product);
+
+    res.status(201).json({
+        status: 'success',
+        message: 'Product added successfully',
+        data: {
+            product: newproduct,
+        },
+    });
+});
