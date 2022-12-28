@@ -3,6 +3,7 @@ const productModel = require('../models/productModel');
 const APIFeatures = require('../utils/apiFeature');
 const imageEncode = require('../utils/imageEncode');
 const AppError = require('../utils/appError');
+const slugify = require('slugify');
 const { categoryModel, materialModel, facilityModel } = require('../models/productItemModel');
 
 module.exports.aliasTopProducts = (req, res, next) => {
