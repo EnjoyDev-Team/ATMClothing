@@ -61,10 +61,17 @@
 }
 
 .saveBtn {
-    background-color: #bec6c0;
+    background: linear-gradient(90.35deg, #bec6c0 35.08%, rgba(217, 217, 217, 0) 184.08%);
 }
 
 .saveBtnSuccess {
-    background-color: #3ad52dca;
+    background: linear-gradient(
+        90.35deg,
+        #11d500 35.08%,
+        rgba(40, 213, 25, 0.885782) 52.1%,
+        rgba(58, 213, 45, 0.792668) 65.97%,
+        rgba(16, 202, 0, 0.737273) 74.23%,
+        rgba(217, 217, 217, 0) 184.08%
+    );
     color: white;
 }
