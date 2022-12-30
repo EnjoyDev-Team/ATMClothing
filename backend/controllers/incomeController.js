@@ -123,5 +123,8 @@ module.exports.analyst = catchAsync(async (req, res) => {
         user_total_message: user_total_message,
     }
 
-    console.log(ress);
+    res.status(200).json({
+        income: ress
+    })
+
 });
