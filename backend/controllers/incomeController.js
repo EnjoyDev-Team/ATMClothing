@@ -47,7 +47,7 @@ module.exports.analyst = catchAsync(async (req, res) => {
         totalPriceOrder += +order.totalPrice.replace(/\D/g,'');;
     });
     
-    const totalOrder = await orderModel.find();
+    const totalOrder = await orderModel.find({ status: 4 });
 
     let totalPriceAllOrder = 0;
     totalOrder.forEach(order => { 
