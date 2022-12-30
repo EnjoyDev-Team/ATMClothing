@@ -12,7 +12,7 @@ module.exports = (products, root = '') => {
         
         if (el.img) {
             const { ext, base64 } = base64_encode(el.img);
-            el.img = `data:${ext};base64,${base64}`;
+            el.img = `data:image/${ext};base64,${base64}`;
         }
         
         if (el.other_img)
