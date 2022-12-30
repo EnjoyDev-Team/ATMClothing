@@ -129,8 +129,6 @@ module.exports.addProduct = catchAsync(async (req, res, next) => {
     const ext = image.split(';')[0].split('/')[1].replace('jpeg', 'jpg');
     const base64Data = image.split(';')[1].replace('base64,', '');
 
-    console.log(base64Data);
-    
     require("fs").writeFileSync(`assets/products/${slugify(product.name, { lower: true })}.${ext}`, base64Data, 'base64', function(err) {
         console.log(err);
     });
