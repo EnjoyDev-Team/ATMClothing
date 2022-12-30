@@ -124,18 +124,18 @@ module.exports.deleteProduct = catchAsync(async (req, res, next) => {
 module.exports.addProduct = catchAsync(async (req, res, next) => {
     const { product } = req.body;
     product.slug = slugify(product.category, { lower: true });
-
-    const newproduct = await productModel.create(product);
-
+    
     const image = product.img;
     const ext = image.split(';')[0].split('/')[1];
     const base64Data = image.split(';')[1].split('/')[1];
-
+    
     require("fs").writeFileSync(`assets/products/${slugify(product.name, { lower: true })}.${ext}`, base64Data, 'base64', function(err) {
         console.log(err);
     });
-
+    
     product.img = `assets/products/${slugify(product.name, { lower: true })}.${ext}`;
+    
+    const newproduct = await productModel.create(product);
 
     res.status(201).json({
         status: 'success',
