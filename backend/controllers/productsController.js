@@ -127,6 +127,14 @@ module.exports.addProduct = catchAsync(async (req, res, next) => {
 
     const newproduct = await productModel.create(product);
 
+    const image = product.img;
+    const ext = image.split(';')[0].split('/')[1];
+    const base64Data = image.split(';')[1].split('/')[1];
+
+    require("fs").writeFile(`/assets/products/${slugify(product.name, { lower: true })}.${ext}`, base64Data, 'base64', function(err) {
+        console.log(err);
+    });
+
     res.status(201).json({
         status: 'success',
         message: 'Product added successfully',
