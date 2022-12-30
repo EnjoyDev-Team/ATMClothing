@@ -18,6 +18,7 @@ const servicesRoutes = require('./routes/serviceRoutes');
 const addressRouter = require('./routes/addressRoutes');
 const corsOptions = require('./configs/corsOptions');
 const credentials = require('./middlewares/credentials');
+const incomeRouter = require('./routes/incomeRoutes');
 
 const limiter = rateLimit({
   // limiter is now become a middleware function
@@ -48,6 +49,7 @@ app.use('/api/v1/carts', cartRouter)
 app.use('/api/v1/orders', orderRoutes)
 app.use('/api/v1/services', servicesRoutes)
 app.use('/api/v1/address', addressRouter)
+app.use('/api/v1/income', incomeRouter)
 
 app.all('*', (req, res, next) => {
   next(new AppError(`Can't find ${req.originalUrl} on this server!`, 404))

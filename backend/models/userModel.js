@@ -68,7 +68,11 @@ const userSchema = new mongoose.Schema({
   active: {
     type: Boolean,
     default: true
-  }
+  },
+  create_at: {
+    type: Date,
+    default: new Date().toLocaleString('en-US', { timeZone: 'Asia/Ho_Chi_Minh' }),
+  },
 });
 
 userSchema.pre('save', async function(next) {
