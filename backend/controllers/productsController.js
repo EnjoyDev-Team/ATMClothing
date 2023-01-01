@@ -144,7 +144,7 @@ module.exports.addProduct = catchAsync(async (req, res, next) => {
     product.other_img = product.other_img.map((img, index) => {
         const { ext, base64Data } = spiltBase64(img);
 
-        const filename = slugify(product.name, { lower: true, locale: 'vi', remove: /[*+~.()'"!:@]/g });
+        let filename = slugify(product.name, { lower: true, locale: 'vi', remove: /[*+~.()'"!:@]/g });
         filename = `${filename}-other--${index}}`;
 
         other_filename.push(filename);
