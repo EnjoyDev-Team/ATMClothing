@@ -24,6 +24,12 @@
     justify-content: center;
 }
 
+.top__section img {
+    width: 5rem;
+    height: 5rem;
+    border-radius: 50%;
+}
+
 .top__section :nth-child(2) {
     font-weight: bold;
 }

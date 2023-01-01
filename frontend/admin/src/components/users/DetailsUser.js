@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 /* eslint-disable jsx-a11y/label-has-associated-control */
 /* eslint-disable react/no-unknown-property */
 /* eslint-disable react/style-prop-object */
@@ -11,7 +12,7 @@ import classes from './DetailsUser.module.scss';
 import avatar from '../../assets/imgs/users/Ellipse 59.png';
 import Form from './Form';
 
-const DetailsUser = () => {
+const DetailsUser = ({ userInformation }) => {
     return (
         <main className={classes.detail_user__main}>
             <div className={classes.detail__header__container}>
@@ -26,7 +27,7 @@ const DetailsUser = () => {
                     <p>Delete</p>
                 </div>
             </div>
-            <Form />
+            <Form userInformation={userInformation} />
         </main>
     );
 };
