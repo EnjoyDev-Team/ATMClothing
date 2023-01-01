@@ -9,12 +9,14 @@ import Products from '../pages/Products/Products';
 import EditProduct from '../pages/EditProduct/EditProduct';
 import AddProduct from '../pages/AddProduct/AddProduct';
 import OrdersManage from '../pages/ordersManage/ordersManage';
+import DashboardAdmin from '../pages/DashboardAdmin/DashboardAdmin';
 
 const Navigation = () => {
   const authenticated = true;
   return (
         <main>
             <Routes>
+                <Route path="/dashBoardAdmin" element={<DashboardAdmin />} />
                 <Route path="/login" name="login" element={<Login />} />
                 <Route element={<PrivateRoute isAllowed={authenticated} redirectPath="/login" />}>
                     <Route path="/home" name="home" element={<Home />} />
