@@ -5,6 +5,8 @@ const imageEncode = require('../utils/imageEncode');
 const AppError = require('../utils/appError');
 const slugify = require('slugify');
 const { categoryModel, materialModel, facilityModel } = require('../models/productItemModel');
+const spiltBase64 = require('../utils/spiltBase64');
+const fs = require('fs');
 
 module.exports.aliasTopProducts = (req, res, next) => {
     req.query.limit = '6';
@@ -126,14 +128,33 @@ module.exports.addProduct = catchAsync(async (req, res, next) => {
     product.slug = slugify(product.category, { lower: true });
     
     const image = product.img;
-    const ext = image.split(';')[0].split('/')[1].replace('jpeg', 'jpg');
-    const base64Data = image.split(';')[1].replace('base64,', '');
+    
+    const { ext, base64Data } = spiltBase64(image);
 
-    require("fs").writeFileSync(`assets/products/${slugify(product.name, { lower: true })}.${ext}`, base64Data, 'base64', function(err) {
+    const filename = slugify(product.name, { lower: true, locale: 'vi', remove: /[*+~.()'"!:@]/g });
+
+    fs.writeFileSync(`assets/products/${filename}.${ext}`, base64Data, 'base64', function(err) {
         console.log(err);
     });
     
-    product.img = `assets/products/${slugify(product.name, { lower: true })}.${ext}`;
+    product.img = `assets/products/${filename}.${ext}`;
+
+    const other_filename = [];
+
+    product.other_img = product.other_img.map((img, index) => {
+        const { ext, base64Data } = spiltBase64(img);
+
+        const filename = slugify(product.name, { lower: true, locale: 'vi', remove: /[*+~.()'"!:@]/g });
+        filename = `${filename}-other--${index}}`;
+
+        other_filename.push(filename);
+
+        fs.writeFileSync(`assets/products/${filename}.${ext}`, base64Data, 'base64', function(err) {
+            console.log(err);
+        });
+        
+        return `assets/products/${filename}.${ext}`;
+    });
     
     const newproduct = await productModel.create(product);
 
@@ -141,7 +162,11 @@ module.exports.addProduct = catchAsync(async (req, res, next) => {
         status: 'success',
         message: 'Product added successfully',
         data: {
-            product: newproduct,
+            product: {
+                ...newproduct,
+                other_filename: other_filename,
+                filename: filename
+            },
         },
     });
 });
