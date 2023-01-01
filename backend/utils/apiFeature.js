@@ -133,7 +133,7 @@ class APIFeatures {
             if (this.queryString.fields) {
                 const fields = this.queryString.fields.split(',').join(' ');
                 this.query = this.query.select(fields).lean();
-            } else this.query = this.query.select('-__v -other_img').lean();
+            } else this.query = this.query.select('-__v').lean();
 
             return this;
         } catch (e) {
