@@ -94,13 +94,18 @@ module.exports.updateProduct = catchAsync(async (req, res, next) => {
     const productID = req.params.id;
     const data = req?.body;
 
+    const exitsProduct = await productModel.find({name: data.name});
+    if (exitsProduct.length > 0){
+        return next(new AppError('This product has exists !', 400));
+    }
+
     const product = await productModel.findOne({_id: productID});
     
     if (!product) {
         return next(new AppError('There are no product with this id!', 400));
     }
 
-    if (data.img) {
+    if (data.img && data.img?.length > 0) {
         const image = data.img;
     
         const { ext, base64Data } = spiltBase64(image);
@@ -114,7 +119,7 @@ module.exports.updateProduct = catchAsync(async (req, res, next) => {
         data.img = `assets/products/${filename}.${ext}`;
     }
 
-    if (data.other_img) {
+    if (data.other_img && data.other_img?.length > 0) {
         const other_filename = [];
 
         data.other_img = data.other_img && data.other_img.length > 0 && data.other_img.map((img, index) => {
