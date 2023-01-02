@@ -95,7 +95,10 @@ module.exports.updateProduct = catchAsync(async (req, res, next) => {
     const data = req?.body;
 
     const exitsProduct = await productModel.find({name: data.name});
-    if (exitsProduct.length > 0){
+    if (exitsProduct.length > 1){
+        return next(new AppError('This product has exists !', 400));
+    }
+    else if (exitsProduct.length === 1 && exitsProduct[0]._id.toString() !== productID) {
         return next(new AppError('This product has exists !', 400));
     }
 
