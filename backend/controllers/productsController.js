@@ -100,6 +100,39 @@ module.exports.updateProduct = catchAsync(async (req, res, next) => {
         return next(new AppError('There are no product with this id!', 400));
     }
 
+    if (data.img) {
+        const image = data.img;
+    
+        const { ext, base64Data } = spiltBase64(image);
+
+        const filename = slugify(data.name, { lower: true, locale: 'vi', remove: /[*+~.()'"!:@]/g });
+
+        fs.writeFileSync(`assets/products/${filename}.${ext}`, base64Data, 'base64', function(err) {
+            console.log(err);
+        });
+        
+        data.img = `assets/products/${filename}.${ext}`;
+    }
+
+    if (data.other_img) {
+        const other_filename = [];
+
+        data.other_img = data.other_img && data.other_img.length > 0 && data.other_img.map((img, index) => {
+            const { ext, base64Data } = spiltBase64(img);
+
+            let filename = slugify(data.name, { lower: true, locale: 'vi', remove: /[*+~.()'"!:@]/g });
+            filename = `${filename}-other--${index}}`;
+
+            other_filename.push(filename);
+
+            fs.writeFileSync(`assets/products/${filename}.${ext}`, base64Data, 'base64', function(err) {
+                console.log(err);
+            });
+            
+            return `assets/products/${filename}.${ext}`;
+        });
+    }
+
     const newProduct = await productModel.findByIdAndUpdate(productID, data, {
         new: true,
         runValidators: true,
