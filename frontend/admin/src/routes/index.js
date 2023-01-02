@@ -23,7 +23,7 @@ const Navigation = () => {
                 <Route path="/products">
                     <Route index element={<Products />} />
                     <Route path="add_product" name="add_product" element={<AddProduct />} />
-                    <Route path="edit" name="edit_product" element={<EditProduct />} />
+                    <Route path=":id" name="edit_product" element={<EditProduct />} />
                 </Route>
                 {/* <Route path="/products" name="products" element={<Products />} /> */}
                 <Route path="*" name="notFound" element={<NotFound />} />

@@ -2,144 +2,54 @@ import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMagnifyingGlass, faPlus, faPen, faTrashCan } from '@fortawesome/free-solid-svg-icons';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import classes from './styles.module.scss';
 import test from '../../assets/imgs/test.jpg';
-
-const products = [
-  {
-    image: test,
-    title: 'Áo',
-    noproduct: 'NBE100',
-    sales: 10,
-    instock: 2,
-    price: '150.000',
-    status: 'Instock',
-  },
-  {
-    image: test,
-    title: 'Áo',
-    noproduct: 'NBE101',
-    sales: 10,
-    instock: 2,
-    price: '150.000',
-    status: 'Out of stock',
-  },
-  {
-    image: test,
-    title: 'Áo',
-    noproduct: 'NBE102',
-    sales: 10,
-    instock: 2,
-    price: '150.000',
-    status: 'Instock',
-  },
-  {
-    image: test,
-    title: 'Áo',
-    noproduct: 'NBE103',
-    sales: 10,
-    instock: 2,
-    price: '150.000',
-    status: 'Instock',
-  },
-  {
-    image: test,
-    title: 'Áo',
-    noproduct: 'NBE104',
-    sales: 10,
-    instock: 2,
-    price: '150.000',
-    status: 'Out of stock',
-  },
-  {
-    image: test,
-    title: 'Áo',
-    noproduct: 'NBE105',
-    sales: 10,
-    instock: 2,
-    price: '150.000',
-    status: 'Instock',
-  },
-  {
-    image: test,
-    title: 'Áo',
-    noproduct: 'NBE106',
-    sales: 10,
-    instock: 2,
-    price: '150.000',
-    status: 'Out of stock',
-  },
-  {
-    image: test,
-    title: 'Áo',
-    noproduct: 'NBE107',
-    sales: 10,
-    instock: 2,
-    price: '150.000',
-    status: 'Out of stock',
-  },
-  {
-    image: test,
-    title: 'Áo',
-    noproduct: 'NBE108',
-    sales: 10,
-    instock: 2,
-    price: '150.000',
-    status: 'Instock',
-  },
-  {
-    image: test,
-    title: 'Áo',
-    noproduct: 'NBE109',
-    sales: 10,
-    instock: 2,
-    price: '150.000',
-    status: 'Out of stock',
-  },
-  {
-    image: test,
-    title: 'Áo',
-    noproduct: 'NBE110',
-    sales: 10,
-    instock: 2,
-    price: '150.000',
-    status: 'Instock',
-  },
-  {
-    image: test,
-    title: 'Áo',
-    noproduct: 'NBE111',
-    sales: 10,
-    instock: 2,
-    price: '150.000',
-    status: 'Instock',
-  },
-  {
-    image: test,
-    title: 'Áo',
-    noproduct: 'NBE112',
-    sales: 10,
-    instock: 2,
-    price: '150.000',
-    status: 'Instock',
-  },
-];
+import useAxios from '../../hooks/useAxios';
+import { axiosPrivate } from '../../api/axios';
 
 const Products = () => {
   const [removeProduct, setRemoveProduct] = useState([]);
   const [dataSearch, setDataSearch] = useState('');
+  const [dataRemove, setDataRemove] = useState({});
+
+  const [dataProduct, errorProduct, isLoadingProduct] = useAxios(
+    'get',
+    `/products/${dataSearch !== '' ? `?name=${dataSearch}` : ''}`,
+    {},
+    {},
+    [dataSearch]
+  );
+
+  const navigate = useNavigate();
 
   useEffect(() => {
-    setRemoveProduct([...products]);
-  }, []);
+    if (dataProduct.data) {
+      setRemoveProduct([...dataProduct.data]);
+    }
+  }, [dataProduct]);
 
-  const handleRemoveProduct = (id) => {
-    setRemoveProduct((prev) => prev.filter((item) => item.noproduct !== id));
+  const handleRemoveProduct = (product) => {
+    setRemoveProduct((prev) => prev.filter((item) => item._id !== product._id));
+    setDataRemove(product);
   };
+
+  useEffect(() => {
+    if (Object.keys(dataRemove).length !== 0) {
+      axiosPrivate.delete(`/products/${dataRemove._id}`, {}).then((res) => {
+        if (res) {
+          console.log(res);
+        }
+      });
+    }
+  }, [dataRemove]);
 
   const handleDataSearch = (e) => {
     setDataSearch(e.target.value);
+  };
+
+  const handleLink = (id) => {
+    navigate(`/products/${id}`);
   };
 
   return (
@@ -147,19 +57,23 @@ const Products = () => {
             <div className={classes.products__header}>
                 <div>
                     <h2 className={classes['products__header-heading']}>Products</h2>
-                    <p className={classes['products__header-found']}>79 products found</p>
+                    <p className={classes['products__header-found']}>
+{removeProduct.length}
+{' '}
+products found
+                    </p>
                 </div>
                 <div>
                     <div className={classes['products__header-search']}>
                         <FontAwesomeIcon className={classes['products__header-search-icon']} icon={faMagnifyingGlass} />
-                        <form className={classes['products__header-search-form']} type="text">
-                            <input
-                              onChange={(e) => handleDataSearch(e)}
-                              className={classes['products__header-search-input']}
-                              type="text"
-                              placeholder="Search"
-                            />
-                        </form>
+                        {/* <form className={classes['products__header-search-form']} type="text"> */}
+                        <input
+                          onChange={(e) => handleDataSearch(e)}
+                          className={classes['products__header-search-input']}
+                          type="text"
+                          placeholder="Search"
+                        />
+                        {/* </form> */}
                     </div>
 
                     <div className={classes['products__header-add']}>
@@ -172,55 +86,82 @@ const Products = () => {
             </div>
 
             <div className={classes['products__table-item']}>
-                <table>
-                    <tr>
-                        <th>#</th>
-                        <th>Product</th>
-                        <th>Product No</th>
-                        <th>Sales</th>
-                        <th>Instock</th>
-                        <th>Price</th>
-                        <th>Status</th>
-                        <th> </th>
-                    </tr>
-                    {removeProduct
-                        && removeProduct.map((product, index) => (
-                            <tr key={+index}>
-                                <td>{index + 1}</td>
-                                <td>
-                                    <div>
-                                        <img src={product.image} alt="" />
-                                        <p>{product.title}</p>
-                                    </div>
-                                </td>
-                                <td>{product.noproduct}</td>
-                                <td>{product.sales}</td>
-                                <td>{product.instock}</td>
-                                <td>{product.price}</td>
-                                <td>
-                                    <p
-                                      className={`${classes.status} ${
-                                        product.status === 'Instock'
-                                          ? classes['status--purpel-color']
-                                          : classes['status--pink-color']
-                                      }`}
-                                    >
-                                        {product.status}
-                                    </p>
-                                </td>
-                                <td>
-                                    <Link to="edit">
-                                        <FontAwesomeIcon className={classes.icon} icon={faPen} />
-                                    </Link>
-                                    <FontAwesomeIcon
-                                      onClick={() => handleRemoveProduct(product.noproduct)}
-                                      className={classes.icon}
-                                      icon={faTrashCan}
-                                    />
-                                </td>
+                <div className={classes['products__table-scroll']}>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>
+                                    <p>#</p>
+                                </th>
+                                <th>
+                                    <p>Product</p>
+                                </th>
+                                <th>
+                                    <p>Product No</p>
+                                </th>
+                                <th>
+                                    <p>Price</p>
+                                </th>
+                                <th>
+                                    <p>Sales</p>
+                                </th>
+                                <th>
+                                    <p>Instock</p>
+                                </th>
+                                <th>
+                                    <p>Status</p>
+                                </th>
+                                <th>
+                                    <p> </p>
+                                </th>
                             </tr>
-                        ))}
-                </table>
+                        </thead>
+
+                        <tbody>
+                            {removeProduct
+                                && removeProduct.map((product, index) => (
+                                    <tr key={+index}>
+                                        <td>{index + 1}</td>
+                                        <td>
+                                            <div>
+                                                <img src={product.img} alt="" />
+                                                <p>{product.name}</p>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <p>{product._id}</p>
+                                        </td>
+                                        <td>{product.price}</td>
+                                        <td>{product.sale}</td>
+                                        <td>{product.amount}</td>
+                                        <td>
+                                            <p
+                                              className={`${classes.status} ${
+                                                product.amount !== 0
+                                                  ? classes['status--purpel-color']
+                                                  : classes['status--pink-color']
+                                              }`}
+                                            >
+                                                {product.amount !== 0 ? 'Instock' : 'Sold out'}
+                                            </p>
+                                        </td>
+                                        <td>
+                                            <FontAwesomeIcon
+                                              onClick={() => handleLink(product._id)}
+                                              className={classes.icon}
+                                              icon={faPen}
+                                            />
+                                            <FontAwesomeIcon
+                                              onClick={() => handleRemoveProduct(product)}
+                                              className={classes.icon}
+                                              icon={faTrashCan}
+                                            />
+                                        </td>
+                                    </tr>
+                                ))}
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
   );
