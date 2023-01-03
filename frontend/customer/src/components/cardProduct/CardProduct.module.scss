@@ -82,8 +82,11 @@
             margin-top: 2rem;
         }
 
-        &__address p{
-            padding: 1rem;
+        &__address {
+            min-width: 16rem;
+            p {
+             padding: 1rem;
+            }
         }
 
         &__price {

@@ -20,13 +20,13 @@ import useAxios from '../../hooks/useAxios';
 
 const Home = () => {
   const [flashSale, setFlashSale] = useState('');
-  const [response, error, isLoading] = useAxios('get', '/products/san-pham-noi-bat', {}, {}, []);
+  const [responseProduct, errorProduct, isLoadingProduct] = useAxios('get', '/products/san-pham-noi-bat', {}, {}, []);
 
   useEffect(() => {
-    if (isLoading === false && !error && response.data) {
-      setFlashSale(response.data);
+    if (isLoadingProduct === false && !errorProduct && responseProduct.results) {
+      setFlashSale(responseProduct.results);
     }
-  }, [isLoading]);
+  }, [isLoadingProduct]);
 
   const [donation, setDonation] = useState('');
   const [response0d, error0d, isLoading0d] = useAxios('get', '/products/goc-0d', {}, {}, []);
@@ -50,7 +50,9 @@ const Home = () => {
     <div className={classes.imghome}>
       <img src={imgHome} alt="" />
     </div>
-    <Slider data={SliderData} />
+    <div className={classes.sliderdata}>
+      <Slider data={SliderData} />
+    </div>
       <div className={classes.header}>
         <h2 className={classes.header__content}>Danh mục yêu thích</h2>
         <div>

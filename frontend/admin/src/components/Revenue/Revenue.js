@@ -12,7 +12,11 @@ const Revenue = (props) => {
     orangebackgroud,
     icon,
     status,
+    value,
+    percent,
+    dollar,
   } = props;
+
   const classProps = Object.keys(props)
     .map((el) => (classes[el] && props[el] === true ? classes[el] : ''))
     .join(' ');
@@ -22,7 +26,10 @@ const Revenue = (props) => {
                 <div className={classes.container__message}>
                     <div className={classes.container__message__content}>
                         <p>{title}</p>
-                        <h2>$200000</h2>
+                        <h2>
+                          {dollar}
+{value}
+                        </h2>
                     </div>
                     <div className={classes.container__message__icon}>
                         <i><FontAwesomeIcon icon={icon} /></i>
@@ -30,9 +37,9 @@ const Revenue = (props) => {
                 </div>
                 <div className={classes.container__status}>
                     <p>
-                    12%
-                    {' '}
-                    {status}
+                    {percent}
+{' '}
+{status}
                     </p>
                 </div>
             </div>
