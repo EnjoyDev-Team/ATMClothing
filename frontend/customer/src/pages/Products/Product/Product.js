@@ -203,7 +203,7 @@ const Products = () => {
                                     size: item.size,
                                     amount: item.amount,
                                     name: item.name,
-                                    price: item.sale,
+                                    sale: item.sale,
                                     facility:
                                             item.facility !== undefined
                                             && (item.facility.length !== 0 ? item.facility : [{ name: 'Không có' }]),

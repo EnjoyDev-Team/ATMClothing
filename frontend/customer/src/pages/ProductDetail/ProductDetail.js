@@ -4,9 +4,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMapLocationDot, faHeart } from '@fortawesome/free-solid-svg-icons';
 import { Link, useParams } from 'react-router-dom';
 import classes from './styles.module.scss';
-import jacket from '../../assets/imgs/jacket.png';
-import other from '../../assets/imgs/other.png';
-import coin from '../../assets/imgs/coin.png';
+import Coin from '../../assets/imgs/coin.png';
 import Button from '../../components/ButtonCT/ButtonCT';
 import facebook from '../../assets/imgs/facebook.png';
 import instagram from '../../assets/imgs/instagram.png';
@@ -29,16 +27,16 @@ const ProductDetail = () => {
   const [response, error, isLoading] = useAxios('get', `/products/${params.id}?fields=-__v`, {}, {}, []);
   const responseData = response.data !== undefined && response.data[0];
   const percentSale = Math.floor(((+responseData.price - +responseData.sale) / +responseData.price) * 100);
+  const coin = responseData && responseData.sale.split('.')[0];
 
   const [dataFilterCategory, errorDataFilter, isLoadingDataFilter] = useAxios(
     'get',
     `/products?limit=5${responseData.slug !== '' ? `&category=${responseData.slug}` : ''}`,
     {},
     {},
-    []
+    [response]
   );
   const dataFilters = dataFilterCategory.data !== undefined && dataFilterCategory.data;
-  console.log(dataFilters);
 
   return (
         <div className={classes.product__detail}>
@@ -72,7 +70,7 @@ const ProductDetail = () => {
                                   <li
                                     key={+idx}
                                     className={`${classes['product__img-wrap-other-style']} ${
-                                      responseData.other_img !== undefined && responseData.other_img.length <= 5
+                                      responseData.other_img !== undefined && responseData.other_img.length < 5
                                         ? classes['product__img-wrap-other-style--mr12px']
                                         : ''
                                     }`}
@@ -118,9 +116,9 @@ const ProductDetail = () => {
                             <span className={classes['product__detail-bunus-content']}>
                                 Thưởng
 {' '}
-{productDetail.coin}
+{coin}
                             </span>
-                            <img src={coin} alt="" className={classes['product__detail-bonus-img']} />
+                            <img src={Coin} alt="" className={classes['product__detail-bonus-img']} />
                         </div>
                     </div>
 
@@ -262,7 +260,7 @@ sản phẩm
                                     size: item.size,
                                     amount: item.amount,
                                     name: item.name,
-                                    price: item.sale,
+                                    sale: item.sale,
                                     facility:
                                             item.facility !== undefined
                                             && (item.facility.length !== 0 ? item.facility : [{ name: 'Không có' }]),

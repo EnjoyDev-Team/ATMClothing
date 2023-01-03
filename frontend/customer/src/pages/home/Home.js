@@ -23,8 +23,8 @@ const Home = () => {
   const [responseProduct, errorProduct, isLoadingProduct] = useAxios('get', '/products/san-pham-noi-bat', {}, {}, []);
 
   useEffect(() => {
-    if (isLoadingProduct === false && !errorProduct && responseProduct.results) {
-      setFlashSale(responseProduct.results);
+    if (responseProduct.data !== undefined) {
+      setFlashSale(responseProduct.data);
     }
   }, [isLoadingProduct]);
 

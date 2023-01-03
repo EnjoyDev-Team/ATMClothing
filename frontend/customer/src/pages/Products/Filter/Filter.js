@@ -69,7 +69,6 @@ const Filter = () => {
 
   const dispatchOffset = (page) => {
     dispatch(addDataOffset(page));
-    console.log(5);
   };
 
   const queryFilter = `${
