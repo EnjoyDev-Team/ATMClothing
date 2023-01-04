@@ -44,7 +44,11 @@ const LoginForm = () => {
         axiosPrivate.get(`/carts?idUser=${res.data.data.user._id}`)
           .then(res => {
             dispatch(init(res.data.data));
-            navigate('/');
+            if (auth.role() === 'user') {
+              navigate('/');
+            } else {
+              navigate('/dashboard');
+            }
           })
           .catch(e => {
             navigate('/');
