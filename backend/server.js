@@ -25,7 +25,13 @@ const server = app.listen(port, () => {
 
 // SOCKET
 const socketIO = require('socket.io')(server, {cors:{origin: '*'}});
-
+exports.onPayment = function(data){
+    socketIO.emit("order", data);
+  };
+exports.onService = function(data){
+    socketIO.emit("service", data);
+    };
+  
 process.on('unhandledRejection', (err) => {
     console.log('Unhandled Rejection. Shutting down...');
     console.log(err.name, err.message);

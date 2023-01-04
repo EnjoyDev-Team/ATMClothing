@@ -5,7 +5,7 @@ const serviceController = require('../controllers/servicesController');
 
 const router = express.Router();
 
-router.use(authMiddleware.protect);
+// router.use(authMiddleware.protect);
 
 router.route('/sell')
 .get(serviceController.getSellProducts)
@@ -35,6 +35,9 @@ router.route('/')
 // Cart detail
 router.route('/:id')
 .get(serviceController.getPaymentById);
+
+// Update status
+router.patch('/status/:id', serviceController.updateStatus);
 
 // Add cart
 router.route('/').post();

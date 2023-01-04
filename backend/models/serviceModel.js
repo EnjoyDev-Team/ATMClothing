@@ -1,4 +1,4 @@
-const mongoose = require('mongoose'); 
+const mongoose = require('mongoose');
 
 const sellSchema = new mongoose.Schema({
     uid: {
@@ -11,8 +11,8 @@ const sellSchema = new mongoose.Schema({
         trim: true,
         required: [true, 'Name of product can not be empty!'],
     },
-    category: { 
-        type: String, 
+    category: {
+        type: String,
         trim: true,
         required: [true, 'Category of product can not be empty!'],
     },
@@ -82,8 +82,8 @@ const customSchema = new mongoose.Schema({
         trim: true,
         required: [true, 'Name of product can not be empty!'],
     },
-    category: { 
-        type: String, 
+    category: {
+        type: String,
         trim: true,
         required: [true, 'Category of product can not be empty!'],
     },
@@ -167,8 +167,8 @@ const donateSchema = new mongoose.Schema({
         trim: true,
         required: [true, 'Name of product can not be empty!'],
     },
-    category: { 
-        type: String, 
+    category: {
+        type: String,
         trim: true,
         required: [true, 'Category of product can not be empty!'],
     },
@@ -217,144 +217,167 @@ donateSchema.pre('save', (next) => {
 
 module.exports.donateModel = mongoose.model('donates', donateSchema);
 
-const orderSchema = mongoose.Schema({
-    products: [{
-        uid: {
-            type: mongoose.Schema.Types.ObjectId,
-            // required: [true, 'Please logged in to continue'],
+const orderSchema = mongoose.Schema(
+    {
+        products: [
+            {
+                uid: {
+                    type: mongoose.Schema.Types.ObjectId,
+                    // required: [true, 'Please logged in to continue'],
+                },
+                name: {
+                    type: String,
+                    trim: true,
+                    required: [true, 'Name of product can not be empty!'],
+                },
+                category: {
+                    type: String,
+                    trim: true,
+                    required: [true, 'Category of product can not be empty!'],
+                },
+                slug: {
+                    type: String,
+                    trim: true,
+                    lowercase: true,
+                    required: [true, 'Slug of product can not be empty!'],
+                },
+                amount: {
+                    type: Number,
+                    amount: [1, 'Minimum of amount is 1'],
+                    required: [true, 'Amount of product can not be empty!'],
+                },
+                status: {
+                    type: String,
+                    trim: true,
+                    required: [true, 'Status of product can not be empty!'],
+                },
+                idea_description: {
+                    type: String,
+                    trim: true,
+                },
+                idea_img: {
+                    type: String,
+                    trim: true,
+                },
+                idea_link: {
+                    type: String,
+                    trim: true,
+                },
+                pre_img: {
+                    type: String,
+                    trim: true,
+                },
+                post_img: {
+                    type: String,
+                    trim: true,
+                },
+                description: {
+                    type: String,
+                    trim: true,
+                },
+                material: {
+                    type: String,
+                    trim: true,
+                    lowercase: true,
+                },
+                size: {
+                    type: String,
+                    trim: true,
+                    uppercase: true,
+                },
+                create_at: {
+                    type: Date,
+                    default: Date.now,
+                },
+            },
+        ],
+        facility: {
+            code: {
+                type: String,
+                trim: true,
+            },
+            name: {
+                type: String,
+                trim: true,
+            },
+            address: {
+                type: String,
+                trim: true,
+            },
         },
-        name: {
+        address: {
+            name: {
+                type: String,
+                trim: true,
+                default: ''
+            },
+            phone: {
+                type: String,
+                trim: true,
+                default: ''
+            },
+            street: {
+                type: String,
+                trim: true,
+                default: ''
+            },
+            ward: {
+                type: String,
+                trim: true,
+                default: ''
+            },
+            district: {
+                type: String,
+                trim: true,
+                default: ''
+            },
+            city: {
+                type: String,
+                trim: true,
+                default: ''
+            },
+        },
+        totalPrice: {
             type: String,
             trim: true,
-            required: [true, 'Name of product can not be empty!'],
-        },
-        category: { 
-            type: String, 
-            trim: true,
-            required: [true, 'Category of product can not be empty!'],
-        },
-        slug: {
-            type: String,
-            trim: true,
-            lowercase: true,
-            required: [true, 'Slug of product can not be empty!'],
-        },
-        amount: {
-            type: Number,
-            amount: [1, 'Minimum of amount is 1'],
-            required: [true, 'Amount of product can not be empty!'],
         },
         status: {
             type: String,
             trim: true,
-            required: [true, 'Status of product can not be empty!'],
+            require: [true, 'Undefined status!'],
         },
-        idea_description: {
+        service: {
             type: String,
             trim: true,
+            require: [true, 'Unđefined service!'],
         },
-        idea_img: {
+        paymentMethod: {
+            type: Number,
+            require: [true, 'The payment method cannot be empty!'],
+        },
+        paymentDelivery: {
+            type: Number,
+            require: [true, 'The payment delivery cannot be empty!'],
+        },
+        code: {
             type: String,
             trim: true,
+            require: [true, 'The payment id cannot be empty!'],
         },
-        idea_link: {
-            type: String,
+        uid: {
+            type: mongoose.Schema.Types.ObjectId,
             trim: true,
-        },
-        pre_img: {
-            type: String,
-            trim: true,
-        },
-        post_img: {
-            type: String,
-            trim: true,
-        },
-        description: {
-            type: String,
-            trim: true,
-        },
-        material: {
-            type: String,
-            trim: true,
-            lowercase: true,
-        },
-        size: {
-            type: String,
-            trim: true,
-            uppercase: true,
+            required: [true, 'Please logged in to continue'],
         },
         create_at: {
             type: Date,
             default: Date.now,
         },
-    }],
-    facility: {
-        code: {
-            type: String,
-            trim: true,
-        },
-        name: {
-            type: String,
-            trim: true,
-        },
-        address: {
-            type: String,
-            trim: true,
-        }
     },
-    address: {
-        code: {
-            type: String,
-            trim: true,
-        },
-        name: {
-            type: String,
-            trim: true,
-        },
-        address: {
-            type: String,
-            trim: true,
-        }
-    },
-    totalPrice: {
-        type: String,
-        trim: true,
-    },
-    status: {
-        type: String,
-        trim: true,
-        require: [true, 'Undefined status!']
-    },
-    service: {
-        type: String,
-        trim: true,
-        require: [true, 'Unđefined service!']
-    },
-    paymentMethod: {
-        type: Number,
-        require: [true, "The payment method cannot be empty!"]
-    },
-    paymentDelivery: {
-        type: Number,
-        require: [true, "The payment delivery cannot be empty!"]
-    },
-    code: {
-        type: String, 
-        trim: true,
-        require: [true, "The payment id cannot be empty!"],
-    },
-    uid: {
-        type: mongoose.Schema.Types.ObjectId,
-        trim: true,
-        required: [true, 'Please logged in to continue'],
-    },
-    create_at: {
-        type: Date,
-        default: Date.now,
-    },
-}, {
-    strict: true,
-    strictQuery: false
-});
+    {
+        strict: true,
+        strictQuery: false,
+    }
+);
 
 module.exports.orderModel = mongoose.model('service-orders', orderSchema);

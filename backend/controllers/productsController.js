@@ -155,8 +155,14 @@ module.exports.updateProduct = catchAsync(async (req, res, next) => {
 module.exports.deleteProduct = catchAsync(async (req, res, next) => {
     const product = await productModel.findByIdAndDelete(req.params.id);
   
+    console.log(product);
     if (!product) {
         return next(new AppError('No product found with that ID', 404))
+    }
+
+    fs.unlinkSync(product.img);
+    for (let e of product.other_img) {
+        fs.unlinkSync(e);
     }
   
     res.status(204).json({

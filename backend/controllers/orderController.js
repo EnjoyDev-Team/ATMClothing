@@ -6,12 +6,13 @@ const User = require('../models/userModel');
 const products = require('../models/productModel');
 const APIFeatures = require('../utils/apiFeature');
 const imageEncode = require('../utils/imageEncode');
+const socketIO = require('../server');
 const { statusEnum, receiveEnum, paymentEnum } = require('../constants/orderConstants');
 
 exports.getAllOrders = catchAsync(async (req, res, next) => {
     const filter = { user: req.query.idUser };
 
-    const features = new APIFeatures(Order.find(filter)).filter().sort().limitFields().paginate();
+    const features = new APIFeatures(Order.find(filter)).filter().sort('-createAt').limitFields().paginate();
     const doc = await features.query;
 
     res.status(200).json({
@@ -48,9 +49,9 @@ module.exports.getById = catchAsync(async (req, res, next) => {
 });
 
 module.exports.filter = catchAsync(async (req, res, next) => {
-  const features = new APIFeatures(Order.find(), req.query)
+  const features = new APIFeatures(Order.find().sort({ createAt: 'desc' }), req.query)
                       .filter()
-                      .sort()
+                      .sort({ createAt: 'desc' })
                       .limitFields()
                       .paginate();
 
@@ -60,7 +61,7 @@ module.exports.filter = catchAsync(async (req, res, next) => {
         status: 'success',
         results: doc.length,
         data: {
-            data: doc,
+            orders: doc,
         },
     });
 });
@@ -92,6 +93,8 @@ exports.createOrder = catchAsync(async (req, res, next) => {
     // }
 
     const doc = await Order.create(data);
+
+    socketIO.onPayment(doc);
 
     res.status(201).json({
         status: 'success',

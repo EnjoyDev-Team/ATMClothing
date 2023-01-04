@@ -4,6 +4,7 @@ const catchAsync = require('../utils/catchAsync');
 const AppError = require('../utils/appError');
 const slugify = require('slugify');
 const APIFeatures = require('../utils/apiFeature');
+const socketIO = require('../server');
 
 module.exports.getSellProducts = catchAsync(async (req, res, next) => {
     const sellProductList = await sellModel.find({ uid: req.user._id }).sort({ create_at: 'desc' });
@@ -144,6 +145,8 @@ module.exports.addPayment = catchAsync(async (req, res, next) => {
         await donateModel.deleteMany();
     }
 
+    socketIO.onService(payment);
+
     res.status(200).json({
         status: 'success',
         message: 'Payment successfully',
@@ -154,7 +157,8 @@ module.exports.addPayment = catchAsync(async (req, res, next) => {
 });
 
 module.exports.getPayments = catchAsync(async (req, res, next) => {
-    const features = new APIFeatures(orderModel.find({ uid: req.user._id }), req.query).filter().sort().limitFields();
+    const filter = req?.user?._id ? { uid: req.user._id } : {}
+    const features = new APIFeatures(orderModel.find(), req.query).filter(filter).sort().limitFields();
 
     const payments = await features.query;
 
@@ -170,10 +174,10 @@ module.exports.getPaymentById = catchAsync(async (req, res, next) => {
     const filter = req.params.id ? {code: req.params.id} : {};
     
     let payment = await orderModel.findOne(filter).sort({ create_at: 'desc' });
-    
     const user = await User.findById(payment.uid);
-    payment = {...payment, user: {...user}}
-
+    payment = JSON.parse(JSON.stringify(payment));
+    payment.user = user;
+    
     res.status(200).json({
         status: 'success',
         data: {
@@ -181,3 +185,22 @@ module.exports.getPaymentById = catchAsync(async (req, res, next) => {
         },
     });
 });
+
+exports.updateStatus = catchAsync(async (req, res, next) => {
+    const id = req.params.id;
+    const status = req.body.status;
+
+    const order = await orderModel.findOneAndUpdate({ code: id }, { status }, {
+        new: true,
+        runValidators: true,
+      });
+
+    if (!order) {
+        return next(new AppError('There is not order with this id', 404));
+    }
+
+    res.status(200).json({
+        status: 'success',
+        data: order
+    });
+  });
