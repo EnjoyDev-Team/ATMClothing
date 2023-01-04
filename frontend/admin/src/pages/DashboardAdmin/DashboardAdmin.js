@@ -58,12 +58,6 @@ const DashboardAdmin = () => {
   }, [responseCustomer]);
   return (
         <div>
-        <div className={classes.header}>
-                <HeaderAdmin />
-        </div>
-        <div className={classes.navigation}>
-            <NavigationAdmin />
-        </div>
         <div className={classes.listrevenue}>
             <div className={classes.listrevenue__revenue}>
                     <Revenue title="NEW CUSTOMERS" redbackgroud value={valueCustomer} percent={percentCustomer} status={statusCustomer} icon={statusCustomer === 'INCREASE' ? faCircleUp : faCircleDown} />

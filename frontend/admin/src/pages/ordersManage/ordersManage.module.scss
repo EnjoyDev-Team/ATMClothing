@@ -86,6 +86,12 @@
       padding-right: 40px;
       margin-top: 20px;
 
+      &-loading {
+        display: flex;
+        justify-content: center;
+        padding-top: 10rem;
+      }
+
       &-heading {
         list-style: none;
         display: flex;
@@ -99,8 +105,9 @@
       }
 
       &-list {
-        max-height: calc(100vh - 256px);
+        height: calc(100vh - 260px);
         overflow-y: scroll;
+        border-left: 1px solid #ccc;
 
         /* width */
         &::-webkit-scrollbar {

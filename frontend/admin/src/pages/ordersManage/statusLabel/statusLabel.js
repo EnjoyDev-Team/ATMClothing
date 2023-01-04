@@ -2,15 +2,21 @@
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 /* eslint-disable react/prop-types */
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
+import { useSetRecoilState, useRecoilValue } from 'recoil';
 import classes from './statusLabel.module.scss';
+import useAxiosPrivate from '../../../hooks/useAxiosPrivate';
+import { cancelRecoil, reloadOrderRecoil } from '../recoil';
 
 const StatusLabel = (props) => {
   const {
     content,
     listItem,
     idxSelected,
+    idOrder,
+    typeOrder,
+    reload,
 
     waiting,
     confirmed,
@@ -34,11 +40,44 @@ const StatusLabel = (props) => {
     code: 0,
     style: 'waiting'
   });
+  const setReloadOrder = useSetRecoilState(reloadOrderRecoil);
+  const cancelId = useRecoilValue(cancelRecoil);
+
+  const axiosPrivate = useAxiosPrivate();
 
   const handleSelected = (item) => {
     setSelected(item);
     setOpen(prev => !prev);
+
+    if (typeOrder === 'PRODUCT') {
+      axiosPrivate.patch(`/orders/status/${idOrder}`, {
+        status: item.code
+      }).then((res) => {
+        if (reload) {
+          setReloadOrder(prev => !prev);
+        }
+      }).catch((err) => {
+        console.log(err);
+      });
+    } else {
+      axiosPrivate.patch(`/services/status/${idOrder}`, {
+        status: item.label
+      }).then((res) => {
+        if (reload) {
+          setReloadOrder(prev => !prev);
+        }
+      }).catch((err) => {
+        console.log(err);
+      });
+    }
   };
+
+  useEffect(() => {
+    if (cancelId === idOrder) {
+      setOpen(prev => !prev);
+      handleSelected(listItem[listItem.length - 1]);
+    }
+  }, [cancelId]);
 
   return (
     <button
@@ -46,7 +85,7 @@ const StatusLabel = (props) => {
       ${classes[selected.style]} ${classes.statusLabel}`}
       {...{ passprops }}
       key={selected.code}
-      onBlur={() => setOpen(prev => !prev)}
+      onBlur={() => setOpen(false)}
     >
       <span
         onClick={() => {

@@ -6,7 +6,7 @@
         display: flex;
         align-items: center;
         justify-content: space-between;
-        padding: 40px 60px;
+        padding: 20px 40px;
 
         div {
             display: flex;
@@ -53,6 +53,9 @@
             }
 
             .products__header-add {
+                display: flex;
+                align-items: center;
+
                 .products__header-add-icon {
                     font-size: 1.8rem;
                     padding: 7px 8px;
@@ -71,11 +74,11 @@
 
     .products__table-item {
         position: relative;
-        padding: 0 40px 0 60px;
+        padding: 0 40px 0 40px;
 
         .products__table-scroll {
             overflow: auto;
-            height: 520px;
+            height: calc(100vh - 200px);
             margin-top: 20px;
 
             table {
@@ -154,6 +157,13 @@
                             padding: 6px;
                             cursor: pointer;
                             color: #999;
+                        }
+
+                        .icon:first-child:hover {
+                            color: cadetblue;
+                        }
+                        .icon:last-child:hover {
+                            color: #ff0099;
                         }
                     }
                     th {

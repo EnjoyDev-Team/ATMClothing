@@ -11,6 +11,7 @@ import classes from './styles.module.scss';
 import convert2base64 from '../../utils/convert2base64';
 import { axiosPrivate } from '../../api/axios';
 import useAxios from '../../hooks/useAxios';
+import { formatDotMoney } from '../../utils/formatMoney';
 
 const AddProduct = () => {
   const [isButton, setButton] = useState(false);
@@ -154,7 +155,7 @@ const AddProduct = () => {
       e.preventDefault();
     } else if (files.length === 0) {
       setButton(false);
-      alert('chưa thêm ảnh');
+      alert('Chưa thêm ảnh');
 
       e.preventDefault();
     } else {
@@ -162,8 +163,8 @@ const AddProduct = () => {
         category: category.split(', ')[0],
         slug: category.split(', ')[1],
         name,
-        price,
-        sale,
+        price: formatDotMoney(price),
+        sale: formatDotMoney(sale),
         size,
         note_size: `${height}, ${weight}`,
         color,
@@ -219,7 +220,7 @@ const AddProduct = () => {
   return (
         <div className={classes.addproduct}>
             <div className={classes.addproduct__back}>
-                <Link to="/products">
+                <Link to="/admin-products">
                     <FontAwesomeIcon className={classes['addproduct__back-icon']} icon={faReply} />
                 </Link>
                 <h1>Add Product</h1>

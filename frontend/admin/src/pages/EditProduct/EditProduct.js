@@ -55,22 +55,22 @@ const AddProduct = () => {
     {},
     []
   );
-  const editProduct = dataEditProduct.data !== undefined && dataEditProduct.data[0];
+  const editProduct = dataEditProduct?.data !== undefined && dataEditProduct?.data[0];
 
   const [dataSelect, errorDataSelect, isLoadingDataSelect] = useAxios('get', '/products/filters', {}, {}, []);
-  const dataCategory = dataSelect.data !== undefined && dataSelect.data.categories;
-  const dataFacilities = dataSelect.data !== undefined && dataSelect.data.facilities;
-  const dataMaterials = dataSelect.data !== undefined && dataSelect.data.materials;
+  const dataCategory = dataSelect.data !== undefined && dataSelect?.data?.categories;
+  const dataFacilities = dataSelect.data !== undefined && dataSelect?.data?.facilities;
+  const dataMaterials = dataSelect.data !== undefined && dataSelect?.data?.materials;
 
   useEffect(() => {
     if (otherImgApi.data !== undefined) {
-      setOtherImgBase64(otherImgApi.data[0].other_img);
+      setOtherImgBase64(otherImgApi?.data[0].other_img);
     }
   }, [otherImgApi]);
 
   useEffect(() => {
     setImgBase64((prev) => {
-      if (editProduct.img !== undefined) {
+      if (editProduct?.img !== undefined) {
         return [...prev, editProduct.img];
       }
 
@@ -85,23 +85,23 @@ const AddProduct = () => {
   }, [otherImgBase64]);
 
   useEffect(() => {
-    setName(editProduct.name);
-    setCategory(`${editProduct.category}, ${editProduct.slug}`);
-    setPrice(editProduct.price);
-    setSale(editProduct.sale);
-    setAmount(editProduct.amount);
-    setSize(editProduct.size);
-    setColor(editProduct.color);
+    setName(editProduct?.name);
+    setCategory(`${editProduct?.category}, ${editProduct?.slug}`);
+    setPrice(editProduct?.price);
+    setSale(editProduct?.sale);
+    setAmount(editProduct?.amount);
+    setSize(editProduct?.size);
+    setColor(editProduct?.color);
     setFacility(
       editProduct
-        ? `${editProduct.facility[0].code}| ${editProduct.facility[0].name}| ${editProduct.facility[0].address}`
+        ? `${editProduct?.facility[0].code}| ${editProduct?.facility[0].name}| ${editProduct.facility[0].address}`
         : ''
     );
     setMaterial(editProduct.material);
-    setHeight(editProduct ? editProduct.note_size.split(', ')[0] : '');
-    setWeight(editProduct ? editProduct.note_size.split(', ')[1] : '');
-    setStatus(editProduct.status);
-    setDescription(editProduct.description);
+    setHeight(editProduct ? editProduct?.note_size?.split(', ')[0] : '');
+    setWeight(editProduct ? editProduct?.note_size?.split(', ')[1] : '');
+    setStatus(editProduct?.status);
+    setDescription(editProduct?.description);
   }, [editProduct]);
 
   const { getRootProps, getInputProps, acceptedFiles, isDragActive } = useDropzone({
@@ -118,7 +118,7 @@ const AddProduct = () => {
   };
 
   const handleRemoveImg = (name) => {
-    setFile((prev) => prev.filter((item) => name !== item.name));
+    setFile((prev) => prev.filter((item) => name !== item?.name));
   };
 
   const handleRemoveImgBase64 = (index) => {
@@ -127,7 +127,7 @@ const AddProduct = () => {
   };
 
   const handleGetName = (e) => {
-    if (e.target.value !== editProduct.name) {
+    if (e.target.value !== editProduct?.name) {
       setDisable(false);
       setName(e.target.value);
 
@@ -142,7 +142,7 @@ const AddProduct = () => {
   };
 
   const handleGetPrice = (e) => {
-    if (e.target.value !== editProduct.price) {
+    if (e.target.value !== editProduct?.price) {
       setDisable(false);
       setPrice(e.target.value);
 
@@ -335,7 +335,7 @@ const AddProduct = () => {
           setButton(true);
           setTimeout(() => {
             setButton(false);
-            navigate('/products');
+            navigate('/admin-products');
           }, 2000);
         }
       });
@@ -345,7 +345,7 @@ const AddProduct = () => {
   return (
         <div className={classes.addproduct}>
             <div className={classes.addproduct__back}>
-                <Link to="/products">
+                <Link to="/admin-products">
                     <FontAwesomeIcon className={classes['addproduct__back-icon']} icon={faReply} />
                 </Link>
                 <h1>Edit Product</h1>

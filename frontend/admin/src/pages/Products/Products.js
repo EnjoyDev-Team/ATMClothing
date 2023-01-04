@@ -4,9 +4,9 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMagnifyingGlass, faPlus, faPen, faTrashCan } from '@fortawesome/free-solid-svg-icons';
 import { Link, useNavigate } from 'react-router-dom';
 import classes from './styles.module.scss';
-import test from '../../assets/imgs/test.jpg';
 import useAxios from '../../hooks/useAxios';
 import { axiosPrivate } from '../../api/axios';
+import { LoadingDonut } from '../../components/Loading/Loading';
 
 const Products = () => {
   const [removeProduct, setRemoveProduct] = useState([]);
@@ -49,7 +49,7 @@ const Products = () => {
   };
 
   const handleLink = (id) => {
-    navigate(`/products/${id}`);
+    navigate(`/admin-products/${id}`);
   };
 
   return (
@@ -58,9 +58,9 @@ const Products = () => {
                 <div>
                     <h2 className={classes['products__header-heading']}>Products</h2>
                     <p className={classes['products__header-found']}>
-{removeProduct.length}
-{' '}
-products found
+                      {removeProduct.length}
+                      {' '}
+                      products found
                     </p>
                 </div>
                 <div>
@@ -76,11 +76,11 @@ products found
                         {/* </form> */}
                     </div>
 
-                    <div className={classes['products__header-add']}>
-                        <Link to="add_product">
+                    <div>
+                        <Link to="add" className={classes['products__header-add']}>
                             <FontAwesomeIcon className={classes['products__header-add-icon']} icon={faPlus} />
-                        </Link>
                         <p className={classes['products__header-add-content']}>New product</p>
+                        </Link>
                     </div>
                 </div>
             </div>
@@ -117,49 +117,56 @@ products found
                             </tr>
                         </thead>
 
+                        {isLoadingProduct ? (
+                          <div style={{ display: 'flex', justifyContent: 'center', marginTop: '16rem' }}>
+                            <LoadingDonut />
+                          </div>
+                        )
+                          : (
                         <tbody>
-                            {removeProduct
-                                && removeProduct.map((product, index) => (
-                                    <tr key={+index}>
-                                        <td>{index + 1}</td>
-                                        <td>
-                                            <div>
-                                                <img src={product.img} alt="" />
-                                                <p>{product.name}</p>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <p>{product._id}</p>
-                                        </td>
-                                        <td>{product.price}</td>
-                                        <td>{product.sale}</td>
-                                        <td>{product.amount}</td>
-                                        <td>
-                                            <p
-                                              className={`${classes.status} ${
-                                                product.amount !== 0
-                                                  ? classes['status--purpel-color']
-                                                  : classes['status--pink-color']
-                                              }`}
-                                            >
-                                                {product.amount !== 0 ? 'Instock' : 'Sold out'}
-                                            </p>
-                                        </td>
-                                        <td>
-                                            <FontAwesomeIcon
-                                              onClick={() => handleLink(product._id)}
-                                              className={classes.icon}
-                                              icon={faPen}
-                                            />
-                                            <FontAwesomeIcon
-                                              onClick={() => handleRemoveProduct(product)}
-                                              className={classes.icon}
-                                              icon={faTrashCan}
-                                            />
-                                        </td>
-                                    </tr>
-                                ))}
+                        {removeProduct
+                            && removeProduct.map((product, index) => (
+                                <tr key={+index}>
+                                    <td>{index + 1}</td>
+                                    <td>
+                                        <div>
+                                            <img src={product.img} alt="" />
+                                            <p>{product.name}</p>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <p>{product._id}</p>
+                                    </td>
+                                    <td>{product.price}</td>
+                                    <td>{product.sale}</td>
+                                    <td>{product.amount}</td>
+                                    <td>
+                                        <p
+                                          className={`${classes.status} ${
+                                            product.amount !== 0
+                                              ? classes['status--purpel-color']
+                                              : classes['status--pink-color']
+                                          }`}
+                                        >
+                                            {product.amount !== 0 ? 'Instock' : 'Sold out'}
+                                        </p>
+                                    </td>
+                                    <td>
+                                        <FontAwesomeIcon
+                                          onClick={() => handleLink(product._id)}
+                                          className={classes.icon}
+                                          icon={faPen}
+                                        />
+                                        <FontAwesomeIcon
+                                          onClick={() => handleRemoveProduct(product)}
+                                          className={classes.icon}
+                                          icon={faTrashCan}
+                                        />
+                                    </td>
+                                </tr>
+                            ))}
                         </tbody>
+                          )}
                     </table>
                 </div>
             </div>
