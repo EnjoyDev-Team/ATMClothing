@@ -68,8 +68,10 @@ const OrdersManageRecoil = () => {
   const handleSelectItem = (item) => {
     if (typeOrder === 'PRODUCT') {
       setIdSelect(item._id);
+      setNewOrder(false);
     } else {
       setIdSelect(item.code);
+      setNewService(false);
     }
     setIsOpen(true);
   };

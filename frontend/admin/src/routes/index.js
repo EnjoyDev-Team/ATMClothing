@@ -1,7 +1,5 @@
-/* eslint-disable indent */
-/* eslint-disable import/no-useless-path-segments */
 import React from 'react';
-import { Route, Routes } from 'react-router-dom';
+import { Route, Routes, Navigate } from 'react-router-dom';
 import PrivateRoute from './privateRoute';
 
 import NotFound from '../pages/notFound';
@@ -10,16 +8,17 @@ import EditProduct from '../pages/EditProduct/EditProduct';
 import AddProduct from '../pages/AddProduct/AddProduct';
 import OrdersManage from '../pages/ordersManage/ordersManage';
 import DashboardAdmin from '../pages/DashboardAdmin/DashboardAdmin';
-import User from './../pages/users/User';
-import EditUser from './../pages/users/EditUser';
-import AddUser from './../pages/users/AddUser';
+import User from '../pages/users/User';
+import EditUser from '../pages/users/EditUser';
+import AddUser from '../pages/users/AddUser';
 import Layout from '../layouts';
 
 const Navigation = () => {
-    const authenticated = true;
-    return (
+  const authenticated = true;
+  return (
         <main>
             <Routes>
+                <Route path="/" element={<Navigate to="/dashboard" />} />
                 <Route element={<Layout />}>
                     <Route element={<PrivateRoute isAllowed={authenticated} redirectPath="/login" />}>
                         <Route path="/dashboard" element={<DashboardAdmin />} />
@@ -39,7 +38,7 @@ const Navigation = () => {
                 </Route>
             </Routes>
         </main>
-    );
+  );
 };
 
 export default Navigation;
