@@ -45,7 +45,7 @@ const CardProduct = ({ cardproduct2, Details }) => {
             >
                     <h1 className={classes.cardproduct__name}>{Details.name}</h1>
                     <h1 className={classes.cardproduct__price}>
-                        {Details.price}
+                        {Details.sale}
                         {' '}
                         <u>đ</u>
                     </h1>
@@ -75,7 +75,7 @@ CardProduct.propTypes = {
   Details: PropTypes.shape({
     img: PropTypes.string.isRequired,
     name: PropTypes.string.isRequired,
-    price: PropTypes.string.isRequired,
+    sale: PropTypes.string.isRequired,
     facility: PropTypes.array,
     _id: PropTypes.string,
     size: PropTypes.string,

@@ -69,7 +69,6 @@ const Filter = () => {
 
   const dispatchOffset = (page) => {
     dispatch(addDataOffset(page));
-    console.log(5);
   };
 
   const queryFilter = `${
@@ -248,69 +247,6 @@ const Filter = () => {
 
                 <div className={classes['products__filter-form-wrap']}>
                     <div className={classes['products__filter-header']}>
-                        <span className={classes['products__filter-header-content']}>Cơ sở</span>
-                        {/* <FontAwesomeIcon className={classes['products__filter-icon']} icon={faChevronDown} /> */}
-                    </div>
-
-                    <div className={classes['products__filter-option-wrap']}>
-                        <div className={classes['products__filter-choose-option']}>
-                            <div className={classes['products__filter-option']}>{changeContentFacility}</div>
-                            <FontAwesomeIcon icon={faChevronDown} />
-                            <ul className={classes['products__filter-option-list']}>
-                                {renderRenderFacilities
-                                    && renderRenderFacilities.length
-                                    && renderRenderFacilities.map((facility, index) => {
-                                      if (facility.selected === false) {
-                                        return (
-                                                <li
-                                                  onClick={() => {
-                                                    facility.selected = true;
-                                                    dispatchOffset(1);
-                                                    setFilterFacility((prev) => [facility.code, ...prev]);
-                                                    setChangeContentFacility(facility.name);
-                                                  }}
-                                                  key={+index}
-                                                  className={classes['products__filter-option-item']}
-                                                >
-                                                    {facility.name}
-                                                </li>
-                                        );
-                                      }
-                                      return '';
-                                    })}
-                            </ul>
-                        </div>
-                    </div>
-
-                    <div className={classes['products__filter-wrap-tag']}>
-                        {renderRenderFacilities
-                            && renderRenderFacilities.length
-                            && renderRenderFacilities.map((facility, index) => {
-                              if (facility.selected) {
-                                return (
-                                        <div key={+index} className={classes['products__filter-tag']}>
-                                            <span className={classes['products__filter-tag-content']}>
-                                                {facility.name}
-                                            </span>
-                                            <FontAwesomeIcon
-                                              onClick={() => {
-                                                facility.selected = false;
-                                                handleCloseTag(facility.code);
-                                                setChangeContentFacility('Chọn cơ sở');
-                                              }}
-                                              className={classes['products__filter-tag-icon']}
-                                              icon={faXmark}
-                                            />
-                                        </div>
-                                );
-                              }
-                              return '';
-                            })}
-                    </div>
-                </div>
-
-                <div className={classes['products__filter-form-wrap']}>
-                    <div className={classes['products__filter-header']}>
                         <span className={classes['products__filter-header-content']}>Chất liệu</span>
                         {/* <FontAwesomeIcon className={classes['products__filter-icon']} icon={faChevronDown} /> */}
                     </div>
@@ -360,6 +296,69 @@ const Filter = () => {
                                                 material.selected = false;
                                                 handleCloseTag(material.name);
                                                 setChangeContentMaterial('Chọn chất liệu');
+                                              }}
+                                              className={classes['products__filter-tag-icon']}
+                                              icon={faXmark}
+                                            />
+                                        </div>
+                                );
+                              }
+                              return '';
+                            })}
+                    </div>
+                </div>
+
+                <div className={classes['products__filter-form-wrap']}>
+                    <div className={classes['products__filter-header']}>
+                        <span className={classes['products__filter-header-content']}>Cơ sở</span>
+                        {/* <FontAwesomeIcon className={classes['products__filter-icon']} icon={faChevronDown} /> */}
+                    </div>
+
+                    <div className={classes['products__filter-option-wrap']}>
+                        <div className={classes['products__filter-choose-option']}>
+                            <div className={classes['products__filter-option']}>{changeContentFacility}</div>
+                            <FontAwesomeIcon icon={faChevronDown} />
+                            <ul className={classes['products__filter-option-list']}>
+                                {renderRenderFacilities
+                                    && renderRenderFacilities.length
+                                    && renderRenderFacilities.map((facility, index) => {
+                                      if (facility.selected === false) {
+                                        return (
+                                                <li
+                                                  onClick={() => {
+                                                    facility.selected = true;
+                                                    dispatchOffset(1);
+                                                    setFilterFacility((prev) => [facility.code, ...prev]);
+                                                    setChangeContentFacility(facility.name);
+                                                  }}
+                                                  key={+index}
+                                                  className={classes['products__filter-option-item']}
+                                                >
+                                                    {facility.name}
+                                                </li>
+                                        );
+                                      }
+                                      return '';
+                                    })}
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div className={classes['products__filter-wrap-tag']}>
+                        {renderRenderFacilities
+                            && renderRenderFacilities.length
+                            && renderRenderFacilities.map((facility, index) => {
+                              if (facility.selected) {
+                                return (
+                                        <div key={+index} className={classes['products__filter-tag']}>
+                                            <span className={classes['products__filter-tag-content']}>
+                                                {facility.name}
+                                            </span>
+                                            <FontAwesomeIcon
+                                              onClick={() => {
+                                                facility.selected = false;
+                                                handleCloseTag(facility.code);
+                                                setChangeContentFacility('Chọn cơ sở');
                                               }}
                                               className={classes['products__filter-tag-icon']}
                                               icon={faXmark}

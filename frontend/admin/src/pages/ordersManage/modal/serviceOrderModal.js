@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faNoteSticky } from '@fortawesome/free-regular-svg-icons';
@@ -8,75 +8,49 @@ import StatusLabel from '../statusLabel/statusLabel';
 import ProductInfo from '../productInfo/productInfo';
 import ButtonCT from '../../../components/ButtonCT/ButtonCT';
 import ItemInfo from '../productInfo/itemInfo';
+import useAxiosPrivate from '../../../hooks/useAxiosPrivate';
+import { LoadingDonut } from '../../../components/Loading/Loading';
+import { SERVICE_STATUS_ENUM, IDX_SERVICE_STATUS_ENUM } from '../../../constants';
 
-const productInfo = [
-  {
-    img: 'https://product.hstatic.net/1000360022/product/dsc04660_8a79337277514f5598c02897b5066252_master.jpg',
-    name: 'Áo blazer unisex caro phối jeans cá tính',
-    price: '189.000 đ',
-    detail: 'XL, oversize',
-    facility: 'ĐH Ngân hàng'
-  },
-  {
-    img: 'https://product.hstatic.net/1000360022/product/dsc04660_8a79337277514f5598c02897b5066252_master.jpg',
-    name: 'Set đầm phối',
-    price: '129.000đ',
-    detail: 'XL, oversize',
-    facility: 'ĐH SPKT'
-  },
-  {
-    img: 'https://product.hstatic.net/1000360022/product/dsc04660_8a79337277514f5598c02897b5066252_master.jpg',
-    name: 'Áo blazer unisex caro phối jeans cá tính',
-    price: '189.000 đ',
-    detail: 'XL, oversize',
-    facility: 'ĐH Ngân hàng'
-  },
-  {
-    img: 'https://product.hstatic.net/1000360022/product/dsc04660_8a79337277514f5598c02897b5066252_master.jpg',
-    name: 'Áo blazer unisex caro phối jeans cá tính',
-    price: '189.000 đ',
-    detail: 'XL, oversize',
-    facility: 'ĐH Ngân hàng'
-  },
-  {
-    img: 'https://product.hstatic.net/1000360022/product/dsc04660_8a79337277514f5598c02897b5066252_master.jpg',
-    name: 'Set đầm phối',
-    price: '129.000đ',
-    detail: 'XL, oversize',
-    facility: 'ĐH SPKT'
-  },
-  {
-    img: 'https://product.hstatic.net/1000360022/product/dsc04660_8a79337277514f5598c02897b5066252_master.jpg',
-    name: 'Áo blazer unisex caro phối jeans cá tính',
-    price: '189.000 đ',
-    detail: 'XL, oversize',
-    facility: 'ĐH Ngân hàng'
-  },
-];
+const ServiceOrderModal = ({ id }) => {
+  const [loading, setLoading] = useState(true);
+  const [data, setData] = useState([]);
 
-const ServiceOrderModal = () => {
-  const a = 0;
+  const axiosPrivate = useAxiosPrivate();
+
+  useEffect(() => {
+    axiosPrivate.get(`/services/${id}`).then((res) => {
+      setData(res.data.data.order);
+      setLoading(false);
+    }).catch((err) => {});
+  }, []);
 
   return (
+    loading ? (
+      <div className={classes.modalLoading}>
+            <LoadingDonut />
+      </div>
+    )
+      : (
     <div className={classes.productOrderModal}>
       <div className={classes.productOrderModal__information}>
         <ul className={classes.information__list}>
           <li>
             <strong>ID Order:</strong>
             {' '}
-            HUHDJK
+            {data?.code}
           </li>
           <li>
             <FontAwesomeIcon icon={faUser} className={classes['information__list-icon']} />
-            Huỳnh Tấn Vinh
+            {data?.address?.name || data?.idUser?.name}
           </li>
           <li>
             <FontAwesomeIcon icon={faPhone} className={classes['information__list-icon']} />
-            0123456789
+            {data?.address?.phone || data?.user?.phone}
           </li>
           <li>
             <FontAwesomeIcon icon={faMapLocationDot} className={classes['information__list-icon']} />
-            135 Trần Hưng Đạo, Quận 1, TPHCM
+            {`${data?.address?.street}, ${data?.address?.ward}, ${data?.address?.district}, ${data?.address?.city}`}
           </li>
         </ul>
         <ul className={classes.information__list}>
@@ -85,15 +59,15 @@ const ServiceOrderModal = () => {
           </li>
           <li>
             <FontAwesomeIcon icon={faTruckFast} className={classes['information__list-icon']} />
-            Giao hàng || Nhận hàng tại cơ sở ĐH Ngân hàng
+            {data?.paymentDelivery === 0 ? 'Giao hàng' : 'Nhận hàng tại cơ sở ĐH Ngân hàng'}
           </li>
           <li>
             <FontAwesomeIcon icon={faNoteSticky} className={classes['information__list-icon']} />
-            Giao hàng giờ hành chính nha shop
+            {data?.note || 'Không có'}
           </li>
           <li>
             <FontAwesomeIcon icon={faFileInvoiceDollar} className={classes['information__list-icon']} />
-            Thanh toán khi nhận hàng
+            {data?.paymentMethod === 0 ? 'Thanh toán khi nhận hàng' : 'Thanh toán Momo'}
           </li>
         </ul>
         <ul className={classes.information__list}>
@@ -101,40 +75,67 @@ const ServiceOrderModal = () => {
             <strong>Thông tin thanh toán</strong>
           </li>
           <li>
-            Tiền hàng:
+            Tiền hàng/dịch vụ:
             {' '}
-            <span>406.000 vnđ</span>
+            <span>
+              {data?.productPrice || 0}
+              {' '}
+              vnđ
+            </span>
           </li>
           <li>
             Phí ship:
             {' '}
-            <span>18 000 vnđ</span>
+            <span>
+              {data?.shipFee || 0}
+              {' '}
+              vnđ
+            </span>
           </li>
           <li>
             Khuyến mãi:
             {' '}
-            <span>0 đ</span>
+            <span>
+              {data?.discount || 0}
+              {' '}
+              đ
+            </span>
           </li>
           <li>
             Tổng tiền:
             {' '}
-            <strong style={{ color: '#FF0000' }}>424 000 vnđ</strong>
+            <strong style={{ color: '#FF0000' }}>
+              {data?.totalPrice || 0}
+              {' '}
+              vnđ
+            </strong>
           </li>
         </ul>
       </div>
       <div className={classes.productOrderModal__detailWrap}>
         <div className={classes.productOrderModal__detail}>
           <div className={classes.detail__status}>
-            <span>Trạng thái: </span>
-            <StatusLabel confirmed>Đã xác nhận</StatusLabel>
+            <div>
+              <span>Trạng thái: </span>
+              <StatusLabel
+                idOrder={id}
+                typeOrder="SERVICE"
+                listItem={SERVICE_STATUS_ENUM}
+                idxSelected={IDX_SERVICE_STATUS_ENUM[data.status]}
+                reload={id}
+              />
+            </div>
+            <div>
+              <span>Service: </span>
+              <strong>{data?.service}</strong>
+            </div>
           </div>
           <div className={classes.detail__list}>
-            {productInfo.map((item, idx) => (
+            {data.products.map((item, idx) => (
               <div key={+idx}>
-                <ItemInfo productDetail={{
-                  pre_img: 'https://i.pinimg.com/originals/bd/7e/80/bd7e80c87c2a0deaf158f486ab515eb3.jpg',
-                  post_img: 'https://i.pinimg.com/originals/bd/7e/80/bd7e80c87c2a0deaf158f486ab515eb3.jpg'
-                }}
+                <ItemInfo
+                  productDetail={item}
+                  index={idx}
                 />
               </div>
             ))}
@@ -144,16 +145,18 @@ const ServiceOrderModal = () => {
           outlineBtn
           small
           className={classes.productOrderModal__btn}
+          disabled
         >
           <strong>Xuất đơn</strong>
         </ButtonCT>
       </div>
     </div>
+      )
   );
 };
 
 ServiceOrderModal.propTypes = {
-
+  id: PropTypes.string.isRequired
 };
 
 export default ServiceOrderModal;

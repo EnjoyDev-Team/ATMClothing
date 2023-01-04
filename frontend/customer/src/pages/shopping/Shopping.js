@@ -166,7 +166,7 @@ const Shopping = () => {
                         </h3>
                     </div>
                     <ButtonCT
-                      greenLinear
+                      primary
                       medium
                       disabled={!(totalPayment.amount !== 0)}
                       className={classes.container__status__btn}

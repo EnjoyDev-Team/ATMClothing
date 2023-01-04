@@ -4,10 +4,9 @@
 /* eslint-disable indent */
 /* eslint-disable import/no-unresolved */
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faEye } from '@fortawesome/free-solid-svg-icons';
+import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
 import React, { useState } from 'react';
 import classes from './productInfo.module.scss';
-// import { ReactComponent as EyeIcon } from '../../assets/svg/detailRequest/eye.svg';
 import ButtonCT from '../../../components/ButtonCT/ButtonCT';
 
 const ItemInfo = ({ productDetail, index }) => {
@@ -29,6 +28,8 @@ const ItemInfo = ({ productDetail, index }) => {
 
     const haveOthers = haveMaterial || haveSize;
 
+    console.log(productDetail);
+
     return (
         <main className={classes.detail__product__main}>
             <h4 className={classes.number__product}>Sản phẩm {index + 1}</h4>
@@ -43,19 +44,19 @@ const ItemInfo = ({ productDetail, index }) => {
                             {haveImage ? <p>Hình ảnh sản phẩm:</p> : ''}
                         </div>
                         <div className={classes.detail__content}>
-                            <p>{productDetail.name}</p>
-                            <p>{productDetail.category}</p>
-                            <p>{productDetail.status}</p>
-                            <p>1</p>
+                            <p>{productDetail.name || ''}</p>
+                            <p>{productDetail.category || ''}</p>
+                            <p>{productDetail.status || ''}</p>
+                            <p>{productDetail.amount || 0}</p>
                         </div>
                         <div>
                             {show === true ? (
-                                <ButtonCT onClick={toggleDetail} className={classes.button__see} borderRadius large>
+                                <ButtonCT onClick={toggleDetail} className={classes.button__see} borderRadius medium>
                                     <span>Thu gọn</span>
-                                    {/* <EyeIcon /> */}
+                                    <FontAwesomeIcon icon={faEyeSlash} />
                                 </ButtonCT>
                             ) : (
-                                <ButtonCT onClick={toggleDetail} className={classes.button__see} borderRadius large>
+                                <ButtonCT onClick={toggleDetail} className={classes.button__see} borderRadius medium>
                                     <span>Chi tiết</span>
                                     <FontAwesomeIcon icon={faEye} />
                                 </ButtonCT>

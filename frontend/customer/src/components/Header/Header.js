@@ -137,7 +137,7 @@ const Header = () => {
                               medium
                               borderRadius
                               outlineBtn
-                              onClick={() => navigate('/')}
+                              onClick={() => navigate('/services')}
                             >
                                 Tôi có sản phẩm cũ
                             </ButtonCT>

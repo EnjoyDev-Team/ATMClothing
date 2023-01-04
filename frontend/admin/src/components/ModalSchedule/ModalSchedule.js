@@ -62,7 +62,7 @@ const ModalSchedule = ({ isShowing, setHide }) => {
                                 isShow ? (
                                     <div className={classes.listmember__containerlistmember}>
                                         <div className={classes.listmember__containerlistmember__member}>
-                                            <h3>Trần Mạnh Khương asdsad</h3>
+                                            <h3>Trần Mạnh Khương</h3>
                                             <FontAwesomeIcon icon={faCirclePlus} className={classes.iconplus} />
                                         </div>
                                         <div className={classes.listmember__containerlistmember__member}>

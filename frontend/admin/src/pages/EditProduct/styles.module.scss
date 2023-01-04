@@ -159,6 +159,17 @@
                     border: none;
                     color: #333;
                 }
+
+                input::-webkit-outer-spin-button,
+                input::-webkit-inner-spin-button {
+                    -webkit-appearance: none;
+                    margin: 0;
+                }
+                /* Firefox */
+                input[type=number] {
+                    -moz-appearance: textfield;
+                }
+                
                 select {
                     width: 100%;
                     outline: none;
@@ -196,6 +207,11 @@
             background: linear-gradient(90.35deg, #bec6c0 35.08%, rgba(217, 217, 217, 0) 184.08%);
             border-radius: 10px;
             transition: 0.4s ease-in;
+        }
+        button:disabled,
+        button[disabled] {
+            opacity: 0.5;
+            cursor: auto;
         }
         .addproduct__information-success {
             display: block;

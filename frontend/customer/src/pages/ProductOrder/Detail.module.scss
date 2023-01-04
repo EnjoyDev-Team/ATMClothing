@@ -1,141 +1,135 @@
-.title {
-    margin: 5rem auto;
+.detail__product__main {
+    padding: 3rem 4rem;
+    padding-bottom: 0rem;
+    margin: 0 auto;
+}
+
+.number__product {
     margin-left: 10rem;
 }
 
-.container {
-    align-items: center;
-    display: flex;
-    flex-direction: column;
-    width: 125rem;
-    margin: auto;
-    -webkit-border-radius: 1rem;
-    -moz-border-radius: 1rem;
-    -ms-border-radius: 1rem;
-    -o-border-radius: 1rem;
-    border-radius: 1rem;
-    padding-bottom: 10rem;
+.detail__container {
+    width: 984px;
+    padding-bottom: 2rem;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    margin: 2rem auto;
+    overflow: hidden;
 }
 
-.container main {
-    display: flex;
-    flex-direction: column;
-    padding-bottom: 5rem;
-    background-color: white;
-    -webkit-border-radius: 1rem;
-    -moz-border-radius: 1rem;
-    -ms-border-radius: 1rem;
-    -o-border-radius: 1rem;
-    border-radius: 1rem;
+.detail__container__view {
+    max-height: 190px;
+    overflow: hidden;
+    transition: all .5s ease-in-out;
 }
 
-.title h1 {
-    font-family: 'Inter';
-    font-style: normal;
-    font-weight: 600;
-    font-size: 34px;
-    line-height: 41px;
+.detail__container__view.show {
+    max-height: 900px;
+}
+
+.content__section {
     display: flex;
+    gap: 2rem;
     align-items: center;
-    letter-spacing: 0.05em;
-    color: #597d32;
+}
+
+.content__section {
+    padding: 2rem 8rem;
+}
+
+.content__section p {
+    margin: 2rem;
 }
 
 .title p {
-    font-family: 'Inter';
-    font-style: normal;
-    font-weight: 500;
-    font-size: 20px;
-    line-height: 24px;
+    font-weight: bold;
+}
+
+.img {
+    flex: 1;
+}
+.img img {
+    float: right;
+}
+
+.button__see {
+    position: absolute;
+    width: auto;
+    right: 3rem;
+    background-color: #3f7673;
+    border-radius: 10px;
+    color: white;
+}
+
+.button__see > span {
     display: flex;
     align-items: center;
-    letter-spacing: 0.05em;
+    justify-content: space-around;
+    width: 9rem;
+}
+
+// IMG SECTION
+
+.img__container {
+    width: 984px;
+    display: flex;
+    gap: 10rem;
+    justify-content: center;
+    align-items: center;
+}
+
+.img__container div p {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 1rem;
     color: #666666;
 }
 
-.container h2 {
-    font-family: 'Inter';
-    font-style: normal;
-    font-weight: 600;
-    font-size: 30px;
-    line-height: 36px;
-    text-align: center;
-    color: #0d6ab0;
-    letter-spacing: 0.05em;
-    padding: 2rem;
-    border-bottom: 1px solid #ccc;
-    border-radius: 20px 20px 0px 0px;
-}
-
-.productList {
+// DESCRIPTION SECTION
+.description__product {
     display: flex;
     margin: 0 auto;
-    width: 1266px;
-    // gap: 3rem;
+    gap: 5rem;
+    padding: 1rem 10rem;
 }
 
-.header__order {
-    padding: 1rem;
-    padding-left: 2rem;
+.description__product p:first-child {
+    color: #333333;
     font-weight: bold;
-    color: white;
-    // width: 42rem;
 }
 
-.list__container {
+// OTHER INFP SECTION
+.other__info__header {
+    font-weight: bold;
+    color: #333333;
+    padding: 0.5rem 10rem;
+}
+.other__info__container {
     display: flex;
-    gap: 3rem;
+    margin: 0.5rem 0;
+    padding: 3rem 0rem;
+    padding-top: 0rem;
 }
 
-.list {
-    max-height: 519px;
-    overflow: auto;
-    background-color: white;
+.other__info__title p {
+    color: #666666;
+    margin: 0 0 0 15rem;
 }
 
-.order__detail {
-    // border: solid;
-    padding: 0 5rem;
-    background-color: white;
-    border-radius: 10px;
-    width: 818px;
+.other__info__content p {
+    margin: 0 0 0 3rem;
 }
 
-.items__header {
-    background-color: black;
+// IDEA CUSTOM SECTION
+.idea__custom__container {
     display: flex;
-    align-items: center;
-    justify-content: space-between;
+    gap: 4rem;
+    margin: 0.5rem 0;
+    padding: 0rem 10rem;
 }
 
-.filter__img {
-    padding-right: 2rem;
-}
-
-/********************************
-     DETAIL PRODUCT SECTION
-*******************************/
-.detail__product__container {
-    width: 1266px;
-    background-color: white;
-    margin: 5rem auto;
-    height: 1519px;
-}
-
-.detail__product__container h2 {
-    padding: 7rem 0 0 7rem;
-}
-
-// HANDLE FILTER
-
-.items__header {
-    position: relative;
-}
-
-.filter__table {
-    position: absolute;
-    left: 95%;
-    z-index: 2;
-    top: -3rem;
-    box-shadow: #666666;
+.idea__custom__container p:first-child {
+    color: #333333;
+    font-weight: bold;
 }

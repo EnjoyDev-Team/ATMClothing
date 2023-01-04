@@ -1,12 +1,12 @@
 .products {
     // width: 1000px;
-    padding: 72px 0 0 116px;
+    // padding: 72px 0 0 116px;
 
     .products__header {
         display: flex;
         align-items: center;
         justify-content: space-between;
-        padding: 40px 60px;
+        padding: 20px 40px;
 
         div {
             display: flex;
@@ -53,6 +53,9 @@
             }
 
             .products__header-add {
+                display: flex;
+                align-items: center;
+
                 .products__header-add-icon {
                     font-size: 1.8rem;
                     padding: 7px 8px;
@@ -70,84 +73,115 @@
     }
 
     .products__table-item {
-        padding: 0 40px 0 60px;
+        position: relative;
+        padding: 0 40px 0 40px;
 
-        table {
-            border-spacing: 0;
+        .products__table-scroll {
+            overflow: auto;
+            height: calc(100vh - 200px);
+            margin-top: 20px;
 
-            tr {
-                padding: 12px;
-                text-align: left;
+            table {
+                border-spacing: 0;
+                width: 100%;
 
-                td {
-                    font-weight: 500;
-                    font-size: 1.8rem;
-                    line-height: 22px;
-                    color: #403f3f;
-                    padding: 6px 0;
-                }
+                tr {
+                    padding: 12px;
+                    text-align: left;
 
-                td:not(:first-child):not(:last-child):not(:nth-child(2)) {
-                    border-bottom: 1px solid #000;
-                    min-width: 15rem;
-
-                    .status {
-                        display: inline-block;
-                        background-color: #eae1ff;
+                    td {
                         font-weight: 500;
-                        font-size: 1.8rem;
+                        font-size: 1.7rem;
                         line-height: 22px;
-                        padding: 3px 24px;
+                        color: #403f3f;
+                        padding: 6px 0;
                     }
-                    .status--purpel-color {
-                        color: #9a50f8;
-                    }
-                    .status--pink-color {
-                        color: #ff0099;
-                        background-color: #FFD0F2;
-                    }
-                }
-                td:nth-child(2) {
-                    border-bottom: 1px solid #000;
-                    min-width: 30rem;
 
-                    div {
-                        display: flex;
-                        align-items: center;
+                    td:not(:first-child):not(:last-child):not(:nth-child(2)) {
+                        border-bottom: 1px solid #000;
+                        min-width: 14rem;
 
-                        img {
-                            width: 5rem;
-                            height: 5rem;
-                        }
                         p {
                             display: block;
-                            padding: 0 12px;
-                            width: 80%;
+                            // width: 15rem ;
+                            // width: 30px;
+                            padding-right: 40px;
+                        }
+
+                        .status {
+                            display: inline-block;
+                            background-color: #eae1ff;
+                            font-weight: 500;
+                            font-size: 1.8rem;
+                            line-height: 22px;
+                            padding: 3px 24px;
+                        }
+                        .status--purpel-color {
+                            color: #9a50f8;
+                        }
+                        .status--pink-color {
+                            color: #ff0099;
+                            background-color: #ffd0f2;
                         }
                     }
-                }
-                td:first-child {
-                    border-bottom: 1px solid #000;
-                    min-width: 5rem;
-                }
-                td:last-child {
-                    border-bottom: 1px solid #000;
-                    width: 12rem;
+                    td:nth-child(2) {
+                        border-bottom: 1px solid #000;
+                        min-width: 30rem;
 
-                    .icon {
-                        margin: 0 13px;
-                        padding: 6px;
-                        cursor: pointer;
-                        color: #999;
+                        div {
+                            display: flex;
+                            align-items: center;
+
+                            img {
+                                width: 5rem;
+                                height: 5rem;
+                                border-radius: 5px;
+                            }
+                            p {
+                                display: block;
+                                padding: 0 12px;
+                                width: 80%;
+                            }
+                        }
                     }
-                }
-                th {
-                    border-bottom: 1px solid #000;
-                    padding-bottom: 12px;
-                    font-weight: 500;
-                    font-size: 2.2rem;
-                    line-height: 27px;
-                    color: #3d3c3c;
+                    td:first-child {
+                        border-bottom: 1px solid #000;
+                        min-width: 5rem;
+                    }
+                    td:last-child {
+                        border-bottom: 1px solid #000;
+                        width: 12rem;
+
+                        .icon {
+                            font-size: 1.5rem;
+                            padding: 6px;
+                            cursor: pointer;
+                            color: #999;
+                        }
+
+                        .icon:first-child:hover {
+                            color: cadetblue;
+                        }
+                        .icon:last-child:hover {
+                            color: #ff0099;
+                        }
+                    }
+                    th {
+                        border-bottom: 1px solid #000;
+                        padding-bottom: 16px;
+                        font-weight: 500;
+                        font-size: 2.1rem;
+                        line-height: 27px;
+                        color: #3d3c3c;
+
+                        p {
+                            position: absolute;
+                            top: -20px;
+                            width: 35%;
+                            background-color: #fff;
+                            line-height: 3.5rem;
+                        }
+                    }
                 }
             }
         }

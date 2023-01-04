@@ -196,11 +196,14 @@ const Products = () => {
                                 <div className={`${classes.card__title} ${classes.loading}`}> </div>
                                 <div className={`${classes.card__description} ${classes.loading}`}> </div>
                             </div> */}
-                            <div key={index + 1000} className={classes['products__product-item']}>
+                            <div key={+index} className={classes['products__product-item']}>
                                 <CardProduct
                                   Details={{
+                                    _id: item._id,
+                                    size: item.size,
+                                    amount: item.amount,
                                     name: item.name,
-                                    price: item.sale,
+                                    sale: item.sale,
                                     facility:
                                             item.facility !== undefined
                                             && (item.facility.length !== 0 ? item.facility : [{ name: 'Không có' }]),

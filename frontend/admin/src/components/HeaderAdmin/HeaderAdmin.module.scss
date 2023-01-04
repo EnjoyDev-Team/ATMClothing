@@ -1,14 +1,21 @@
 .header {
+    top: 0;
+    left: 0;
+    right: 0;
+    position: fixed;
     background: linear-gradient( #D8D8D8, rgb(242, 242, 242));
+    z-index: 500;
+
     &__components {
         display: flex;
         justify-content: flex-end;
         padding-right: 5rem;
-        height: 7rem;
+        height: 6rem;
         align-items: center;
         border-bottom: 2px solid #B9B9B9;
+        
         &__icon {
-            font-size: 4rem;
+            font-size: 3rem;
             padding-right: 4rem;
             opacity: 0.6;
             cursor: pointer;
@@ -21,7 +28,7 @@
             padding-right: 2.4rem;  
             &__avatar {
                 img {
-                    width: 4.5rem;
+                    width: 4rem;
                     border-radius: 50%;
                     cursor: pointer;
                 }
@@ -29,13 +36,13 @@
             &__name {
                 p {
                     padding-left: 1rem;
-                    font-size: 2rem;
+                    font-size: 1.8rem;
                 }
             }
         }
         &__iconOut {
             cursor: pointer;
-            font-size: 4rem;
+            font-size: 3rem;
             justify-items: center;
             opacity: 0.5;
         }

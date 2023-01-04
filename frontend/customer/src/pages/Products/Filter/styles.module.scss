@@ -10,6 +10,7 @@
         position: -webkit-sticky;
         top: 85px;
         overflow-y: scroll;
+        max-height: calc(100vh - 180px);
         
         .products__filter-price-wrap {
             padding: 14px;

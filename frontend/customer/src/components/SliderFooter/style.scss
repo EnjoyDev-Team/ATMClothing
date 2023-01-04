@@ -18,6 +18,10 @@
   opacity: 0.5;
 }
 
+.swiper-pagination {
+  bottom: 0px !important;
+}
+
 .swiper-slide img {
   display: block;
   width:100%;
@@ -29,18 +33,15 @@
   left: 3rem !important;
   padding: 4rem;
   top: 18rem;
-  // background-color: rgb(146, 235, 235);
-  // border-radius: 50%;
   opacity: 0.5;
-
+  color: #597d32;
 }
 .swiper-button-next {
   right: 3rem !important;
   padding: 4rem;
   top: 18rem;
-  // background-color: rgb(146, 235, 235);
-  // border-radius: 50%;
   opacity: 0.5;
+  color: #597d32;
 }
 .swiper-slide.swiper-slide-active {
   opacity: 0.5;
@@ -56,4 +57,3 @@
   content: 'next';
   font-weight: 900;
 }
-

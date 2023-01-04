@@ -1,6 +1,10 @@
+/* eslint-disable jsx-a11y/no-static-element-interactions */
+/* eslint-disable jsx-a11y/click-events-have-key-events */
 import React, { useState, useEffect } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowDown } from '@fortawesome/free-solid-svg-icons';
+import { Link } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
 import CardProduct from '../../components/cardProduct/CardProduct';
 import classes from './Home.module.scss';
 import quanaoNu from '../../assets/imgs/quanaoNu.png';
@@ -13,20 +17,22 @@ import khac from '../../assets/imgs/khac.png';
 import Slider from '../../components/Slider/Slider';
 import { SliderData } from '../../components/Slider/SliderData';
 import SliderFooter from '../../components/SliderFooter/SliderFooter';
-import CardSlider from '../../components/CardSlider/CardSlider';
 import imgHome from '../../assets/imgs/imgHome.jpg';
 import Report from '../../components/Report/Report';
 import useAxios from '../../hooks/useAxios';
+import avatar from '../../assets/imgs/avatars/avatars';
+import { addDataCategory, addDataTitle } from '../../store/reducers/dataCategory';
 
 const Home = () => {
   const [flashSale, setFlashSale] = useState('');
-  const [response, error, isLoading] = useAxios('get', '/products/san-pham-noi-bat', {}, {}, []);
+  const [responseProduct, errorProduct, isLoadingProduct] = useAxios('get', '/products/san-pham-noi-bat', {}, {}, []);
+  const dispatch = useDispatch();
 
   useEffect(() => {
-    if (isLoading === false && !error && response.data) {
-      setFlashSale(response.data);
+    if (responseProduct.data !== undefined) {
+      setFlashSale(responseProduct.data);
     }
-  }, [isLoading]);
+  }, [isLoadingProduct]);
 
   const [donation, setDonation] = useState('');
   const [response0d, error0d, isLoading0d] = useAxios('get', '/products/goc-0d', {}, {}, []);
@@ -50,16 +56,25 @@ const Home = () => {
     <div className={classes.imghome}>
       <img src={imgHome} alt="" />
     </div>
-    <Slider data={SliderData} />
+    <div className={classes.sliderdata}>
+      <Slider data={SliderData} />
+    </div>
       <div className={classes.header}>
         <h2 className={classes.header__content}>Danh mục yêu thích</h2>
         <div>
-          <a href="#1" className={classes.header__container}>
+          <Link
+            to="/products"
+            className={classes.header__container}
+            onClick={() => {
+              dispatch(addDataCategory('thoi-trang-nu-ao-nu'));
+              dispatch(addDataTitle('Áo nữ'));
+            }}
+          >
             <div className={classes.header__container__sample}>
               <img src={quanaoNu} alt="" />
             </div>
             <p>Thời trang nữ</p>
-          </a>
+          </Link>
           <a href="#1" className={classes.header__container}>
             <div className={classes.header__container__sample}>
               <img src={quanaoNam} alt="" />
@@ -100,10 +115,10 @@ const Home = () => {
       </div>
       <div className={classes.title}>
         <h2 className={classes.title__main}>FLASH sale</h2>
-        <a href="#1" className={`${classes.title__more} ${classes.hover}`}>
+        {/* <a href="#1" className={`${classes.title__more} ${classes.hover}`}>
           Xem tất cả
           <i><FontAwesomeIcon icon={faArrowDown} /></i>
-        </a>
+        </a> */}
       </div>
       <div className={classes.listProducts}>
           {
@@ -115,11 +130,18 @@ const Home = () => {
           }
       </div>
       <div className={classes.title}>
-        <h2 className={classes.title__main}>Thời trang nữ</h2>
-        <a href="#1" className={`${classes.title__more} ${classes.hover}`}>
+        <h2 className={classes.title__main}>Sản phẩm nổi bật</h2>
+        <Link
+          to="/products"
+          className={`${classes.title__more} ${classes.hover}`}
+          onClick={() => {
+            dispatch(addDataCategory(undefined));
+            dispatch(addDataTitle('Sản phẩm nổi bật'));
+          }}
+        >
           Xem tất cả
           <i><FontAwesomeIcon icon={faArrowDown} /></i>
-        </a>
+        </Link>
       </div>
       <div className={classes.listProducts}>
         {
@@ -172,13 +194,13 @@ const Home = () => {
         <h1 className={classes.containerreport__header}>Phản hồi từ khách hàng</h1>
         <div className={classes.containerreport__listreport}>
           <div className={classes.containerreport__listreport__report}>
-            <Report cardreport />
+            <Report cardreport name="Chính Trần" img={avatar.avatar7} comment="Dịch vụ tại ATMC quá chất lượng luôn. Sẽ ủng hộ dài dài..." />
           </div>
           <div className={classes.containerreport__listreport__report}>
-            <Report />
+            <Report name="Trần Khương" img={avatar.avatar6} comment="Rất tiện lợi, tận dụng được những bộ trang phục, ý nghĩ quá" />
           </div>
           <div className={classes.containerreport__listreport__report}>
-            <Report cardreport />
+            <Report cardreport name="Minh Nguyễn" img={avatar.avatar8} comment="Các mẫu thiết kế ở đây luôn độc đáo và không đụng hàng với ai luôn!" />
           </div>
         </div>
       </div>

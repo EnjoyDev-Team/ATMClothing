@@ -1,16 +1,18 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import _ from 'lodash';
+import { Outlet } from 'react-router-dom';
+import HeaderAdmin from '../components/HeaderAdmin/HeaderAdmin';
+import NavigationAdmin from '../components/NavigationAdmin/NavigationAdmin';
 
-const Layout = () => {
-  const a = 0;
-
-  return (
-    <div>
-      Layout
+const Layout = () => (
+  <div>
+    <HeaderAdmin />
+    <NavigationAdmin />
+    <div style={{ padding: '60px 0 0 80px' }}>
+      <Outlet />
     </div>
-  );
-};
+  </div>
+);
 
 Layout.propTypes = {
 

@@ -6,10 +6,15 @@
     align-items: center;
     flex-direction: column;
     border-right: 2px solid #B9B9B9;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+
     &__logo {
         text-align: center;
         padding-top: 2.5rem;
-        padding-bottom: 14rem;
+        padding-bottom: 6rem;
         img {
             cursor: pointer;
             width: 8rem;
@@ -31,6 +36,7 @@
                     position: relative;
                     cursor: pointer;
                     img {
+                    
                         width: 4.5rem;
                         cursor: pointer;
                         transition: all .3s ease;
@@ -55,7 +61,7 @@
                             padding-left: calc(1.5rem - 1px);
                             transition: 1.8s;
                         }
-                        P {
+                        p {
                             margin: auto;
                             font-size: 2.2rem;
                             font-weight: 600;
@@ -65,11 +71,6 @@
                         }
                     }   
                 }
-                // &__component>img:hover +.components__component__title {
-                //     opacity: 1;
-                //     transition: 1.8s;
-                // }
-
             }
         }
     }

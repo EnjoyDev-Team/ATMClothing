@@ -1,9 +1,13 @@
 /* eslint-disable indent */
 /* eslint-disable react/prop-types */
 /* eslint-disable react/jsx-indent-props */
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import { useLocation } from 'react-router';
+import QRCode from 'qrcode';
 import classes from './DetailOrder.module.scss';
-import qr from '../../assets/imgs/detailRequest/QR 1.png';
+import { STATUS_ORDER_PRODUCT } from '../../constants';
+
+const statusOrder = STATUS_ORDER_PRODUCT;
 
 const DetailProduct = ({ orderDetail, id, isLoading }) => {
     const paymentDelivery = [
@@ -15,18 +19,43 @@ const DetailProduct = ({ orderDetail, id, isLoading }) => {
         'Đang kiểm tra': classes.processing,
         'Chờ nhận hàng': classes.waiting,
         'Đã hoàn thành': classes.success,
+        'Đã hủy': classes.canceled,
     };
+
+    const location = useLocation();
+    const path = location.pathname.split('/');
+    const [qr, setQR] = useState('');
+
+    const generateQR = async text => {
+        try {
+          const res = await QRCode.toDataURL(text);
+          setQR(res);
+        } catch (err) {
+          console.error(err);
+        }
+      };
+
+    useEffect(() => {
+        if (orderDetail.IdOrder || orderDetail.code) {
+            generateQR(orderDetail.IdOrder || orderDetail.code);
+        }
+    }, [orderDetail]);
 
     return (
         <div className={classes.main}>
             <h3 className={classes.title}>CHI TIẾT ĐƠN HÀNG</h3>
-            {/* Content section */}
+            {path.length > 3 && orderDetail
+            ? (
+            <div>
+                {/* Content section */}
             <div className={classes.content}>
                 <div className={classes.left__section}>
                     <p>Mã đơn hàng</p>
                     <p>Ngày tạo</p>
-                    <p>Yêu cầu</p>
+                    {orderDetail && orderDetail.service && <p>Yêu cầu</p>}
                     <p>Hình thức nhận hàng</p>
+                    {orderDetail.address && orderDetail.address.name
+                    && <p style={{ paddingBottom: '68px' }}>Địa chỉ</p>}
                     <p>Trạng thái</p>
                 </div>
                 <div className={classes.middle__section}>
@@ -34,6 +63,8 @@ const DetailProduct = ({ orderDetail, id, isLoading }) => {
                         {!isLoading
                             ? orderDetail && orderDetail.IdOrder
                                 ? orderDetail.IdOrder
+                                : orderDetail && orderDetail.code
+                                ? orderDetail.code
                                 : '\u00A0'
                             : 'loading...'}
                     </p>
@@ -41,6 +72,8 @@ const DetailProduct = ({ orderDetail, id, isLoading }) => {
                         {!isLoading
                             ? orderDetail && orderDetail.createAt
                                 ? new Date(orderDetail.createAt).toLocaleString('vi', { timeZone: 'Asia/Ho_Chi_Minh' })
+                                : orderDetail && orderDetail.create_at
+                                ? new Date(orderDetail.create_at).toLocaleString('vi', { timeZone: 'Asia/Ho_Chi_Minh' })
                                 : '\u00A0'
                             : 'loading...'}
                     </p>
@@ -48,25 +81,48 @@ const DetailProduct = ({ orderDetail, id, isLoading }) => {
                         {!isLoading
                             ? orderDetail && orderDetail.service
                                 ? orderDetail.service
-                                : '\u00A0'
+                                : ''
                             : 'loading...'}
                     </p>
                     <p style={{ color: '#666666' }}>
                         {!isLoading
                             ? orderDetail && orderDetail.paymentDelivery !== undefined
                                 ? paymentDelivery[orderDetail.paymentDelivery]
-                                : '\u00A0'
+                                : 'Giao hàng'
                             : 'loading...'}
                     </p>
+                    {orderDetail.address && orderDetail.address.name && (
+                        <p className={classes.detailOrder__address} style={{ border: '1px solid #ccc', padding: '10px', borderRadius: '10px' }}>
+                        <span style={{ color: '#13488C' }}>
+                            {orderDetail.address.name}
+                            {' '}
+                            |
+                            {' '}
+                            {orderDetail.address.phone}
+                        </span>
+                        <span style={{ color: '#808080', display: 'block', fontWeight: '300', padding: '2px 0' }}>{orderDetail.address.street}</span>
+                        <span style={{ color: '#808080', fontWeight: '300' }}>
+                            {orderDetail.address.ward}
+                            ,
+                            {' '}
+                            {orderDetail.address.district}
+                            ,
+                            {' '}
+                            {orderDetail.address.city}
+                        </span>
+                        </p>
+                        )}
                     <p
-                        className={`${classes.status}${
-                            orderDetail && orderDetail.status ? ` ${statusClass[orderDetail.status]}` : ''
-                        }`}
+                        className={`${classes.status}
+                        ${orderDetail && Number.isInteger(orderDetail.status)
+                            ? ` ${classes[statusOrder[orderDetail.status].style]}`
+                            : ` ${statusClass[orderDetail.status]}`}
+                        `}
                     >
                         {!isLoading
-                            ? orderDetail && orderDetail.status
-                                ? orderDetail.status
-                                : '\u00A0'
+                            ? orderDetail && Number.isInteger(orderDetail.status)
+                                ? statusOrder[orderDetail.status].label
+                                : orderDetail.status
                             : 'loading...'}
                     </p>
                 </div>
@@ -80,7 +136,7 @@ const DetailProduct = ({ orderDetail, id, isLoading }) => {
             {/* Price section */}
             <div className={classes.price__section__container}>
                 <div className={classes.price__left__section}>
-                    <p>Tiền bạn nhận được</p>
+                    {path[1] === 'shopping' ? <p>Tổng tiền hàng</p> : <p>Tổng chi phí</p>}
                     <p>Phí vận chuyển</p>
                     <p className={classes.total}>Tổng thanh toán</p>
                 </div>
@@ -112,6 +168,8 @@ const DetailProduct = ({ orderDetail, id, isLoading }) => {
                 />
             </div> */}
             </div>
+            </div>
+            ) : <p />}
         </div>
     );
 };

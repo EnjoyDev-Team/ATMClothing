@@ -38,6 +38,9 @@
                         height: 100px;
                     }
                 }
+                .product__img-wrap-other-style--mr12px {
+                    margin-right: 12px;
+                }
                 .product__img-wrap-other-style:last-child {
                     position: relative;
 
@@ -304,10 +307,6 @@
             display: grid;
             grid-template-columns: auto auto auto auto auto;
             gap: 40px;
-            .product__detail-similar-item {
-                background-color: #fff;
-                height: 250px;
-            }
         }
     }
     .product__detail-watched {

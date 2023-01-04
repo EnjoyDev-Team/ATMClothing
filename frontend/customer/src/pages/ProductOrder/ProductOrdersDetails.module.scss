@@ -1,7 +1,6 @@
 .title {
-    padding: 5rem 0rem;
+    padding: 2rem 0rem;
     margin: 0rem auto;
-    margin-left: 10rem;
 }
 
 .container {
@@ -26,10 +25,11 @@
     font-family: 'Inter';
     font-style: normal;
     font-weight: 600;
-    font-size: 34px;
+    font-size: 30px;
     line-height: 41px;
     display: flex;
     align-items: center;
+    justify-content: center;
     letter-spacing: 0.05em;
     color: #597d32;
 }
@@ -38,10 +38,11 @@
     font-family: 'Inter';
     font-style: normal;
     font-weight: 500;
-    font-size: 20px;
+    font-size: 18px;
     line-height: 24px;
     display: flex;
     align-items: center;
+    justify-content: center;
     letter-spacing: 0.05em;
     color: #666666;
 }
@@ -81,7 +82,7 @@
 }
 
 .list {
-    max-height: 479px;
+    max-height: 492px;
     overflow-y: auto;
     overflow-x: hidden;
     background-color: white;

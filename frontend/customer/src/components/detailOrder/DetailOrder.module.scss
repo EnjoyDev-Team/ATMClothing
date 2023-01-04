@@ -1,7 +1,7 @@
 .main {
     width: 808px;
-    height: 519px;
 }
+
 .title {
     font-size: 24px;
     display: flex;
@@ -44,9 +44,9 @@
 }
 
 .required__message {
-    font-size: 18px;
-    font-weight: bold;
-    margin: 2rem 2rem;
+    font-size: 16px;
+    font-weight: 500;
+    margin: 1rem 2rem;
 }
 
 .price__section__container {
@@ -90,4 +90,24 @@ p.waiting {
 
 p.success {
     color: #4ced8f;
+}
+
+p.confirmed {
+    color: rgb(2, 2, 196);
+}
+
+p.delivery {
+    color: #FF7D04;
+}
+
+p.receiving {
+    color: #FF7D04;
+}
+
+p.success {
+    color: #02921a;
+}
+
+p.canceled {
+    color: rgb(238, 4, 19);
 }

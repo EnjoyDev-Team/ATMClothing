@@ -15,13 +15,11 @@
 }
 
 .listrevenue {
-    margin-left: 8.6rem;
-    margin-right: 3rem;
-    margin-top: 11rem;
     display: flex;
     flex-direction: row-reverse;
     justify-content: space-around;
     flex-wrap: wrap;
+    margin: 20px 40px 0;
 
     &__revenue {
         padding-bottom: 1rem;
@@ -29,9 +27,8 @@
 }
 
 .futureplan {
-    margin-left: 11.5rem;
-    margin-right: 6rem;
-
+    margin: 20px 40px 0;
+    
     &__title {
         text-transform: uppercase;
         font-size: 2.7rem;
@@ -84,7 +81,7 @@
                         display: flex;
                         align-items: center;
                         input {
-                            min-width: 3.6rem;
+                            min-width: 2.6rem;
                             height: 3.6rem;
                             justify-content: center;
                             appearance: auto;
@@ -98,7 +95,7 @@
                         }
                     }
                     &__icon {
-                        font-size: 3rem;
+                        font-size: 2rem;
                         color: rgb(228, 43, 43);
                         margin-right: 3rem;
                         cursor: pointer;

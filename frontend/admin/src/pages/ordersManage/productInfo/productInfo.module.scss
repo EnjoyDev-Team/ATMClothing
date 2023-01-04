@@ -14,6 +14,7 @@
     width: 60px;
     height: 60px;
     flex: 2;
+    margin: 0 10px;
   }
 
   &__info {
@@ -68,7 +69,7 @@
 }
 
 .detail__container__view {
-  max-height: 190px;
+  max-height: 170px;
   overflow: hidden;
   transition: all .5s ease-in-out;
 }
@@ -80,20 +81,22 @@
 .content__section {
   position: relative;
   display: flex;
-  gap: 2rem;
   padding: 1rem;
 }
 
 .detail__content {
   flex: 1;
+  font-size: 1.4rem;
 }
 
 .content__section p {
-  margin: 2rem;
+  margin: 2rem 0 2rem 2rem;
+
 }
 
 .title p {
   font-weight: bold;
+  font-size: 1.4rem;
 }
 
 .button__see {
@@ -109,7 +112,8 @@
   display: flex;
   align-items: center;
   justify-content: space-around;
-  width: 9rem;
+  width: 7.4rem;
+  font-size: 1.4rem;
 }
 
 // IMG SECTION

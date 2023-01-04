@@ -1,3 +1,5 @@
+@import '../../styles/colors.scss';
+
 .container {
     width: 32rem;
     display: flex;
@@ -6,7 +8,7 @@
     border-radius: 15px;
     &__report {
         margin: 1.8rem 1.4rem;
-        background: linear-gradient(180deg, #000092 0%, #FF00F3 100%);
+        background-color: rgba(60, 125, 8, 0.7);
         display: flex;
         text-align: center;
         flex-direction: column;
@@ -70,7 +72,7 @@
             &__icon {
                 font-size: 7rem;
                 padding-bottom: 3rem;
-                color: #d62178;
+                color: $main_color;
             }
         }
 

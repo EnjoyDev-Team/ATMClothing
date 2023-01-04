@@ -4,9 +4,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMapLocationDot, faHeart } from '@fortawesome/free-solid-svg-icons';
 import { Link, useParams } from 'react-router-dom';
 import classes from './styles.module.scss';
-import jacket from '../../assets/imgs/jacket.png';
-import other from '../../assets/imgs/other.png';
-import coin from '../../assets/imgs/coin.png';
+import Coin from '../../assets/imgs/coin.png';
 import Button from '../../components/ButtonCT/ButtonCT';
 import facebook from '../../assets/imgs/facebook.png';
 import instagram from '../../assets/imgs/instagram.png';
@@ -14,20 +12,7 @@ import useAxios from '../../hooks/useAxios';
 import CardProduct from '../../components/cardProduct/CardProduct';
 
 const productDetail = {
-  imgJacket: jacket,
-  imgsOther: [other, other, other, other, other, other],
-  title: 'Áo blazer unisex caro phối jeans cá tính',
-  currentPrice: '189.000đ',
-  initialPrice: '438.000đ',
-  discountPrice: '-49%',
-  location: 'Thủ Đức',
   coin: 22,
-  size: 'XL, oversize, m70-m75, 50kg-65kg',
-  color: 'Xám đen',
-  amount: 1,
-  material: 'Len',
-  category: 'Thời trang nam',
-  condition: 'Như mới',
   describe:
         'Ngoài sản phẩm này ra, chúng mình có nhận pre - order sản phẩm tương tự hoặc custom theo yêu cầu của các bạn. Với sự tâm huyết và tỉ mỉ trong từng sản phẩm, chúng mình luôn sẵn sàng gửi đến bạn những trải nghiệm tuyệt vời nhất khi mua sắm. Chính vì vậy bạn hãy đến với chúng mình nhé, chúng ta sẽ cùng nhau tạo ra những giá trị tuyệt vời! CHÚNG MÌNH Ở ĐÂY CHỜ CẬU!',
   storageInstructions: 'Hướng dẫn bảo quản: ',
@@ -41,7 +26,17 @@ const ProductDetail = () => {
   const params = useParams();
   const [response, error, isLoading] = useAxios('get', `/products/${params.id}?fields=-__v`, {}, {}, []);
   const responseData = response.data !== undefined && response.data[0];
-  const percentSale = Math.floor(((+responseData.price) - (+responseData.sale)) / (+responseData.price) * 100);
+  const percentSale = Math.floor(((+responseData.price - +responseData.sale) / +responseData.price) * 100);
+  const coin = responseData && responseData.sale.split('.')[0];
+
+  const [dataFilterCategory, errorDataFilter, isLoadingDataFilter] = useAxios(
+    'get',
+    `/products?limit=5${responseData.slug !== '' ? `&category=${responseData.slug}` : ''}`,
+    {},
+    {},
+    [response]
+  );
+  const dataFilters = dataFilterCategory.data !== undefined && dataFilterCategory.data;
 
   return (
         <div className={classes.product__detail}>
@@ -51,29 +46,38 @@ const ProductDetail = () => {
                         <img src={responseData.img} alt="" className={classes['product__img-detail']} />
                     </div>
                     <ul
-                      className={`${classes['product__imgs-other-style']} ${responseData.other_img !== undefined && responseData.other_img.length > 3
-                        ? classes['product__imgs-other-style--jtc']
-                        : classes['product__imgs-other-style--njtc']}`}
+                      className={`${classes['product__imgs-other-style']} ${
+                        responseData.other_img !== undefined && responseData.other_img.length > 3
+                          ? classes['product__imgs-other-style--jtc']
+                          : classes['product__imgs-other-style--njtc']
+                      }`}
                     >
                         {responseData.other_img !== undefined && responseData.other_img.length > 5
                           ? responseData.other_img.slice(0, 5).map((item, idx) => (
-                                <li key={+idx} className={classes['product__img-wrap-other-style']}>
-                                    <p className={classes['product__img-wrap-other-style-bg']}>
-                                        Xem thêm
-                                        {' '}
-                                        {responseData.other_img.length - 5}
-                                        {' '}
-                                        ảnh
-                                    </p>
-                                    <img src={item} alt="" className={classes['product__img-other-style']} />
-                                </li>
+                                  <li key={+idx} className={classes['product__img-wrap-other-style']}>
+                                      <p className={classes['product__img-wrap-other-style-bg']}>
+                                          Xem thêm
+{' '}
+{responseData.other_img.length - 5}
+{' '}
+ảnh
+                                      </p>
+                                      <img src={item} alt="" className={classes['product__img-other-style']} />
+                                  </li>
                           ))
                           : responseData.other_img !== undefined
-                            && responseData.other_img.map((item, idx) => (
-                                <li key={+idx} className={classes['product__img-wrap-other-style']}>
-                                    <img src={item} alt="" className={classes['product__img-other-style']} />
-                                </li>
-                            ))}
+                              && responseData.other_img.map((item, idx) => (
+                                  <li
+                                    key={+idx}
+                                    className={`${classes['product__img-wrap-other-style']} ${
+                                      responseData.other_img !== undefined && responseData.other_img.length < 5
+                                        ? classes['product__img-wrap-other-style--mr12px']
+                                        : ''
+                                    }`}
+                                  >
+                                      <img src={item} alt="" className={classes['product__img-other-style']} />
+                                  </li>
+                              ))}
                     </ul>
                 </div>
                 <div className={classes['product__detail-infomation-content']}>
@@ -83,15 +87,15 @@ const ProductDetail = () => {
                         <div className={classes['product__detail-price-information']}>
                             <div className={classes['product__detail-price']}>
                                 <span className={classes['product__detail-price-current']}>
-                                    {responseData.sale}
-                                    đ
+{responseData.sale}
+đ
                                 </span>
                                 <span className={classes['product__detail-price-initial']}>
-                                    {responseData.price}
-                                    đ
+{responseData.price}
+đ
                                 </span>
                                 <span className={classes['product__detail-price-discount']}>
-                                    -
+-
 {percentSale}
 %
                                 </span>
@@ -111,10 +115,10 @@ const ProductDetail = () => {
                         <div className={classes['product__detail-bonus']}>
                             <span className={classes['product__detail-bunus-content']}>
                                 Thưởng
-                                {' '}
-                                {productDetail.coin}
+{' '}
+{coin}
                             </span>
-                            <img src={coin} alt="" className={classes['product__detail-bonus-img']} />
+                            <img src={Coin} alt="" className={classes['product__detail-bonus-img']} />
                         </div>
                     </div>
 
@@ -133,8 +137,8 @@ const ProductDetail = () => {
                             <span className={classes['product__wrap-infomation-label']}>Số Lượng</span>
                             <span className={classes['product__wrap-infomation-amount-detail']}>
                                 {responseData.amount}
-                                {' '}
-                                sản phẩm
+{' '}
+sản phẩm
                             </span>
                         </div>
                     </div>
@@ -231,7 +235,7 @@ const ProductDetail = () => {
                 </div>
                 <span className={classes['product__detail-benefit-heading-content']}>
                     Lợi ích khi mua hàng chính hãng Supersports trên sàn Thương mại điện tử:
-                    {' '}
+{' '}
                 </span>
                 <span className={classes['product__detail-benefit-heading-content']}>
                     100% sản phẩm bạn nhận được là hàng thật, hàng chính hãng với chất lượng tương đương khi mua tại các
@@ -247,34 +251,37 @@ const ProductDetail = () => {
                 <span className={classes['product__detail-similar-heading']}>Sản phẩm tương tự</span>
 
                 <div className={classes['product__detail-similar-list']}>
-                    <div className={classes['product__detail-similar-item']}>
-                        <p>1</p>
-                    </div>
-                    <div className={classes['product__detail-similar-item']}>
-                        <p>1</p>
-                    </div>
-                    <div className={classes['product__detail-similar-item']}>
-                        <p>1</p>
-                    </div>
-                    <div className={classes['product__detail-similar-item']}>
-                        <p>1</p>
-                    </div>
-                    <div className={classes['product__detail-similar-item']}>
-                        <p>1</p>
-                    </div>
+                    {dataFilters
+                        && dataFilters.map((item, index) => (
+                            <div key={+index} className={classes['product__detail-similar-item']}>
+                                <CardProduct
+                                  Details={{
+                                    _id: item._id,
+                                    size: item.size,
+                                    amount: item.amount,
+                                    name: item.name,
+                                    sale: item.sale,
+                                    facility:
+                                            item.facility !== undefined
+                                            && (item.facility.length !== 0 ? item.facility : [{ name: 'Không có' }]),
+                                    img: item.img,
+                                  }}
+                                />
+                            </div>
+                        ))}
                 </div>
             </div>
 
-            <div className={classes['product__detail-watched']}>
+            {/* <div className={classes['product__detail-watched']}>
                 <span className={classes['product__detail-watched-heading']}>Sản phẩm đã xem</span>
 
                 <div className={classes['product__detail-watched-list']}>
-                    <div className={classes['product__detail-watched-item']}>{/* <CardProduct /> */}</div>
+                    <div className={classes['product__detail-watched-item']}> </div>
                     <div className={classes['product__detail-watched-item']}>
                         <p>1</p>
                     </div>
                 </div>
-            </div>
+            </div> */}
         </div>
   );
 };

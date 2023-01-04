@@ -4,16 +4,17 @@
     width: 20%;
     
     .products__category-wrap {
-        width: 272px;
+        // width: 272px;
         background-color: #fff;
         border-radius: 8px;
         position: sticky;
         position: -webkit-sticky;
         top: 85px;
+        padding: 10px 0;
 
         .products__category-heading {
-            padding: 6px 0;
-            padding-left: 12px;
+            padding: 6px 0 16px;
+            padding-left: 22px;
         }
         .products__category-list {
             list-style: none;
