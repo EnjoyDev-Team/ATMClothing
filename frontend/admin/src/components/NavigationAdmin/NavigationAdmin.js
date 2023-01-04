@@ -7,10 +7,15 @@ import dashboard from '../../assets/imgs/navigation/dashboard.png';
 import products from '../../assets/imgs/navigation/products.png';
 import users from '../../assets/imgs/navigation/users.png';
 import ordersControl from '../../assets/imgs/navigation/ordersControl.png';
+import dashboardColor from '../../assets/imgs/navigation/dashboardColor.png';
+import productsColor from '../../assets/imgs/navigation/productsColor.png';
+import usersColor from '../../assets/imgs/navigation/usersColor.png';
+import ordersControlColor from '../../assets/imgs/navigation/ordersControlColor.png';
 
 const NavigationAdmin = () => {
   const location = useLocation();
   const path = location.pathname;
+  console.log(location.pathname);
 
   return (
         <div>
@@ -24,7 +29,7 @@ const NavigationAdmin = () => {
                     <div className={classes.navigation__container__listcontent}>
                         <div className={classes.components}>
                                 <Link className={classes.components__component} to="/dashboard">
-                                    <img src={dashboard} alt="" />
+                                    <img src={path.includes('/dashboard', 0) === true ? dashboardColor : dashboard} alt="" />
                                     <div className={classes.components__component__title}>
                                         <img src={dashboard} alt="" />
                                         <p>Dashboard</p>
@@ -32,17 +37,8 @@ const NavigationAdmin = () => {
                                 </Link>
                         </div>
                         <div className={classes.components}>
-                                <Link className={classes.components__component} to="/admin-orders">
-                                    <img src={ordersControl} alt="" />
-                                    <div className={classes.components__component__title}>
-                                        <img src={ordersControl} alt="" />
-                                        <p>Orders Control</p>
-                                    </div>
-                                </Link>
-                        </div>
-                        <div className={classes.components}>
                                 <Link className={classes.components__component} to="/admin-products">
-                                    <img src={products} alt="" />
+                                    <img src={path.includes('/admin-products', 0) === true ? productsColor : products} alt="" />
                                     <div className={classes.components__component__title}>
                                         <img src={products} alt="" />
                                         <p>Products</p>
@@ -50,11 +46,20 @@ const NavigationAdmin = () => {
                                 </Link>
                         </div>
                         <div className={classes.components}>
-                                <Link className={classes.components__component} to="admin-users">
-                                    <img src={users} alt="" />
+                                <Link className={classes.components__component} to="/admin-users">
+                                    <img src={path.includes('/admin-users', 0) === true ? usersColor : users} alt="" />
                                     <div className={classes.components__component__title}>
                                         <img src={users} alt="" />
                                         <p>Users</p>
+                                    </div>
+                                </Link>
+                        </div>
+                        <div className={classes.components}>
+                                <Link className={classes.components__component} to="/admin-orders">
+                                <img src={path.includes('/admin-orders', 0) === true ? ordersControlColor : ordersControl} alt="" />
+                                    <div className={classes.components__component__title}>
+                                        <img src={ordersControl} alt="" />
+                                        <p>Orders Control</p>
                                     </div>
                                 </Link>
                         </div>
