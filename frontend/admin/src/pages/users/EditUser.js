@@ -1,3 +1,4 @@
+/* eslint-disable object-curly-spacing */
 /* eslint-disable import/no-useless-path-segments */
 /* eslint-disable import/no-relative-packages */
 /* eslint-disable import/no-unresolved */
@@ -7,8 +8,9 @@ import React from 'react';
 import classes from './EditUser.module.scss';
 import avatar from '../../assets/imgs/users/avatar.jpg';
 import camera from '../../assets/imgs/users/Camera.png';
-import Form from './../../components/users/Form';
+import FormCreate from '../../components/users/FormCreate';
 
+// eslint-disable-next-line react/prop-types
 const EditUser = () => {
     return (
         <main className={classes.edit__body}>
@@ -21,10 +23,10 @@ const EditUser = () => {
                 <p className={classes.username}>Trần Duy Khương</p>
             </div>
             <div>
-                <Form className={classes.edit__form} />
+                <FormCreate className={classes.edit__form} />
             </div>
             <div className={classes.btn__container}>
-                <button className={classes.saveBtn}>Lưu thay đổi</button>
+                <button className={classes.saveBtn}>Thêm người dùng</button>
                 <button className={classes.saveBtnSuccess}>Lưu thành công</button>
             </div>
         </main>
