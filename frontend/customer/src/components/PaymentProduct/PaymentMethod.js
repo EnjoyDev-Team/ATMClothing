@@ -4,6 +4,7 @@ import React from 'react';
 import { useRecoilValue } from 'recoil';
 import { toast } from 'react-toastify';
 import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 import classes from './PaymentMethod.module.scss';
 import ButtonCT from '../ButtonCT/ButtonCT';
 import { addressRecoil, paymentRecoil, paymentMethodRecoil,
@@ -15,6 +16,7 @@ import useAxiosPrivate from '../../hooks/useAxiosPrivate';
 import { removeFromPayment, removeFromCart } from '../../store/reducers/cartSlice';
 
 const PaymentMethod = () => {
+  const navigate = useNavigate();
   const axiosPrivate = useAxiosPrivate();
   const dispatch = useDispatch();
   const cart = useSelector(state => state.cart.cart);
@@ -32,6 +34,19 @@ const PaymentMethod = () => {
   };
 
   const handleSubmit = () => {
+    if (address.name === '') {
+      toast.error('Vui lòng chọn địa chỉ giao hàng', {
+        position: 'top-right',
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: 'light',
+      });
+      return;
+    }
     const data = {
       IdOrder: OrderIDGenerator(),
       remindName: '',
@@ -68,6 +83,7 @@ const PaymentMethod = () => {
         });
 
         // Redirect to order detail page
+        navigate('/shopping/orders');
       }).catch((err) => {
         toast.error(err.response.data.message, {
           position: 'top-right',
@@ -107,6 +123,7 @@ const PaymentMethod = () => {
                   content="Đặt hàng"
                   borderRadius
                   onClick={handleSubmit}
+                  disabled={!productList.length > 0}
                 />
             </div>
         </main>

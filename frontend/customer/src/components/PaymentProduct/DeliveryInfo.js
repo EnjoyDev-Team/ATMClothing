@@ -31,12 +31,14 @@ const DeliveryInfo = () => {
                   )}
                 <FontAwesomeIcon icon={faChevronDown} className={classes.chevrondown__icon} />
             </div>
-            {show === true ? (
-                <div className={classes.address__table}>
-                    <AddressItem setOpen={toggleAddressTable} />
-                </div>
+            {show ? (
+              <div className={`${classes.address__table} ${classes['address__table-item--show']}`}>
+                <AddressItem setOpen={toggleAddressTable} />
+              </div>
             ) : (
-              ''
+              <div className={`${classes.address__table} ${classes['address__table-item--hide']}`}>
+                <AddressItem setOpen={toggleAddressTable} />
+              </div>
             )}
             <div className={classes.note}>
                 <FontAwesomeIcon icon={faPencil} />

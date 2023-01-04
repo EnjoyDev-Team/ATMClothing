@@ -44,19 +44,25 @@ const OrderInfo = () => {
                 x
             </div>
             <div className={classes.orderInfo__img}>
-                <img width={80} src={item.img} alt="" />
+                <img width={80} src={item.img} alt="" className={classes.img_product} />
             </div>
             <div className={classes.info}>
                 <p className={classes.product__name}>{item.detail.name}</p>
                 <p className={classes.product__price}>{item.detail.price}</p>
-                <p className={classes.product__details}>{item.size}</p>
+                <p className={classes.product__details}>
+                  Size:
+                  {' '}
+                  {item.size}
+                </p>
             </div>
             <div className={classes.icon__container}>
-                <FontAwesomeIcon
-                  className={classes.icon__trash}
-                  icon={faTrashCan}
-                  onClick={() => handleRemoveFromPayment(item._id)}
-                />
+                <div className={classes.trash_containner}>
+                  <FontAwesomeIcon
+                    className={classes.icon__trash}
+                    icon={faTrashCan}
+                    onClick={() => handleRemoveFromPayment(item._id)}
+                  />
+                </div>
                 <p className={classes.location}>
                     <FontAwesomeIcon className={classes.icon__location} icon={faLocationDot} />
                     {item.detail.facility.length ? item.detail.facility[0].name : ''}

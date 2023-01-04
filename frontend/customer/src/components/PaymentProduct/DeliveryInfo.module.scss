@@ -1,23 +1,49 @@
 .delivery__info {
     background-color: white;
+    position: relative;
 }
 
 .address__delivery {
     display: flex;
-    // justify-content: space-around;
-    // gap: 3rem;
-    // margin: 1rem 0;
     border-bottom: 1px #666666 solid;
-    padding: 1.5rem 0.5rem;
+    padding: 1.5rem 1.6rem;
+    gap: 4px;
+    cursor: pointer;
+    justify-content: space-between;
 }
 
 .location__delivery__icon {
-    padding: 0 2rem;
+    // padding: 0 2rem;
+    margin: auto 0;
     color: #ff424e;
+    height: 2.5rem;
+    height: 2.5rem;
 }
 
 .chevrondown__icon {
-    margin-left: 13rem;
+    // margin-left: 5rem;
+}
+
+.address__table {
+    // display: none;
+    position: absolute;
+    background-color: rgb(211, 210, 210);
+    width: 100%;
+    z-index: 1;
+    
+    min-height: 0rem;
+    overflow: hidden;
+    transition: max-height 0.5s ease-out;
+}
+
+.address__table-item--show {
+    max-height: 30rem;
+}
+.address__table-item--hide {
+    max-height: 0rem;
+}
+.address__table-item:last-child {
+    padding-bottom: 6px;
 }
 
 .note {
@@ -26,10 +52,6 @@
     padding: 1.5rem 2rem;
 }
 
-// .note p {
-//     font-size: 14px;
-//     color: #444;
-// }
 
 .note input {
     border: none;

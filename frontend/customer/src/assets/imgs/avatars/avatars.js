@@ -7,4 +7,4 @@ import avatar6 from './6.png';
 import avatar7 from './7.png';
 import avatar8 from './8.png';
 
-export default [avatar1, avatar2, avatar3, avatar4, avatar5, avatar6, avatar7, avatar8];
+export default { avatar1, avatar2, avatar3, avatar4, avatar5, avatar6, avatar7, avatar8 };

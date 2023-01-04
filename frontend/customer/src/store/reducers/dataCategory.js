@@ -5,6 +5,7 @@ const datacategory = createSlice({
   initialState: Object,
   reducers: {
     addDataCategory: (state, action) => {
+      console.log(action.payload);
       state.slug = (action.payload);
     },
     addDataTitle: (state, action) => {

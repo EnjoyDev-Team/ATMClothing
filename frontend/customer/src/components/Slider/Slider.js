@@ -2,6 +2,7 @@
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 /* eslint-disable max-len */
 import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { SliderData } from './SliderData';
 import classes from './styles.module.scss';
 import ChevronLeft from '../../assets/imgs/sliderImage/ChevronLeft.png';
@@ -9,6 +10,7 @@ import ChevronRight from '../../assets/imgs/sliderImage/ChevronRight.png';
 
 const Slider = () => {
   const [idx, setIdx] = useState(0);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -42,7 +44,7 @@ const Slider = () => {
             </div>
           ))}
 
-          <div className={classes.content__suggestBtn}>
+          <div className={classes.content__suggestBtn} onClick={() => navigate(SliderData[idx].link)}>
             <p className={classes['content__suggestBtn--suggest']}>{SliderData[idx].suggestBtn}</p>
             <img className={classes['content__suggestBtn--iconArrow']} src={SliderData[idx].iconArow} alt="icon arrow right" />
             {/* <FontAwesomeIcon className={classes['content__suggestBtn--iconArrow']} icon={item.iconArow} /> */}

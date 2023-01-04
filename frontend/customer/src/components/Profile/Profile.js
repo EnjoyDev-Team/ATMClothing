@@ -15,7 +15,7 @@ import {
   faCheckToSlot,
   faHandHoldingDollar,
 } from '@fortawesome/free-solid-svg-icons';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import classes from './styles.module.scss';
 import auth from '../../utils/auth';
@@ -45,13 +45,13 @@ const Profile = () => {
             <ul className={classes.profile__list}>
                 <li className={classes.profile__item}>
                     <FontAwesomeIcon className={classes['profile__item-icon']} icon={faBell} />
-                    <a className={classes['profile__item-link']} href="#1" alt="">
+                    <a className={classes['profile__item-link']} alt="">
                         Thông báo
                     </a>
                 </li>
                 <li className={classes.profile__item}>
                     <FontAwesomeIcon className={classes['profile__item-icon']} icon={faUser} />
-                    <a className={classes['profile__item-link']} alt="">
+                    <a onClick={() => navigate('/profile')} className={classes['profile__item-link']} alt="">
                         Hồ sơ cá nhân
                     </a>
                 </li>
@@ -73,13 +73,13 @@ const Profile = () => {
             <ul className={classes.profile__list}>
                 <li className={classes.profile__item}>
                     <FontAwesomeIcon className={classes['profile__item-icon']} icon={faCartPlus} />
-                    <a className={classes['profile__item-link']} href="#1" alt="">
+                    <a onClick={() => navigate('/shopping')} className={classes['profile__item-link']} alt="">
                         Giỏ hàng
                     </a>
                 </li>
                 <li className={classes.profile__item}>
                     <FontAwesomeIcon className={classes['profile__item-icon']} icon={faFileInvoiceDollar} />
-                    <a className={classes['profile__item-link']} href="#1" alt="">
+                    <a onClick={() => navigate('/shopping/orders')} className={classes['profile__item-link']} alt="">
                         Đơn mua
                     </a>
                 </li>
@@ -91,28 +91,27 @@ const Profile = () => {
             <ul className={classes.profile__list}>
                 <li className={classes.profile__item}>
                     <FontAwesomeIcon className={classes['profile__item-icon']} icon={faHandHoldingDollar} />
-                    <a className={classes['profile__item-link']} href="#1" alt="">
+                    <a onClick={() => navigate('/services/sale')} className={classes['profile__item-link']} alt="">
                         Bán lại
                     </a>
                 </li>
                 <li className={classes.profile__item}>
                     <FontAwesomeIcon className={classes['profile__item-icon']} icon={faGifts} />
-                    <a className={classes['profile__item-link']} href="#1" alt="">
+                    <a onClick={() => navigate('/services/donate')} className={classes['profile__item-link']} alt="">
                         Tặng
                     </a>
                 </li>
                 <li className={classes.profile__item}>
                     <FontAwesomeIcon className={classes['profile__item-icon']} icon={faGears} />
-                    <a className={classes['profile__item-link']} href="#1" alt="">
+                    <a onClick={() => navigate('/services/custom')} className={classes['profile__item-link']} alt="">
                         Custom lại
                     </a>
                 </li>
                 <li className={classes.profile__item}>
                     <FontAwesomeIcon className={classes['profile__item-icon']} icon={faCheckToSlot} />
                     <a
+                      onClick={() => navigate('/services/orders')}
                       className={`${classes['profile__item-link']} ${classes['profile__item-link--order']}`}
-                      href="#1"
-                      alt=""
                     >
                         Đơn đã tạo
                     </a>

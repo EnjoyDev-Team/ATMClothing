@@ -32,7 +32,7 @@ const ReasonUsing = () => (
                 <img src={img3} className={classes.img} alt="" />
                 <div className={classes.border}>
                     <p className={classes.content}>
-                        Mỗi 1 bộ quần áo được sử dụng lại giúp mỗi trường trong sạch hơn
+                        Mỗi 1 bộ quần áo được sử dụng lại giúp môi trường trong sạch hơn
                     </p>
                 </div>
             </div>

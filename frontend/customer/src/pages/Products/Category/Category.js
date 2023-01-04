@@ -133,24 +133,26 @@ const Category = () => {
   };
 
   useEffect(() => {
-    dispatchSlug();
-    dispatchTitle();
+    if (dataSlugCategory) {
+      dispatchSlug();
+      dispatchTitle();
+    }
     dispatchOffset(1);
   }, [activeCategory]);
 
-  useEffect(() => {
-    const handleScroll = () => {
-      if (window.scrollY >= 68) {
-        setFixedCategory(true);
-      } else setFixedCategory(false);
-    };
+  // useEffect(() => {
+  //   const handleScroll = () => {
+  //     if (window.scrollY >= 68) {
+  //       setFixedCategory(true);
+  //     } else setFixedCategory(false);
+  //   };
 
-    window.addEventListener('scroll', handleScroll);
+  //   window.addEventListener('scroll', handleScroll);
 
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
-    };
-  }, []);
+  //   return () => {
+  //     window.removeEventListener('scroll', handleScroll);
+  //   };
+  // }, []);
 
   const handleCategory = (e) => {
     if (e.target.childNodes[0].nodeValue === 'Thời trang nữ') {
