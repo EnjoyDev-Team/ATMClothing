@@ -30,7 +30,7 @@ cartSchema.pre(/^find/, function(next) {
 
   this.populate({
     path: 'idProduct',
-    select: 'name price amount facility img _id'
+    select: 'name price sale amount facility img _id'
   });
 
   next();
