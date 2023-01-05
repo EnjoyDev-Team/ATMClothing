@@ -22,7 +22,7 @@ const OrderInfo = () => {
     const newData = cart.filter((item) => {
       if (item._id in payments) {
         amount += payments[item._id];
-        price += +item.detail.price.replaceAll('.', '') * payments[item._id];
+        price += +item.detail.sale.replaceAll('.', '') * payments[item._id];
 
         return item;
       }
@@ -48,7 +48,7 @@ const OrderInfo = () => {
             </div>
             <div className={classes.info}>
                 <p className={classes.product__name}>{item.detail.name}</p>
-                <p className={classes.product__price}>{item.detail.price}</p>
+                <p className={classes.product__price}>{item.detail.sale}</p>
                 <p className={classes.product__details}>
                   Size:
                   {' '}

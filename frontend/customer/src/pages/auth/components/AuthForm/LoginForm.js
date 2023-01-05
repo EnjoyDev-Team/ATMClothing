@@ -47,7 +47,8 @@ const LoginForm = () => {
             if (auth.role() === 'user') {
               navigate('/');
             } else {
-              navigate('/dashboard');
+              // navigate('/dashboard');
+              window.location.replace('http://localhost:3001/dashboard');
             }
           })
           .catch(e => {

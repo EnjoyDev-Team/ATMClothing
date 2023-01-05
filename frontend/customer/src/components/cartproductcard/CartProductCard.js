@@ -30,7 +30,7 @@ const Cartproductcard = ({ Details }) => {
     }
   };
   const increase = () => {
-    const cnt = count + 1;
+    const cnt = count < Details.detail.amount ? count + 1 : count;
     setcount(cnt);
     dispatch(updateCart({ data: {
       _id: Details._id,
@@ -80,7 +80,7 @@ const Cartproductcard = ({ Details }) => {
                     <div className={classes.cartproductcard__product__content}>
                         <h2 className={classes.cartproductcard__product_content__name}>{Details.detail.name}</h2>
                         <h1 className={classes.cartproductcard__product_content__price}>
-                            {Details.detail.price}
+                            {Details.detail.sale}
                                 {' '}
                                 <u>đ</u>
                         </h1>
@@ -89,6 +89,7 @@ const Cartproductcard = ({ Details }) => {
                                 {' '}
                                 {Details.size}
                         </p>
+
                     </div>
                 </div>
                 <div className={classes.cartproductcard__product__container}>
@@ -98,6 +99,14 @@ const Cartproductcard = ({ Details }) => {
                     >
                         <FontAwesomeIcon icon={faTrashCan} />
                     </div>
+                    <p
+                      className={classes.cartproductcard__product_content__desribe}
+                      style={{ fontSize: '1.2rem' }}
+                    >
+                                Còn hàng:
+                                {' '}
+                                {Details.detail.amount}
+                    </p>
                     <div className={classes.cartproductcard__product__container__amount}>
                         <p onClick={decrease} className={classes.cartproductcard__product__container__amount__reduce}>
                             -
@@ -122,7 +131,8 @@ Cartproductcard.propTypes = {
     img: PropTypes.string,
     detail: PropTypes.shape({
       facility: PropTypes.array,
-      price: PropTypes.string,
+      sale: PropTypes.string,
+      amount: PropTypes.number,
       name: PropTypes.string
     }),
   }),
@@ -131,7 +141,7 @@ Cartproductcard.defaultProps = {
   Details: {
     detail: {
       facility: [],
-      price: '',
+      sale: '',
       name: ''
     }
   },

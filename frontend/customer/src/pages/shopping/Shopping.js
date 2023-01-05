@@ -17,7 +17,7 @@ const Shopping = () => {
   const [data, setData] = useState({});
   const [totalPayment, setTotalPayment] = useState({
     amount: 0,
-    price: 0
+    sale: 0
   });
 
   const handleCheckedFacility = (e, key) => {
@@ -39,7 +39,7 @@ const Shopping = () => {
     const divide = {};
     const count = {};
     let amount = 0;
-    let price = 0;
+    let sale = 0;
 
     for (let i = 0; i < cart.length; i += 1) {
       const { facility } = cart[i].detail;
@@ -56,10 +56,12 @@ const Shopping = () => {
           divide[facility[0].code] = [newItem];
         }
 
+        console.log(cart);
+
         // Checked and calc payment
         if (cart[i]._id in payments) {
           amount += payments[cart[i]._id];
-          price += +cart[i].detail.price.replaceAll('.', '') * payments[cart[i]._id];
+          sale += +cart[i].detail.sale.replaceAll('.', '') * payments[cart[i]._id];
 
           if (facility[0].code in count) {
             count[facility[0].code].push(cart[i]._id);
@@ -80,7 +82,7 @@ const Shopping = () => {
       }
     }
     setTotalPayment({
-      amount, price
+      amount, sale
     });
     setData(divide);
   }, [cart, payments]);
@@ -159,7 +161,7 @@ const Shopping = () => {
                     <div className={classes.container__status__total}>
                         <p>Tổng cộng</p>
                         <h3>
-                            {formatMoney(totalPayment.price.toString())}
+                            {formatMoney(totalPayment.sale.toString())}
                             {' '}
                             <p>đ</p>
                             {' '}
