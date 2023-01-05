@@ -37,6 +37,15 @@ const NavigationAdmin = () => {
                                 </Link>
                         </div>
                         <div className={classes.components}>
+                                <Link className={classes.components__component} to="/admin-orders">
+                                <img src={path.includes('/admin-orders', 0) === true ? ordersControlColor : ordersControl} alt="" />
+                                    <div className={classes.components__component__title}>
+                                        <img src={ordersControl} alt="" />
+                                        <p>Orders Control</p>
+                                    </div>
+                                </Link>
+                        </div>
+                        <div className={classes.components}>
                                 <Link className={classes.components__component} to="/admin-products">
                                     <img src={path.includes('/admin-products', 0) === true ? productsColor : products} alt="" />
                                     <div className={classes.components__component__title}>
@@ -51,15 +60,6 @@ const NavigationAdmin = () => {
                                     <div className={classes.components__component__title}>
                                         <img src={users} alt="" />
                                         <p>Users</p>
-                                    </div>
-                                </Link>
-                        </div>
-                        <div className={classes.components}>
-                                <Link className={classes.components__component} to="/admin-orders">
-                                <img src={path.includes('/admin-orders', 0) === true ? ordersControlColor : ordersControl} alt="" />
-                                    <div className={classes.components__component__title}>
-                                        <img src={ordersControl} alt="" />
-                                        <p>Orders Control</p>
                                     </div>
                                 </Link>
                         </div>

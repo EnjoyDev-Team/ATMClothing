@@ -66,8 +66,9 @@
 .input__container input {
     border: #5b5b5b 1px solid;
     border-radius: 5px;
-    height: 42px;
+    padding: 10px;
     font-size: 1.6rem;
+    color: #444;
     width: 175px;
 }
 
@@ -87,6 +88,7 @@
     font-size: 2rem;
     appearance: auto;
     padding-top: 1rem;
+    color: #444;
 }
 
 .status label {

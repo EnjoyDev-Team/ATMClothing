@@ -16,58 +16,6 @@ import React from 'react';
 import classes from './UserItem.module.scss';
 import avatar from '../../assets/imgs/users/Ellipse 59.png';
 
-// const listItem = [
-//     {
-//         img: avatar,
-//         name: 'Trần Duy Khương',
-//         salary: '20$/h',
-//         position: 'Manager',
-//         day: '20',
-//     },
-//     {
-//         img: avatar,
-//         name: 'Trần Duy Khương',
-//         salary: '20$/h',
-//         position: 'Manager',
-//         day: '20',
-//     },
-//     {
-//         img: avatar,
-//         name: 'Trần Duy Khương',
-//         salary: '20$/h',
-//         position: 'Manager',
-//         day: '20',
-//     },
-//     {
-//         img: avatar,
-//         name: 'Trần Duy Khương',
-//         salary: '20$/h',
-//         position: 'Manager',
-//         day: '20',
-//     },
-//     {
-//         img: avatar,
-//         name: 'Trần Duy Khương',
-//         salary: '20$/h',
-//         position: 'Manager',
-//         day: '20',
-//     },
-//     {
-//         img: avatar,
-//         name: 'Trần Duy Khương',
-//         salary: '20$/h',
-//         position: 'Manager',
-//         day: '20',
-//     },
-//     {
-//         img: avatar,
-//         name: 'Trần Duy Khương',
-//         salary: '20$/h',
-//         position: 'Manager',
-//         day: '20',
-//     },
-// ];
-
 const UserItem = ({ listItem, setUserInformation }) => {
     const click = function (item) {
         setUserInformation(item);

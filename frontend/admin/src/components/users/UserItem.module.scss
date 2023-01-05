@@ -1,9 +1,10 @@
 .user__item__main {
-    width: 43rem;
+    width: 100%;
     background-color: #ffffff;
     // padding: 2rem;
     border-radius: 10px;
-    margin: 2rem auto;
+    margin: 1rem auto;
+    cursor: pointer;
 }
 
 .top__section {
@@ -25,8 +26,8 @@
 }
 
 .top__section img {
-    width: 5rem;
-    height: 5rem;
+    width: 4rem;
+    height: 4rem;
     border-radius: 50%;
 }
 
@@ -40,7 +41,7 @@
 
 .bottom__section {
     display: flex;
-    gap: 12rem;
+    justify-content: space-between;
 }
 
 .bottom__section p {

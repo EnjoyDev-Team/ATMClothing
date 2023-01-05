@@ -1,25 +1,24 @@
+/* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
+/* eslint-disable jsx-a11y/click-events-have-key-events */
 /* eslint-disable react/prop-types */
-/* eslint-disable no-unused-vars */
-/* eslint-disable quotes */
-/* eslint-disable import/no-useless-path-segments */
-/* eslint-disable indent */
-import React from 'react';
+import React, { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import classes from './ListUser.module.scss';
 import addImg from '../../assets/imgs/users/Add.png';
 import UserItem from './UserItem';
 import { axiosClient } from '../../api/axios';
-import useAxios from './../../hooks/useAxios';
+import useAxios from '../../hooks/useAxios';
+import { Loading, LoadingDonut } from '../Loading/Loading';
 
 const ListUser = ({ setUserInformation }) => {
-    const [respond, error, isloading] = useAxios('get', '/users', {}, {}, []);
-    console.log(respond);
-    const a = 0;
-    return (
+  const [role, setRole] = useState('user');
+  const [respond, error, isloading] = useAxios('get', `/users?role=${role}`, {}, {}, [role]);
+
+  return (
         <main className={classes.list__main}>
             <div className={classes.stateBar}>
-                <p>Customer</p>
-                <p>Admin</p>
+                <p onClick={() => setRole('user')} className={`${role === 'user' ? classes.active : ''}`}>Customer</p>
+                <p onClick={() => setRole('admin')} className={`${role === 'admin' ? classes.active : ''}`}>Admin</p>
             </div>
             <div className={classes.list__container}>
                 <div className={classes.list__head}>
@@ -30,11 +29,15 @@ const ListUser = ({ setUserInformation }) => {
                     <input type="text" placeholder="Search" />
                 </div>
                 <div className={classes.list}>
-                    <UserItem listItem={respond.data} setUserInformation={setUserInformation} />
+                    {isloading ? (
+                        <div style={{ display: 'flex', justifyContent: ' center', marginTop: '100px' }}>
+                            <LoadingDonut />
+                        </div>
+                    ) : <UserItem listItem={respond.data} setUserInformation={setUserInformation} />}
                 </div>
             </div>
         </main>
-    );
+  );
 };
 
 export default ListUser;

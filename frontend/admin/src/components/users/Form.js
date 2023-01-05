@@ -3,7 +3,7 @@
 /* eslint-disable arrow-body-style */
 /* eslint-disable jsx-a11y/label-has-associated-control */
 /* eslint-disable react/no-unknown-property */
-import React from 'react';
+import React, { useState } from 'react';
 import classes from './Form.module.scss';
 
 const Form = ({ userInformation }) => {
@@ -17,7 +17,7 @@ const Form = ({ userInformation }) => {
                     </div>
                     <div className={classes.input__container}>
                         <p>Role</p>
-                        <input type="text" value={userInformation.role} />
+                        <input type="text" value={userInformation.role} readOnly />
                     </div>
                 </div>
                 <div className={classes.container__flex}>
@@ -32,7 +32,7 @@ const Form = ({ userInformation }) => {
                 </div>
                 <div className={classes.input__container}>
                     <p>Address</p>
-                    <input type="text" style={{ width: '621px' }} value={userInformation.address} readOnly />
+                    <input type="text" style={{ width: '621px' }} value={userInformation.address.length ? userInformation.address[0].street : ''} readOnly />
                 </div>
                 <div className={classes.input__container}>
                     <p>Email</p>
@@ -42,17 +42,17 @@ const Form = ({ userInformation }) => {
                     <p>Date of birth</p>
                     <input type="text" value={userInformation.phone} readOnly />
                 </div>
-                <div className={classes.status}>
+                {/* <div className={classes.status}>
                     <p>Status:</p>
                     <div>
                         <input type="radio" name="user_status" id="active" />
                         <label for="active">Active</label>
                     </div>
                     <div>
-                        <input type="radio" name="user_status" id="inactive" />
+                        <input type="radio" name="user_status" id="inactive" selected />
                         <label for="inactive">Inactive</label>
                     </div>
-                </div>
+                </div> */}
             </div>
         </main>
     );

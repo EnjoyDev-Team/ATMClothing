@@ -9,9 +9,14 @@
 }
 
 .stateBar p {
-    padding: 2rem;
+    padding: 1.6rem;
     font-weight: bold;
-    font-size: 24px;
+    font-size: 1.8rem;
+    cursor: pointer;
+}
+
+.stateBar .active {
+    color: blue;
 }
 
 .list__head {
@@ -30,6 +35,7 @@
     align-items: center;
     padding-left: 2rem;
     color: #717171;
+    cursor: pointer;
 }
 
 .list__head img {
@@ -41,17 +47,20 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    padding: 10px 20px;
 }
 
 .search__bar input {
-    height: 6rem;
-    width: 40rem;
+    width: 100%;
     background-color: #d9d9d9;
-    font-size: 22px;
+    font-size: 1.6rem;
+    padding: 10px;
     border-radius: 10px;
+    border: 1px solid #ccc;
 }
 
 .list {
-    max-height: 800px;
-    overflow: auto;
+    height: calc(100vh - 224px);
+    overflow: auto; 
+    padding: 0 20px;
 }
