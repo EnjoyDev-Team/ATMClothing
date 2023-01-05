@@ -45,6 +45,10 @@
             font-size: 3rem;
             justify-items: center;
             opacity: 0.5;
+
+            &:hover {
+                color: cadetblue;
+            }
         }
     }
 }
