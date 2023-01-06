@@ -36,7 +36,7 @@ const DetailProduct = ({ orderDetail, id, isLoading }) => {
       };
 
     useEffect(() => {
-        if (orderDetail.IdOrder || orderDetail.code) {
+        if (orderDetail) {
             generateQR(orderDetail.IdOrder || orderDetail.code);
         }
     }, [orderDetail]);
