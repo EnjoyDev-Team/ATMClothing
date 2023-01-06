@@ -21,13 +21,14 @@ const General = () => {
   const updateUserProfile = (event) => {
     event.preventDefault();
     axiosPrivate
-      .patch('/users/update', { user: userInfo })
+      .patch('/users/update', { user: { ...userInfo, _id: auth.getID() } })
       .then(() => {
         setSuccess(true);
         auth.updateInfo(userInfo);
       })
       .catch((err) => console.log(err))
       .finally(() => {
+        console.log(userInfo);
         setTimeout(() => setSuccess(false), 3000);
       });
   };
