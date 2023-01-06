@@ -12,16 +12,14 @@ router.route('/')
 .get(userController.filter)
 .post(userController.createUser)
 
-router.use(authMiddleware.protect)
-
 // Update profile   
-router.patch('/update', authController.updateProfile);
+router.patch('/update', authMiddleware.protect, authController.updateProfile);
 
 // Update avatar
-router.patch('/avatar' , authController.updateAvatar)
+router.patch('/avatar' , authMiddleware.protect, authController.updateAvatar)
 
 // Update password
-router.patch('/password', authController.updatePassword)
+router.patch('/password', authMiddleware.protect, authController.updatePassword)
 
 router.route('/:id')
 .get(userController.getById)
