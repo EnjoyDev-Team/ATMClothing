@@ -12,13 +12,9 @@ router.route('/')
 .get(userController.filter)
 .post(userController.createUser)
 
-router.route('/:id')
-.get(userController.getById)
-.patch(userController.updateUser)
-.delete(userController.deleteUser)
 router.use(authMiddleware.protect)
 
-// Update profile
+// Update profile   
 router.patch('/update', authController.updateProfile);
 
 // Update avatar
@@ -26,5 +22,10 @@ router.patch('/avatar' , authController.updateAvatar)
 
 // Update password
 router.patch('/password', authController.updatePassword)
+
+router.route('/:id')
+.get(userController.getById)
+.patch(userController.updateUser)
+.delete(userController.deleteUser)
 
 module.exports = router; 

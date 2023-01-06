@@ -256,7 +256,6 @@ exports.updatePassword = catchAsync(async (req, res, next) => {
 module.exports.updateProfile = catchAsync(async (req, res, next) => {
   if (!req.user) 
     return next(new AppError('Please login to continue.', 401));
-    
   const user = await User.findOne({ _id: req.user._id });
   
   const { name, email, gender, dob } = req.body.user;
