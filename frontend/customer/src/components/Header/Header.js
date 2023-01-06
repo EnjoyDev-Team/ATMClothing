@@ -41,8 +41,12 @@ const Header = () => {
   };
 
   const handleSubmit = () => {
-    if (isSearch !== '') {
+    if (isSearch.includes('/') || isSearch.includes('.') || isSearch.includes('\\')) {
+      navigate('/products');
+    } else if (isSearch !== '') {
       navigate(`/products/search/${isSearch}`);
+    } else {
+      navigate('/products');
     }
   };
 

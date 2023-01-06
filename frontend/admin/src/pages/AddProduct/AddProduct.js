@@ -148,6 +148,11 @@ const AddProduct = () => {
       alert('Phải nhập tất cả các trường dữ liệu!!!');
 
       e.preventDefault();
+    } else if (+price < 0 || +sale < 0 || +amount < 0 || +height < 0 || +weight < 0) {
+      setButton(false);
+      alert('Các trường giá trị không được để giá trị âm');
+
+      e.preventDefault();
     } else if (+price < +sale) {
       setButton(false);
       alert('Số tiền giảm giá cao hơn tiền gốc');
@@ -186,6 +191,8 @@ const AddProduct = () => {
 
     return false;
   };
+
+  console.log(+price);
 
   useEffect(() => {
     if (Object.keys(data).length !== 0) {
