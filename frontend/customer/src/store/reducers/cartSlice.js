@@ -68,7 +68,7 @@ const cart = createSlice({
     init: (state, action) => {
       state.cart = action.payload;
     },
-    clear: (state, action) => {
+    clear: (state) => {
       state.cart = [];
       state.payments = {};
     },

@@ -35,9 +35,9 @@ const ForgotForm = () => {
     if (!window.recaptchaVerifier) {
       window.recaptchaVerifier = new RecaptchaVerifier('verify-container', {
         size: 'invisible',
-        callback: (response) => {
-        // reCAPTCHA solved, allow signInWithPhoneNumber.
-        }
+        // callback: (response) => {
+        // // reCAPTCHA solved, allow signInWithPhoneNumber.
+        // }
       }, auth);
     }
   };
@@ -104,7 +104,7 @@ const ForgotForm = () => {
     if (otp.length === 6) {
       setState({ loading: true });
       const { confirmationResult } = window;
-      confirmationResult.confirm(otp).then((result) => {
+      confirmationResult.confirm(otp).then(() => {
         setStep(3);
         onAuthStateChanged(auth, async (user) => {
           if (user) {
@@ -136,7 +136,7 @@ const ForgotForm = () => {
         tokenVerify: verifyToken,
         tokenFirebase,
       };
-      axiosPrivate.post('/auth/forgot/password', objPass).then(res => {
+      axiosPrivate.post('/auth/forgot/password', objPass).then(() => {
         navigate('/login');
       }).catch(err => {
         console.log(err);

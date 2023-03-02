@@ -1,10 +1,9 @@
 /* eslint-disable no-restricted-syntax */
 import React, { useState, useEffect } from 'react';
-import PropTypes from 'prop-types';
 import { useSelector, useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import classes from './Shopping.module.scss';
-import Cartproductcard from '../../components/cartproductcard/CartProductCard';
+import Cartproductcard from './CartProductCard/CartProductCard';
 import ButtonCT from '../../components/ButtonCT/ButtonCT';
 import { addToPayment, removeFromPayment } from '../../store/reducers/cartSlice';
 import { formatMoney } from '../../utils/formatMoney';

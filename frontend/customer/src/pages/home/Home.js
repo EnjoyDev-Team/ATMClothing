@@ -5,34 +5,29 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowDown } from '@fortawesome/free-solid-svg-icons';
 import { Link } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-import CardProduct from '../../components/cardProduct/CardProduct';
+import CardProduct from '../../components/CardProduct/CardProduct';
 import classes from './Home.module.scss';
-import quanaoNu from '../../assets/imgs/quanaoNu.png';
-import quanaoNam from '../../assets/imgs/quanaoNam.png';
-import thoiTrangNu from '../../assets/imgs/thoiTrangNu.png';
-import thoiTrangNam from '../../assets/imgs/thoiTrangNam.png';
-import choTreem from '../../assets/imgs/choTreem.png';
-import doDungGiaDinh from '../../assets/imgs/doDungGiaDinh.png';
-import khac from '../../assets/imgs/khac.png';
-import Slider from '../../components/Slider/Slider';
-import { SliderData } from '../../components/Slider/SliderData';
-import SliderFooter from '../../components/SliderFooter/SliderFooter';
-import imgHome from '../../assets/imgs/imgHome.jpg';
-import Report from '../../components/Report/Report';
+import quanaoNu from '../../assets/imgs/home/quanaoNu.png';
+import quanaoNam from '../../assets/imgs/home/quanaoNam.png';
+import thoiTrangNu from '../../assets/imgs/home/thoiTrangNu.png';
+import thoiTrangNam from '../../assets/imgs/home/thoiTrangNam.png';
+import choTreem from '../../assets/imgs/home/choTreem.png';
+import doDungGiaDinh from '../../assets/imgs/home/doDungGiaDinh.png';
+import khac from '../../assets/imgs/home/khac.png';
+import Slider from '../../components/Slider/SliderDynamic/Slider';
+import { SliderData } from '../../components/Slider/SliderDynamic/SliderData';
+import SliderFooter from '../../components/Slider/SliderStatic/SliderFooter';
+import imgHome from '../../assets/imgs/home/imgHome.jpg';
+import Report from './Report/Report';
 import useAxios from '../../hooks/useAxios';
 import avatar from '../../assets/imgs/avatars/avatars';
 import { addDataCategory, addDataTitle } from '../../store/reducers/dataCategory';
 
 const Home = () => {
   const [flashSale, setFlashSale] = useState('');
+  const [numProduct, setNumProduct] = useState(5);
   const [responseProduct, errorProduct, isLoadingProduct] = useAxios('get', '/products/san-pham-noi-bat', {}, {}, []);
   const dispatch = useDispatch();
-
-  useEffect(() => {
-    if (responseProduct.data !== undefined) {
-      setFlashSale(responseProduct.data);
-    }
-  }, [isLoadingProduct]);
 
   const [donation, setDonation] = useState('');
   const [response0d, error0d, isLoading0d] = useAxios('get', '/products/goc-0d', {}, {}, []);
@@ -43,13 +38,53 @@ const Home = () => {
   }, [isLoading0d]);
 
   const [TTN, setTTN] = useState('');
-  const [responseTTN, errorTTN, isLoadingTTN] = useAxios('get', '/products?fields=-other_img,-__v&limit=6&category=thoi-trang-nu-ao-nu', {}, {}, []);
+  const [responseTTN, errorTTN, isLoadingTTN] = useAxios(
+    'get',
+    '/products?fields=-other_img,-__v&limit=5&category=thoi-trang-nu-ao-nu',
+    {},
+    {},
+    []
+  );
+
+  const handleResize = (w) => {
+    // console.log(w);
+    if (w >= 1440) {
+      setNumProduct(6);
+    } else if (w >= 1250) {
+      setNumProduct(5);
+    } else if (w >= 1020) {
+      setNumProduct(4);
+    } else if (w >= 780) {
+      setNumProduct(3);
+    } else if (w >= 570) {
+      setNumProduct(2);
+    } else {
+      setNumProduct(1);
+    }
+  };
+
   useEffect(() => {
-    console.log(responseTTN.data);
+    // console.log(responseTTN.data);
     if (isLoadingTTN === false && !errorTTN && responseTTN.data) {
       setTTN(responseTTN.data);
+      handleResize(window.innerWidth);
     }
   }, [isLoadingTTN]);
+
+  useEffect(() => {
+    if (responseProduct.data !== undefined && !errorProduct) {
+      setFlashSale(responseProduct.data);
+    }
+  }, [isLoadingProduct]);
+
+  useEffect(() => {
+    window.addEventListener('resize', (e) => handleResize(e.target.innerWidth));
+
+    // cleanup function
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
 
   return (
     <>
@@ -119,15 +154,16 @@ const Home = () => {
           Xem tất cả
           <i><FontAwesomeIcon icon={faArrowDown} /></i>
         </a> */}
-      </div>
+
       <div className={classes.listProducts}>
           {
-            flashSale && flashSale.map((el, idx) => (
+            flashSale && flashSale.slice(0, numProduct).map((el, idx) => (
               <div key={+idx} className={classes.listProducts__product}>
                 <CardProduct Details={el} />
               </div>
             ))
           }
+      </div>
       </div>
       <div className={classes.title}>
         <h2 className={classes.title__main}>Sản phẩm nổi bật</h2>
@@ -142,15 +178,15 @@ const Home = () => {
           Xem tất cả
           <i><FontAwesomeIcon icon={faArrowDown} /></i>
         </Link>
-      </div>
-      <div className={classes.listProducts}>
-        {
-          TTN && TTN.slice(0, 6).map((el, idx) => (
-          <div key={+idx} className={classes.listProducts__product}>
-            <CardProduct Details={el} />
-          </div>
-          ))
-        }
+        <div className={classes.listProducts}>
+          {
+            TTN && TTN.slice(0, numProduct).map((el, idx) => (
+            <div key={+idx} className={classes.listProducts__product}>
+              <CardProduct Details={el} />
+            </div>
+            ))
+          }
+        </div>
       </div>
       <div className={classes.donations}>
         <div className={classes.donations__describe}>
@@ -167,7 +203,7 @@ const Home = () => {
           </div>
           <div className={classes.donations__describe__listProducts}>
             {
-              donation && donation.slice(0, 4).map((el, idx) => (
+              donation && donation.slice(0, numProduct % 3 + 1).map((el, idx) => (
                 <div key={+idx} className={classes.donations__describe__listProducts__product}>
                   <CardProduct Details={el} />
                 </div>
@@ -194,13 +230,27 @@ const Home = () => {
         <h1 className={classes.containerreport__header}>Phản hồi từ khách hàng</h1>
         <div className={classes.containerreport__listreport}>
           <div className={classes.containerreport__listreport__report}>
-            <Report cardreport name="Chính Trần" img={avatar.avatar7} comment="Dịch vụ tại ATMC quá chất lượng luôn. Sẽ ủng hộ dài dài..." />
+            <Report
+              cardreport
+              name="Chính Trần"
+              img={avatar.avatar7}
+              comment="Dịch vụ tại ATMC quá chất lượng luôn. Sẽ ủng hộ dài dài..."
+            />
           </div>
           <div className={classes.containerreport__listreport__report}>
-            <Report name="Trần Khương" img={avatar.avatar6} comment="Rất tiện lợi, tận dụng được những bộ trang phục, ý nghĩ quá" />
+            <Report
+              name="Trần Khương"
+              img={avatar.avatar6}
+              comment="Rất tiện lợi, tận dụng được những bộ trang phục, ý nghĩ quá"
+            />
           </div>
           <div className={classes.containerreport__listreport__report}>
-            <Report cardreport name="Minh Nguyễn" img={avatar.avatar8} comment="Các mẫu thiết kế ở đây luôn độc đáo và không đụng hàng với ai luôn!" />
+            <Report
+              cardreport
+              name="Minh Nguyễn"
+              img={avatar.avatar8}
+              comment="Các mẫu thiết kế ở đây luôn độc đáo và không đụng hàng với ai luôn!"
+            />
           </div>
         </div>
       </div>

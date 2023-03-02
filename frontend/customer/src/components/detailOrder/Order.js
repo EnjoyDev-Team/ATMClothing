@@ -1,8 +1,5 @@
-/* eslint-disable react/jsx-indent-props */
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
-/* eslint-disable implicit-arrow-linebreak */
-/* eslint-disable indent */
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -12,19 +9,19 @@ import classes from './Order.module.scss';
 import { STATUS_ORDER_PRODUCT } from '../../constants';
 
 const statusClass = {
-    'Đang kiểm tra': classes.processing,
-    'Chờ nhận hàng': classes.waiting,
-    'Đã hoàn thành': classes.success,
-    'Đã hủy': classes.canceled,
+  'Đang kiểm tra': classes.processing,
+  'Chờ nhận hàng': classes.waiting,
+  'Đã hoàn thành': classes.success,
+  'Đã hủy': classes.canceled,
 };
 const statusOrder = STATUS_ORDER_PRODUCT;
 
 const Order = ({ orderList, id }) => {
-    const location = useLocation();
-    const navigate = useNavigate();
+  const location = useLocation();
+  const navigate = useNavigate();
 
-    return orderList && orderList.length
-        ? orderList.map((item, index) => (
+  return orderList && orderList.length
+    ? orderList.map((item, index) => (
               <div
                 onClick={() => navigate(`/${location.pathname.split('/')[1]}/orders/${item.code || item._id}`)}
                 key={+index}
@@ -34,7 +31,7 @@ const Order = ({ orderList, id }) => {
                       <FontAwesomeIcon icon={faClock} className={classes.icon} />
                       <span className={classes.date}>
                           {new Date(item.create_at || item.createAt).toLocaleDateString('vi', {
-                              timeZone: 'Asia/Ho_Chi_Minh',
+                            timeZone: 'Asia/Ho_Chi_Minh',
                           })}
                       </span>
                   </div>
@@ -56,8 +53,8 @@ const Order = ({ orderList, id }) => {
                       </div>
                   </div>
               </div>
-          ))
-        : '';
+    ))
+    : '';
 };
 
 export default Order;

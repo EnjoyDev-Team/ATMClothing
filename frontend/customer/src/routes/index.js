@@ -15,12 +15,12 @@ import Services from '../pages/Service/Service';
 import Sell from '../pages/Service/Sell';
 import Custom from '../pages/Service/Custom';
 import Donate from '../pages/Service/Donate';
-import Shopping from '../pages/shopping/Shopping';
+import Shopping from '../pages/Shopping/Shopping';
 import ProductLayout from '../layouts/ProductLayout';
 import Product from '../pages/Products/Product/Product';
 import auth from '../utils/auth';
 import PaymentProduct from '../pages/PaymentProduct/PaymentProduct';
-import ServiceOrdersDetails from '../pages/detail_request/ServiceOrdersDetails';
+import ServiceOrdersDetails from '../pages/ServiceOrder/ServiceOrdersDetails';
 import ProductOrderDetails from '../pages/ProductOrder/ProductOrdersDetails';
 
 const Navigation = () => {

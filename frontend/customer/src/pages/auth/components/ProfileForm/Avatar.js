@@ -36,7 +36,6 @@ const Avatar = () => {
         <form onSubmit={updateUserAvatar} action="PATCH">
           <div className={classes.avatar}>
             { success && <div className={classes.success}>Cập nhật thành công</div> }
-            {/* <img src="https://1.bigdata-vn.com/wp-content/uploads/2021/10/1633261044_888_Anh-avatar-dep-cho-con-gai-anh-dai-dien-dep.jpg" alt="" /> */}
               {!avatar ? (
                   <FontAwesomeIcon className={classes.avatarIcon} icon={faCircleUser} />
               ) : (

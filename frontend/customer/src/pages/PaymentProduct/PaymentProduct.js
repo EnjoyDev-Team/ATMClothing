@@ -1,12 +1,11 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
 import { RecoilRoot } from 'recoil';
 import classes from './PaymentProduct.module.scss';
 import ButtonCT from '../../components/ButtonCT/ButtonCT';
-import OrderInfo from '../../components/PaymentProduct/OrderInfo';
-import OrderTotal from '../../components/PaymentProduct/OrderTotal';
-import DeliveryInfo from '../../components/PaymentProduct/DeliveryInfo';
-import PaymentMethod from '../../components/PaymentProduct/PaymentMethod';
+import OrderInfo from './components/OrderInfo';
+import OrderTotal from './components/OrderTotal';
+import DeliveryInfo from './components/DeliveryInfo';
+import PaymentMethod from './components/PaymentMethod';
 
 const PaymentProductRecoil = () => (
         <main>

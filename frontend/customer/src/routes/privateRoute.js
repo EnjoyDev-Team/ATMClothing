@@ -1,12 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Navigate, Outlet } from 'react-router-dom';
+import { Navigate, Outlet, useLocation } from 'react-router-dom';
 
 const PrivateRoute = ({
   isAllowed,
   redirectPath,
   children,
-}) => ((isAllowed) ? children || <Outlet /> : <Navigate to={redirectPath} replace />);
+}) => {
+  const location = useLocation();
+  return (isAllowed) ? children || <Outlet /> : <Navigate to={redirectPath} state={location.pathname} replace />;
+};
 
 PrivateRoute.propTypes = {
   isAllowed: PropTypes.bool,

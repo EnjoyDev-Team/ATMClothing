@@ -1,17 +1,15 @@
-/* eslint-disable prefer-const */
 /* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
-/* eslint-disable react/no-array-index-key */
-/* eslint-disable jsx-a11y/no-static-element-interactions */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 import { React, useState, useEffect } from 'react';
-import PropTypes from 'prop-types';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronLeft, faChevronRight } from '@fortawesome/free-solid-svg-icons';
 import { useSelector, useDispatch } from 'react-redux';
 import { useParams } from 'react-router';
 import classes from './styles.module.scss';
-import CardProduct from '../../../components/cardProduct/CardProduct';
-import { addDataSort, addDataOffset, clearDataPagination } from '../../../store/reducers/dataSort';
+import CardProduct from '../../../components/CardProduct/CardProduct';
+import { addDataSort, addDataOffset
+  // clearDataPagination
+} from '../../../store/reducers/dataSort';
 import { addDataSearch } from '../../../store/reducers/dataSearch';
 
 const listOutstading = [
@@ -127,7 +125,7 @@ const Products = () => {
                 <div className={classes['products__product-outstanding-category']}>
                     <ul className={classes['products__product-outstanding-category-list']}>
                         {listOutstading.map((itemOutstanding, index) => (
-                            <li key={index} className={classes['products__product-outstanding-category-item']}>
+                            <li key={+index} className={classes['products__product-outstanding-category-item']}>
                                 <p
                                   onClick={(e) => handleOutstanding(e, itemOutstanding.sort)}
                                   className={`${classes['products__product-outstanding-category-link']} ${

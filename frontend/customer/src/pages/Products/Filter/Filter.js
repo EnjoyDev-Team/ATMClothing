@@ -1,17 +1,17 @@
 /* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 import { React, useState, useEffect } from 'react';
-import PropTypes from 'prop-types';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronDown, faXmark } from '@fortawesome/free-solid-svg-icons';
 import Slider from '@mui/material/Slider';
-import { useParams } from 'react-router';
 import { useDispatch, useSelector } from 'react-redux';
 import Button from '../../../components/ButtonCT/ButtonCT';
 import classes from './styles.module.scss';
 import useAxios from '../../../hooks/useAxios';
 import { addDataFilter, addDataPagination, addDataIsLoading } from '../../../store/reducers/dataFilter';
-import { addDataOffset, clearDataPagination } from '../../../store/reducers/dataSort';
+import { addDataOffset
+  // clearDataPagination
+} from '../../../store/reducers/dataSort';
 
 const dimensions = [
   {

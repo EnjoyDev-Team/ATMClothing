@@ -1,7 +1,7 @@
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 import React, { useEffect, useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { RecaptchaVerifier, signInWithPhoneNumber, getIdToken, onAuthStateChanged } from 'firebase/auth';
 import classes from './AuthForm.module.scss';
 import InputCT from '../InputCT/InputCT';
@@ -14,6 +14,7 @@ import useMergeState from '../../../../hooks/useMergeState';
 
 const RegisterForm = () => {
   const navigate = useNavigate();
+  const location = useLocation();
   const [step, setStep] = useState(1);
   const [timer, setTimer] = useState(0);
   const [state, setState] = useMergeState({
@@ -33,9 +34,9 @@ const RegisterForm = () => {
   const generateRecaptcha = () => {
     window.recaptchaVerifier = new RecaptchaVerifier('verify-container', {
       size: 'invisible',
-      callback: (response) => {
-        // reCAPTCHA solved, allow signInWithPhoneNumber.
-      }
+      // callback: (response) => {
+      //   // reCAPTCHA solved, allow signInWithPhoneNumber.
+      // }
     }, auth);
   };
 
@@ -101,7 +102,7 @@ const RegisterForm = () => {
     if (OTPConfirm.length === 6) {
       setState({ loading: true });
       const { confirmationResult } = window;
-      confirmationResult.confirm(OTPConfirm).then((result) => {
+      confirmationResult.confirm(OTPConfirm).then(() => {
         setStep(3);
         onAuthStateChanged(auth, async (user) => {
           if (user) {
@@ -133,8 +134,9 @@ const RegisterForm = () => {
         tokenVerify: verifyToken,
         tokenFirebase
       };
-      axiosPrivate.post('/auth/register/password', objPass).then(res => {
+      axiosPrivate.post('/auth/register/password', objPass).then(() => {
         navigate('/login');
+        // navigate(location.state);
       }).catch(err => {
         console.log(err);
         setState({ loading: false });

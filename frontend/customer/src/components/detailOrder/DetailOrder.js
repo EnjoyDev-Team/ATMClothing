@@ -92,7 +92,10 @@ const DetailProduct = ({ orderDetail, id, isLoading }) => {
                             : 'loading...'}
                     </p>
                     {orderDetail.address && orderDetail.address.name && (
-                        <p className={classes.detailOrder__address} style={{ border: '1px solid #ccc', padding: '10px', borderRadius: '10px' }}>
+                        <p
+                            className={classes.detailOrder__address}
+                            style={{ border: '1px solid #ccc', padding: '10px', borderRadius: '10px' }}
+                        >
                         <span style={{ color: '#13488C' }}>
                             {orderDetail.address.name}
                             {' '}
@@ -100,7 +103,9 @@ const DetailProduct = ({ orderDetail, id, isLoading }) => {
                             {' '}
                             {orderDetail.address.phone}
                         </span>
-                        <span style={{ color: '#808080', display: 'block', fontWeight: '300', padding: '2px 0' }}>{orderDetail.address.street}</span>
+                        <span style={{ color: '#808080', display: 'block', fontWeight: '300', padding: '2px 0' }}>
+                            {orderDetail.address.street}
+                        </span>
                         <span style={{ color: '#808080', fontWeight: '300' }}>
                             {orderDetail.address.ward}
                             ,

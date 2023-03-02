@@ -8,6 +8,7 @@ import { faLocationDot } from '@fortawesome/free-solid-svg-icons';
 import PropTypes from 'prop-types';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
 import classes from './CardProduct.module.scss';
 import ButtonCT from '../ButtonCT/ButtonCT';
 import auth from '../../utils/auth';
@@ -27,6 +28,17 @@ const CardProduct = ({ cardproduct2, Details }) => {
       } }));
     } else {
       console.log('No login');
+      toast.warn('Vui lòng đăng nhập để thực hiện yêu cầu!', {
+        position: 'top-right',
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: 'light',
+      });
+      navigate('/login');
     }
   };
 

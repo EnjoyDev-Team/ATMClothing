@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import classes from './styles.module.scss';
 import logoFooter from '../../assets/imgs/PNG-logo.png';
 import imgIllustration from '../../assets/imgs/illustration.png';

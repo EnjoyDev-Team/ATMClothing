@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import ButtonCT from '../../components/ButtonCT/ButtonCT';
 import Form from '../../components/Services/Form/Form';
 import ServiceDetails from '../../components/Services/ServiceDetails/ServiceDetails';
-import useAxios from '../../hooks/useAxios';
 import classes from './Donate.module.scss';
 import addBtn from '../../assets/imgs/service/add-btn.png';
 import Details from './screens/Details';

@@ -1,7 +1,7 @@
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 import React, { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import SocialLogin from '../SocialLogin/SocialLogin';
 import InputCT from '../InputCT/InputCT';
@@ -16,6 +16,7 @@ import { init } from '../../../../store/reducers/cartSlice';
 const LoginForm = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const location = useLocation();
   const axiosPrivate = useAxiosPrivate();
 
   const [phone, setPhone] = useState('');
@@ -45,13 +46,14 @@ const LoginForm = () => {
           .then(res => {
             dispatch(init(res.data.data));
             if (auth.role() === 'user') {
-              navigate('/');
+              navigate(location.state);
             } else {
               // navigate('/dashboard');
               window.location.replace('http://localhost:3001/dashboard');
             }
           })
           .catch(e => {
+            console.log(e);
             navigate('/');
           });
       }).catch(err => {

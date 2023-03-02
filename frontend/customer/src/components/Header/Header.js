@@ -1,7 +1,6 @@
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 import React, { useState, useEffect } from 'react';
-import PropTypes from 'prop-types';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
   faMagnifyingGlass,
@@ -9,9 +8,9 @@ import {
   faCartShopping,
   faMountainSun,
 } from '@fortawesome/free-solid-svg-icons';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-import Profile from '../Profile/Profile';
+import ProfileNav from './ProfileNav/ProfileNav';
 import classes from './styles.module.scss';
 import logo from '../../assets/imgs/PNG-logo.png';
 import ButtonCT from '../ButtonCT/ButtonCT';
@@ -22,6 +21,7 @@ const Header = () => {
   const [fixedNavbar, setFixedNavbar] = useState(false);
   const [isSearch, setSearch] = useState('');
   const navigate = useNavigate();
+  const location = useLocation();
   const cart = useSelector(state => state.cart);
 
   const handleProfile = () => {
@@ -112,6 +112,7 @@ const Header = () => {
                                     <Link
                                       className={classes['header__right-account-signup-link']}
                                       to="/register"
+                                      state={location.pathname}
                                     >
                                         Đăng ký
                                     </Link>
@@ -121,6 +122,7 @@ const Header = () => {
                                     <Link
                                       className={classes['header__right-account-signin-link']}
                                       to="/login"
+                                      state={location.pathname}
                                     >
                                         Đăng nhập
                                     </Link>
@@ -148,6 +150,7 @@ const Header = () => {
                         </div>
                     </div>
 
+                    {!!auth.getAccessToken() && (
                     <div
                       className={classes['header__right-wrap-avt-cart']}
                     >
@@ -162,7 +165,6 @@ const Header = () => {
                             </div>
                         </div>
 
-                        {!!auth.getAccessToken() && (
                             <div className={classes.header__avatar}>
                                 <button
                                   onClick={handleProfile}
@@ -171,12 +173,12 @@ const Header = () => {
                                 >
                                     <img className={classes['header__avatar-img']} src={auth.getAvatar()} alt="" />
                                     {isOpen && (
-                                        <Profile />
+                                        <ProfileNav />
                                     )}
                                 </button>
                             </div>
-                        )}
                     </div>
+                    )}
                 </div>
             </div>
 

@@ -20,7 +20,11 @@ const DonateFormStep1 = ({ onSubmit, filterItems }) => {
 
     const onSubmitForm = (event) => {
         event.preventDefault();
-        const { productName, productCategory, productAmount, productStatus, productIdeaDescription, productIdeaLink } = form.current;
+        const { productName,
+            productCategory, productAmount, productStatus,
+            // productIdeaDescription,
+            // productIdeaLink
+        } = form.current;
 
         const newproducts = {
             name: productName.value,

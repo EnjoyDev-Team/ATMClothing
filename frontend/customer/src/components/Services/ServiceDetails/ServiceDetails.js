@@ -4,7 +4,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import BoxWrapper from '../../BoxWrapper/BoxWrapper';
+import BoxWrapper from '../BoxWrapper/BoxWrapper';
 import ButtonCT from '../../ButtonCT/ButtonCT';
 import classes from './ServiceDetails.module.scss';
 import { OrderIDGenerator } from '../../../utils/IDGenerator';

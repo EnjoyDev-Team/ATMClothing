@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import classes from './SocialLogin.module.scss';
 import google from '../../../../assets/svg/Google.svg';
 import facebook from '../../../../assets/svg/Facebook.svg';

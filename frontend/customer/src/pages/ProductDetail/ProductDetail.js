@@ -1,5 +1,5 @@
+/* eslint-disable max-len */
 import React from 'react';
-import PropTypes from 'prop-types';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMapLocationDot, faHeart } from '@fortawesome/free-solid-svg-icons';
 import { Link, useParams } from 'react-router-dom';
@@ -9,7 +9,7 @@ import Button from '../../components/ButtonCT/ButtonCT';
 import facebook from '../../assets/imgs/facebook.png';
 import instagram from '../../assets/imgs/instagram.png';
 import useAxios from '../../hooks/useAxios';
-import CardProduct from '../../components/cardProduct/CardProduct';
+import CardProduct from '../../components/CardProduct/CardProduct';
 
 const productDetail = {
   coin: 22,
