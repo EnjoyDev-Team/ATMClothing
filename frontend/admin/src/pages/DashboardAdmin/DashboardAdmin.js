@@ -3,16 +3,13 @@
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 import React, { useState, useEffect } from 'react';
-import PropTypes from 'prop-types';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCirclePlus, faCircleUp, faCircleDown, faCalendarXmark } from '@fortawesome/free-solid-svg-icons';
-import HeaderAdmin from '../../components/HeaderAdmin/HeaderAdmin';
 import classes from './DashboardAdmin.module.scss';
-import NavigationAdmin from '../../components/NavigationAdmin/NavigationAdmin';
-import Revenue from '../../components/Revenue/Revenue';
-import Schedule from '../../components/Schedule/Schedule';
-import ModalTodayTask from '../../components/ModalTodayTask/ModalTodayTask';
-import ModalSchedule from '../../components/ModalSchedule/ModalSchedule';
+import Revenue from './Revenue/Revenue';
+import Schedule from './Schedule/Schedule';
+import ModalTodayTask from './ModalTodayTask/ModalTodayTask';
+import ModalSchedule from './ModalSchedule/ModalSchedule';
 import useModal from '../../hooks/useModal';
 import useAxios from '../../hooks/useAxios';
 

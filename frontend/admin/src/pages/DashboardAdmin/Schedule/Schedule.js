@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classes from './Schedule.module.scss';
-import avatar from '../../assets/imgs/headerAdmin/avatar.jpg';
+import avatar from '../../../assets/imgs/headerAdmin/avatar.jpg';
 
 const Schedule = () => (
         <div>

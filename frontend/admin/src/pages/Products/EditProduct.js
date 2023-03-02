@@ -1,14 +1,11 @@
-/* eslint-disable jsx-a11y/no-static-element-interactions */
-/* eslint-disable jsx-a11y/click-events-have-key-events */
 /* eslint-disable react/jsx-props-no-spreading */
-import { React, useState, useEffect, useCallback } from 'react';
-import PropTypes from 'prop-types';
+import { React, useState, useEffect } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faReply, faCloudArrowUp, faCircleXmark, faC } from '@fortawesome/free-solid-svg-icons';
+import { faReply, faCloudArrowUp, faCircleXmark } from '@fortawesome/free-solid-svg-icons';
 import { Link, useNavigate } from 'react-router-dom';
 import { useDropzone } from 'react-dropzone';
 import { useParams } from 'react-router';
-import classes from './styles.module.scss';
+import classes from './EditProduct.module.scss';
 import useAxios from '../../hooks/useAxios';
 import { axiosPrivate } from '../../api/axios';
 import convert2base64 from '../../utils/convert2base64';

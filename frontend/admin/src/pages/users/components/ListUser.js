@@ -2,13 +2,11 @@
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 /* eslint-disable react/prop-types */
 import React, { useState } from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import classes from './ListUser.module.scss';
-import addImg from '../../assets/imgs/users/Add.png';
+import addImg from '../../../assets/imgs/users/Add.png';
 import UserItem from './UserItem';
-import { axiosClient } from '../../api/axios';
-import useAxios from '../../hooks/useAxios';
-import { Loading, LoadingDonut } from '../Loading/Loading';
+import useAxios from '../../../hooks/useAxios';
+import { LoadingDonut } from '../../../components/Loading/Loading';
 
 const ListUser = ({ setUserInformation }) => {
   const [role, setRole] = useState('user');

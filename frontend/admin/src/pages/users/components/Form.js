@@ -1,13 +1,8 @@
 /* eslint-disable react/prop-types */
-/* eslint-disable indent */
-/* eslint-disable arrow-body-style */
-/* eslint-disable jsx-a11y/label-has-associated-control */
-/* eslint-disable react/no-unknown-property */
-import React, { useState } from 'react';
+import React from 'react';
 import classes from './Form.module.scss';
 
-const Form = ({ userInformation }) => {
-    return (
+const Form = ({ userInformation }) => (
         <main>
             <div className={classes.form__table}>
                 <div className={classes.container__flex}>
@@ -32,7 +27,12 @@ const Form = ({ userInformation }) => {
                 </div>
                 <div className={classes.input__container}>
                     <p>Address</p>
-                    <input type="text" style={{ width: '621px' }} value={userInformation.address.length ? userInformation.address[0].street : ''} readOnly />
+                    <input
+                      type="text"
+                      style={{ width: '621px' }}
+                      value={userInformation.address.length ? userInformation.address[0].street : ''}
+                      readOnly
+                    />
                 </div>
                 <div className={classes.input__container}>
                     <p>Email</p>
@@ -55,7 +55,6 @@ const Form = ({ userInformation }) => {
                 </div> */}
             </div>
         </main>
-    );
-};
+);
 
 export default Form;

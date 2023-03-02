@@ -7,7 +7,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faReply, faCloudArrowUp, faCircleXmark } from '@fortawesome/free-solid-svg-icons';
 import { Link, useNavigate } from 'react-router-dom';
 import { useDropzone } from 'react-dropzone';
-import classes from './styles.module.scss';
+import classes from './AddProduct.module.scss';
 import convert2base64 from '../../utils/convert2base64';
 import { axiosPrivate } from '../../api/axios';
 import useAxios from '../../hooks/useAxios';

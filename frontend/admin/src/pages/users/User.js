@@ -1,9 +1,8 @@
 /* eslint-disable indent */
 import { React, useState } from 'react';
 import classes from './User.module.scss';
-import ListUser from '../../components/users/ListUser';
-import DetailsUser from '../../components/users/DetailsUser';
-import ActivityHistory from '../../components/users/ActivityHistory';
+import ListUser from './components/ListUser';
+import DetailsUser from './components/DetailsUser';
 
 const User = () => {
     const a = 0;

@@ -4,13 +4,13 @@ import PrivateRoute from './privateRoute';
 
 import NotFound from '../pages/notFound';
 import Products from '../pages/Products/Products';
-import EditProduct from '../pages/EditProduct/EditProduct';
-import AddProduct from '../pages/AddProduct/AddProduct';
-import OrdersManage from '../pages/ordersManage/ordersManage';
+import EditProduct from '../pages/Products/EditProduct';
+import AddProduct from '../pages/Products/AddProduct';
+import OrdersManage from '../pages/OrdersManage/ordersManage';
 import DashboardAdmin from '../pages/DashboardAdmin/DashboardAdmin';
-import User from '../pages/users/User';
-import EditUser from '../pages/users/EditUser';
-import AddUser from '../pages/users/AddUser';
+import User from '../pages/Users/User';
+import EditUser from '../pages/Users/EditUser';
+import AddUser from '../pages/Users/AddUser';
 import Layout from '../layouts';
 
 const Navigation = () => {

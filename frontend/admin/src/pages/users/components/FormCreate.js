@@ -1,28 +1,20 @@
-/* eslint-disable react/jsx-indent-props */
-/* eslint-disable no-multi-spaces */
-/* eslint-disable react/jsx-props-no-multi-spaces */
-/* eslint-disable no-trailing-spaces */
-/* eslint-disable react/prop-types */
-/* eslint-disable indent */
-/* eslint-disable arrow-body-style */
 /* eslint-disable jsx-a11y/label-has-associated-control */
-/* eslint-disable react/no-unknown-property */
-import { React, useState } from 'react';
+/* eslint-disable react/prop-types */
+import React from 'react';
 import classes from './Form.module.scss';
 
-const FormCreate = ({ userInfor, setUserInfor, getData }) => {
-    return (
+const FormCreate = ({ userInfor, setUserInfor, getData }) => (
         <main>
             <div className={classes.form__table}>
                 <div className={classes.container__flex}>
                     <div className={classes.input__container}>
                         <p>Phone</p>
                         <input
-                            onChange={getData}
-                            name="phone"
-                            type="text"
-                            style={{ width: '411px' }}
-                            value={userInfor.phone}
+                          onChange={getData}
+                          name="phone"
+                          type="text"
+                          style={{ width: '411px' }}
+                          value={userInfor.phone}
                         />
                     </div>
                     <div className={classes.input__container}>
@@ -34,11 +26,11 @@ const FormCreate = ({ userInfor, setUserInfor, getData }) => {
                     <div className={classes.input__container}>
                         <p>Name</p>
                         <input
-                            onChange={getData}
-                            name="name"
-                            type="text"
-                            style={{ width: '411px' }}
-                            value={userInfor.name}
+                          onChange={getData}
+                          name="name"
+                          type="text"
+                          style={{ width: '411px' }}
+                          value={userInfor.name}
                         />
                     </div>
                     <div className={classes.input__container}>
@@ -48,16 +40,17 @@ const FormCreate = ({ userInfor, setUserInfor, getData }) => {
                 </div>
                 {/* <div className={classes.input__container}>
                     <p>Address</p>
-                    <input onChange={getData} name="address" type="text" style={{ width: '621px' }} value={userInfor.} />
+                    <input onChange={getData} name="address"
+                    type="text" style={{ width: '621px' }} value={userInfor.} />
                 </div> */}
                 <div className={classes.input__container}>
                     <p>Email</p>
                     <input
-                        onChange={getData}
-                        name="email"
-                        type="text"
-                        style={{ width: '621px' }}
-                        value={userInfor.email}
+                      onChange={getData}
+                      name="email"
+                      type="text"
+                      style={{ width: '621px' }}
+                      value={userInfor.email}
                     />
                 </div>
                 <div className={classes.input__container}>
@@ -68,30 +61,29 @@ const FormCreate = ({ userInfor, setUserInfor, getData }) => {
                     <p>Status:</p>
                     <div>
                         <input
-                            onChange={getData}
-                            type="radio"
-                            name="active"
-                            id="active"
-                            value="true"
-                            checked={userInfor.active === true}
+                          onChange={getData}
+                          type="radio"
+                          name="active"
+                          id="active"
+                          value="true"
+                          checked={userInfor.active === true}
                         />
-                        <label for="active">Active</label>
+                        <label htmlFor="active">Active</label>
                     </div>
                     <div>
                         <input
-                            onChange={getData}
-                            type="radio"
-                            name="active"
-                            id="inactive"
-                            value="false"
-                            checked={userInfor.active === false}
+                          onChange={getData}
+                          type="radio"
+                          name="active"
+                          id="inactive"
+                          value="false"
+                          checked={userInfor.active === false}
                         />
-                        <label for="inactive">Inactive</label>
+                        <label htmlFor="inactive">Inactive</label>
                     </div>
                 </div>
             </div>
         </main>
-    );
-};
+);
 
 export default FormCreate;

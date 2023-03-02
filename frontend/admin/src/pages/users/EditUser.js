@@ -8,7 +8,7 @@ import React from 'react';
 import classes from './EditUser.module.scss';
 import avatar from '../../assets/imgs/users/avatar.jpg';
 import camera from '../../assets/imgs/users/Camera.png';
-import FormCreate from '../../components/users/FormCreate';
+import FormCreate from './components/FormCreate';
 
 // eslint-disable-next-line react/prop-types
 const EditUser = () => {

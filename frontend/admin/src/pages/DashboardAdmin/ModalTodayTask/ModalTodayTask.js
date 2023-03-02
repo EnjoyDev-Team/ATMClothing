@@ -3,7 +3,6 @@
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 /* eslint-disable react/jsx-equals-spacing */
 import React from 'react';
-import PropTypes from 'prop-types';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faXmark } from '@fortawesome/free-solid-svg-icons';
 import classes from './ModalTodayTask.module.scss';
